@@ -5,7 +5,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
 
 const getSitemap = createServerFn({ method: "GET" })
-	// .middleware([staticFunctionMiddleware])
+	.middleware([staticFunctionMiddleware])
 	.handler(async () => {
 		const baseUrl = SITE.url
 

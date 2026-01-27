@@ -8,7 +8,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
 
 const getProjects = createServerFn({ method: "GET" })
-	// .middleware([staticFunctionMiddleware])
+	.middleware([staticFunctionMiddleware])
 	.handler(async () => {
 		const sortedProjects = [...allProjects].sort((a, b) => {
 			if (a.year && b.year) {
