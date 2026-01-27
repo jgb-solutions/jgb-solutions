@@ -10,16 +10,21 @@ const postsSearchSchema = z.object({
 	category: z.string().optional()
 })
 
-export const Route = createFileRoute("/posts/")({
-	loader: () => {
-		// Sort posts by date (newest first)
+import { createServerFn } from "@tanstack/react-start"
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
+
+const getPosts = createServerFn({ method: "GET" })
+	.middleware([staticFunctionMiddleware])
+	.handler(async () => {
 		const sortedPosts = allPosts.sort(
 			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
 		)
-		// Get unique categories
 		const categories = Array.from(new Set(sortedPosts.map((p) => p.category)))
 		return { posts: sortedPosts, categories }
-	},
+	})
+
+export const Route = createFileRoute("/posts/")({
+	loader: async () => await getPosts(),
 	head: () =>
 		createPageSEO({
 			title: "Posts - JGB Solutions",

@@ -5,6 +5,18 @@ import { MdxRenderer } from "@/components/mdx-provider"
 import { allProjects } from "content-collections"
 import { createPageSEO } from "@/lib/seo"
 
+import { createServerFn } from "@tanstack/react-start"
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
+
+const getProject = createServerFn({ method: "GET" })
+	.inputValidator((slug: string) => slug)
+	.middleware([staticFunctionMiddleware])
+	.handler(async ({ data: slug }) => {
+		const project = allProjects.find((p) => p.slug === slug)
+		if (!project) throw notFound()
+		return { project }
+	})
+
 export const Route = createFileRoute("/projects/$slug")({
 	head: ({ loaderData }) => {
 		if (!loaderData) return {}
@@ -17,11 +29,7 @@ export const Route = createFileRoute("/projects/$slug")({
 			path: `/projects/${project.slug}`
 		})
 	},
-	loader: ({ params }) => {
-		const project = allProjects.find((p) => p.slug === params.slug)
-		if (!project) throw notFound()
-		return { project }
-	},
+	loader: async ({ params }) => await getProject({ data: params.slug }),
 	notFoundComponent: () => {
 		return (
 			<main className="min-h-screen bg-background">

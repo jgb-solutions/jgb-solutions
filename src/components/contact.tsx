@@ -179,7 +179,7 @@ export default function Contact() {
 							<button
 								type="button"
 								onClick={handleRefreshChallenge}
-								className="text-muted-foreground hover:text-primary transition-colors p-1 rounded hover:bg-primary/10"
+								className="text-muted-foreground hover:text-primary transition-colors p-1 rounded-full hover:bg-primary/10"
 								title="Get a different question"
 								aria-label="Refresh math challenge"
 							>
@@ -228,7 +228,7 @@ export default function Contact() {
 						)}
 					</div>
 
-					<Button type="submit" className="w-full" disabled={isSubmitting}>
+					<Button type="submit" className="w-full rounded-xl" disabled={isSubmitting}>
 						{isSubmitting ? "Sending..." : "Send Message"}
 					</Button>
 					{submitStatus === "success" && (

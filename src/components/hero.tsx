@@ -31,12 +31,12 @@ export default function Hero() {
 
 				<div className="flex flex-col sm:flex-row gap-0">
 					<Link to="#contact" className="w-full sm:w-auto">
-						<Button variant="default" className="rounded-none w-full sm:w-auto">
+						<Button variant="default" className="rounded-xl w-full sm:w-auto">
 							Hire me
 						</Button>
 					</Link>
 					<Link to="#projects" className="w-full sm:w-auto">
-						<Button variant="secondary" className="rounded-none w-full sm:w-auto">
+						<Button variant="secondary" className="rounded-xl w-full sm:w-auto">
 							View projects
 						</Button>
 					</Link>

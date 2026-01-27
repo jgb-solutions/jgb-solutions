@@ -4,9 +4,12 @@ import Footer from "@/components/footer"
 import { allProjects } from "content-collections"
 import { createPageSEO } from "@/lib/seo"
 
-export const Route = createFileRoute("/projects/")({
-	loader: () => {
-		// Sort projects by year (newest first)
+import { createServerFn } from "@tanstack/react-start"
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
+
+const getProjects = createServerFn({ method: "GET" })
+	.middleware([staticFunctionMiddleware])
+	.handler(async () => {
 		const sortedProjects = [...allProjects].sort((a, b) => {
 			if (a.year && b.year) {
 				return parseInt(b.year) - parseInt(a.year)
@@ -14,7 +17,10 @@ export const Route = createFileRoute("/projects/")({
 			return 0
 		})
 		return { projects: sortedProjects }
-	},
+	})
+
+export const Route = createFileRoute("/projects/")({
+	loader: async () => await getProjects(),
 	head: () =>
 		createPageSEO({
 			title: "Projects - JGB Solutions",

@@ -5,6 +5,18 @@ import { allPosts } from "content-collections"
 import { MdxRenderer } from "@/components/mdx-provider"
 import { createPageSEO } from "@/lib/seo"
 
+import { createServerFn } from "@tanstack/react-start"
+import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
+
+const getPost = createServerFn({ method: "GET" })
+	.inputValidator((slug: string) => slug)
+	.middleware([staticFunctionMiddleware])
+	.handler(async ({ data: slug }) => {
+		const post = allPosts.find((p) => p.slug === slug)
+		if (!post) throw notFound()
+		return { post }
+	})
+
 export const Route = createFileRoute("/posts/$slug")({
 	head: ({ loaderData }) => {
 		if (!loaderData) return {}
@@ -20,11 +32,7 @@ export const Route = createFileRoute("/posts/$slug")({
 			path: `/posts/${post.slug}`
 		})
 	},
-	loader: ({ params }) => {
-		const post = allPosts.find((p) => p.slug === params.slug)
-		if (!post) throw notFound()
-		return { post }
-	},
+	loader: async ({ params }) => await getPost({ data: params.slug }),
 	notFoundComponent: () => {
 		return (
 			<main className="min-h-screen bg-background">
@@ -110,13 +118,13 @@ function PostDetailPage() {
 					<div className="mt-12 pt-8 border-t border-border">
 						<p className="text-sm text-muted-foreground mb-4">Share this article</p>
 						<div className="flex gap-4">
-							<button className="text-sm px-4 py-2 border border-border rounded hover:bg-accent transition-colors">
+							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
 								Twitter
 							</button>
-							<button className="text-sm px-4 py-2 border border-border rounded hover:bg-accent transition-colors">
+							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
 								LinkedIn
 							</button>
-							<button className="text-sm px-4 py-2 border border-border rounded hover:bg-accent transition-colors">
+							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
 								Facebook
 							</button>
 						</div>

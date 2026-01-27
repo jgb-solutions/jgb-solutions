@@ -50,18 +50,19 @@ export default function Navbar() {
 				About
 			</button>
 			<Link
+				to="/projects"
+				className={`hover:text-primary transition-colors ${mobile ? "text-lg py-2" : ""}`}
+				onClick={() => setIsOpen(false)}
+			>
+				Projects
+			</Link>
+			<Link
 				to="/posts"
 				className={`hover:text-primary transition-colors ${mobile ? "text-lg py-2" : ""}`}
 				onClick={() => setIsOpen(false)}
 			>
 				Posts
 			</Link>
-			<button
-				onClick={() => scrollToSection("contact")}
-				className={`hover:text-primary transition-colors cursor-pointer text-left ${mobile ? "text-lg py-2" : ""}`}
-			>
-				Contact
-			</button>
 		</>
 	)
 
@@ -91,18 +92,20 @@ export default function Navbar() {
 
 			<div className="flex items-center gap-4">
 				<Button
+					asChild
 					variant="outline"
-					className="border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors bg-transparent cursor-pointer hidden md:flex"
-					onClick={() => scrollToSection("contact")}
+					className="border-black dark:border-white text-black dark:text-white hover:bg-black hover:text-white dark:hover:bg-white dark:hover:text-black transition-colors bg-transparent cursor-pointer flex rounded-xl"
 				>
-					Let&apos;s talk
+					<Link to="/" hash="contact">
+						Let&apos;s talk
+					</Link>
 				</Button>
 				{mounted && (
 					<Button
 						variant="ghost"
 						size="icon"
 						onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-						className="hover:text-primary transition-colors"
+						className="hover:text-primary transition-colors rounded-full"
 						aria-label="Toggle theme"
 					>
 						{theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
@@ -124,8 +127,10 @@ export default function Navbar() {
 						<div className="flex flex-col gap-4 mt-8">
 							<NavLinks mobile />
 							<div className="mt-4 pt-4 border-t">
-								<Button className="w-full" onClick={() => scrollToSection("contact")}>
-									Let&apos;s talk
+								<Button asChild className="w-full rounded-xl">
+									<Link to="/" hash="contact">
+										Let&apos;s talk
+									</Link>
 								</Button>
 							</div>
 						</div>

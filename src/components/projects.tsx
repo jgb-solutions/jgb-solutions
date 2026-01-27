@@ -13,7 +13,7 @@ export default function Projects() {
 				<div className="flex justify-between items-end mb-12">
 					<h2 className="text-3xl md:text-4xl font-light">Featured Projects</h2>
 					<Link to="/projects">
-						<Button variant="outline" className="rounded-full bg-transparent">
+						<Button variant="outline" className="rounded-xl bg-transparent">
 							View All Projects
 						</Button>
 					</Link>
