@@ -3,7 +3,7 @@ import type React from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
-import { useState, useEffect, useMemo } from "react"
+import { useState, useMemo } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { z } from "zod"
@@ -42,7 +42,7 @@ export default function Contact() {
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
-	// Generate math challenge - allow updating
+	// Generate math challenge
 	const [mathChallenge, setMathChallenge] = useState(generateMathChallenge())
 
 	// Extended schema with math challenge
@@ -69,7 +69,6 @@ export default function Contact() {
 		register,
 		handleSubmit,
 		reset,
-		setError,
 		watch,
 		formState: { errors }
 	} = useForm<FormData>({

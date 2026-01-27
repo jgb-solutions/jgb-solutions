@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router"
+import { createFileRoute, ClientOnly } from "@tanstack/react-router"
 import Navbar from "@/components/navbar"
 import Hero from "@/components/hero"
 import MarqueeBar from "@/components/marquee-bar"
@@ -33,7 +33,9 @@ function Home() {
 			<About />
 			<Services />
 			<RecentPosts />
-			<Contact />
+			<ClientOnly fallback={<div className="py-20 text-center text-muted-foreground">Loading contact form...</div>}>
+				<Contact />
+			</ClientOnly>
 			<Footer />
 		</main>
 	)

@@ -39,6 +39,7 @@ const projects = defineCollection({
 		client: z.string().optional(),
 		year: z.string().optional(),
 		services: z.array(z.string()).optional(),
+		url: z.string().optional(),
 		summary: z.string().optional(),
 		content: z.string()
 	}),

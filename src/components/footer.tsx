@@ -86,7 +86,7 @@ export default function Footer() {
 					</div>
 
 					<div className="text-sm text-muted-foreground">
-						© 2025 JGB Solutions. All rights reserved.
+						© 2026 JGB Solutions. All rights reserved.
 					</div>
 				</div>
 			</div>

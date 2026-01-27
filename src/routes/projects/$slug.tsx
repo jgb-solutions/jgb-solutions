@@ -4,6 +4,8 @@ import Footer from "@/components/footer"
 import { MdxRenderer } from "@/components/mdx-provider"
 import { allProjects } from "content-collections"
 import { createPageSEO } from "@/lib/seo"
+import { ExternalLink } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
 import { createServerFn } from "@tanstack/react-start"
 import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
@@ -116,11 +118,23 @@ function ProjectDetailPage() {
 									</div>
 								)}
 							</div>
+
 						)}
 					</div>
 
+					{/* Visit Site Button (Mobile/Tablet - below info, Desktop - sidebar logic if needed) */}
+					{project.url && (
+						<div className="mb-12">
+							<a href={project.url} target="_blank" rel="noopener noreferrer" className="inline-block">
+								<Button className="rounded-xl gap-2 h-12 px-6 text-base">
+									Visit Site <ExternalLink className="w-4 h-4" />
+								</Button>
+							</a>
+						</div>
+					)}
+
 					{/* Project Details (MDX) */}
-					<div className="prose prose-lg dark:prose-invert max-w-none mb-12 md:mb-16">
+					<div className="prose prose-lg dark:prose-invert max-w-none mb-12 md:mb-16 prose-p:my-6 prose-p:leading-relaxed">
 						<MdxRenderer code={project.mdx} />
 					</div>
 

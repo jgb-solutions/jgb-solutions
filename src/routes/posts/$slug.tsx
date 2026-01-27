@@ -4,6 +4,9 @@ import Footer from "@/components/footer"
 import { allPosts } from "content-collections"
 import { MdxRenderer } from "@/components/mdx-provider"
 import { createPageSEO } from "@/lib/seo"
+import { TwitterShareButton, LinkedinShareButton, FacebookShareButton } from "react-share"
+import { Facebook, Linkedin } from "lucide-react"
+import { SITE } from "@/lib/constants"
 
 import { createServerFn } from "@tanstack/react-start"
 import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
@@ -54,6 +57,7 @@ export const Route = createFileRoute("/posts/$slug")({
 
 function PostDetailPage() {
 	const { post } = Route.useLoaderData()
+	const postUrl = `${SITE.url}/posts/${post.slug}`
 
 	return (
 		<main className="min-h-screen bg-background">
@@ -110,23 +114,42 @@ function PostDetailPage() {
 					</div>
 
 					{/* Article Content */}
-					<div className="prose prose-lg dark:prose-invert max-w-none">
+					<div className="prose prose-lg dark:prose-invert max-w-none prose-p:my-6 prose-p:leading-relaxed">
 						<MdxRenderer code={post.mdx} />
 					</div>
 
 					{/* Share Section */}
 					<div className="mt-12 pt-8 border-t border-border">
-						<p className="text-sm text-muted-foreground mb-4">Share this article</p>
+						<p className="text-sm text-muted-foreground mb-4">Share This Post</p>
 						<div className="flex gap-4">
-							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
-								Twitter
-							</button>
-							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
-								LinkedIn
-							</button>
-							<button className="text-sm px-4 py-2 border border-border rounded-xl hover:bg-accent transition-colors">
-								Facebook
-							</button>
+							<TwitterShareButton url={postUrl} title={post.title}>
+								<div className="h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity dark:bg-white dark:text-black">
+									<svg
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										strokeWidth="2"
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										className="h-5 w-5"
+									>
+										<path d="M4 4l11.733 16h4.267l-11.733 -16z" />
+										<path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772" />
+									</svg>
+								</div>
+							</TwitterShareButton>
+
+							<LinkedinShareButton url={postUrl} title={post.title} summary={post.excerpt} source="JGB Solutions">
+								<div className="h-10 w-10 flex items-center justify-center bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-opacity">
+									<Linkedin className="h-5 w-5" />
+								</div>
+							</LinkedinShareButton>
+
+							<FacebookShareButton url={postUrl} hashtag="#WebDev">
+								<div className="h-10 w-10 flex items-center justify-center bg-[#1877f2] text-white rounded-xl hover:opacity-90 transition-opacity">
+									<Facebook className="h-5 w-5" />
+								</div>
+							</FacebookShareButton>
 						</div>
 					</div>
 				</div>
