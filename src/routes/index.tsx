@@ -5,7 +5,7 @@ import MarqueeBar from "@/components/marquee-bar"
 import Projects from "@/components/projects"
 import About from "@/components/about"
 import Services from "@/components/services"
-import RecentBlog from "@/components/recent-blog"
+import RecentPosts from "@/components/recent-posts"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
 
@@ -24,7 +24,7 @@ function Home() {
       <Projects />
       <About />
       <Services />
-      <RecentBlog />
+      <RecentPosts />
       <Contact />
       <Footer />
     </main>

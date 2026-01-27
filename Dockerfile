@@ -1,39 +1,43 @@
-# Adjust BUN_VERSION as desired
-ARG BUN_VERSION=1.0.25
-FROM oven/bun:${BUN_VERSION} as base
+# Build stage
+FROM oven/bun:latest AS build
 
 WORKDIR /app
 
-# Install dependencies into temp directory
-# this will cache them and speed up future builds
-FROM base AS install
-mkdir -p /temp/dev
-COPY package.json bun.lockb /temp/dev/
-RUN cd /temp/dev && bun install --frozen-lockfile
+# Copy package files
+COPY package.json bun.lock ./
 
-# install with --production (exclude devDependencies)
-mkdir -p /temp/prod
-COPY package.json bun.lockb /temp/prod/
-RUN cd /temp/prod && bun install --frozen-lockfile --production
+# Install ALL dependencies (including devDependencies needed for build)
+RUN bun install --frozen-lockfile
 
-# copy node_modules from temp directory
-# then copy all (non-ignored) project files into the image
-FROM base AS prerelease
-COPY --from=install /temp/dev/node_modules node_modules
+# Copy source code
 COPY . .
 
-# [optional] tests & build
+# Build the application
+# TanStack Start with Rolldown outputs to dist/
 ENV NODE_ENV=production
-# RUN bun test
+ENV BUILD_TARGET=bun
 RUN bun run build
 
-# copy production dependencies and source code into final image
-FROM base AS release
-COPY --from=install /temp/prod/node_modules node_modules
-COPY --from=prerelease /app/.output .output
-COPY --from=prerelease /app/package.json .
+# Production stage
+FROM oven/bun:latest AS production
 
-# run the app
+WORKDIR /app
+
+# Copy built assets from build stage
+COPY --from=build /app/dist ./dist
+COPY --from=build /app/package.json ./
+COPY --from=build /app/node_modules ./node_modules
+
+# Use non-root user for security
 USER bun
-EXPOSE 3000/tcp
-ENTRYPOINT [ "bun", "run", ".output/server/index.mjs" ]
+
+# Environment variables
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+
+# Expose port
+EXPOSE 3000
+
+# Start the server
+CMD ["bun", "run", "dist/server/server.js"]

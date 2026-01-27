@@ -33,7 +33,7 @@ export default function Projects() {
               <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                 <h3 className="text-white text-2xl mb-2">{project.title}</h3>
                 <p className="text-white/70 mb-2">{project.category}</p>
-                <p className="text-white/90 text-sm">{project.description}</p>
+                <p className="text-white/90 text-sm">{project.summary}</p>
               </div>
             </Link>
           ))}

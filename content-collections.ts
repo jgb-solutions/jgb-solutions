@@ -2,9 +2,9 @@ import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { z } from 'zod'
 
-const blogPosts = defineCollection({
-  name: 'blogPosts',
-  directory: 'content/blog',
+const posts = defineCollection({
+  name: 'posts',
+  directory: 'content/posts',
   include: '*.mdx',
   schema: z.object({
     title: z.string(),
@@ -14,6 +14,8 @@ const blogPosts = defineCollection({
     image: z.string(),
     readTime: z.string(),
     author: z.string().optional(),
+    summary: z.string().optional(),
+    content: z.string(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document)
@@ -37,6 +39,8 @@ const projects = defineCollection({
     client: z.string().optional(),
     year: z.string().optional(),
     services: z.array(z.string()).optional(),
+    summary: z.string().optional(),
+    content: z.string(),
   }),
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document)
@@ -49,5 +53,5 @@ const projects = defineCollection({
 })
 
 export default defineConfig({
-  collections: [blogPosts, projects],
+  collections: [posts, projects],
 })

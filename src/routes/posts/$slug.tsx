@@ -1,12 +1,12 @@
 import { createFileRoute, Link, notFound } from '@tanstack/react-router'
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
-import { allBlogPosts } from 'content-collections'
+import { allPosts } from 'content-collections'
 import { MdxRenderer } from '@/components/mdx-provider'
 
-export const Route = createFileRoute('/blog/$slug')({
+export const Route = createFileRoute('/posts/$slug')({
   loader: ({ params }) => {
-    const post = allBlogPosts.find((p) => p.slug === params.slug)
+    const post = allPosts.find((p) => p.slug === params.slug)
     if (!post) throw notFound()
     return { post }
   },
@@ -17,8 +17,8 @@ export const Route = createFileRoute('/blog/$slug')({
         <section className="py-20 px-6 md:px-20">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-6xl font-light mb-4">Article Not Found</h1>
-            <Link to="/blog" className="text-primary hover:underline">
-              ← Back to Blog
+            <Link to="/posts" className="text-primary hover:underline">
+              ← Back to Posts
             </Link>
           </div>
         </section>
@@ -26,10 +26,10 @@ export const Route = createFileRoute('/blog/$slug')({
       </main>
     )
   },
-  component: BlogDetailPage,
+  component: PostDetailPage,
 })
 
-function BlogDetailPage() {
+function PostDetailPage() {
   const { post } = Route.useLoaderData()
 
   return (
@@ -39,10 +39,10 @@ function BlogDetailPage() {
       <article className="py-20 px-6 md:px-20">
         <div className="max-w-4xl mx-auto">
           <Link
-            to="/blog"
+            to="/posts"
             className="text-sm text-muted-foreground hover:text-primary transition-colors mb-8 inline-block"
           >
-            ← Back to Blog
+            ← Back to Posts
           </Link>
 
           {/* Article Header */}

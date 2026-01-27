@@ -18,6 +18,13 @@ export const Route = createRootRoute({
         title: "Jean Gérard Bousiquot - Software Engineer & Mentor",
       },
     ],
+    links: [
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/assets/icons/apple-icon-180x180-dunplab-008.png' },
+      { rel: 'icon', type: 'image/png', sizes: '96x96', href: '/assets/icons/favicon-96x96-dunplab-008.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/assets/icons/favicon-32x32-dunplab-008.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/assets/icons/favicon-16x16-dunplab-008.png' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+    ],
   }),
   component: RootComponent,
 })
@@ -37,7 +44,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
+        <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
           <div className="max-w-7xl mx-auto bg-background shadow-xl min-h-screen">
             {children}
           </div>

@@ -1,16 +1,19 @@
 import { Link, useLocation } from '@tanstack/react-router'
-import { Moon, Sun } from "lucide-react"
+import { Moon, Sun, Menu } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { useTheme } from "next-themes"
+import { useTheme } from "@/components/theme-provider"
 import { useState, useEffect } from "react"
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet"
 
 // Logo URLs - will be updated when user provides them
-const LIGHT_LOGO = "https://jgb.solutions/_next/image?url=%2Fassets%2Fimages%2FLogo-JGB-Solutions-500x110.png&w=256&q=75"
-const DARK_LOGO = "https://jgb.solutions/_next/image?url=%2Fassets%2Fimages%2FLogo-JGB-Solutions-500x110.png&w=256&q=75"
+// Logo URLs
+const LIGHT_LOGO = "https://public.jgb.solutions/Logo-JGB-Solutions-02.png"
+const DARK_LOGO = "https://public.jgb.solutions/Logo-JGB-Solutions-500x110.png"
 
 export default function Navbar() {
   const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
   const location = useLocation()
 
   useEffect(() => {
@@ -18,6 +21,7 @@ export default function Navbar() {
   }, [])
 
   const scrollToSection = (sectionId: string) => {
+    setIsOpen(false)
     // If we're on the homepage, scroll immediately
     if (location.pathname === '/') {
       const element = document.getElementById(sectionId)
@@ -30,34 +34,61 @@ export default function Navbar() {
     }
   }
 
+  const NavLinks = ({ mobile = false }: { mobile?: boolean }) => (
+    <>
+      <Link
+        to="/"
+        className={`hover:text-primary transition-colors ${mobile ? 'text-lg py-2' : ''}`}
+        onClick={() => setIsOpen(false)}
+      >
+        Home
+      </Link>
+      <button
+        onClick={() => scrollToSection("about")}
+        className={`hover:text-primary transition-colors cursor-pointer text-left ${mobile ? 'text-lg py-2' : ''}`}
+      >
+        About
+      </button>
+      <Link
+        to="/posts"
+        className={`hover:text-primary transition-colors ${mobile ? 'text-lg py-2' : ''}`}
+        onClick={() => setIsOpen(false)}
+      >
+        Posts
+      </Link>
+      <button
+        onClick={() => scrollToSection("contact")}
+        className={`hover:text-primary transition-colors cursor-pointer text-left ${mobile ? 'text-lg py-2' : ''}`}
+      >
+        Contact
+      </button>
+    </>
+  )
+
   return (
     <nav className="flex items-center justify-between p-6">
       <Link to="/" className="flex items-center gap-2">
         <img
-          src={mounted && theme === "dark" ? DARK_LOGO : LIGHT_LOGO}
+          src={LIGHT_LOGO}
           alt="JGB Solutions"
           width={120}
           height={26}
-          className={!mounted ? "dark:invert" : ""}
+          className="dark:hidden block"
+        />
+        <img
+          src={DARK_LOGO}
+          alt="JGB Solutions"
+          width={120}
+          height={26}
+          className="hidden dark:block"
         />
       </Link>
 
+      {/* Desktop Menu */}
       <div className="hidden md:flex items-center gap-8">
-        <Link to="/" className="hover:text-primary transition-colors">
-          Home
-        </Link>
-        <button onClick={() => scrollToSection("about")} className="hover:text-primary transition-colors cursor-pointer">
-          About
-        </button>
-        <Link to="/blog" className="hover:text-primary transition-colors">
-          Posts
-        </Link>
-        <button onClick={() => scrollToSection("contact")} className="hover:text-primary transition-colors cursor-pointer">
-          Contact
-        </button>
+        <NavLinks />
       </div>
 
-      <div className="flex items-center gap-4">
       <div className="flex items-center gap-4">
         <Button
           variant="outline"
@@ -77,7 +108,32 @@ export default function Navbar() {
             {theme === "dark" ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
           </Button>
         )}
-      </div>
+
+        {/* Mobile Menu Trigger */}
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Menu className="w-6 h-6" />
+              <span className="sr-only">Toggle menu</span>
+            </Button>
+          </SheetTrigger>
+          <SheetContent side="right">
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+            <div className="flex flex-col gap-4 mt-8">
+              <NavLinks mobile />
+              <div className="mt-4 pt-4 border-t">
+                <Button
+                  className="w-full"
+                  onClick={() => scrollToSection("contact")}
+                >
+                  Let&apos;s talk
+                </Button>
+              </div>
+            </div>
+          </SheetContent>
+        </Sheet>
       </div>
 
     </nav>

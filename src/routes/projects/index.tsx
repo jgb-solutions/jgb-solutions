@@ -60,7 +60,7 @@ function ProjectsPage() {
                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-6">
                   <h3 className="text-white text-lg sm:text-xl mb-2">{project.title}</h3>
                   <p className="text-white/90 text-sm mb-1">{project.category}</p>
-                  <p className="text-white/70 text-xs sm:text-sm">{project.description}</p>
+                  <p className="text-white/70 text-xs sm:text-sm">{project.summary}</p>
                 </div>
               </Link>
             ))}

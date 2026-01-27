@@ -1,19 +1,18 @@
 import { Link } from '@tanstack/react-router'
-import { useTheme } from "next-themes"
+
 import { useState, useEffect } from "react"
 import { Github, Instagram, Linkedin, Send } from 'lucide-react'
 
 export default function Footer() {
-  const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
-  // Logo URLs - will be updated when user provides them
-  const lightLogo = "https://jgb.solutions/_next/image?url=%2Fassets%2Fimages%2FLogo-JGB-Solutions-500x110.png&w=256&q=75"
-  const darkLogo = "https://jgb.solutions/_next/image?url=%2Fassets%2Fimages%2FLogo-JGB-Solutions-500x110.png&w=256&q=75"
+  // Logo URLs
+  const lightLogo = "https://public.jgb.solutions/Logo-JGB-Solutions-02.png"
+  const darkLogo = "https://public.jgb.solutions/Logo-JGB-Solutions-500x110.png"
 
   return (
     <footer className="py-12 px-6 md:px-20 border-t">
@@ -21,11 +20,18 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <Link to="/" className="flex items-center gap-2">
             <img
-              src={mounted && theme === "dark" ? darkLogo : lightLogo}
+              src={lightLogo}
               alt="JGB Solutions"
               width={120}
               height={26}
-              className={!mounted ? "dark:invert" : ""}
+              className="dark:hidden block"
+            />
+            <img
+              src={darkLogo}
+              alt="JGB Solutions"
+              width={120}
+              height={26}
+              className="hidden dark:block"
             />
           </Link>
 
