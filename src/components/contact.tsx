@@ -4,42 +4,45 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { z } from "zod"
 
 import { useServerFn } from "@tanstack/react-start"
-import { sendContactEmail } from "../utils/contact"
+import { sendContactEmail, contactSchema } from "@/lib/functions/contact"
+
+type ContactFormData = z.infer<typeof contactSchema>
 
 export default function Contact() {
-	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		subject: "",
-		message: ""
-	})
 	const [isSubmitting, setIsSubmitting] = useState(false)
 	const [submitStatus, setSubmitStatus] = useState<"idle" | "success" | "error">("idle")
 
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors }
+	} = useForm<ContactFormData>({
+		resolver: zodResolver(contactSchema)
+	})
+
 	const sendEmail = useServerFn(sendContactEmail)
 
-	const handleSubmit = async (e: React.FormEvent) => {
-		e.preventDefault()
+	const onSubmit = async (data: ContactFormData) => {
 		setIsSubmitting(true)
 		setSubmitStatus("idle")
 
 		try {
-			// The server function expects the data object directly if defined that way,
-			// or wrapped. checks: .handler(async ({ data }) => ...)
-			// useServerFn returns a function that takes arguments.
-			// usually fn(data).
-			const response = await sendEmail({ data: formData })
+			const response = await sendEmail({ data })
 
 			if (response.success) {
 				setSubmitStatus("success")
-				setFormData({ name: "", email: "", subject: "", message: "" })
+				reset()
 			} else {
 				setSubmitStatus("error")
 			}
 		} catch (error) {
-			console.error("[v0] Contact form error:", error)
+			console.error("[Contact Form] Submission error:", error)
 			setSubmitStatus("error")
 		} finally {
 			setIsSubmitting(false)
@@ -55,46 +58,67 @@ export default function Contact() {
 					together.
 				</p>
 
-				<form onSubmit={handleSubmit} className="space-y-6">
+				<form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
 					<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-						<Input
-							placeholder="Name"
-							value={formData.name}
-							onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-							required
-						/>
-						<Input
-							type="email"
-							placeholder="Email"
-							value={formData.email}
-							onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-							required
-						/>
+						<div>
+							<Input placeholder="Name" {...register("name")} aria-invalid={!!errors.name} />
+							{errors.name && (
+								<p className="text-sm text-red-600 dark:text-red-400 mt-1">
+									{errors.name.message}
+								</p>
+							)}
+						</div>
+						<div>
+							<Input
+								type="email"
+								placeholder="Email"
+								{...register("email")}
+								aria-invalid={!!errors.email}
+							/>
+							{errors.email && (
+								<p className="text-sm text-red-600 dark:text-red-400 mt-1">
+									{errors.email.message}
+								</p>
+							)}
+						</div>
 					</div>
-					<Input
-						placeholder="Subject"
-						value={formData.subject}
-						onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-						required
-					/>
-					<Textarea
-						placeholder="Message"
-						className="min-h-[150px]"
-						value={formData.message}
-						onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-						required
-					/>
+					<div>
+						<Input placeholder="Subject" {...register("subject")} aria-invalid={!!errors.subject} />
+						{errors.subject && (
+							<p className="text-sm text-red-600 dark:text-red-400 mt-1">
+								{errors.subject.message}
+							</p>
+						)}
+					</div>
+					<div>
+						<Textarea
+							placeholder="Message"
+							className="min-h-[150px]"
+							{...register("message")}
+							aria-invalid={!!errors.message}
+						/>
+						{errors.message && (
+							<p className="text-sm text-red-600 dark:text-red-400 mt-1">
+								{errors.message.message}
+							</p>
+						)}
+					</div>
 					<Button type="submit" className="w-full" disabled={isSubmitting}>
 						{isSubmitting ? "Sending..." : "Send Message"}
 					</Button>
 					{submitStatus === "success" && (
-						<p className="text-green-600 text-center">Message sent successfully!</p>
+						<p className="text-green-600 dark:text-green-400 text-center font-medium">
+							✓ Message sent successfully! We'll get back to you soon.
+						</p>
 					)}
 					{submitStatus === "error" && (
-						<p className="text-red-600 text-center">Failed to send message. Please try again.</p>
+						<p className="text-red-600 dark:text-red-400 text-center font-medium">
+							✗ Failed to send message. Please try again or email us directly.
+						</p>
 					)}
 				</form>
 			</div>
 		</section>
 	)
 }
+
