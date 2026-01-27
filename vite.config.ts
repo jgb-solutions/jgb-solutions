@@ -31,9 +31,9 @@ export default defineConfig({
 			// }
 		}),
 		viteReact({
-			babel: {
-				plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]]
-			}
+			// babel: {
+			// 	plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]]
+			// }
 		}),
 		nitro({
 			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel"
