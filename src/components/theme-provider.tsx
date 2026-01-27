@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useMemo, useState } from "react"
+import React, { createContext, useContext, useEffect, useMemo, useState } from "react"
 
 export type ResolvedTheme = "dark" | "light"
 export type Theme = ResolvedTheme | "system"

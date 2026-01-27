@@ -14,7 +14,7 @@ import { createServerFn } from "@tanstack/react-start"
 import { staticFunctionMiddleware } from "@tanstack/start-static-server-functions"
 
 const getPosts = createServerFn({ method: "GET" })
-	.middleware([staticFunctionMiddleware])
+	// .middleware([staticFunctionMiddleware])
 	.handler(async () => {
 		const sortedPosts = allPosts.sort(
 			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()

@@ -30,11 +30,7 @@ export default defineConfig({
 			// 	autoSubfolderIndex: true
 			// }
 		}),
-		viteReact({
-			// babel: {
-			// 	plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]]
-			// }
-		}),
+		viteReact(),
 		nitro({
 			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel"
 		})

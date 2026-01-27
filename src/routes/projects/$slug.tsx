@@ -10,7 +10,7 @@ import { staticFunctionMiddleware } from "@tanstack/start-static-server-function
 
 const getProject = createServerFn({ method: "GET" })
 	.inputValidator((slug: string) => slug)
-	.middleware([staticFunctionMiddleware])
+	// .middleware([staticFunctionMiddleware])
 	.handler(async ({ data: slug }) => {
 		const project = allProjects.find((p) => p.slug === slug)
 		if (!project) throw notFound()
