@@ -8,8 +8,16 @@ import Services from "@/components/services"
 import RecentPosts from "@/components/recent-posts"
 import Contact from "@/components/contact"
 import Footer from "@/components/footer"
+import { createPageSEO } from "@/lib/seo"
 
 export const Route = createFileRoute("/")({
+	head: () =>
+		createPageSEO({
+			title: "JGB Solutions - Web & Mobile Development",
+			description:
+				"Portfolio showcasing 20+ web and mobile development projects. Expertise in React, TypeScript, Node.js, and scalable solutions. Available for freelance and consulting.",
+			path: "/"
+		}),
 	component: Home
 })
 

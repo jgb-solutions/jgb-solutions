@@ -4,12 +4,29 @@ import Footer from "@/components/footer"
 import { allPosts } from "content-collections"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
+import { createPageSEO } from "@/lib/seo"
 
 const postsSearchSchema = z.object({
 	category: z.string().optional()
 })
 
 export const Route = createFileRoute("/posts/")({
+	loader: () => {
+		// Sort posts by date (newest first)
+		const sortedPosts = allPosts.sort(
+			(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+		)
+		// Get unique categories
+		const categories = Array.from(new Set(sortedPosts.map((p) => p.category)))
+		return { posts: sortedPosts, categories }
+	},
+	head: () =>
+		createPageSEO({
+			title: "Posts - JGB Solutions",
+			description:
+				"Articles and tutorials about web development, React, TypeScript, software engineering best practices, and technology insights.",
+			path: "/posts"
+		}),
 	component: PostsPage,
 	validateSearch: postsSearchSchema
 })
@@ -17,14 +34,9 @@ export const Route = createFileRoute("/posts/")({
 function PostsPage() {
 	const { category } = Route.useSearch()
 	const navigate = useNavigate({ from: Route.fullPath })
+	const { posts, categories } = Route.useLoaderData()
 
-	const sortedPosts = allPosts.sort(
-		(a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-	)
-
-	const categories = Array.from(new Set(sortedPosts.map((p) => p.category)))
-
-	const filteredPosts = category ? sortedPosts.filter((p) => p.category === category) : sortedPosts
+	const filteredPosts = category ? posts.filter((p) => p.category === category) : posts
 
 	return (
 		<main className="min-h-screen bg-background">

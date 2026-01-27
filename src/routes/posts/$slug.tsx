@@ -3,8 +3,23 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { allPosts } from "content-collections"
 import { MdxRenderer } from "@/components/mdx-provider"
+import { createPageSEO } from "@/lib/seo"
 
 export const Route = createFileRoute("/posts/$slug")({
+	head: ({ loaderData }) => {
+		if (!loaderData) return {}
+		const { post } = loaderData
+		return createPageSEO({
+			title: `${post.title} - JGB Solutions`,
+			description: post.excerpt,
+			image: post.image,
+			type: "article",
+			author: post.author,
+			publishedTime: post.date,
+			section: post.category,
+			path: `/posts/${post.slug}`
+		})
+	},
 	loader: ({ params }) => {
 		const post = allPosts.find((p) => p.slug === params.slug)
 		if (!post) throw notFound()

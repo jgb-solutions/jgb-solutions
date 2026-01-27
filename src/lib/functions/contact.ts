@@ -30,7 +30,7 @@ export const sendContactEmail = createServerFn().handler(
 		const resend = new Resend(process.env.RESEND_API_KEY)
 		try {
 			const result = await resend.emails.send({
-				from: "Moxa Contact Form <onboarding@resend.dev>",
+				from: "JGB Solutions Contact Form <services@jgb.solutions>",
 				to: ["jgbneatdesign@gmail.com"],
 				subject: `Contact Form: ${validatedData.subject}`,
 				replyTo: validatedData.email,

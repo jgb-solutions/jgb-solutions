@@ -3,8 +3,20 @@ import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { MdxRenderer } from "@/components/mdx-provider"
 import { allProjects } from "content-collections"
+import { createPageSEO } from "@/lib/seo"
 
 export const Route = createFileRoute("/projects/$slug")({
+	head: ({ loaderData }) => {
+		if (!loaderData) return {}
+		const { project } = loaderData
+		return createPageSEO({
+			title: `${project.title} - Project | JGB Solutions`,
+			description: project.description,
+			image: project.image,
+			type: "article",
+			path: `/projects/${project.slug}`
+		})
+	},
 	loader: ({ params }) => {
 		const project = allProjects.find((p) => p.slug === params.slug)
 		if (!project) throw notFound()

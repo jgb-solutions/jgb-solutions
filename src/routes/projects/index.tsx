@@ -2,25 +2,31 @@ import { createFileRoute, Link } from "@tanstack/react-router"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import { allProjects } from "content-collections"
+import { createPageSEO } from "@/lib/seo"
 
 export const Route = createFileRoute("/projects/")({
+	loader: () => {
+		// Sort projects by year (newest first)
+		const sortedProjects = [...allProjects].sort((a, b) => {
+			if (a.year && b.year) {
+				return parseInt(b.year) - parseInt(a.year)
+			}
+			return 0
+		})
+		return { projects: sortedProjects }
+	},
+	head: () =>
+		createPageSEO({
+			title: "Projects - JGB Solutions",
+			description:
+				"Browse my portfolio of 20+ successful projects including e-commerce platforms, mobile apps, content management systems, and custom web applications.",
+			path: "/projects"
+		}),
 	component: ProjectsPage
 })
 
 function ProjectsPage() {
-	// Sort projects: Assuming order in file is roughly chronological, but ideally we sort by date/year.
-	// Since we only have 'year' as string in frontmatter, we can try to parse it.
-	// For now, let's reverse them if they are in older-first order, or keep as is if they are newer-first.
-	// The user asked for chronological order. Let's assume the migration script added them top-down which might be oldest first or random.
-	// Let's implement a safe sort.
-
-	const sortedProjects = [...allProjects].sort((a, b) => {
-		// If year is present, compare years
-		if (a.year && b.year) {
-			return parseInt(b.year) - parseInt(a.year)
-		}
-		return 0 // maintain original order if no year
-	})
+	const { projects } = Route.useLoaderData()
 
 	return (
 		<main className="min-h-screen bg-background">
@@ -45,7 +51,7 @@ function ProjectsPage() {
 					</div>
 
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-						{sortedProjects.map((project, index) => (
+						{projects.map((project, index) => (
 							<Link
 								to={`/projects/${project.slug}`}
 								key={index}
