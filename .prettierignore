@@ -1,0 +1,20 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.tanstack
+.output
+build
+dist
+
+# Generated files
+src/routeTree.gen.ts
+.content-collections
+
+# Configuration files
+*.config.js
+*.config.ts
+
+# Logs
+*.log
