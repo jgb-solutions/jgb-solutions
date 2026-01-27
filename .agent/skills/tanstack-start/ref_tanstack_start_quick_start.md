@@ -3,6 +3,7 @@
 [Impatient?](https://tanstack.com/start/latest/docs/framework/react/quick-start#impatient)
 
 ## Impatient?
+
 The fastest way to get a Start project up and running is with the cli. Just run
 
 ```bash
@@ -30,7 +31,9 @@ Once you've cloned the example you want, head back to the [Routing](https://tans
 [Examples](https://tanstack.com/start/latest/docs/framework/react/quick-start#examples)
 
 ## Examples
+
 TanStack Start has load of examples to get you started. Pick one of the examples below to get started!
+
 - [Basic](https://github.com/TanStack/router/tree/main/examples/react/start-basic) (start-basic)
 - [Basic + Auth](https://github.com/TanStack/router/tree/main/examples/react/start-basic-auth) (start-basic-auth)
 - [Counter](https://github.com/TanStack/router/tree/main/examples/react/start-counter) (start-counter)
@@ -43,14 +46,17 @@ TanStack Start has load of examples to get you started. Pick one of the examples
 - [Material UI](https://github.com/TanStack/router/tree/main/examples/react/start-material-ui) (start-material-ui)
 
 ### Stackblitz
+
 Each example above has an embedded stackblitz preview to find the one that feels like a good starting point
 [Quick Deploy](https://tanstack.com/start/latest/docs/framework/react/quick-start#quick-deploy)
 
 ### Quick Deploy
+
 To quickly deploy an example, click the Deploy to Netlify button on an example's page to both clone and deploy the example to Netlify.
 [Manual Deploy](https://tanstack.com/start/latest/docs/framework/react/quick-start#manual-deploy)
 
 ### Manual Deploy
+
 To manually clone and deploy the example to anywhere else you'd like, use the following commands replacing EXAMPLE_SLUG with the slug of the example you'd like to use from above:
 
 ```bash
@@ -64,7 +70,9 @@ Once you've clone or deployed an example, head back to the [Routing](https://tan
 [Other Router Examples](https://tanstack.com/start/latest/docs/framework/react/quick-start#other-router-examples)
 
 ## Other Router Examples
+
 While not Start-specific examples, these may help you understand more about how TanStack Router works:
+
 - [Quickstart (file-based)](https://github.com/TanStack/router/tree/main/examples/react/quickstart-file-based)
 - [Basic (file-based)](https://github.com/TanStack/router/tree/main/examples/react/basic-file-based)
 - [Kitchen Sink (file-based)](https://github.com/TanStack/router/tree/main/examples/react/kitchen-sink-file-based)

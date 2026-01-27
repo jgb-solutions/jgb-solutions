@@ -27,3 +27,6 @@ Thumbs.db
 
 # content collections
 .content-collections
+
+# vercel
+.vercel
