@@ -24,7 +24,7 @@ export default function RecentPosts() {
         <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8'>
           {recentPosts.map((post, index) => (
             <article key={index} className='group'>
-              <Link to={`/posts/${post.slug}`}>
+              <Link to='/posts/$slug' params={{ slug: post.slug }}>
                 <div className='relative overflow-hidden mb-4 aspect-[4/3] rounded-2xl'>
                   <img
                     src={post.image || '/placeholder.svg'}

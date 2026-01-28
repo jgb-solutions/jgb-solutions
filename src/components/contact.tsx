@@ -93,7 +93,7 @@ export default function Contact() {
     try {
       // Extract contact data (without mathAnswer)
       const { mathAnswer, ...contactData } = data
-      const response = await sendContactEmailServer({ data: contactData })
+      const response = await sendContactEmailServer({ data: contactData } as any)
 
       if (response.success) {
         setSubmitStatus('success')

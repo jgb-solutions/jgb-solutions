@@ -82,7 +82,7 @@ function PostsPage() {
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
             {filteredPosts.map((post, index) => (
               <article key={index} className='group'>
-                <Link to={`/posts/${post.slug}`}>
+                <Link to='/posts/$slug' params={{ slug: post.slug }}>
                   <div className='relative overflow-hidden mb-4 rounded-xl'>
                     <img
                       src={post.image || '/placeholder.svg'}
