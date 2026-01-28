@@ -1,4 +1,5 @@
 import { createServerFn } from '@tanstack/react-start'
+import { zodValidator } from '@tanstack/zod-adapter'
 import { Resend } from 'resend'
 import { z } from 'zod'
 
@@ -22,9 +23,9 @@ export const contactSchema = z.object({
     .max(2000, 'Message must be less than 2000 characters'),
 })
 
-export const sendContactEmail = createServerFn({ method: 'POST' }).handler(
-  async (payload: { data: unknown }) => {
-    const validatedData = contactSchema.parse(payload.data)
+export const sendContactEmail = createServerFn({ method: 'POST' })
+  .inputValidator(zodValidator(contactSchema))
+  .handler(async ({ data: validatedData }) => {
     const resend = new Resend(process.env.RESEND_API_KEY)
     try {
       const result = await resend.emails.send({
@@ -46,5 +47,4 @@ export const sendContactEmail = createServerFn({ method: 'POST' }).handler(
       console.error('Resend error:', error)
       return { success: false, error: {} }
     }
-  }
-)
+  })
