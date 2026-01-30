@@ -36,6 +36,7 @@ const projects = defineCollection({
     category: z.string(),
     description: z.string(),
     image: z.string(),
+    order: z.number(),
     client: z.string().optional(),
     year: z.string().optional(),
     services: z.array(z.string()).optional(),

@@ -92,10 +92,22 @@ ${colorConfig
 
 const ChartTooltip = RechartsPrimitive.Tooltip
 
+// Type definition for tooltip payload items
+interface TooltipPayloadItem {
+  name?: string
+  dataKey?: string
+  value?: number
+  payload?: Record<string, unknown>
+  fill?: string
+  color?: string
+}
+
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
+  Omit<React.ComponentProps<typeof RechartsPrimitive.Tooltip>, 'payload' | 'label'> &
     React.ComponentProps<'div'> & {
+      payload?: TooltipPayloadItem[]
+      label?: string
       hideLabel?: boolean
       hideIndicator?: boolean
       indicator?: 'line' | 'dot' | 'dashed'
@@ -128,7 +140,7 @@ const ChartTooltipContent = React.forwardRef<
         return null
       }
 
-      const [item] = payload
+      const [item] = payload as TooltipPayloadItem[]
       const key = `${labelKey || item.dataKey || item.name || 'value'}`
       const itemConfig = getPayloadConfigFromPayload(config, item, key)
       const value =
@@ -136,6 +148,7 @@ const ChartTooltipContent = React.forwardRef<
 
       if (labelFormatter) {
         return (
+          // @ts-expect-error - Recharts labelFormatter expects different payload type
           <div className={cn('font-medium', labelClassName)}>{labelFormatter(value, payload)}</div>
         )
       }
@@ -163,10 +176,10 @@ const ChartTooltipContent = React.forwardRef<
       >
         {!nestLabel ? tooltipLabel : null}
         <div className='grid gap-1.5'>
-          {payload.map((item, index) => {
+          {(payload as TooltipPayloadItem[]).map((item: TooltipPayloadItem, index: number) => {
             const key = `${nameKey || item.name || item.dataKey || 'value'}`
             const itemConfig = getPayloadConfigFromPayload(config, item, key)
-            const indicatorColor = color || item.payload.fill || item.color
+            const indicatorColor = color || item.payload?.fill || item.color
 
             return (
               <div
@@ -177,7 +190,8 @@ const ChartTooltipContent = React.forwardRef<
                 )}
               >
                 {formatter && item?.value !== undefined && item.name ? (
-                  formatter(item.value, item.name, item, index, item.payload)
+                  // @ts-expect-error - Recharts formatter expects different payload type
+                  formatter(item.value, item.name, item as unknown, index, item.payload)
                 ) : (
                   <>
                     {itemConfig?.icon ? (
@@ -236,17 +250,25 @@ ChartTooltipContent.displayName = 'ChartTooltip'
 
 const ChartLegend = RechartsPrimitive.Legend
 
+// Type definition for legend payload items
+interface LegendPayloadItem {
+  dataKey?: string
+  value?: string
+  color?: string
+}
+
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<'div'> &
-    Pick<RechartsPrimitive.LegendProps, 'payload' | 'verticalAlign'> & {
-      hideIcon?: boolean
-      nameKey?: string
-    }
+  React.ComponentProps<'div'> & {
+    payload?: LegendPayloadItem[]
+    verticalAlign?: 'top' | 'bottom' | 'middle'
+    hideIcon?: boolean
+    nameKey?: string
+  }
 >(({ className, hideIcon = false, payload, verticalAlign = 'bottom', nameKey }, ref) => {
   const { config } = useChart()
 
-  if (!payload?.length) {
+  if (!payload || (payload as LegendPayloadItem[]).length === 0) {
     return null
   }
 
@@ -259,7 +281,7 @@ const ChartLegendContent = React.forwardRef<
         className
       )}
     >
-      {payload.map(item => {
+      {(payload as LegendPayloadItem[]).map((item: LegendPayloadItem) => {
         const key = `${nameKey || item.dataKey || 'value'}`
         const itemConfig = getPayloadConfigFromPayload(config, item, key)
 
@@ -290,26 +312,29 @@ const ChartLegendContent = React.forwardRef<
 ChartLegendContent.displayName = 'ChartLegend'
 
 // Helper to extract item config from a payload.
-function getPayloadConfigFromPayload(config: ChartConfig, payload: unknown, key: string) {
+function getPayloadConfigFromPayload(
+  config: ChartConfig,
+  payload: TooltipPayloadItem | LegendPayloadItem | unknown,
+  key: string
+) {
   if (typeof payload !== 'object' || payload === null) {
     return undefined
   }
 
+  const typedPayload = payload as TooltipPayloadItem
   const payloadPayload =
-    'payload' in payload && typeof payload.payload === 'object' && payload.payload !== null
-      ? payload.payload
+    'payload' in typedPayload &&
+    typeof typedPayload.payload === 'object' &&
+    typedPayload.payload !== null
+      ? (typedPayload.payload as Record<string, unknown>)
       : undefined
 
   let configLabelKey: string = key
 
-  if (key in payload && typeof payload[key as keyof typeof payload] === 'string') {
-    configLabelKey = payload[key as keyof typeof payload] as string
-  } else if (
-    payloadPayload &&
-    key in payloadPayload &&
-    typeof payloadPayload[key as keyof typeof payloadPayload] === 'string'
-  ) {
-    configLabelKey = payloadPayload[key as keyof typeof payloadPayload] as string
+  if (key in typedPayload && typeof typedPayload[key as keyof TooltipPayloadItem] === 'string') {
+    configLabelKey = typedPayload[key as keyof TooltipPayloadItem] as string
+  } else if (payloadPayload && key in payloadPayload && typeof payloadPayload[key] === 'string') {
+    configLabelKey = payloadPayload[key] as string
   }
 
   return configLabelKey in config ? config[configLabelKey] : config[key]

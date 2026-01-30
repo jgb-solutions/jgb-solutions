@@ -2,7 +2,7 @@ import { ClientOnly, createFileRoute } from '@tanstack/react-router'
 import Navbar from '@/components/navbar'
 import Hero from '@/components/hero'
 import MarqueeBar from '@/components/marquee-bar'
-import Projects from '@/components/projects'
+import FeaturedProjects from '@/components/featured-projects'
 import About from '@/components/about'
 import Services from '@/components/services'
 import RecentPosts from '@/components/recent-posts'
@@ -29,7 +29,7 @@ function Home() {
         <Hero />
         <MarqueeBar />
       </div>
-      <Projects />
+      <FeaturedProjects />
       <About />
       <Services />
       <RecentPosts />

@@ -3,15 +3,11 @@ import { allProjects } from 'content-collections'
 import { createServerFn } from '@tanstack/react-start'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
+import { ProjectCard } from '@/components/project-card'
 import { createPageSEO } from '@/lib/seo'
 
 const getProjects = createServerFn({ method: 'GET' }).handler(async () => {
-  const sortedProjects = [...allProjects].sort((a, b) => {
-    if (a.year && b.year) {
-      return parseInt(b.year) - parseInt(a.year)
-    }
-    return 0
-  })
+  const sortedProjects = [...allProjects].sort((a, b) => a.order - b.order)
   return { projects: sortedProjects }
 })
 
@@ -53,26 +49,8 @@ function ProjectsPage() {
           </div>
 
           <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8'>
-            {projects.map((project, index) => (
-              <Link
-                to='/projects/$slug'
-                params={{ slug: project.slug }}
-                key={index}
-                className='group relative overflow-hidden block rounded-2xl'
-              >
-                <div className='aspect-[4/3] relative overflow-hidden'>
-                  <img
-                    src={project.image || '/placeholder.svg'}
-                    alt={project.title}
-                    className='w-full h-full object-cover transition-transform duration-500 group-hover:scale-105'
-                  />
-                </div>
-                <div className='absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4 sm:p-6'>
-                  <h3 className='text-white text-lg sm:text-xl mb-2'>{project.title}</h3>
-                  <p className='text-white/90 text-sm mb-1'>{project.category}</p>
-                  <p className='text-white/70 text-xs sm:text-sm'>{project.summary}</p>
-                </div>
-              </Link>
+            {projects.map(project => (
+              <ProjectCard key={project.slug} project={project} />
             ))}
           </div>
         </div>

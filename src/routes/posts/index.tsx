@@ -5,6 +5,7 @@ import { createServerFn } from '@tanstack/react-start'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { Button } from '@/components/ui/button'
+import { PostCard } from '@/components/post-card'
 import { createPageSEO } from '@/lib/seo'
 
 const postsSearchSchema = z.object({
@@ -80,55 +81,8 @@ function PostsPage() {
           </div>
 
           <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-            {filteredPosts.map((post, index) => (
-              <article key={index} className='group'>
-                <Link to='/posts/$slug' params={{ slug: post.slug }}>
-                  <div className='relative overflow-hidden mb-4 rounded-xl'>
-                    <img
-                      src={post.image || '/placeholder.svg'}
-                      alt={post.title}
-                      width={600}
-                      height={400}
-                      className='w-full object-cover transition-transform duration-500 group-hover:scale-105 aspect-[3/2]'
-                    />
-                    {post.summary && (
-                      <div className='absolute bottom-0 left-0 right-0 bg-black/60 text-white p-2 text-xs backdrop-blur-sm transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>
-                        {post.summary}
-                      </div>
-                    )}
-                  </div>
-                </Link>
-                <div className='space-y-2'>
-                  <div className='flex items-center gap-2 text-sm text-muted-foreground'>
-                    <button
-                      onClick={e => {
-                        e.preventDefault()
-                        navigate({ search: { category: post.category } })
-                      }}
-                      className='text-primary hover:underline cursor-pointer'
-                    >
-                      {post.category}
-                    </button>
-                    <span>•</span>
-                    <span>{post.date}</span>
-                    <span>•</span>
-                    <span>{post.readTime}</span>
-                  </div>
-                  <Link to='/posts/$slug' params={{ slug: post.slug }}>
-                    <h2 className='text-2xl font-light group-hover:text-primary transition-colors'>
-                      {post.title}
-                    </h2>
-                  </Link>
-                  <p className='text-muted-foreground'>{post.excerpt}</p>
-                  <Link
-                    to='/posts/$slug'
-                    params={{ slug: post.slug }}
-                    className='inline-block text-sm text-primary hover:underline'
-                  >
-                    Read more →
-                  </Link>
-                </div>
-              </article>
+            {filteredPosts.map(post => (
+              <PostCard key={post.slug} post={post} showExcerpt showDate />
             ))}
           </div>
         </div>
