@@ -13,7 +13,8 @@
     "format:check": "prettier --check .",
     "type-check": "tsc --noEmit",
     "test": "vitest",
-    "test:run": "vitest run"
+    "test:run": "vitest run",
+    "generate:collections": "content-collections build"
   },
   "dependencies": {
     "@content-collections/core": "^0.13.1",
@@ -41,6 +42,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@content-collections/cli": "^0.1.8",
     "@tailwindcss/postcss": "^4.1.18",
     "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.1.18",
