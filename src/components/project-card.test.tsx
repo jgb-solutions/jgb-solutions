@@ -5,7 +5,9 @@ import type { allProjects } from 'content-collections'
 
 // Mock the Link component from TanStack Router
 vi.mock('@tanstack/react-router', () => ({
-  Link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
+  Link: ({ children, ...props }: { children: React.ReactNode } & Record<string, unknown>) => (
+    <a {...props}>{children}</a>
+  ),
 }))
 
 // Mock Project Data

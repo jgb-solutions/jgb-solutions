@@ -1,51 +1,41 @@
 import { describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { Route } from './$slug'
+import { screen } from '@testing-library/react'
+import { renderWithRouter } from '@/test/router-utils'
 
-// Mock Data
-const mockPost = {
-  slug: 'test-post',
-  title: 'Test Post',
-  category: 'Tech',
-  date: '2024-01-01',
-  readTime: '5 min',
-  image: '/test.png',
-  mdx: 'MDX Content',
-}
-
-// Mock Router
-vi.mock('@tanstack/react-router', async () => {
-  const actual = await vi.importActual('@tanstack/react-router')
-  return {
-    ...actual,
-    createFileRoute: () => (config: any) => ({
-      ...config,
-      component: config.component,
-      useLoaderData: () => ({ post: mockPost }),
-    }),
-    Link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
-  }
-})
+// Mock content-collections
+vi.mock('content-collections', () => ({
+  allPosts: [
+    {
+      slug: 'test-post',
+      title: 'Test Post',
+      category: 'Tech',
+      date: '2024-01-01',
+      readTime: '5 min',
+      image: '/test.png',
+      mdx: 'MDX Content',
+    },
+  ],
+  allProjects: [],
+}))
 
 // Mock Components
 vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
 vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
-// Fix: Mock named export MdxRenderer
 vi.mock('@/components/mdx-provider', () => ({
   MdxRenderer: () => <div data-testid='mdx-content'>MDX Rendered</div>,
 }))
 
 describe('Post Detail Route', () => {
-  it('renders post details', () => {
-    const PostPage = Route.component as React.ComponentType
-    render(<PostPage />)
+  it('renders post details', async () => {
+    renderWithRouter({ initialEntries: ['/posts/test-post'] })
 
-    expect(screen.getByText('Test Post')).toBeInTheDocument()
-    expect(screen.getByText('Tech')).toBeInTheDocument()
-    expect(screen.getByText('2024-01-01')).toBeInTheDocument()
-    expect(screen.getByText('5 min')).toBeInTheDocument()
+    // Wait for content to appear
+    expect(await screen.findByText('Test Post')).toBeInTheDocument()
+    expect(await screen.findByText('Tech')).toBeInTheDocument()
+    expect(await screen.findByText('2024-01-01')).toBeInTheDocument()
+    expect(await screen.findByText('5 min')).toBeInTheDocument()
 
     // Check MDX content
-    expect(screen.getByTestId('mdx-content')).toBeInTheDocument()
+    expect(await screen.findByTestId('mdx-content')).toBeInTheDocument()
   })
 })

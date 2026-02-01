@@ -102,6 +102,7 @@ export default function Contact() {
         setSubmitStatus('error')
       }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('[Contact Form] Submission error:', error)
       setSubmitStatus('error')
     } finally {

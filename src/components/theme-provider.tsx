@@ -67,9 +67,9 @@ export function ThemeProvider({
     () => ({
       theme,
       resolvedTheme,
-      setTheme: (theme: Theme) => {
-        localStorage.setItem(storageKey, theme)
-        setTheme(theme)
+      setTheme: (newTheme: Theme) => {
+        localStorage.setItem(storageKey, newTheme)
+        setTheme(newTheme)
       },
     }),
     [theme, resolvedTheme, storageKey]

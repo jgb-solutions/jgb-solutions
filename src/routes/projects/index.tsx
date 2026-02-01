@@ -6,13 +6,13 @@ import Footer from '@/components/footer'
 import { ProjectCard } from '@/components/project-card'
 import { createPageSEO } from '@/lib/seo'
 
-const getProjects = createServerFn({ method: 'GET' }).handler(async () => {
+const getProjects = createServerFn({ method: 'GET' }).handler(() => {
   const sortedProjects = [...allProjects].sort((a, b) => a.order - b.order)
   return { projects: sortedProjects }
 })
 
 export const Route = createFileRoute('/projects/')({
-  loader: async () => await getProjects(),
+  loader: () => getProjects(),
   head: () =>
     createPageSEO({
       title: 'Projects - JGB Solutions',

@@ -12,7 +12,7 @@ const postsSearchSchema = z.object({
   category: z.string().optional(),
 })
 
-const getPosts = createServerFn({ method: 'GET' }).handler(async () => {
+const getPosts = createServerFn({ method: 'GET' }).handler(() => {
   const sortedPosts = allPosts.sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
@@ -22,7 +22,7 @@ const getPosts = createServerFn({ method: 'GET' }).handler(async () => {
 
 export const Route = createFileRoute('/posts/')({
   validateSearch: postsSearchSchema,
-  loader: async () => await getPosts(),
+  loader: () => getPosts(),
   component: PostsPage,
   head: () =>
     createPageSEO({

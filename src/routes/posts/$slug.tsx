@@ -12,14 +12,14 @@ import { SITE } from '@/lib/constants'
 const getPost = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
 
-  .handler(async ({ data: slug }) => {
+  .handler(({ data: slug }) => {
     const post = allPosts.find(p => p.slug === slug)
     if (!post) throw notFound()
     return { post }
   })
 
 export const Route = createFileRoute('/posts/$slug')({
-  loader: async ({ params }) => await getPost({ data: params.slug }),
+  loader: ({ params }) => getPost({ data: params.slug }),
   head: ({ loaderData }) => {
     if (!loaderData) return {}
     const { post } = loaderData

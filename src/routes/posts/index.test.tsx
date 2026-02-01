@@ -1,64 +1,46 @@
 import { describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { Route } from './index'
+import { screen } from '@testing-library/react'
+import type { allPosts } from 'content-collections'
+import { renderWithRouter } from '@/test/router-utils'
 
-// Mock Data
-const mockPosts = [
-  { slug: 'p1', title: 'Post 1', category: 'Tech' },
-  { slug: 'p2', title: 'Post 2', category: 'Life' },
-]
-const mockCategories = ['Tech', 'Life']
-
-// Mock Hooks
-const mockNavigate = vi.fn()
-const mockUseSearch = vi.fn<() => { category?: string }>(() => ({ category: undefined }))
-
-// Mock Router
-vi.mock('@tanstack/react-router', async () => {
-  const actual = await vi.importActual('@tanstack/react-router')
-  return {
-    ...actual,
-    createFileRoute: () => (config: any) => ({
-      ...config,
-      component: config.component,
-      useLoaderData: () => ({ posts: mockPosts, categories: mockCategories }),
-      useSearch: () => mockUseSearch(),
-    }),
-    useNavigate: () => mockNavigate,
-    Link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
-  }
-})
+// Mock content-collections
+vi.mock('content-collections', () => ({
+  allPosts: [
+    { slug: 'p1', title: 'Post 1', category: 'Tech', date: '2024-01-01' },
+    { slug: 'p2', title: 'Post 2', category: 'Life', date: '2024-01-02' },
+  ],
+  allProjects: [],
+}))
 
 // Mock Components
 vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
 vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
 vi.mock('@/components/post-card', () => ({
-  PostCard: ({ post }: any) => <div data-testid='post-card'>{post.title}</div>,
+  PostCard: ({ post }: { post: (typeof allPosts)[number] }) => (
+    <div data-testid='post-card'>{post.title}</div>
+  ),
 }))
 
 describe('Posts Index Route', () => {
-  it('renders list of posts and categories', () => {
-    const PostsPage = Route.component as React.ComponentType
-    render(<PostsPage />)
+  it('renders list of posts and categories', async () => {
+    renderWithRouter({ initialEntries: ['/posts'] })
 
-    expect(screen.getByText('Latest Posts')).toBeInTheDocument()
+    expect(await screen.findByText('Latest Posts')).toBeInTheDocument()
 
     // Check categories
-    expect(screen.getByText('All')).toBeInTheDocument()
-    expect(screen.getByText('Tech')).toBeInTheDocument()
-    expect(screen.getByText('Life')).toBeInTheDocument()
+    expect(await screen.findByText('All')).toBeInTheDocument()
+    expect(await screen.findByText('Tech')).toBeInTheDocument()
+    expect(await screen.findByText('Life')).toBeInTheDocument()
 
     // Check posts
     const cards = screen.getAllByTestId('post-card')
     expect(cards).toHaveLength(2)
   })
 
-  it('filters posts when category is selected', () => {
-    // Mock search params to filter by 'Tech'
-    mockUseSearch.mockReturnValue({ category: 'Tech' })
+  it('filters posts when category is selected via URL', async () => {
+    renderWithRouter({ initialEntries: ['/posts?category=Tech'] })
 
-    const PostsPage = Route.component as React.ComponentType
-    render(<PostsPage />)
+    expect(await screen.findByText('Latest Posts')).toBeInTheDocument()
 
     const cards = screen.getAllByTestId('post-card')
     expect(cards).toHaveLength(1)

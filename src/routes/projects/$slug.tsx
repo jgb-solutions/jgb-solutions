@@ -10,14 +10,14 @@ import { Button } from '@/components/ui/button'
 
 const getProject = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
-  .handler(async ({ data: slug }) => {
+  .handler(({ data: slug }) => {
     const project = allProjects.find(p => p.slug === slug)
     if (!project) throw notFound()
     return { project }
   })
 
 export const Route = createFileRoute('/projects/$slug')({
-  loader: async ({ params }) => await getProject({ data: params.slug }),
+  loader: ({ params }) => getProject({ data: params.slug }),
   head: ({ loaderData }) => {
     if (!loaderData) return {}
     const { project } = loaderData

@@ -5,7 +5,9 @@ import type { allPosts } from 'content-collections'
 
 // Mock Link
 vi.mock('@tanstack/react-router', () => ({
-  Link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
+  Link: ({ children, ...props }: { children: React.ReactNode } & Record<string, unknown>) => (
+    <a {...props}>{children}</a>
+  ),
 }))
 
 // Mock Post Data

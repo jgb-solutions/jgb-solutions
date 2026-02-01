@@ -44,6 +44,7 @@ export const sendContactEmail = createServerFn({ method: 'POST' })
       })
       return { success: true, data: result }
     } catch (error) {
+      // eslint-disable-next-line no-console
       console.error('Resend error:', error)
       return { success: false, error: {} }
     }

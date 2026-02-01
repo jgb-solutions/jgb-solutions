@@ -1,8 +1,8 @@
 import { describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { Route } from './index'
+import { screen } from '@testing-library/react'
+import { renderWithRouter } from '@/test/router-utils'
 
-// Mock components
+// Mock components to keep the test focused and fast
 vi.mock('@/components/navbar', () => ({ default: () => <div data-testid='navbar'>Navbar</div> }))
 vi.mock('@/components/hero', () => ({ default: () => <div data-testid='hero'>Hero</div> }))
 vi.mock('@/components/marquee-bar', () => ({
@@ -21,35 +21,20 @@ vi.mock('@/components/recent-posts', () => ({
 vi.mock('@/components/contact', () => ({ default: () => <div data-testid='contact'>Contact</div> }))
 vi.mock('@/components/footer', () => ({ default: () => <div data-testid='footer'>Footer</div> }))
 
-// Mock TanStack Router
-vi.mock('@tanstack/react-router', async () => {
-  const actual = await vi.importActual('@tanstack/react-router')
-  return {
-    ...actual,
-    // Fix: createFileRoute returns a function that takes the component config
-    createFileRoute: () => (config: any) => ({
-      ...config,
-      component: config.component,
-    }),
-    ClientOnly: ({ children, fallback }: any) => <>{children || fallback}</>,
-  }
-})
-
 describe('Home Route', () => {
-  it('renders all sections', () => {
-    // Get the component from the route definition
-    const HomeComponent = Route.component as React.ComponentType
+  it('renders all sections', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
 
-    render(<HomeComponent />)
-
-    expect(screen.getByTestId('navbar')).toBeInTheDocument()
-    expect(screen.getByTestId('hero')).toBeInTheDocument()
-    expect(screen.getByTestId('marquee')).toBeInTheDocument()
-    expect(screen.getByTestId('featured-projects')).toBeInTheDocument()
-    expect(screen.getByTestId('about')).toBeInTheDocument()
-    expect(screen.getByTestId('services')).toBeInTheDocument()
-    expect(screen.getByTestId('recent-posts')).toBeInTheDocument()
-    expect(screen.getByTestId('contact')).toBeInTheDocument()
-    expect(screen.getByTestId('footer')).toBeInTheDocument()
+    // Wait for the router to render the route
+    // Using findBy because router rendering might be async
+    expect(await screen.findByTestId('navbar')).toBeInTheDocument()
+    expect(await screen.findByTestId('hero')).toBeInTheDocument()
+    expect(await screen.findByTestId('marquee')).toBeInTheDocument()
+    expect(await screen.findByTestId('featured-projects')).toBeInTheDocument()
+    expect(await screen.findByTestId('about')).toBeInTheDocument()
+    expect(await screen.findByTestId('services')).toBeInTheDocument()
+    expect(await screen.findByTestId('recent-posts')).toBeInTheDocument()
+    expect(await screen.findByTestId('contact')).toBeInTheDocument()
+    expect(await screen.findByTestId('footer')).toBeInTheDocument()
   })
 })

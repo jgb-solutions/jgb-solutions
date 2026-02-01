@@ -3,7 +3,7 @@ import { allPosts, allProjects } from 'content-collections'
 import { createServerFn } from '@tanstack/react-start'
 import { SITE } from '@/lib/constants'
 
-const getSitemap = createServerFn({ method: 'GET' }).handler(async () => {
+const getSitemap = createServerFn({ method: 'GET' }).handler(() => {
   const baseUrl = SITE.url
 
   // Static routes

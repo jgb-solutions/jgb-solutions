@@ -1,40 +1,31 @@
 import { describe, expect, it, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
-import { Route } from './index'
+import { screen } from '@testing-library/react'
+import type { allProjects } from 'content-collections'
+import { renderWithRouter } from '@/test/router-utils'
 
-// Mock Data
-const mockProjects = [
-  { slug: 'p1', title: 'Project 1', category: 'Cat 1' },
-  { slug: 'p2', title: 'Project 2', category: 'Cat 2' },
-]
-
-// Mock Router
-vi.mock('@tanstack/react-router', async () => {
-  const actual = await vi.importActual('@tanstack/react-router')
-  return {
-    ...actual,
-    createFileRoute: () => (config: any) => ({
-      ...config,
-      component: config.component,
-      useLoaderData: () => ({ projects: mockProjects }),
-    }),
-    Link: ({ children, ...props }: any) => <a {...props}>{children}</a>,
-  }
-})
+// Mock content-collections to populate the real loader
+vi.mock('content-collections', () => ({
+  allProjects: [
+    { slug: 'p1', title: 'Project 1', category: 'Cat 1', order: 1 },
+    { slug: 'p2', title: 'Project 2', category: 'Cat 2', order: 2 },
+  ],
+  allPosts: [],
+}))
 
 // Mock Components
 vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
 vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
 vi.mock('@/components/project-card', () => ({
-  ProjectCard: ({ project }: any) => <div data-testid='project-card'>{project.title}</div>,
+  ProjectCard: ({ project }: { project: (typeof allProjects)[number] }) => (
+    <div data-testid='project-card'>{project.title}</div>
+  ),
 }))
 
 describe('Projects Index Route', () => {
-  it('renders list of projects', () => {
-    const ProjectsPage = Route.component as React.ComponentType
-    render(<ProjectsPage />)
+  it('renders list of projects', async () => {
+    renderWithRouter({ initialEntries: ['/projects'] })
 
-    expect(screen.getByText('All Projects')).toBeInTheDocument()
+    expect(await screen.findByText('All Projects')).toBeInTheDocument()
 
     // Should render 2 project cards
     const cards = screen.getAllByTestId('project-card')
