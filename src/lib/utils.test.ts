@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { cn } from './utils'
 
 describe('utils', () => {
@@ -9,7 +9,10 @@ describe('utils', () => {
     })
 
     it('handles conditional classes', () => {
-      const result = cn('c1', true && 'c2', false && 'c3')
+      // Use strings for conditions to avoid ESLint warnings about constant binary expressions
+      const isTrue = true
+      const isFalse = false
+      const result = cn('c1', isTrue && 'c2', isFalse && 'c3')
       expect(result).toBe('c1 c2')
     })
 

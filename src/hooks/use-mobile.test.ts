@@ -1,5 +1,5 @@
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
-import { renderHook, act } from '@testing-library/react'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
+import { act, renderHook } from '@testing-library/react'
 import { useIsMobile } from './use-mobile'
 
 describe('useIsMobile', () => {
@@ -71,7 +71,7 @@ describe('useIsMobile', () => {
 
       // Also trigger matchMedia change if it listens to that
       const mql = window.matchMedia('(max-width: 767px)')
-      // @ts-ignore
+      // @ts-ignore - simulating mql property for testing environment
       if (mql.onchange) mql.onchange()
     })
 
