@@ -1,9 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { allPosts, allProjects } from 'content-collections'
-import { createServerFn } from '@tanstack/react-start'
 import { SITE } from '@/lib/constants'
 
-const getSitemap = createServerFn({ method: 'GET' }).handler(() => {
+// A plain function: the GET handler below already runs on the server. (Wrapping it in
+// createServerFn and calling that from a server route fails since TanStack Start 1.168.)
+function buildSitemap() {
   const baseUrl = SITE.url
 
   // Static routes
@@ -29,14 +30,14 @@ const getSitemap = createServerFn({ method: 'GET' }).handler(() => {
 </urlset>`
 
   return sitemap
-})
+}
 
 export const Route = createFileRoute('/sitemap.xml')({
   // Define server-side GET handler for sitemap XML
   server: {
     handlers: {
-      GET: async () => {
-        const sitemap = await getSitemap()
+      GET: () => {
+        const sitemap = buildSitemap()
         return new Response(sitemap, {
           headers: { 'Content-Type': 'application/xml' },
         })
