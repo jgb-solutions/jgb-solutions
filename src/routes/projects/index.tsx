@@ -1,13 +1,13 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { allProjects } from 'content-collections'
 import { createServerFn } from '@tanstack/react-start'
+import { publishedProjects } from '@/lib/projects'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { ProjectCard } from '@/components/project-card'
 import { createPageSEO } from '@/lib/seo'
 
 const getProjects = createServerFn({ method: 'GET' }).handler(() => {
-  const sortedProjects = [...allProjects].sort((a, b) => a.order - b.order)
+  const sortedProjects = [...publishedProjects].sort((a, b) => a.order - b.order)
   return { projects: sortedProjects }
 })
 

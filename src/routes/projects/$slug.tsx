@@ -1,7 +1,7 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
-import { allProjects } from 'content-collections'
 import { ArrowLeft, Calendar, ExternalLink, Layers, User } from 'lucide-react'
 import { createServerFn } from '@tanstack/react-start'
+import { publishedProjects } from '@/lib/projects'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
 import { MdxRenderer } from '@/components/mdx-provider'
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button'
 const getProject = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
   .handler(({ data: slug }) => {
-    const project = allProjects.find(p => p.slug === slug)
+    const project = publishedProjects.find(p => p.slug === slug)
     if (!project) throw notFound()
     return { project }
   })
