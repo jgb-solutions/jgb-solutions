@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { allPosts, allProjects } from 'content-collections'
+import { allPosts } from 'content-collections'
+import { publishedProjects } from '@/lib/projects'
 import { SITE } from '@/lib/constants'
 
 // A plain function: the GET handler below already runs on the server. (Wrapping it in
@@ -11,7 +12,7 @@ function buildSitemap() {
   const staticRoutes = ['', '/projects', '/posts']
 
   // Dynamic routes
-  const projectRoutes = allProjects.map(project => `/projects/${project.slug}`)
+  const projectRoutes = publishedProjects.map(project => `/projects/${project.slug}`)
   const postRoutes = allPosts.map(post => `/posts/${post.slug}`)
 
   const allRoutes = [...staticRoutes, ...projectRoutes, ...postRoutes]

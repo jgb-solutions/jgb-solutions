@@ -1,9 +1,9 @@
 import { Link } from '@tanstack/react-router'
-import { allProjects } from 'content-collections'
+import { publishedProjects } from '@/lib/projects'
 import { Button } from '@/components/ui/button'
 import { ProjectCard } from '@/components/project-card'
 
-const featuredProjects = allProjects.sort((a, b) => a.order - b.order).slice(0, 4)
+const featuredProjects = [...publishedProjects].sort((a, b) => a.order - b.order).slice(0, 4)
 
 export default function FeaturedProjects() {
   return (

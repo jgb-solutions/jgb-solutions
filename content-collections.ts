@@ -43,6 +43,8 @@ const projects = defineCollection({
     url: z.string().optional(),
     gallery: z.array(z.string()).optional(),
     summary: z.string().optional(),
+    /** Hidden from the site and sitemap until the write-up is finished. */
+    draft: z.boolean().optional(),
     content: z.string(),
   }),
   transform: async (document, context) => {

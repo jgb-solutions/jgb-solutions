@@ -1,21 +1,21 @@
 ---
 title: JGB Tools
 category: WEB TOOLS
-description: A collection of powerful, free online tools to make your life easier. No ads, no tracking.
-image: /assets/images/projects/jgb-tools/featured.png
+description: Free, privacy-friendly online tools for everyday tasks, supported by ads. No sign-up and no personal tracking.
+image: /assets/images/projects/jgb-tools/featured.jpg
 order: 10
 client: JGB SOLUTIONS
 year: '2026'
 services:
   - TanStack Start
+  - React
   - TypeScript
   - Tailwind CSS
-  - PocketBase
-  - Prisma
   - Drizzle
   - Neon Postgres
-  - React
-summary: A collection of powerful, free online tools to make your life easier. No ads, no tracking.
+  - Expo (React Native)
+  - Bun
+summary: Free, privacy-friendly online tools for everyday tasks, supported by ads. No sign-up and no personal tracking.
 url: 'https://tools.jgb.solutions/'
 gallery:
   - /assets/images/projects/jgb-tools/screenshot-1.png
@@ -24,17 +24,40 @@ gallery:
 
 ## Project Overview
 
-JGB Tools is a suite of privacy-friendly, free online utilities designed to solve common digital problems without the clutter of ads or tracking scripts. It offers "Simple Tools That Just Work."
+JGB Tools is a collection of free online tools for small, everyday tasks: messaging a phone number without saving it, checking whether a website is down, making QR codes, generating strong passwords, compressing photos and more. The idea is simple: tools that open instantly, do one job well and respect the people using them. The site is free to use and supported by ads. There is no account to create, and nothing you type into a tool is used to follow you around the web.
+
+The same tools are also coming to iPhone and Android as a native app that shares its logic and branding with the website.
 
 ## The Challenge
 
-The internet is flooded with "free" tool websites that are often slow, ridden with invasive ads, and track user data aggressively. Finding a simple, clean, and trustworthy utility for tasks like messaging a non-contact on WhatsApp or checking if a site is down can be surprisingly frustrating.
+Most "free tool" websites are slow, cluttered and built to collect data. Pages jump around while ads load, simple tasks hide behind sign-up walls, and it is often unclear what happens to the text, numbers or files you paste in.
+
+We wanted the opposite: pages that load fast on a cheap phone, plain-language explanations of what each tool does with your data, and a professional look and feel across every tool.
 
 ## The Solution
 
-JGB Tools provides a clean, fast, and private alternative. Built with a modern tech stack including TanStack Start and PocketBase, it delivers a seamless user experience. Key tools include:
+JGB Tools is built as one codebase with a website, a mobile app and a shared core library for the tools' logic and the brand.
 
-- **WhatsApp Anyone:** Message any number without saving it to your contacts first.
-- **Is It Down?:** Instantly check website availability for everyone, not just you.
+The tools available today:
 
-The platform prioritizes user privacy with a strict "No ads, No tracking, No nonsense" policy.
+- **Text Anyone:** start a WhatsApp, Telegram, Signal, SMS or Viber chat with any number without adding it to your contacts.
+- **Is It Down?:** check whether a website is down for everyone or just for you, with response time and recent history.
+- **QR Code Generator:** QR codes for links, Wi-Fi, WhatsApp, email and contact cards, made on your device and downloadable as PNG or SVG.
+- **YouTube Thumbnail Downloader:** get any video's thumbnail in every size, up to HD.
+- **Password Generator:** strong passwords and memorable passphrases, created on your device.
+- **What's My IP:** see your public IP address and approximate location.
+- **Image Compressor:** shrink and resize JPEG, PNG and WebP images in your browser, without uploading them.
+- **Link Preview Checker:** see how a link will look when shared on WhatsApp, Facebook, X and Google.
+
+Most tools run entirely in the browser, so what you enter never reaches our servers. The few that need a server (such as Is It Down? and Link Preview) keep only what is needed and say so in the privacy policy.
+
+## Privacy and Performance
+
+- **Privacy first:** no sign-up, cookieless page-view counts, and error reports that strip anything typed into a tool.
+- **Fast on phones:** Lighthouse scores of 97 to 100, small JavaScript bundles and no layout jumps.
+- **Secure by default:** a strict Content Security Policy and other security headers on every page.
+- **Tested:** unit tests and more than a hundred end-to-end browser tests run on every change.
+
+## Results
+
+JGB Tools is live at [tools.jgb.solutions](https://tools.jgb.solutions/), with a guide for every tool, a clear privacy policy and terms of use. The mobile app is in preparation for the App Store and Google Play.
