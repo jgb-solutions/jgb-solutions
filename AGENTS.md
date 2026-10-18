@@ -96,7 +96,7 @@ src/
 
 ## 5. Deployment & Project Notes
 
-_Last updated: 2026-10-03._
+_Last updated: 2026-10-17._
 
 ### Deployment
 
@@ -108,9 +108,21 @@ _Last updated: 2026-10-03._
 
 - `public/ads.txt` authorizes publisher `pub-1452812638164042` (`google.com, pub-1452812638164042, DIRECT, f08c47fec0942fa0`). **Don't remove or change it.** AdSense only accepts top-level domains, so jgb.solutions is the site Google reviews, and its approval covers subdomains such as https://tools.jgb.solutions (JGB Tools, which has the same `ads.txt`).
 - If AdSense asks for the meta-tag method instead: `<meta name="google-adsense-account" content="ca-pub-1452812638164042">` in the root route's `head`.
+- **Review history:** the first review was rejected with "Unsupported language", although the site is English (`lang="en"`, crawlers get full pages). Likely cause: too little text, placeholder project pages and French/Creole names. Fixed in PR #2 (2026-10-17): every project has a real write-up from its live site, filler wording removed, English translations next to French names, JGB Tools described as "supported by ads". The user then requested a new review. The ads.txt column in AdSense showed "Not found" for a while even though the file was served correctly (AdSense re-checks on its own schedule).
+- **Plan:** once approved, ads go on the user's `*.jgb.solutions` projects. A serious violation on one site can disable ads on the whole account, so keep ads off sites hosting content we don't own (MP3PAM's current downloads; see `~/Code/Web/mp3pam-kit/docs/PLAN-music-search.md`) and be careful with IPTV streams (On Air) and look-alike characters (Street Brawl).
+- **To keep approval:** no placeholder or "coming soon" pages; every project page needs real English text.
+
+### Projects page
+
+- Projects are MDX files in `content/projects/` (frontmatter + "Project Overview / The Challenge / The Solution"). Write from facts (the project's code and live site), plain English, no filler superlatives; translate French names in brackets.
+- `draft: true` in a project's frontmatter hides it from listings, its page and the sitemap (`src/lib/projects.ts`). Use it for unfinished write-ups instead of publishing placeholders.
+- Card images: `public/assets/images/projects/<slug>/featured.jpg`, a 4:3 desktop capture (1280×960 at 1.25×, JPEG) of the live site, plus `screenshot-N` gallery images. Check every capture by eye: blur or hide user-uploaded content that's offensive, and crop out broken embeds.
+- 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
+- **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 
 ### Work in progress: site revamp (landing pages)
 
+- **Next step agreed with the user:** plan the redesign of the site using this new design.
 - As of 2026-10-03, a revamp is **uncommitted** in the working tree of `main`: `src/components/landing/`, `src/routes/landing/` (pages such as `services`, `web-design`, `creative`, `business-theme-stacked`, `business-theme-editorial`) and `src/lib/services.ts`.
 - Before deploying it, move it to its own branch and open a PR. Don't commit it straight to `main`, which deploys to production.
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.
