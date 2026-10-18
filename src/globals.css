@@ -6,6 +6,22 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  /* JGB Solutions brand (see docs/PLAN-redesign.md). Orange is the logo orange: black text on it
+     (9:1), never white (2.3:1). For orange text on white use brand-strong (5.1:1). */
+  --color-brand: #f7961d;
+  --color-brand-strong: #a9580a;
+  --color-ink: #050708;
+  --color-ink-soft: #15181a;
+  --color-ink-line: #2a2e31;
+  --color-paper: #ffffff;
+  --color-mist: #f4f4f3;
+  --color-muted-ink: #5b5f63;
+  --color-muted-paper: #a3a7ab;
+
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Saira', 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SFMono-Regular', monospace;
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -109,9 +125,9 @@
     --card-foreground: 0 0% 3.9%;
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 3.9%;
-    /* Changed primary color from blue to orange to match JGB logo */
-    --primary: 24 100% 50%;
-    --primary-foreground: 0 0% 98%;
+    /* The logo orange (#F7961D) with black text, which keeps buttons readable */
+    --primary: 33 93% 54%;
+    --primary-foreground: 200 23% 3%;
     --secondary: 0 0% 96.1%;
     --secondary-foreground: 0 0% 9%;
     --muted: 0 0% 96.1%;

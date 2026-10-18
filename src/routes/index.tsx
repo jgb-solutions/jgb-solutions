@@ -1,5 +1,5 @@
 import { ClientOnly, createFileRoute } from '@tanstack/react-router'
-import Navbar from '@/components/navbar'
+import { SiteHeader } from '@/components/site/site-header'
 import Hero from '@/components/hero'
 import MarqueeBar from '@/components/marquee-bar'
 import FeaturedProjects from '@/components/featured-projects'
@@ -7,7 +7,7 @@ import About from '@/components/about'
 import Services from '@/components/services'
 import RecentPosts from '@/components/recent-posts'
 import Contact from '@/components/contact'
-import Footer from '@/components/footer'
+import { SiteFooter } from '@/components/site/site-footer'
 import { createPageSEO } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({
@@ -25,7 +25,7 @@ function Home() {
   return (
     <main className='min-h-screen flex flex-col'>
       <div className='relative bg-background'>
-        <Navbar />
+        <SiteHeader />
         <Hero />
         <MarqueeBar />
       </div>
@@ -40,7 +40,7 @@ function Home() {
       >
         <Contact />
       </ClientOnly>
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

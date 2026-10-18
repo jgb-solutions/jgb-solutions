@@ -2,8 +2,8 @@ import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { ArrowLeft, Calendar, ExternalLink, Layers, User } from 'lucide-react'
 import { createServerFn } from '@tanstack/react-start'
 import { publishedProjects } from '@/lib/projects'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { createPageSEO } from '@/lib/seo'
 import { Button } from '@/components/ui/button'
@@ -32,7 +32,7 @@ export const Route = createFileRoute('/projects/$slug')({
   notFoundComponent: () => {
     return (
       <main className='min-h-screen bg-background'>
-        <Navbar />
+        <SiteHeader />
         <section className='py-20 px-6 md:px-20'>
           <div className='max-w-4xl mx-auto text-center'>
             <h1 className='text-4xl md:text-6xl font-light mb-4'>Project Not Found</h1>
@@ -41,7 +41,7 @@ export const Route = createFileRoute('/projects/$slug')({
             </Link>
           </div>
         </section>
-        <Footer />
+        <SiteFooter />
       </main>
     )
   },
@@ -53,7 +53,7 @@ function ProjectDetailPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <section className='pt-24 pb-12 md:pt-32 md:pb-20 px-4 md:px-6 lg:px-20'>
         <div className='max-w-7xl mx-auto'>
@@ -196,7 +196,7 @@ function ProjectDetailPage() {
         </div>
       </section>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -21,6 +21,8 @@
     "@content-collections/mdx": "^0.2.2",
     "@content-collections/vite": "^0.2.8",
     "@fontsource/inter": "^5.2.8",
+    "@fontsource/jetbrains-mono": "^5.3.0",
+    "@fontsource/saira": "^5.3.0",
     "@hookform/resolvers": "^5.2.2",
     "@radix-ui/react-dialog": "1.1.15",
     "@radix-ui/react-slot": "1.2.4",

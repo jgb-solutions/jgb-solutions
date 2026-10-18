@@ -2,8 +2,8 @@ import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { Button } from '@/components/ui/button'
 import { PostCard } from '@/components/post-card'
 import { createPageSEO } from '@/lib/seo'
@@ -42,7 +42,7 @@ function PostsPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <section className='py-20 px-6 md:px-20'>
         <div className='max-w-7xl mx-auto'>
@@ -88,7 +88,7 @@ function PostsPage() {
         </div>
       </section>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

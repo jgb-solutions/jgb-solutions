@@ -20,8 +20,8 @@ vi.mock('content-collections', () => ({
 }))
 
 // Mock Components
-vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
+vi.mock('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))
+vi.mock('@/components/site/site-footer', () => ({ SiteFooter: () => <div>Footer</div> }))
 vi.mock('@/components/mdx-provider', () => ({
   MdxRenderer: () => <div data-testid='mdx-content'>MDX Rendered</div>,
 }))

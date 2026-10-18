@@ -1,0 +1,80 @@
+import { Link } from '@tanstack/react-router'
+import { Menu } from 'lucide-react'
+import { useState } from 'react'
+import { Logo } from '@/components/site/logo'
+import { Container, buttonStyles } from '@/components/site/section'
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
+import { SITE } from '@/lib/constants'
+
+// Pages join this list as the redesign builds them (Services, Products, About; see docs/PLAN-redesign.md).
+const NAV_LINKS = [
+  { label: 'Work', to: '/projects' },
+  { label: 'Insights', to: '/posts' },
+] as const
+
+export const START_PROJECT_HREF = `mailto:${SITE.email}?subject=${encodeURIComponent('New project')}`
+
+export function SiteHeader() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <header className='sticky top-0 z-50 bg-ink text-paper border-b border-ink-line'>
+      <Container className='flex h-16 items-center justify-between gap-6 md:h-20'>
+        <Link to='/' aria-label='JGB Solutions home' className='shrink-0'>
+          <Logo className='h-6 md:h-7' />
+        </Link>
+
+        <nav aria-label='Main' className='hidden items-center gap-8 md:flex'>
+          {NAV_LINKS.map(link => (
+            <Link
+              key={link.to}
+              to={link.to}
+              className='font-display text-sm font-semibold uppercase tracking-wider text-paper/80 transition-colors hover:text-brand'
+              activeProps={{ className: 'text-brand' }}
+            >
+              {link.label}
+            </Link>
+          ))}
+          <a href={START_PROJECT_HREF} className={buttonStyles('brand', 'py-3')}>
+            Start a project
+          </a>
+        </nav>
+
+        <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <SheetTrigger asChild>
+            <button type='button' className='-mr-2 p-2 text-paper md:hidden' aria-label='Open menu'>
+              <Menu className='h-6 w-6' />
+            </button>
+          </SheetTrigger>
+          <SheetContent side='right' className='border-ink-line bg-ink text-paper'>
+            <SheetHeader>
+              <SheetTitle className='text-paper'>Menu</SheetTitle>
+            </SheetHeader>
+            <nav aria-label='Mobile' className='mt-8 flex flex-col gap-2 px-4'>
+              <Link
+                to='/'
+                className='py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand'
+                onClick={() => setIsOpen(false)}
+              >
+                Home
+              </Link>
+              {NAV_LINKS.map(link => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className='py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand'
+                  onClick={() => setIsOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ))}
+              <a href={START_PROJECT_HREF} className={buttonStyles('brand', 'mt-6')}>
+                Start a project
+              </a>
+            </nav>
+          </SheetContent>
+        </Sheet>
+      </Container>
+    </header>
+  )
+}

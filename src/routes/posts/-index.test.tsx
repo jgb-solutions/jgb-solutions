@@ -13,8 +13,8 @@ vi.mock('content-collections', () => ({
 }))
 
 // Mock Components
-vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
+vi.mock('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))
+vi.mock('@/components/site/site-footer', () => ({ SiteFooter: () => <div>Footer</div> }))
 vi.mock('@/components/post-card', () => ({
   PostCard: ({ post }: { post: (typeof allPosts)[number] }) => (
     <div data-testid='post-card'>{post.title}</div>

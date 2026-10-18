@@ -1,8 +1,8 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { publishedProjects } from '@/lib/projects'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { ProjectCard } from '@/components/project-card'
 import { createPageSEO } from '@/lib/seo'
 
@@ -28,7 +28,7 @@ function ProjectsPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <section className='py-12 sm:py-16 md:py-20 px-6 md:px-20'>
         <div className='max-w-7xl mx-auto'>
@@ -56,7 +56,7 @@ function ProjectsPage() {
         </div>
       </section>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

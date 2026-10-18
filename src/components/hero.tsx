@@ -13,7 +13,7 @@ export default function Hero() {
         </h1>
 
         <p className='text-lg sm:text-xl md:text-2xl text-muted-foreground mb-6'>
-          Senior Software Engineer with 8+ years of expertise
+          Senior Software Engineer with 10+ years of expertise
         </p>
 
         <p className='text-sm sm:text-base md:text-lg text-muted-foreground mb-8'>

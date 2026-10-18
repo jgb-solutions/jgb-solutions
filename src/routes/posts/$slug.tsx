@@ -3,8 +3,8 @@ import { allPosts } from 'content-collections'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
 import { Facebook, Linkedin } from 'lucide-react'
 import { createServerFn } from '@tanstack/react-start'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { createPageSEO } from '@/lib/seo'
 import { SITE } from '@/lib/constants'
@@ -37,7 +37,7 @@ export const Route = createFileRoute('/posts/$slug')({
   notFoundComponent: () => {
     return (
       <main className='min-h-screen bg-background'>
-        <Navbar />
+        <SiteHeader />
         <section className='py-20 px-6 md:px-20'>
           <div className='max-w-4xl mx-auto text-center'>
             <h1 className='text-4xl md:text-6xl font-light mb-4'>Article Not Found</h1>
@@ -46,7 +46,7 @@ export const Route = createFileRoute('/posts/$slug')({
             </Link>
           </div>
         </section>
-        <Footer />
+        <SiteFooter />
       </main>
     )
   },
@@ -59,7 +59,7 @@ function PostDetailPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <article className='py-20 px-6 md:px-20'>
         <div className='max-w-4xl mx-auto'>
@@ -158,7 +158,7 @@ function PostDetailPage() {
         </div>
       </article>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -19,7 +19,7 @@ export default function About() {
             <h2 className='text-3xl md:text-4xl font-light mb-6'>About Me</h2>
             <div className='space-y-6 text-muted-foreground'>
               <p>
-                Hi! I'm Jean Bousiquot, a Senior Software Engineer with over 8 years of experience
+                Hi! I'm Jean Bousiquot, a Senior Software Engineer with over 10 years of experience
                 in building scalable, high-performance applications. I specialize in full-stack
                 development and AI integration.
               </p>
@@ -64,7 +64,7 @@ export default function About() {
                   Experience <Asterisk className='w-4 h-4 text-primary' />
                 </h3>
                 <ul className='space-y-2 text-muted-foreground'>
-                  <li>8+ Years</li>
+                  <li>10+ Years</li>
                   <li>50+ Projects</li>
                   <li>20+ Clients</li>
                   <li>Team Leader</li>

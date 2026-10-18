@@ -8,23 +8,23 @@ export const SITE = {
   author: 'Jean Gérard Bousiquot',
   email: 'services@jgb.solutions',
   contactEmail: 'jgbneatdesign@gmail.com',
+  location: 'Laval, Québec',
 } as const
 
 export const SEO = {
   defaultTitle: 'JGB Solutions',
   titleTemplate: '%s - JGB Solutions',
   description:
-    'Full-stack software engineer specializing in React, TypeScript, Node.js, and scalable web solutions. Portfolio of 20+ projects. Based in Haiti.',
+    'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own apps and media sites. Based in Laval, Québec.',
   keywords: [
-    'software engineer',
-    'web developer',
-    'React',
-    'TypeScript',
-    'Node.js',
-    'full-stack developer',
-    'Haiti',
-    'mentor',
-    'tech consultant',
+    'web design',
+    'web development',
+    'mobile app development',
+    'social media management',
+    'JGB Solutions',
+    'JGB Tools',
+    'Laval',
+    'Québec',
   ],
 } as const
 

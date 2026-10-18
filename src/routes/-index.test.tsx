@@ -3,7 +3,9 @@ import { screen } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 
 // Mock components to keep the test focused and fast
-vi.mock('@/components/navbar', () => ({ default: () => <div data-testid='navbar'>Navbar</div> }))
+vi.mock('@/components/site/site-header', () => ({
+  SiteHeader: () => <div data-testid='navbar'>Navbar</div>,
+}))
 vi.mock('@/components/hero', () => ({ default: () => <div data-testid='hero'>Hero</div> }))
 vi.mock('@/components/marquee-bar', () => ({
   default: () => <div data-testid='marquee'>Marquee</div>,
@@ -19,7 +21,9 @@ vi.mock('@/components/recent-posts', () => ({
   default: () => <div data-testid='recent-posts'>RecentPosts</div>,
 }))
 vi.mock('@/components/contact', () => ({ default: () => <div data-testid='contact'>Contact</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div data-testid='footer'>Footer</div> }))
+vi.mock('@/components/site/site-footer', () => ({
+  SiteFooter: () => <div data-testid='footer'>Footer</div>,
+}))
 
 describe('Home Route', () => {
   it('renders all sections', async () => {

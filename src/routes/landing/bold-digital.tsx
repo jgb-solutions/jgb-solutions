@@ -111,10 +111,6 @@ function BoldDigitalLanding() {
         )
       })}
 
-      <section className='py-8 px-6 bg-orange-600 text-black/60 text-center text-sm'>
-        Landing page variant E — bold orange & black, digital services bundle
-      </section>
-
       <BoldCta
         variant='black'
         title='Need digital services?'

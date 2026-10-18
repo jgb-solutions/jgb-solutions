@@ -1,5 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
-import { Check, ArrowRight } from 'lucide-react'
+import { ArrowRight, Check } from 'lucide-react'
 import { LandingLayout } from '@/components/landing/landing-layout'
 import { Button } from '@/components/ui/button'
 import { SERVICES } from '@/lib/services'

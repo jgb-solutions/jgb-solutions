@@ -1,5 +1,5 @@
-import type { LucideIcon } from 'lucide-react'
 import { Camera, Globe, Palette, Printer, Share2, Smartphone } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 export interface Service {
   slug: string
@@ -8,11 +8,17 @@ export interface Service {
   description: string
   offerings: Array<string>
   icon: LucideIcon
+  /**
+   * Whether we sell this service today. Unavailable services stay off the site entirely (no
+   * "coming soon" pages: AdSense rejects them). Flip to true when the service launches.
+   */
+  available: boolean
 }
 
 export const SERVICES: Array<Service> = [
   {
     slug: 'web-design-development',
+    available: true,
     title: 'Web Design & Development',
     shortDescription: 'Custom websites built for speed, clarity, and conversion.',
     description:
@@ -28,6 +34,7 @@ export const SERVICES: Array<Service> = [
   },
   {
     slug: 'mobile-app-design-development',
+    available: true,
     title: 'Mobile App Design & Development',
     shortDescription: 'Native-feeling apps for iOS and Android.',
     description:
@@ -43,6 +50,7 @@ export const SERVICES: Array<Service> = [
   },
   {
     slug: 'social-media-management',
+    available: true,
     title: 'Social Media Management',
     shortDescription: 'Consistent content and community growth.',
     description:
@@ -58,6 +66,7 @@ export const SERVICES: Array<Service> = [
   },
   {
     slug: 'photography-videography',
+    available: false,
     title: 'Photography / Videography',
     shortDescription: 'Visual content that tells your story.',
     description:
@@ -73,6 +82,7 @@ export const SERVICES: Array<Service> = [
   },
   {
     slug: 'graphic-design',
+    available: false,
     title: 'Graphic Design',
     shortDescription: 'Logos, branding, and marketing visuals.',
     description:
@@ -88,6 +98,7 @@ export const SERVICES: Array<Service> = [
   },
   {
     slug: 'print',
+    available: false,
     title: 'Print',
     shortDescription: 'Business cards, flyers, banners, and more.',
     description:
@@ -103,6 +114,9 @@ export const SERVICES: Array<Service> = [
   },
 ]
 
+/** The services we sell today, in display order. */
+export const OFFERED_SERVICES = SERVICES.filter(service => service.available)
+
 export const DIGITAL_SERVICES = SERVICES.filter(service =>
   ['web-design-development', 'mobile-app-design-development', 'social-media-management'].includes(
     service.slug
@@ -113,6 +127,7 @@ export const CREATIVE_SERVICES = SERVICES.filter(service =>
   ['photography-videography', 'graphic-design', 'print'].includes(service.slug)
 )
 
+/** Finds an offered service; unavailable services are treated as not found. */
 export function getServiceBySlug(slug: string): Service | undefined {
-  return SERVICES.find(service => service.slug === slug)
+  return OFFERED_SERVICES.find(service => service.slug === slug)
 }

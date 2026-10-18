@@ -1,8 +1,13 @@
 import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
-import { ThemeProvider } from '@/components/theme-provider'
 import '@/globals.css'
-import '@fontsource/inter'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/saira/600.css'
+import '@fontsource/saira/700.css'
+import '@fontsource/saira/800.css'
+import '@fontsource/jetbrains-mono/400.css'
 import { OG_IMAGE, SEO, SITE, SOCIAL } from '@/lib/constants'
 
 export const Route = createRootRoute({
@@ -16,7 +21,7 @@ export const Route = createRootRoute({
         content: 'width=device-width, initial-scale=1',
       },
       {
-        title: `${SITE.name} - Software Engineer & Mentor`,
+        title: `${SITE.name} - Web, Mobile & Social Media`,
       },
 
       // SEO Meta Tags
@@ -199,10 +204,8 @@ function RootDocument({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
-        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-          <div className='max-w-7xl mx-auto bg-background shadow-xl min-h-screen'>{children}</div>
-        </ThemeProvider>
+      <body className='bg-paper font-sans text-ink antialiased'>
+        {children}
         <Scripts />
       </body>
     </html>

@@ -1,7 +1,6 @@
 import type { ReactNode } from 'react'
 import Navbar from '@/components/navbar'
 import Footer from '@/components/footer'
-import { LandingVariantsNav } from '@/components/landing/landing-variants-nav'
 
 interface LandingLayoutProps {
   children: ReactNode
@@ -13,7 +12,6 @@ export function LandingLayout({ children }: LandingLayoutProps) {
       <Navbar />
       {children}
       <Footer />
-      <LandingVariantsNav />
     </main>
   )
 }

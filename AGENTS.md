@@ -120,11 +120,15 @@ _Last updated: 2026-10-17._
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 
-### Work in progress: site revamp (landing pages)
+### Work in progress: site revamp (redesign)
 
-- **Next step agreed with the user:** plan the redesign of the site using this new design.
-- As of 2026-10-03, a revamp is **uncommitted** in the working tree of `main`: `src/components/landing/`, `src/routes/landing/` (pages such as `services`, `web-design`, `creative`, `business-theme-stacked`, `business-theme-editorial`) and `src/lib/services.ts`.
-- Before deploying it, move it to its own branch and open a PR. Don't commit it straight to `main`, which deploys to production.
+- **Work happens on the `site-revamp` branch** (local, not pushed yet). Never merge it into `main` until the whole redesign is done and its Vercel preview is approved.
+- **Chosen design: design 6, "Bold Digital"** (orange, black and white). It stays live at `src/routes/landing/bold-digital.tsx` (`/landing/bold-digital`) as the reference, with its components `src/components/landing/bold-{theme,layout,cta}.tsx`. Delete them once the new home page replaces them.
+- **The plan is `docs/PLAN-redesign.md`**: present JGB Solutions as a business with services and products, not a freelancer; design system, site map, home page sections, phases and the user's open questions. Follow it and keep it current.
+- **Archived designs:** the other 14 landing pages, their components and the page switcher used to compare them are in `examples/landing-designs/` (see its README). Nothing imports them; TypeScript, ESLint (`examples/**` ignored) and Vitest (`include: src/**`) skip the folder. Reference them if we need an idea later. The user also liked design 5, "Bold Services", for listing every service.
+- **Services:** offered now are Web Design & Development, Mobile App Design & Development and Social Media Management. **Planned, not offered yet:** Photography / Videography (one service, sold together), Graphic Design and Print. Their data is in `src/lib/services.ts`; keep them off the site until the user is ready (no "coming soon" pages, see AdSense).
+- **Products vs client work:** JGB Tools, Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam are the user's own products. The user usually builds apps and media sites as products, while clients mostly want static sites or landing pages, but **always ask the user** whether a new project is a product or client work.
+- **Business facts for copy:** based in Laval, Québec; "10+ years" (building since 2009), "dozens of clients", "dozens of projects" (no more precise client or project counts); no prices ("contact us for a quote"); no contact form (spam): use services@jgb.solutions and WhatsApp.
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.
 
 ### Related
