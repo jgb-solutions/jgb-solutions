@@ -1,0 +1,41 @@
+---
+title: Street Brawl
+category: GAME
+description: 'Street Brawl: Tetsu-ryū Rivals, a free 2D fighting game that runs in the browser, with a story mode, training mode and online play.'
+image: /assets/images/projects/street-brawl/featured.jpg
+order: 12
+client: JGB SOLUTIONS
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - PixiJS (WebGL)
+  - Cloudflare Workers
+  - Durable Objects
+  - D1
+summary: 'Street Brawl: Tetsu-ryū Rivals, a free 2D fighting game that runs in the browser, with a story mode, training mode and online play.'
+url: 'https://streetbrawl.jgb.solutions/'
+gallery:
+  - /assets/images/projects/street-brawl/screenshot-1.jpg
+  - /assets/images/projects/street-brawl/screenshot-2.jpg
+---
+
+## Project Overview
+
+Street Brawl: Tetsu-ryū Rivals is a free 2D fighting game that runs in the browser, with nothing to install. It has eight fighters, eight stages, an arcade story mode, a training mode and online matches against other players. The story follows the students and family of Master Tetsu's dojo, who all want to inherit his seal; the final boss is Tetsu's exiled brother, Daigo.
+
+The game is playable today and still in development.
+
+## The Challenge
+
+Fighting games are demanding: every frame counts, both players must see exactly the same fight, and online play has to feel responsive even when the connection adds delay. The game also had to run in a normal browser tab on desktop and on phones, work with a keyboard, a gamepad, an arcade stick or a touch screen, and be available in English, French, Spanish and Haitian Creole.
+
+## The Solution
+
+- **Deterministic simulation:** the fight is plain data advanced 60 times per second with integer math only, no randomness and no clock, so two machines given the same inputs always compute the same result. Every move has its own frame data (startup, active and recovery frames, damage, hitboxes).
+- **Rollback netcode:** online matches use GGPO-style rollback. The game predicts the opponent's input and, when the real input differs, rewinds and replays the frames, so local controls never wait for the network.
+- **Serverless multiplayer:** each match is a Cloudflare Durable Object that relays inputs over WebSockets, a lobby pairs players for quick matches, and results are stored in a D1 database for the leaderboard.
+- **Drawn in code:** there are no image files for the fighters or stages. The art is drawn with the Canvas API and animated with a 2D skeleton, then rendered with PixiJS (WebGL).
+- **Every controller:** keyboard, gamepad, arcade stick and touch controls, with a controller tester and button remapping.
+- **Tested:** headless tests cover the game mechanics, determinism, rollback and every pairing of fighters.
