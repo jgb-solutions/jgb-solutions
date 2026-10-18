@@ -58,7 +58,7 @@ Use the vector JGB Solutions logo (`JGB_MARK` + the `SOLUTIONS` word in `jgb-too
 
 ## Services
 
-**Offered now:** Web Design & Development, Mobile App Design & Development, Social Media Management.
+**Offered now:** Websites, Mobile Apps, Social Media (the user shortened the names; descriptions cover design and development).
 
 **Coming later, not shown yet:** Photography / Videography (sold as one service), Graphic Design, Print.
 
@@ -66,31 +66,31 @@ These three must not appear on the site until you offer them. AdSense rejects "c
 
 ## Site map
 
-| Page     | URL               | What's on it                                                              |
-| -------- | ----------------- | ------------------------------------------------------------------------- |
-| Home     | `/`               | See below                                                                 |
-| Services | `/services`       | The three services, how we work, call to action                           |
-| Service  | `/services/$slug` | What's included, process, related work, questions, call to action         |
-| Products | `/products`       | Our own products: JGB Tools, Street Brawl, MP3PAM, Tech Talk, Ti Kwen Pam |
-| Work     | `/projects`       | Client work. Keep the URL (it's indexed); the menu can call it "Work"     |
-| Project  | `/projects/$slug` | Restyled case study: challenge, solution, gallery, link                   |
-| About    | `/about`          | The company, the founder, where we are, how we work                       |
-| Contact  | `/contact`        | Email (services@jgb.solutions), WhatsApp, what happens next. No form      |
-| Insights | `/posts`          | The blog, restyled. Keep the URL                                          |
-| Privacy  | `/privacy`        | What the site collects (no form, so little). Expected by AdSense          |
+| Page     | URL               | What's on it                                                                 |
+| -------- | ----------------- | ---------------------------------------------------------------------------- |
+| Home     | `/`               | See below                                                                    |
+| Services | `/services`       | The three services, how we work, call to action                              |
+| Service  | `/services/$slug` | What's included, process, related work, questions, call to action            |
+| Products | `/products`       | Our own products: JGB Tools, Street Brawl, MP3PAM, Tech Talk, Ti Kwen Pam    |
+| Work     | `/projects`       | Client work. Keep the URL (it's indexed); the menu can call it "Work"        |
+| Project  | `/projects/$slug` | Restyled case study: challenge, solution, gallery, link                      |
+| About    | `/about`          | The company, the founder, where we are, how we work                          |
+| Contact  | `/contact`        | Email (services@jgb.solutions), WhatsApp, what happens next. No form         |
+| Insights | `/posts`          | The blog, restyled. Keep the URL. **Switched off for now** (`FEATURES.blog`) |
+| Privacy  | `/privacy`        | What the site collects (no form, so little). Expected by AdSense             |
 
-Header: logo · Services · Products · Work · About · Insights · **Start a project** (button).
+Header: logo · Services · Products · Work · About · (Insights, when the blog is on) · **Start a project** (button, goes to the contact section).
 Footer (black): services, products, company links, email, social links, location, ©.
 
 ## Home page, section by section
 
 1. **Hero (orange).** Business headline, one sentence on who it's for, "Start a project" and "See our work". On the right, the three services as black tiles (straight from design 6).
-2. **Trusted by.** Real client names (client work only, never our products): Enfants Épanouis d'Haïti (ENEPH), GESTE-Haïti, HACARABTECH, L'Expérience Exquise, Simone Fievre, JC Cantave.
+2. ~~**Trusted by.**~~ Removed at the user's request (2026-10-17); something else may take its place later.
 3. **Services (white).** Three cards linking to the service pages.
 4. **Products (black).** JGB Tools (8 free tools, web and iOS/Android app), Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam, with links to their sites. This is what makes JGB Solutions look like a company and not a freelancer.
 5. **Selected work (white).** Three or four projects with their screenshots.
 6. **How we work.** The real sequence, for example Discovery → Design → Build → Launch & support. Numbered, because it is an order.
-7. **Insights.** The latest posts (the section hides itself if there are none).
+7. **Insights.** Built, but hidden while the blog is switched off (`FEATURES.blog`).
 8. **Call to action (orange):** email and WhatsApp, then the footer.
 
 ## Technical plan
@@ -109,7 +109,7 @@ Footer (black): services, products, company links, email, social links, location
 Each phase is a commit (or a few) on `site-revamp`. Once phase 1 is in, push the branch and open a **draft PR** so every phase gets a Vercel preview link to review. Merge into `main` only when the whole site is done and the preview looks right.
 
 1. **Foundation.** Tokens, fonts, logo, full-width root layout, header, footer, `Section` and button components, `available` flag on services. **Done 2026-10-17** (uncommitted): brand tokens in `src/globals.css` (the theme's `primary` is now the logo orange with black text), Saira + JetBrains Mono, vector `Logo`, `SiteHeader` / `SiteFooter` / `Section` / `buttonStyles` in `src/components/site/`, root layout no longer boxed, dark mode and its toggle removed, Laval in the SEO copy. The header nav only lists pages that exist (Work, Insights); "Start a project" is a `mailto:` until `/contact` exists. WhatsApp/phone added to the footer.
-2. **Home page.** All eight sections, replacing the current home page. **Built 2026-10-17, look not chosen yet:** `src/routes/index.tsx` with sections in `src/components/home/`; products vs client work from `src/lib/products.ts`. `?look=bold` (default) or `?look=light` switches the look, with a floating Bold/Light toggle (hidden on jgb.solutions). Once the user picks, delete the other look, `look.ts` and `look-switcher.tsx`. The old contact form, its Resend server function and the old home sections are removed. Post excerpts are left off the home page (one mentions the founder by name).
+2. **Home page.** All eight sections, replacing the current home page. **Built 2026-10-17, look not chosen yet:** `src/routes/index.tsx` with sections in `src/components/home/`; products vs client work from `src/lib/products.ts`. `?look=bold` (default) or `?look=light` switches the look, with a floating Bold/Light toggle (hidden on jgb.solutions). **The user chose the bold look**; the light look and its switcher are removed (recoverable from commit 451cded). The old contact form, its Resend server function and the old home sections are removed. Post excerpts are left off the home page (one mentions the founder by name).
 3. **Services.** `/services` and the three service pages.
 4. **Products, About, Contact, Privacy.**
 5. **Work and Insights.** Restyle the projects and posts lists and detail pages.

@@ -68,7 +68,7 @@ describe('Home Route', () => {
 
     const services = await screen.findByRole('heading', { name: 'Three services, one team' })
     const section = services.closest('section') as HTMLElement
-    expect(within(section).getByText('Mobile App Design & Development')).toBeInTheDocument()
+    expect(within(section).getByText('Mobile Apps')).toBeInTheDocument()
     expect(screen.queryByText(/graphic design/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/photography/i)).not.toBeInTheDocument()
   })
@@ -91,31 +91,29 @@ describe('Home Route', () => {
     expect(screen.queryByText('Hidden Draft')).not.toBeInTheDocument()
   })
 
-  it('lists recent posts and the contact options', async () => {
+  it('leaves the blog and the client list off', async () => {
     renderWithRouter({ initialEntries: ['/'] })
 
-    expect(await screen.findByText('Talk Less, Listen More')).toBeInTheDocument()
-    const cta = screen
-      .getByRole('heading', { name: 'Have a project in mind?' })
-      .closest('section') as HTMLElement
-    expect(within(cta).getByRole('link', { name: 'services@jgb.solutions' })).toHaveAttribute(
+    await screen.findByRole('heading', { level: 1 })
+    expect(screen.queryByText('Talk Less, Listen More')).not.toBeInTheDocument()
+    expect(screen.queryByText(/clients we've worked with/i)).not.toBeInTheDocument()
+  })
+
+  it('offers email and WhatsApp to start a project', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
+
+    const cta = (await screen.findByRole('heading', { name: 'Have a project in mind?' })).closest(
+      'section'
+    ) as HTMLElement
+    expect(within(cta).getByRole('link', { name: 'Email us' })).toHaveAttribute(
       'href',
-      'mailto:services@jgb.solutions'
+      expect.stringContaining('mailto:services@jgb.solutions')
     )
-    expect(within(cta).getByRole('link', { name: /whatsapp/i })).toHaveAttribute(
+    expect(within(cta).getByRole('link', { name: 'WhatsApp us' })).toHaveAttribute(
       'href',
       'https://wa.me/14383895465'
     )
-  })
-
-  it('switches between the bold and light looks', async () => {
-    renderWithRouter({ initialEntries: ['/?look=light'] })
-
-    const group = await screen.findByRole('group', { name: 'Home page look' })
-    expect(within(group).getByRole('link', { name: 'Light' })).toHaveAttribute(
-      'aria-current',
-      'page'
-    )
-    expect(within(group).getByRole('link', { name: 'Bold' })).not.toHaveAttribute('aria-current')
+    expect(within(cta).getByText('services@jgb.solutions')).toBeInTheDocument()
+    expect(within(cta).getByRole('button', { name: 'Copy' })).toBeInTheDocument()
   })
 })

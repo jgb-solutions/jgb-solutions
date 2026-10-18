@@ -8,10 +8,10 @@ describe('Site header and footer', () => {
 
     const nav = await screen.findByRole('navigation', { name: 'Main' })
     expect(within(nav).getByRole('link', { name: 'Work' })).toHaveAttribute('href', '/projects')
-    expect(within(nav).getByRole('link', { name: 'Insights' })).toHaveAttribute('href', '/posts')
+    expect(within(nav).queryByRole('link', { name: 'Insights' })).not.toBeInTheDocument()
     expect(within(nav).getByRole('link', { name: 'Start a project' })).toHaveAttribute(
       'href',
-      expect.stringContaining('mailto:services@jgb.solutions')
+      '/#contact'
     )
   })
 
@@ -19,10 +19,15 @@ describe('Site header and footer', () => {
     renderWithRouter({ initialEntries: ['/projects'] })
 
     const footer = await screen.findByRole('contentinfo')
-    expect(within(footer).getByText('Web Design & Development')).toBeInTheDocument()
+    expect(within(footer).getByText('Websites')).toBeInTheDocument()
     expect(within(footer).queryByText('Graphic Design')).not.toBeInTheDocument()
     expect(within(footer).queryByText(/photography/i)).not.toBeInTheDocument()
     expect(within(footer).getByRole('link', { name: 'services@jgb.solutions' })).toBeInTheDocument()
-    expect(within(footer).getAllByText(/Laval, Québec/).length).toBeGreaterThan(0)
+    expect(within(footer).getByRole('link', { name: '+1 438 389 5465' })).toHaveAttribute(
+      'href',
+      'https://wa.me/14383895465'
+    )
+    expect(within(footer).queryByRole('link', { name: 'GitHub' })).not.toBeInTheDocument()
+    expect(within(footer).queryByText('Insights')).not.toBeInTheDocument()
   })
 })

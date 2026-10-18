@@ -8,6 +8,7 @@ import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { createPageSEO } from '@/lib/seo'
 import { SITE } from '@/lib/constants'
+import { FEATURES } from '@/lib/features'
 
 const getPost = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
@@ -19,6 +20,10 @@ const getPost = createServerFn({ method: 'GET' })
   })
 
 export const Route = createFileRoute('/posts/$slug')({
+  // The blog is switched off for now (src/lib/features.ts)
+  beforeLoad: () => {
+    if (!FEATURES.blog) throw notFound()
+  },
   loader: ({ params }) => getPost({ data: params.slug }),
   head: ({ loaderData }) => {
     if (!loaderData) return {}

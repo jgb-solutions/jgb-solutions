@@ -19,7 +19,7 @@ export const SERVICES: Array<Service> = [
   {
     slug: 'web-design-development',
     available: true,
-    title: 'Web Design & Development',
+    title: 'Websites',
     shortDescription: 'Custom websites built for speed, clarity, and conversion.',
     description:
       'We design and build professional websites that look great on every device and load fast. From landing pages to full web applications, we handle design, development, and launch.',
@@ -35,7 +35,7 @@ export const SERVICES: Array<Service> = [
   {
     slug: 'mobile-app-design-development',
     available: true,
-    title: 'Mobile App Design & Development',
+    title: 'Mobile Apps',
     shortDescription: 'Native-feeling apps for iOS and Android.',
     description:
       'We help you bring your app idea to life with thoughtful UX, polished UI, and reliable development — whether you need an MVP or a production-ready product.',
@@ -51,7 +51,7 @@ export const SERVICES: Array<Service> = [
   {
     slug: 'social-media-management',
     available: true,
-    title: 'Social Media Management',
+    title: 'Social Media',
     shortDescription: 'Consistent content and community growth.',
     description:
       'We manage your social presence so you can focus on running your business. From content planning to posting and engagement, we keep your brand active and professional.',

@@ -1,7 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import type { SectionTone } from '@/components/site/section'
-import { START_PROJECT_HREF } from '@/components/site/site-header'
 import { Container, SectionLabel, buttonStyles, mutedText } from '@/components/site/section'
 import { SITE } from '@/lib/constants'
 import { OFFERED_SERVICES } from '@/lib/services'
@@ -41,9 +40,9 @@ export function HomeHero({ tone }: { tone: SectionTone }) {
             app they keep, and social media that stays active.
           </p>
           <div className='flex flex-col gap-3 sm:flex-row'>
-            <a href={START_PROJECT_HREF} className={buttonStyles(isBrand ? 'ink' : 'brand')}>
+            <Link to='/' hash='contact' className={buttonStyles(isBrand ? 'ink' : 'brand')}>
               Start a project <ArrowRight className='h-4 w-4' />
-            </a>
+            </Link>
             <Link to='/projects' className={buttonStyles('outline')}>
               See our work
             </Link>

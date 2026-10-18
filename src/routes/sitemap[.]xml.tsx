@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 import { publishedProjects } from '@/lib/projects'
 import { SITE } from '@/lib/constants'
+import { FEATURES } from '@/lib/features'
 
 // A plain function: the GET handler below already runs on the server. (Wrapping it in
 // createServerFn and calling that from a server route fails since TanStack Start 1.168.)
@@ -9,11 +10,11 @@ function buildSitemap() {
   const baseUrl = SITE.url
 
   // Static routes
-  const staticRoutes = ['', '/projects', '/posts']
+  const staticRoutes = ['', '/projects', ...(FEATURES.blog ? ['/posts'] : [])]
 
   // Dynamic routes
   const projectRoutes = publishedProjects.map(project => `/projects/${project.slug}`)
-  const postRoutes = allPosts.map(post => `/posts/${post.slug}`)
+  const postRoutes = FEATURES.blog ? allPosts.map(post => `/posts/${post.slug}`) : []
 
   const allRoutes = [...staticRoutes, ...projectRoutes, ...postRoutes]
 

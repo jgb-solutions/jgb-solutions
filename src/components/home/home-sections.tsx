@@ -1,8 +1,10 @@
 import { Link } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
-import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Check, Copy, Mail } from 'lucide-react'
+import { useState } from 'react'
 import type { SectionTone } from '@/components/site/section'
 import { Section, SectionLabel, buttonStyles, mutedText } from '@/components/site/section'
+import { WhatsAppIcon } from '@/components/site/whatsapp-icon'
 import { SITE } from '@/lib/constants'
 import { clientProjects, products } from '@/lib/products'
 import { OFFERED_SERVICES } from '@/lib/services'
@@ -33,36 +35,6 @@ function SectionHeading({
       </h2>
       {intro && <p className={cn('text-lg leading-relaxed', mutedText[tone])}>{intro}</p>}
     </div>
-  )
-}
-
-// Client names as they're known (translations in brackets where French).
-const CLIENTS = [
-  "L'Expérience Exquise",
-  'JC Cantave',
-  'En Avant',
-  'ENEPH',
-  'GESTE-Haïti',
-  'HACARABTECH',
-  'Simone Fievre',
-]
-
-export function HomeClients({ tone }: { tone: SectionTone }) {
-  return (
-    <section className={cn('py-10', isDark(tone) ? 'bg-ink text-paper' : 'bg-mist text-ink')}>
-      <div className='mx-auto flex w-full max-w-7xl flex-col gap-5 px-6 md:flex-row md:items-center md:gap-10 md:px-10'>
-        <p className={cn('shrink-0 font-mono text-xs uppercase tracking-[0.2em]', mutedText[tone])}>
-          Clients we've worked with
-        </p>
-        <ul className='flex flex-wrap gap-x-8 gap-y-3'>
-          {CLIENTS.map(name => (
-            <li key={name} className='font-display text-lg font-semibold opacity-90'>
-              {name}
-            </li>
-          ))}
-        </ul>
-      </div>
-    </section>
   )
 }
 
@@ -122,8 +94,14 @@ export function HomeProducts({ tone }: { tone: SectionTone }) {
       <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
         <ProductCard product={featured} tone={tone} featured />
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-          {rest.map(product => (
-            <ProductCard key={product.slug} product={product} tone={tone} />
+          {rest.map((product, i) => (
+            <ProductCard
+              key={product.slug}
+              product={product}
+              tone={tone}
+              // An odd last card spans both columns so the grid has no hole
+              wide={rest.length % 2 === 1 && i === rest.length - 1}
+            />
           ))}
         </div>
       </div>
@@ -135,22 +113,28 @@ function ProductCard({
   product,
   tone,
   featured = false,
+  wide = false,
 }: {
   product: (typeof products)[number]
   tone: SectionTone
   featured?: boolean
+  wide?: boolean
 }) {
   return (
     <article
       className={cn(
         'group flex flex-col border',
+        wide && 'sm:col-span-2',
         isDark(tone) ? 'border-ink-line bg-ink-soft' : 'border-ink/10 bg-paper'
       )}
     >
       <Link
         to='/projects/$slug'
         params={{ slug: product.slug }}
-        className='block aspect-[4/3] overflow-hidden'
+        className={cn(
+          'block overflow-hidden',
+          wide ? 'aspect-[4/3] sm:aspect-[2/1]' : 'aspect-[4/3]'
+        )}
         tabIndex={-1}
         aria-hidden
       >
@@ -333,10 +317,10 @@ export function HomeCta({ tone }: { tone: SectionTone }) {
       </p>
       <div className='flex flex-col gap-3 sm:flex-row'>
         <a
-          href={`mailto:${SITE.email}`}
+          href={`mailto:${SITE.email}?subject=${encodeURIComponent('New project')}`}
           className={buttonStyles(tone === 'brand' ? 'ink' : 'brand')}
         >
-          {SITE.email}
+          <Mail className='h-5 w-5' aria-hidden /> Email us
         </a>
         <a
           href={SITE.whatsappHref}
@@ -344,9 +328,46 @@ export function HomeCta({ tone }: { tone: SectionTone }) {
           rel='noopener noreferrer'
           className={buttonStyles('outline')}
         >
-          WhatsApp {SITE.phone}
+          <WhatsAppIcon className='h-5 w-5' /> WhatsApp us
         </a>
       </div>
+      <CopyEmail tone={tone} />
     </Section>
+  )
+}
+
+/**
+ * The address in plain text with a Copy button: "Email us" opens the visitor's mail app, which does
+ * nothing on computers without one set up.
+ */
+function CopyEmail({ tone }: { tone: SectionTone }) {
+  const [copied, setCopied] = useState(false)
+
+  async function copy() {
+    try {
+      await navigator.clipboard.writeText(SITE.email)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // Clipboard blocked: the address stays visible and selectable.
+    }
+  }
+
+  return (
+    <p className={cn('flex flex-wrap items-center gap-3 text-sm', mutedText[tone])}>
+      <span className='select-all font-medium'>{SITE.email}</span>
+      <button
+        type='button'
+        onClick={copy}
+        className='inline-flex items-center gap-1.5 border border-current/50 px-2.5 py-1 font-semibold transition-colors hover:border-current'
+      >
+        {copied ? (
+          <Check className='h-3.5 w-3.5' aria-hidden />
+        ) : (
+          <Copy className='h-3.5 w-3.5' aria-hidden />
+        )}
+        {copied ? 'Copied' : 'Copy'}
+      </button>
+    </p>
   )
 }

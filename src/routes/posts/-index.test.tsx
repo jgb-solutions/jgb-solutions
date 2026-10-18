@@ -4,6 +4,9 @@ import type { allPosts } from 'content-collections'
 import { renderWithRouter } from '@/test/router-utils'
 
 // Mock content-collections
+// The blog is switched off on the site; these tests cover the pages for when it's back on
+vi.mock('@/lib/features', () => ({ FEATURES: { blog: true } }))
+
 vi.mock('content-collections', () => ({
   allPosts: [
     { slug: 'p1', title: 'Post 1', category: 'Tech', date: '2024-01-01' },

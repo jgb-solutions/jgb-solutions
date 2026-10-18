@@ -1,12 +1,12 @@
 import { Link } from '@tanstack/react-router'
-import { Github, Instagram, Linkedin } from 'lucide-react'
+import { Instagram, Linkedin } from 'lucide-react'
 import { Logo } from '@/components/site/logo'
 import { Container } from '@/components/site/section'
 import { SITE } from '@/lib/constants'
+import { FEATURES } from '@/lib/features'
 import { OFFERED_SERVICES } from '@/lib/services'
 
 const SOCIAL_LINKS = [
-  { label: 'GitHub', href: 'https://github.com/jgb-solutions', icon: Github },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jgb-dev/', icon: Linkedin },
   { label: 'Instagram', href: 'https://www.instagram.com/jgbgram/', icon: Instagram },
 ]
@@ -46,11 +46,13 @@ export function SiteFooter() {
                 Work
               </Link>
             </li>
-            <li>
-              <Link to='/posts' className={linkClass}>
-                Insights
-              </Link>
-            </li>
+            {FEATURES.blog && (
+              <li>
+                <Link to='/posts' className={linkClass}>
+                  Insights
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
 
@@ -69,10 +71,9 @@ export function SiteFooter() {
                 rel='noopener noreferrer'
                 className={linkClass}
               >
-                WhatsApp {SITE.phone}
+                {SITE.phone}
               </a>
             </li>
-            <li className='text-muted-paper'>{SITE.location}</li>
           </ul>
           <div className='flex gap-2'>
             {SOCIAL_LINKS.map(({ label, href, icon: Icon }) => (

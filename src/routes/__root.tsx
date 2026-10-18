@@ -9,6 +9,7 @@ import '@fontsource/saira/700.css'
 import '@fontsource/saira/800.css'
 import '@fontsource/jetbrains-mono/400.css'
 import { OG_IMAGE, SEO, SITE, SOCIAL } from '@/lib/constants'
+import { FEATURES } from '@/lib/features'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -167,12 +168,14 @@ function NotFoundPage() {
               View Projects
             </a>
 
-            <a
-              href='/posts'
-              className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
-            >
-              Read Blog
-            </a>
+            {FEATURES.blog && (
+              <a
+                href='/posts'
+                className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
+              >
+                Read Blog
+              </a>
+            )}
           </div>
         </div>
 

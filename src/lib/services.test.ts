@@ -13,6 +13,6 @@ describe('services', () => {
   it('keeps planned services out of lookups', () => {
     expect(SERVICES.some(s => s.slug === 'graphic-design')).toBe(true)
     expect(getServiceBySlug('graphic-design')).toBeUndefined()
-    expect(getServiceBySlug('web-design-development')?.title).toBe('Web Design & Development')
+    expect(getServiceBySlug('web-design-development')?.title).toBe('Websites')
   })
 })

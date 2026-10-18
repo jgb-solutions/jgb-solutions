@@ -4,7 +4,8 @@ import { publishedProjects } from '@/lib/projects'
  * Projects that are JGB Solutions' own products (apps and media sites we build and run), in display
  * order. Everything else is client work. The user decides which is which: ask before adding one.
  */
-export const PRODUCT_SLUGS = ['jgb-tools', 'street-brawl', 'mp3pam', 'techtalk', 'ti-kwen-pam']
+// Ti Kwen Pam is also ours but hidden (draft) at the user's request: the user doesn't find it nice enough to show.
+export const PRODUCT_SLUGS = ['jgb-tools', 'street-brawl', 'mp3pam', 'techtalk']
 
 /** This site's own write-up: neither a product nor client work on the home page. */
 const SITE_SLUG = 'jgb-solutions'
