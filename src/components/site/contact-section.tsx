@@ -9,7 +9,13 @@ import { cn } from '@/lib/utils'
 /** The "Have a project in mind?" band: email and WhatsApp (no contact form, by choice). */
 export function ContactSection({ tone }: { tone: SectionTone }) {
   return (
-    <Section tone={tone} id='contact' containerClassName='flex flex-col items-start gap-8'>
+    <Section
+      tone={tone}
+      id='contact'
+      // Keep the heading clear of the sticky header when jumping to #contact
+      className='scroll-mt-16 md:scroll-mt-20'
+      containerClassName='flex flex-col items-start gap-8'
+    >
       <h2 className='max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight text-balance md:text-6xl'>
         Have a project in mind?
       </h2>

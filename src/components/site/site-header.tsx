@@ -18,12 +18,12 @@ const navLinkClass =
 const mobileLinkClass =
   'py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand'
 
-/** "Start a project" leads to the home page's contact section (email and WhatsApp). */
+/** "Start a project" jumps to the contact band that ends every page (email and WhatsApp). */
 function StartProjectLink({ className, onClick }: { className: string; onClick?: () => void }) {
   return (
-    <Link to='/' hash='contact' className={className} onClick={onClick}>
+    <a href='#contact' className={className} onClick={onClick}>
       Start a project
-    </Link>
+    </a>
   )
 }
 

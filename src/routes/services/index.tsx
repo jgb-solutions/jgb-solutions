@@ -1,6 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Check } from 'lucide-react'
-import { ContactSection } from '@/components/site/contact-section'
 import { ProcessSection } from '@/components/site/process-section'
 import {
   Container,
@@ -86,7 +85,6 @@ function ServicesPage() {
         })}
 
         <ProcessSection tone='ink' />
-        <ContactSection tone='brand' />
       </main>
       <SiteFooter />
     </div>

@@ -40,9 +40,9 @@ export function HomeHero({ tone }: { tone: SectionTone }) {
             app they keep, and social media that stays active.
           </p>
           <div className='flex flex-col gap-3 sm:flex-row'>
-            <Link to='/' hash='contact' className={buttonStyles(isBrand ? 'ink' : 'brand')}>
+            <a href='#contact' className={buttonStyles(isBrand ? 'ink' : 'brand')}>
               Start a project <ArrowRight className='h-4 w-4' />
-            </Link>
+            </a>
             <Link to='/projects' className={buttonStyles('outline')}>
               See our work
             </Link>

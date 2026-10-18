@@ -1,4 +1,4 @@
-import { Link, createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router'
 import { ArrowRight, Check } from 'lucide-react'
 import { BoldCta } from '@/components/landing/bold-cta'
 import { BoldLandingLayout } from '@/components/landing/bold-layout'
@@ -42,9 +42,9 @@ function BoldDigitalLanding() {
                 asChild
                 className='rounded-none bg-black text-white hover:bg-neutral-900 font-bold px-8 py-6'
               >
-                <Link to='/' hash='contact'>
+                <a href='#contact'>
                   Let&apos;s talk <ArrowRight className='w-5 h-5 ml-2' />
-                </Link>
+                </a>
               </Button>
             </div>
             <div className='grid grid-cols-1 gap-4'>
@@ -86,9 +86,7 @@ function BoldDigitalLanding() {
                   asChild
                   className={`rounded-none font-bold ${isOrange ? 'bg-black text-white hover:bg-neutral-900' : 'bg-orange-500 text-black hover:bg-orange-400'}`}
                 >
-                  <Link to='/' hash='contact'>
-                    Inquire about this service
-                  </Link>
+                  <a href='#contact'>Inquire about this service</a>
                 </Button>
               </div>
               <ul className={`space-y-4 ${index % 2 === 1 ? 'lg:order-1' : ''}`}>

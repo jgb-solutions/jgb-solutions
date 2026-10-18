@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { HomeHero } from '@/components/home/home-hero'
 import { HomeInsights, HomeProducts, HomeServices, HomeWork } from '@/components/home/home-sections'
-import { ContactSection } from '@/components/site/contact-section'
 import { ProcessSection } from '@/components/site/process-section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
@@ -30,7 +29,6 @@ function Home() {
         <HomeWork tone='paper' />
         <ProcessSection tone='mist' />
         {FEATURES.blog && <HomeInsights tone='paper' />}
-        <ContactSection tone='brand' />
       </main>
       <SiteFooter />
     </div>

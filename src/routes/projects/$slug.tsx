@@ -153,13 +153,12 @@ function ProjectDetailPage() {
                 <div className='pt-6 border-t border-border mt-6'>
                   <p className='text-sm text-muted-foreground italic'>
                     Interested in a similar project? <br />
-                    <Link
-                      to='/'
-                      hash='contact'
+                    <a
+                      href='#contact'
                       className='text-primary hover:underline not-italic font-medium'
                     >
                       Get in touch →
-                    </Link>
+                    </a>
                   </p>
                 </div>
               </div>

@@ -1,6 +1,5 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { ArrowLeft, ArrowRight, Check } from 'lucide-react'
-import { ContactSection } from '@/components/site/contact-section'
 import { ProcessSection } from '@/components/site/process-section'
 import {
   Container,
@@ -147,7 +146,6 @@ function ServicePage() {
         )}
 
         <ProcessSection tone='ink' />
-        <ContactSection tone='brand' />
 
         <Section tone='paper' className='py-14 md:py-16' containerClassName='flex flex-col gap-6'>
           <SectionLabel className='text-brand-strong opacity-100'>Other services</SectionLabel>

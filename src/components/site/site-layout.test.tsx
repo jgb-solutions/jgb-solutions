@@ -12,9 +12,20 @@ describe('Site header and footer', () => {
     expect(within(nav).queryByRole('link', { name: 'Insights' })).not.toBeInTheDocument()
     expect(within(nav).getByRole('link', { name: 'Start a project' })).toHaveAttribute(
       'href',
-      '/#contact'
+      '#contact'
     )
   })
+
+  it.each(['/projects', '/services', '/no-such-page'])(
+    'ends %s with the contact band that #contact points to',
+    async path => {
+      renderWithRouter({ initialEntries: [path] })
+
+      const heading = await screen.findByRole('heading', { name: 'Have a project in mind?' })
+      expect(heading.closest('section')).toHaveAttribute('id', 'contact')
+      expect(document.querySelectorAll('#contact')).toHaveLength(1)
+    }
+  )
 
   it('lists only offered services and the business contact details', async () => {
     renderWithRouter({ initialEntries: ['/projects'] })

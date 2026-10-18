@@ -10,6 +10,8 @@ import '@fontsource/saira/800.css'
 import '@fontsource/jetbrains-mono/400.css'
 import { OG_IMAGE, SEO, SITE, SOCIAL } from '@/lib/constants'
 import { FEATURES } from '@/lib/features'
+import { SiteFooter } from '@/components/site/site-footer'
+import { SiteHeader } from '@/components/site/site-header'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -117,79 +119,83 @@ export const Route = createRootRoute({
 
 function NotFoundPage() {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 flex items-center justify-center px-6'>
-      <div className='max-w-2xl w-full text-center space-y-8'>
-        {/* 404 Animation */}
-        <div className='relative'>
-          <h1 className='text-[150px] md:text-[200px] font-bold text-primary/10 select-none'>
-            404
-          </h1>
-          <div className='absolute inset-0 flex items-center justify-center'>
-            <div className='bg-background/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-border'>
-              <h2 className='text-3xl md:text-4xl font-bold mb-3'>Page Not Found</h2>
-              <p className='text-muted-foreground text-lg'>
-                Oops! The page you're looking for doesn't exist.
-              </p>
+    <div className='flex min-h-screen flex-col'>
+      <SiteHeader />
+      <main className='flex flex-1 items-center justify-center bg-gradient-to-br from-primary/5 via-background to-secondary/5 px-6 py-20'>
+        <div className='max-w-2xl w-full text-center space-y-8'>
+          {/* 404 Animation */}
+          <div className='relative'>
+            <h1 className='text-[150px] md:text-[200px] font-bold text-primary/10 select-none'>
+              404
+            </h1>
+            <div className='absolute inset-0 flex items-center justify-center'>
+              <div className='bg-background/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-border'>
+                <h2 className='text-3xl md:text-4xl font-bold mb-3'>Page Not Found</h2>
+                <p className='text-muted-foreground text-lg'>
+                  Oops! The page you're looking for doesn't exist.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Helpful Message */}
-        <div className='space-y-4 pt-8'>
-          <p className='text-muted-foreground'>
-            The page may have been moved, deleted, or the URL might be incorrect.
-          </p>
+          {/* Helpful Message */}
+          <div className='space-y-4 pt-8'>
+            <p className='text-muted-foreground'>
+              The page may have been moved, deleted, or the URL might be incorrect.
+            </p>
 
-          {/* Navigation Options */}
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-6'>
-            <a
-              href='/'
-              className='group inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5 group-hover:-translate-x-1 transition-transform'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z'
-                  clipRule='evenodd'
-                />
-              </svg>
-              Back to Home
-            </a>
-
-            <a
-              href='/projects'
-              className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
-            >
-              View Projects
-            </a>
-
-            {FEATURES.blog && (
+            {/* Navigation Options */}
+            <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-6'>
               <a
-                href='/posts'
+                href='/'
+                className='group inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl'
+              >
+                <svg
+                  xmlns='http://www.w3.org/2000/svg'
+                  className='h-5 w-5 group-hover:-translate-x-1 transition-transform'
+                  viewBox='0 0 20 20'
+                  fill='currentColor'
+                >
+                  <path
+                    fillRule='evenodd'
+                    d='M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z'
+                    clipRule='evenodd'
+                  />
+                </svg>
+                Back to Home
+              </a>
+
+              <a
+                href='/projects'
                 className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
               >
-                Read Blog
+                View Projects
               </a>
-            )}
+
+              {FEATURES.blog && (
+                <a
+                  href='/posts'
+                  className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
+                >
+                  Read Blog
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* Search Suggestion */}
+          <div className='pt-8 text-sm text-muted-foreground'>
+            <p>
+              Or{' '}
+              <a href='#contact' className='text-primary hover:underline font-medium'>
+                get in touch
+              </a>{' '}
+              if you need help finding something.
+            </p>
           </div>
         </div>
-
-        {/* Search Suggestion */}
-        <div className='pt-8 text-sm text-muted-foreground'>
-          <p>
-            Or{' '}
-            <a href='/#contact' className='text-primary hover:underline font-medium'>
-              get in touch
-            </a>{' '}
-            if you need help finding something.
-          </p>
-        </div>
-      </div>
+      </main>
+      <SiteFooter />
     </div>
   )
 }

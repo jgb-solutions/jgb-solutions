@@ -1,4 +1,3 @@
-import { Link } from '@tanstack/react-router'
 import { ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BoldSection } from '@/components/landing/bold-theme'
@@ -38,9 +37,9 @@ export function BoldCta({
         </p>
         <div className='flex flex-col sm:flex-row gap-4 justify-center'>
           <Button asChild className={cnButton(isOrange, 'primary')}>
-            <Link to='/' hash='contact'>
+            <a href='#contact'>
               Get in touch <ArrowRight className='w-4 h-4 ml-2' />
-            </Link>
+            </a>
           </Button>
           <Button asChild variant='outline' className={cnButton(isOrange, 'outline')}>
             <a href={`mailto:${SITE.email}`}>Email us</a>
