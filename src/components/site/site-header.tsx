@@ -6,8 +6,9 @@ import { Container, buttonStyles } from '@/components/site/section'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { FEATURES } from '@/lib/features'
 
-// Pages join this list as the redesign builds them (Services, Products, About; see docs/PLAN-redesign.md).
+// Pages join this list as the redesign builds them (Products, About; see docs/PLAN-redesign.md).
 export const NAV_LINKS = [
+  { label: 'Services', to: '/services' },
   { label: 'Work', to: '/projects' },
   ...(FEATURES.blog ? [{ label: 'Insights', to: '/posts' }] : []),
 ] as const

@@ -72,3 +72,32 @@ export function buttonStyles(tone: ButtonTone = 'brand', className?: string) {
     className
   )
 }
+
+export const isDark = (tone: SectionTone) => tone === 'ink'
+
+/** Label, heading and optional intro at the top of a section. */
+export function SectionHeading({
+  label,
+  title,
+  intro,
+  tone,
+}: {
+  label: string
+  title: string
+  intro?: string
+  tone: SectionTone
+}) {
+  return (
+    <div className='flex max-w-2xl flex-col gap-4'>
+      <SectionLabel
+        className={isDark(tone) ? 'text-brand opacity-100' : 'text-brand-strong opacity-100'}
+      >
+        {label}
+      </SectionLabel>
+      <h2 className='font-display text-4xl font-extrabold leading-tight tracking-tight text-balance md:text-5xl'>
+        {title}
+      </h2>
+      {intro && <p className={cn('text-lg leading-relaxed', mutedText[tone])}>{intro}</p>}
+    </div>
+  )
+}

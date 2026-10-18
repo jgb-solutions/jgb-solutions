@@ -13,11 +13,15 @@ export interface Service {
    * "coming soon" pages: AdSense rejects them). Flip to true when the service launches.
    */
   available: boolean
+  /** Three short selling points for the service page. */
+  highlights?: Array<{ title: string; text: string }>
+  /** Project slugs (content/projects) to show as examples on the service page. */
+  relatedProjects?: Array<string>
 }
 
 export const SERVICES: Array<Service> = [
   {
-    slug: 'web-design-development',
+    slug: 'websites',
     available: true,
     title: 'Websites',
     shortDescription: 'Custom websites built for speed, clarity, and conversion.',
@@ -31,9 +35,24 @@ export const SERVICES: Array<Service> = [
       'Ongoing maintenance and updates',
     ],
     icon: Globe,
+    highlights: [
+      {
+        title: 'Built for phones first',
+        text: 'Most visitors arrive on a phone, so every page is designed for small screens first and scales up from there.',
+      },
+      {
+        title: 'Fast to load',
+        text: "Light pages and optimized images, so people don't leave before your site appears.",
+      },
+      {
+        title: 'Easy to keep current',
+        text: 'Update your text, photos and offers yourself, or let us handle the updates for you.',
+      },
+    ],
+    relatedProjects: ['experience-exquise', 'jc-cantave', 'eneph', 'simone-fievre'],
   },
   {
-    slug: 'mobile-app-design-development',
+    slug: 'mobile-apps',
     available: true,
     title: 'Mobile Apps',
     shortDescription: 'Native-feeling apps for iOS and Android.',
@@ -47,9 +66,24 @@ export const SERVICES: Array<Service> = [
       'Post-launch improvements',
     ],
     icon: Smartphone,
+    highlights: [
+      {
+        title: 'iOS and Android',
+        text: 'One codebase for both platforms keeps the cost down and both apps in step.',
+      },
+      {
+        title: 'Tested before it is built',
+        text: 'Clickable prototypes let you try the idea with real users before development starts.',
+      },
+      {
+        title: 'Into the app stores',
+        text: 'We prepare the listings and screenshots and handle the review process for the App Store and Google Play.',
+      },
+    ],
+    relatedProjects: ['jgb-tools'],
   },
   {
-    slug: 'social-media-management',
+    slug: 'social-media',
     available: true,
     title: 'Social Media',
     shortDescription: 'Consistent content and community growth.',
@@ -63,6 +97,20 @@ export const SERVICES: Array<Service> = [
       'Performance reporting',
     ],
     icon: Share2,
+    highlights: [
+      {
+        title: 'A plan, not random posts',
+        text: 'A monthly content calendar built around your offers, events and busy seasons.',
+      },
+      {
+        title: 'One voice everywhere',
+        text: 'Posts, captions and replies that sound like your business on every platform.',
+      },
+      {
+        title: 'Clear reporting',
+        text: 'A simple monthly report on what worked, so the next month does better.',
+      },
+    ],
   },
   {
     slug: 'photography-videography',
@@ -118,9 +166,7 @@ export const SERVICES: Array<Service> = [
 export const OFFERED_SERVICES = SERVICES.filter(service => service.available)
 
 export const DIGITAL_SERVICES = SERVICES.filter(service =>
-  ['web-design-development', 'mobile-app-design-development', 'social-media-management'].includes(
-    service.slug
-  )
+  ['websites', 'mobile-apps', 'social-media'].includes(service.slug)
 )
 
 export const CREATIVE_SERVICES = SERVICES.filter(service =>

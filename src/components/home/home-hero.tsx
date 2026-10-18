@@ -56,22 +56,29 @@ export function HomeHero({ tone }: { tone: SectionTone }) {
           {OFFERED_SERVICES.map(service => {
             const Icon = service.icon
             return (
-              <li
-                key={service.slug}
-                className={cn(
-                  'flex items-start gap-5 p-6',
-                  isBrand ? 'bg-ink text-paper' : 'border border-ink/10 bg-mist'
-                )}
-              >
-                <span className='flex h-12 w-12 shrink-0 items-center justify-center bg-brand text-ink'>
-                  <Icon className='h-6 w-6' aria-hidden />
-                </span>
-                <div className='flex flex-col gap-1'>
-                  <h2 className='font-display text-lg font-bold'>{service.title}</h2>
-                  <p className={cn('text-sm', isBrand ? 'text-muted-paper' : 'text-muted-ink')}>
-                    {service.shortDescription}
-                  </p>
-                </div>
+              <li key={service.slug}>
+                <Link
+                  to='/services/$slug'
+                  params={{ slug: service.slug }}
+                  className={cn(
+                    'group flex items-start gap-5 p-6 transition-colors',
+                    isBrand ? 'bg-ink text-paper hover:bg-ink-soft' : 'border border-ink/10 bg-mist'
+                  )}
+                >
+                  <span className='flex h-12 w-12 shrink-0 items-center justify-center bg-brand text-ink'>
+                    <Icon className='h-6 w-6' aria-hidden />
+                  </span>
+                  <div className='flex flex-col gap-1'>
+                    <h2 className='font-display text-lg font-bold'>{service.title}</h2>
+                    <p className={cn('text-sm', isBrand ? 'text-muted-paper' : 'text-muted-ink')}>
+                      {service.shortDescription}
+                    </p>
+                  </div>
+                  <ArrowRight
+                    className='ml-auto h-5 w-5 shrink-0 self-center text-brand transition-transform group-hover:translate-x-1'
+                    aria-hidden
+                  />
+                </Link>
               </li>
             )
           })}

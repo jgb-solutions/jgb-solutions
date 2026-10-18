@@ -31,8 +31,10 @@ export function SiteFooter() {
           <h2 className={headingClass}>Services</h2>
           <ul className='flex flex-col gap-2 text-sm'>
             {OFFERED_SERVICES.map(service => (
-              <li key={service.slug} className='text-muted-paper'>
-                {service.title}
+              <li key={service.slug}>
+                <Link to='/services/$slug' params={{ slug: service.slug }} className={linkClass}>
+                  {service.title}
+                </Link>
               </li>
             ))}
           </ul>

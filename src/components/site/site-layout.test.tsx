@@ -7,6 +7,7 @@ describe('Site header and footer', () => {
     renderWithRouter({ initialEntries: ['/projects'] })
 
     const nav = await screen.findByRole('navigation', { name: 'Main' })
+    expect(within(nav).getByRole('link', { name: 'Services' })).toHaveAttribute('href', '/services')
     expect(within(nav).getByRole('link', { name: 'Work' })).toHaveAttribute('href', '/projects')
     expect(within(nav).queryByRole('link', { name: 'Insights' })).not.toBeInTheDocument()
     expect(within(nav).getByRole('link', { name: 'Start a project' })).toHaveAttribute(
@@ -19,7 +20,10 @@ describe('Site header and footer', () => {
     renderWithRouter({ initialEntries: ['/projects'] })
 
     const footer = await screen.findByRole('contentinfo')
-    expect(within(footer).getByText('Websites')).toBeInTheDocument()
+    expect(within(footer).getByRole('link', { name: 'Websites' })).toHaveAttribute(
+      'href',
+      '/services/websites'
+    )
     expect(within(footer).queryByText('Graphic Design')).not.toBeInTheDocument()
     expect(within(footer).queryByText(/photography/i)).not.toBeInTheDocument()
     expect(within(footer).getByRole('link', { name: 'services@jgb.solutions' })).toBeInTheDocument()

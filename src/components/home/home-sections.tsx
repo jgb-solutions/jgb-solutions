@@ -1,42 +1,11 @@
 import { Link } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
-import { ArrowRight, ArrowUpRight, Check, Copy, Mail } from 'lucide-react'
-import { useState } from 'react'
+import { ArrowRight, ArrowUpRight, Check } from 'lucide-react'
 import type { SectionTone } from '@/components/site/section'
-import { Section, SectionLabel, buttonStyles, mutedText } from '@/components/site/section'
-import { WhatsAppIcon } from '@/components/site/whatsapp-icon'
-import { SITE } from '@/lib/constants'
+import { Section, SectionHeading, buttonStyles, isDark, mutedText } from '@/components/site/section'
 import { clientProjects, products } from '@/lib/products'
 import { OFFERED_SERVICES } from '@/lib/services'
 import { cn } from '@/lib/utils'
-
-const isDark = (tone: SectionTone) => tone === 'ink'
-
-function SectionHeading({
-  label,
-  title,
-  intro,
-  tone,
-}: {
-  label: string
-  title: string
-  intro?: string
-  tone: SectionTone
-}) {
-  return (
-    <div className='flex max-w-2xl flex-col gap-4'>
-      <SectionLabel
-        className={isDark(tone) ? 'text-brand opacity-100' : 'text-brand-strong opacity-100'}
-      >
-        {label}
-      </SectionLabel>
-      <h2 className='font-display text-4xl font-extrabold leading-tight tracking-tight text-balance md:text-5xl'>
-        {title}
-      </h2>
-      {intro && <p className={cn('text-lg leading-relaxed', mutedText[tone])}>{intro}</p>}
-    </div>
-  )
-}
 
 export function HomeServices({ tone }: { tone: SectionTone }) {
   return (
@@ -61,7 +30,15 @@ export function HomeServices({ tone }: { tone: SectionTone }) {
               <span className='flex h-12 w-12 items-center justify-center bg-brand text-ink'>
                 <Icon className='h-6 w-6' aria-hidden />
               </span>
-              <h3 className='font-display text-2xl font-bold leading-snug'>{service.title}</h3>
+              <h3 className='font-display text-2xl font-bold leading-snug'>
+                <Link
+                  to='/services/$slug'
+                  params={{ slug: service.slug }}
+                  className='hover:text-brand-strong'
+                >
+                  {service.title}
+                </Link>
+              </h3>
               <p className={cn('leading-relaxed', mutedText[tone])}>{service.description}</p>
               <ul className='mt-auto flex flex-col gap-2.5 border-t border-current/10 pt-5 text-sm'>
                 {service.offerings.map(offering => (
@@ -71,6 +48,14 @@ export function HomeServices({ tone }: { tone: SectionTone }) {
                   </li>
                 ))}
               </ul>
+              <Link
+                to='/services/$slug'
+                params={{ slug: service.slug }}
+                className='inline-flex items-center gap-1.5 text-sm font-semibold text-brand-strong'
+                aria-label={`Learn more about ${service.title}`}
+              >
+                Learn more <ArrowRight className='h-4 w-4' aria-hidden />
+              </Link>
             </article>
           )
         })}
@@ -230,47 +215,6 @@ export function HomeWork({ tone }: { tone: SectionTone }) {
   )
 }
 
-const STEPS = [
-  {
-    title: 'Discovery',
-    text: 'A call about your business, your customers and what you need. You get a clear proposal and a quote.',
-  },
-  {
-    title: 'Design',
-    text: 'We design the pages or screens and refine them with you before building anything.',
-  },
-  {
-    title: 'Build',
-    text: 'Fast, mobile-first and easy for your team to update.',
-  },
-  {
-    title: 'Launch & support',
-    text: 'We put it live, show you how it works and stay available for changes.',
-  },
-]
-
-export function HomeProcess({ tone }: { tone: SectionTone }) {
-  return (
-    <Section tone={tone} id='process' containerClassName='flex flex-col gap-12'>
-      <SectionHeading tone={tone} label='How we work' title='From first call to launch' />
-      <ol className='grid grid-cols-1 gap-px bg-ink/10 sm:grid-cols-2 lg:grid-cols-4'>
-        {STEPS.map((step, i) => (
-          <li
-            key={step.title}
-            className={cn('flex flex-col gap-4 p-8', tone === 'mist' ? 'bg-mist' : 'bg-paper')}
-          >
-            <span className='font-display text-5xl font-extrabold text-brand'>
-              {String(i + 1).padStart(2, '0')}
-            </span>
-            <h3 className='font-display text-xl font-bold'>{step.title}</h3>
-            <p className={cn('leading-relaxed', mutedText[tone])}>{step.text}</p>
-          </li>
-        ))}
-      </ol>
-    </Section>
-  )
-}
-
 export function HomeInsights({ tone }: { tone: SectionTone }) {
   const posts = [...allPosts]
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
@@ -303,71 +247,5 @@ export function HomeInsights({ tone }: { tone: SectionTone }) {
         ))}
       </div>
     </Section>
-  )
-}
-
-export function HomeCta({ tone }: { tone: SectionTone }) {
-  return (
-    <Section tone={tone} id='contact' containerClassName='flex flex-col items-start gap-8'>
-      <h2 className='max-w-3xl font-display text-4xl font-extrabold leading-tight tracking-tight text-balance md:text-6xl'>
-        Have a project in mind?
-      </h2>
-      <p className={cn('max-w-xl text-lg leading-relaxed', mutedText[tone])}>
-        Tell us what you need and we'll get back to you with a quote.
-      </p>
-      <div className='flex flex-col gap-3 sm:flex-row'>
-        <a
-          href={`mailto:${SITE.email}?subject=${encodeURIComponent('New project')}`}
-          className={buttonStyles(tone === 'brand' ? 'ink' : 'brand')}
-        >
-          <Mail className='h-5 w-5' aria-hidden /> Email us
-        </a>
-        <a
-          href={SITE.whatsappHref}
-          target='_blank'
-          rel='noopener noreferrer'
-          className={buttonStyles('outline')}
-        >
-          <WhatsAppIcon className='h-5 w-5' /> WhatsApp us
-        </a>
-      </div>
-      <CopyEmail tone={tone} />
-    </Section>
-  )
-}
-
-/**
- * The address in plain text with a Copy button: "Email us" opens the visitor's mail app, which does
- * nothing on computers without one set up.
- */
-function CopyEmail({ tone }: { tone: SectionTone }) {
-  const [copied, setCopied] = useState(false)
-
-  async function copy() {
-    try {
-      await navigator.clipboard.writeText(SITE.email)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // Clipboard blocked: the address stays visible and selectable.
-    }
-  }
-
-  return (
-    <p className={cn('flex flex-wrap items-center gap-3 text-sm', mutedText[tone])}>
-      <span className='select-all font-medium'>{SITE.email}</span>
-      <button
-        type='button'
-        onClick={copy}
-        className='inline-flex items-center gap-1.5 border border-current/50 px-2.5 py-1 font-semibold transition-colors hover:border-current'
-      >
-        {copied ? (
-          <Check className='h-3.5 w-3.5' aria-hidden />
-        ) : (
-          <Copy className='h-3.5 w-3.5' aria-hidden />
-        )}
-        {copied ? 'Copied' : 'Copy'}
-      </button>
-    </p>
   )
 }
