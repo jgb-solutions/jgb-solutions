@@ -1,46 +1,56 @@
-import { ClientOnly, createFileRoute } from '@tanstack/react-router'
-import { SiteHeader } from '@/components/site/site-header'
-import Hero from '@/components/hero'
-import MarqueeBar from '@/components/marquee-bar'
-import FeaturedProjects from '@/components/featured-projects'
-import About from '@/components/about'
-import Services from '@/components/services'
-import RecentPosts from '@/components/recent-posts'
-import Contact from '@/components/contact'
+import { createFileRoute } from '@tanstack/react-router'
+import { z } from 'zod'
+import { HomeHero } from '@/components/home/home-hero'
+import {
+  HomeClients,
+  HomeCta,
+  HomeInsights,
+  HomeProcess,
+  HomeProducts,
+  HomeServices,
+  HomeWork,
+} from '@/components/home/home-sections'
+import { HOME_LOOKS, HOME_TONES } from '@/components/home/look'
+import { LookSwitcher } from '@/components/home/look-switcher'
 import { SiteFooter } from '@/components/site/site-footer'
+import { SiteHeader } from '@/components/site/site-header'
 import { createPageSEO } from '@/lib/seo'
 
+const homeSearchSchema = z.object({
+  look: z.enum(HOME_LOOKS).optional(),
+})
+
 export const Route = createFileRoute('/')({
+  validateSearch: homeSearchSchema,
   head: () =>
     createPageSEO({
-      title: 'JGB Solutions - Web & Mobile Development',
+      title: 'JGB Solutions - Websites, Mobile Apps & Social Media',
       description:
-        'Portfolio showcasing 20+ web and mobile development projects. Expertise in React, TypeScript, Node.js, and scalable solutions. Available for freelance and consulting.',
+        'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own products like JGB Tools. Based in Laval, Québec. Contact us for a quote.',
       path: '/',
     }),
   component: Home,
 })
 
 function Home() {
+  const { look = 'bold' } = Route.useSearch()
+  const tones = HOME_TONES[look]
+
   return (
-    <main className='min-h-screen flex flex-col'>
-      <div className='relative bg-background'>
-        <SiteHeader />
-        <Hero />
-        <MarqueeBar />
-      </div>
-      <FeaturedProjects />
-      <About />
-      <Services />
-      <RecentPosts />
-      <ClientOnly
-        fallback={
-          <div className='py-20 text-center text-muted-foreground'>Loading contact form...</div>
-        }
-      >
-        <Contact />
-      </ClientOnly>
+    <div className='flex min-h-screen flex-col'>
+      <SiteHeader tone={tones.header} />
+      <main className='flex-1'>
+        <HomeHero tone={tones.hero} />
+        <HomeClients tone={tones.clients} />
+        <HomeServices tone={tones.services} />
+        <HomeProducts tone={tones.products} />
+        <HomeWork tone={tones.work} />
+        <HomeProcess tone={tones.process} />
+        <HomeInsights tone={tones.insights} />
+        <HomeCta tone={tones.cta} />
+      </main>
       <SiteFooter />
-    </main>
+      <LookSwitcher look={look} />
+    </div>
   )
 }

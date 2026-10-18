@@ -62,6 +62,16 @@ export function SiteFooter() {
                 {SITE.email}
               </a>
             </li>
+            <li>
+              <a
+                href={SITE.whatsappHref}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={linkClass}
+              >
+                WhatsApp {SITE.phone}
+              </a>
+            </li>
             <li className='text-muted-paper'>{SITE.location}</li>
           </ul>
           <div className='flex gap-2'>

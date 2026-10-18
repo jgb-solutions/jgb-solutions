@@ -9,6 +9,10 @@ export const SITE = {
   email: 'services@jgb.solutions',
   contactEmail: 'jgbneatdesign@gmail.com',
   location: 'Laval, Québec',
+  /** Business phone, also on WhatsApp. */
+  phone: '+1 438 389 5465',
+  phoneHref: 'tel:+14383895465',
+  whatsappHref: 'https://wa.me/14383895465',
 } as const
 
 export const SEO = {

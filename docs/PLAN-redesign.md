@@ -51,7 +51,7 @@ Use the vector JGB Solutions logo (`JGB_MARK` + the `SOLUTIONS` word in `jgb-too
 
 ## Voice
 
-- "We" for the business, "Jean" or "our founder" when it's about you. The founder still matters: the About page and one home-page section tell your story.
+- "We" for the business. **Your name, photo and story go on the About page only, never on the home page** (decided 2026-10-17). The About page is where you speak about what we do.
 - Plain English and concrete offers: "We build websites, mobile apps and social media for businesses" instead of "innovate.lead.deliver."
 - Calls to action name the next step: "Start a project", "See our work", "Try JGB Tools".
 - Every claim must be true (AdSense also penalizes filler). Numbers, as confirmed: **10+ years (building since 2009), dozens of clients, dozens of projects**. Don't write more precise client or project counts.
@@ -90,9 +90,8 @@ Footer (black): services, products, company links, email, social links, location
 4. **Products (black).** JGB Tools (8 free tools, web and iOS/Android app), Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam, with links to their sites. This is what makes JGB Solutions look like a company and not a freelancer.
 5. **Selected work (white).** Three or four projects with their screenshots.
 6. **How we work.** The real sequence, for example Discovery → Design → Build → Launch & support. Numbered, because it is an order.
-7. **From the founder.** A short note from you with your photo, linking to About.
-8. **Insights.** The latest posts (the section hides itself if there are none).
-9. **Call to action (orange)**, then the footer.
+7. **Insights.** The latest posts (the section hides itself if there are none).
+8. **Call to action (orange):** email and WhatsApp, then the footer.
 
 ## Technical plan
 
@@ -109,8 +108,8 @@ Footer (black): services, products, company links, email, social links, location
 
 Each phase is a commit (or a few) on `site-revamp`. Once phase 1 is in, push the branch and open a **draft PR** so every phase gets a Vercel preview link to review. Merge into `main` only when the whole site is done and the preview looks right.
 
-1. **Foundation.** Tokens, fonts, logo, full-width root layout, header, footer, `Section` and button components, `available` flag on services. **Done 2026-10-17** (uncommitted): brand tokens in `src/globals.css` (the theme's `primary` is now the logo orange with black text), Saira + JetBrains Mono, vector `Logo`, `SiteHeader` / `SiteFooter` / `Section` / `buttonStyles` in `src/components/site/`, root layout no longer boxed, dark mode and its toggle removed, Laval in the SEO copy. The header nav only lists pages that exist (Work, Insights); "Start a project" is a `mailto:` until `/contact` exists. Still to add: the WhatsApp number (waiting on the user).
-2. **Home page.** All nine sections, replacing the current home page.
+1. **Foundation.** Tokens, fonts, logo, full-width root layout, header, footer, `Section` and button components, `available` flag on services. **Done 2026-10-17** (uncommitted): brand tokens in `src/globals.css` (the theme's `primary` is now the logo orange with black text), Saira + JetBrains Mono, vector `Logo`, `SiteHeader` / `SiteFooter` / `Section` / `buttonStyles` in `src/components/site/`, root layout no longer boxed, dark mode and its toggle removed, Laval in the SEO copy. The header nav only lists pages that exist (Work, Insights); "Start a project" is a `mailto:` until `/contact` exists. WhatsApp/phone added to the footer.
+2. **Home page.** All eight sections, replacing the current home page. **Built 2026-10-17, look not chosen yet:** `src/routes/index.tsx` with sections in `src/components/home/`; products vs client work from `src/lib/products.ts`. `?look=bold` (default) or `?look=light` switches the look, with a floating Bold/Light toggle (hidden on jgb.solutions). Once the user picks, delete the other look, `look.ts` and `look-switcher.tsx`. The old contact form, its Resend server function and the old home sections are removed. Post excerpts are left off the home page (one mentions the founder by name).
 3. **Services.** `/services` and the three service pages.
 4. **Products, About, Contact, Privacy.**
 5. **Work and Insights.** Restyle the projects and posts lists and detail pages.
@@ -122,6 +121,7 @@ Each phase is a commit (or a few) on `site-revamp`. Once phase 1 is in, push the
 2. **Products:** JGB Tools, Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam are JGB Solutions products. The user usually builds apps and media sites as products; clients mostly want static sites or landing pages. **Always ask the user whether a new project is a product or client work.**
 3. **Numbers:** "10+ years" (since 2009), "dozens of clients", "dozens of projects".
 4. **Theme:** no dark-mode toggle. Show a light variant of the home page next to the bold one in phase 2.
-5. **Contact:** **no contact form** (spam). Business email services@jgb.solutions and WhatsApp (the business is on WhatsApp; number to come from the user). Phone number optional, still the user's call. Remove the current form (`src/components/contact.tsx`, `src/lib/functions/contact.ts` and the Resend dependency) when the home page is replaced.
+5. **Contact:** **no contact form** (spam). Business email services@jgb.solutions and the business WhatsApp/phone **+1 438 389 5465**, shown on the site (`SITE.phone` in `src/lib/constants.ts`). Remove the current form (`src/components/contact.tsx`, `src/lib/functions/contact.ts` and the Resend dependency) when the home page is replaced.
 6. **Pricing:** no prices; "Contact us for a quote".
-7. **Headline:** still open. Draft two or three options in phase 2.
+7. **Headline:** in use: "Websites, apps and social media for your business." Alternatives offered: "Your business, online and on every phone." / "We build the digital side of your business." The user can pick or rewrite.
+8. **Founder:** your name, photo and story only on the About page, not the home page.
