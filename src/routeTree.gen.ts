@@ -11,6 +11,21 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as LandingBoldDigitalRouteImport } from './routes/landing/bold-digital'
+import { Route as LandingBoldMobileRouteImport } from './routes/landing/bold-mobile'
+import { Route as LandingBoldServicesRouteImport } from './routes/landing/bold-services'
+import { Route as LandingBusinessGridRouteImport } from './routes/landing/business-grid'
+import { Route as LandingBusinessMinimalRouteImport } from './routes/landing/business-minimal'
+import { Route as LandingBusinessOrangeDarkRouteImport } from './routes/landing/business-orange-dark'
+import { Route as LandingBusinessOrangeImpactRouteImport } from './routes/landing/business-orange-impact'
+import { Route as LandingBusinessOrangeSplitRouteImport } from './routes/landing/business-orange-split'
+import { Route as LandingBusinessScrollRouteImport } from './routes/landing/business-scroll'
+import { Route as LandingBusinessThemeBentoRouteImport } from './routes/landing/business-theme-bento'
+import { Route as LandingBusinessThemeEditorialRouteImport } from './routes/landing/business-theme-editorial'
+import { Route as LandingBusinessThemeStackedRouteImport } from './routes/landing/business-theme-stacked'
+import { Route as LandingCreativeRouteImport } from './routes/landing/creative'
+import { Route as LandingServicesRouteImport } from './routes/landing/services'
+import { Route as LandingWebDesignRouteImport } from './routes/landing/web-design'
 import { Route as PostsIndexRouteImport } from './routes/posts/index'
 import { Route as PostsSlugRouteImport } from './routes/posts/$slug'
 import { Route as ProjectsIndexRouteImport } from './routes/projects/index'
@@ -24,6 +39,87 @@ const IndexRoute = IndexRouteImport.update({
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBoldDigitalRoute = LandingBoldDigitalRouteImport.update({
+  id: '/landing/bold-digital',
+  path: '/landing/bold-digital',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBoldMobileRoute = LandingBoldMobileRouteImport.update({
+  id: '/landing/bold-mobile',
+  path: '/landing/bold-mobile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBoldServicesRoute = LandingBoldServicesRouteImport.update({
+  id: '/landing/bold-services',
+  path: '/landing/bold-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBusinessGridRoute = LandingBusinessGridRouteImport.update({
+  id: '/landing/business-grid',
+  path: '/landing/business-grid',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBusinessMinimalRoute = LandingBusinessMinimalRouteImport.update({
+  id: '/landing/business-minimal',
+  path: '/landing/business-minimal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBusinessOrangeDarkRoute =
+  LandingBusinessOrangeDarkRouteImport.update({
+    id: '/landing/business-orange-dark',
+    path: '/landing/business-orange-dark',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingBusinessOrangeImpactRoute =
+  LandingBusinessOrangeImpactRouteImport.update({
+    id: '/landing/business-orange-impact',
+    path: '/landing/business-orange-impact',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingBusinessOrangeSplitRoute =
+  LandingBusinessOrangeSplitRouteImport.update({
+    id: '/landing/business-orange-split',
+    path: '/landing/business-orange-split',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingBusinessScrollRoute = LandingBusinessScrollRouteImport.update({
+  id: '/landing/business-scroll',
+  path: '/landing/business-scroll',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingBusinessThemeBentoRoute =
+  LandingBusinessThemeBentoRouteImport.update({
+    id: '/landing/business-theme-bento',
+    path: '/landing/business-theme-bento',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingBusinessThemeEditorialRoute =
+  LandingBusinessThemeEditorialRouteImport.update({
+    id: '/landing/business-theme-editorial',
+    path: '/landing/business-theme-editorial',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingBusinessThemeStackedRoute =
+  LandingBusinessThemeStackedRouteImport.update({
+    id: '/landing/business-theme-stacked',
+    path: '/landing/business-theme-stacked',
+    getParentRoute: () => rootRouteImport,
+  } as any)
+const LandingCreativeRoute = LandingCreativeRouteImport.update({
+  id: '/landing/creative',
+  path: '/landing/creative',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingServicesRoute = LandingServicesRouteImport.update({
+  id: '/landing/services',
+  path: '/landing/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LandingWebDesignRoute = LandingWebDesignRouteImport.update({
+  id: '/landing/web-design',
+  path: '/landing/web-design',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PostsIndexRoute = PostsIndexRouteImport.update({
@@ -50,6 +146,21 @@ const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/landing/bold-digital': typeof LandingBoldDigitalRoute
+  '/landing/bold-mobile': typeof LandingBoldMobileRoute
+  '/landing/bold-services': typeof LandingBoldServicesRoute
+  '/landing/business-grid': typeof LandingBusinessGridRoute
+  '/landing/business-minimal': typeof LandingBusinessMinimalRoute
+  '/landing/business-orange-dark': typeof LandingBusinessOrangeDarkRoute
+  '/landing/business-orange-impact': typeof LandingBusinessOrangeImpactRoute
+  '/landing/business-orange-split': typeof LandingBusinessOrangeSplitRoute
+  '/landing/business-scroll': typeof LandingBusinessScrollRoute
+  '/landing/business-theme-bento': typeof LandingBusinessThemeBentoRoute
+  '/landing/business-theme-editorial': typeof LandingBusinessThemeEditorialRoute
+  '/landing/business-theme-stacked': typeof LandingBusinessThemeStackedRoute
+  '/landing/creative': typeof LandingCreativeRoute
+  '/landing/services': typeof LandingServicesRoute
+  '/landing/web-design': typeof LandingWebDesignRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/posts/': typeof PostsIndexRoute
@@ -58,6 +169,21 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/landing/bold-digital': typeof LandingBoldDigitalRoute
+  '/landing/bold-mobile': typeof LandingBoldMobileRoute
+  '/landing/bold-services': typeof LandingBoldServicesRoute
+  '/landing/business-grid': typeof LandingBusinessGridRoute
+  '/landing/business-minimal': typeof LandingBusinessMinimalRoute
+  '/landing/business-orange-dark': typeof LandingBusinessOrangeDarkRoute
+  '/landing/business-orange-impact': typeof LandingBusinessOrangeImpactRoute
+  '/landing/business-orange-split': typeof LandingBusinessOrangeSplitRoute
+  '/landing/business-scroll': typeof LandingBusinessScrollRoute
+  '/landing/business-theme-bento': typeof LandingBusinessThemeBentoRoute
+  '/landing/business-theme-editorial': typeof LandingBusinessThemeEditorialRoute
+  '/landing/business-theme-stacked': typeof LandingBusinessThemeStackedRoute
+  '/landing/creative': typeof LandingCreativeRoute
+  '/landing/services': typeof LandingServicesRoute
+  '/landing/web-design': typeof LandingWebDesignRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/posts': typeof PostsIndexRoute
@@ -67,6 +193,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
+  '/landing/bold-digital': typeof LandingBoldDigitalRoute
+  '/landing/bold-mobile': typeof LandingBoldMobileRoute
+  '/landing/bold-services': typeof LandingBoldServicesRoute
+  '/landing/business-grid': typeof LandingBusinessGridRoute
+  '/landing/business-minimal': typeof LandingBusinessMinimalRoute
+  '/landing/business-orange-dark': typeof LandingBusinessOrangeDarkRoute
+  '/landing/business-orange-impact': typeof LandingBusinessOrangeImpactRoute
+  '/landing/business-orange-split': typeof LandingBusinessOrangeSplitRoute
+  '/landing/business-scroll': typeof LandingBusinessScrollRoute
+  '/landing/business-theme-bento': typeof LandingBusinessThemeBentoRoute
+  '/landing/business-theme-editorial': typeof LandingBusinessThemeEditorialRoute
+  '/landing/business-theme-stacked': typeof LandingBusinessThemeStackedRoute
+  '/landing/creative': typeof LandingCreativeRoute
+  '/landing/services': typeof LandingServicesRoute
+  '/landing/web-design': typeof LandingWebDesignRoute
   '/posts/$slug': typeof PostsSlugRoute
   '/projects/$slug': typeof ProjectsSlugRoute
   '/posts/': typeof PostsIndexRoute
@@ -77,6 +218,21 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/sitemap.xml'
+    | '/landing/bold-digital'
+    | '/landing/bold-mobile'
+    | '/landing/bold-services'
+    | '/landing/business-grid'
+    | '/landing/business-minimal'
+    | '/landing/business-orange-dark'
+    | '/landing/business-orange-impact'
+    | '/landing/business-orange-split'
+    | '/landing/business-scroll'
+    | '/landing/business-theme-bento'
+    | '/landing/business-theme-editorial'
+    | '/landing/business-theme-stacked'
+    | '/landing/creative'
+    | '/landing/services'
+    | '/landing/web-design'
     | '/posts/$slug'
     | '/projects/$slug'
     | '/posts/'
@@ -85,6 +241,21 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/sitemap.xml'
+    | '/landing/bold-digital'
+    | '/landing/bold-mobile'
+    | '/landing/bold-services'
+    | '/landing/business-grid'
+    | '/landing/business-minimal'
+    | '/landing/business-orange-dark'
+    | '/landing/business-orange-impact'
+    | '/landing/business-orange-split'
+    | '/landing/business-scroll'
+    | '/landing/business-theme-bento'
+    | '/landing/business-theme-editorial'
+    | '/landing/business-theme-stacked'
+    | '/landing/creative'
+    | '/landing/services'
+    | '/landing/web-design'
     | '/posts/$slug'
     | '/projects/$slug'
     | '/posts'
@@ -93,6 +264,21 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/sitemap.xml'
+    | '/landing/bold-digital'
+    | '/landing/bold-mobile'
+    | '/landing/bold-services'
+    | '/landing/business-grid'
+    | '/landing/business-minimal'
+    | '/landing/business-orange-dark'
+    | '/landing/business-orange-impact'
+    | '/landing/business-orange-split'
+    | '/landing/business-scroll'
+    | '/landing/business-theme-bento'
+    | '/landing/business-theme-editorial'
+    | '/landing/business-theme-stacked'
+    | '/landing/creative'
+    | '/landing/services'
+    | '/landing/web-design'
     | '/posts/$slug'
     | '/projects/$slug'
     | '/posts/'
@@ -102,6 +288,21 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  LandingBoldDigitalRoute: typeof LandingBoldDigitalRoute
+  LandingBoldMobileRoute: typeof LandingBoldMobileRoute
+  LandingBoldServicesRoute: typeof LandingBoldServicesRoute
+  LandingBusinessGridRoute: typeof LandingBusinessGridRoute
+  LandingBusinessMinimalRoute: typeof LandingBusinessMinimalRoute
+  LandingBusinessOrangeDarkRoute: typeof LandingBusinessOrangeDarkRoute
+  LandingBusinessOrangeImpactRoute: typeof LandingBusinessOrangeImpactRoute
+  LandingBusinessOrangeSplitRoute: typeof LandingBusinessOrangeSplitRoute
+  LandingBusinessScrollRoute: typeof LandingBusinessScrollRoute
+  LandingBusinessThemeBentoRoute: typeof LandingBusinessThemeBentoRoute
+  LandingBusinessThemeEditorialRoute: typeof LandingBusinessThemeEditorialRoute
+  LandingBusinessThemeStackedRoute: typeof LandingBusinessThemeStackedRoute
+  LandingCreativeRoute: typeof LandingCreativeRoute
+  LandingServicesRoute: typeof LandingServicesRoute
+  LandingWebDesignRoute: typeof LandingWebDesignRoute
   PostsSlugRoute: typeof PostsSlugRoute
   ProjectsSlugRoute: typeof ProjectsSlugRoute
   PostsIndexRoute: typeof PostsIndexRoute
@@ -122,6 +323,111 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/bold-digital': {
+      id: '/landing/bold-digital'
+      path: '/landing/bold-digital'
+      fullPath: '/landing/bold-digital'
+      preLoaderRoute: typeof LandingBoldDigitalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/bold-mobile': {
+      id: '/landing/bold-mobile'
+      path: '/landing/bold-mobile'
+      fullPath: '/landing/bold-mobile'
+      preLoaderRoute: typeof LandingBoldMobileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/bold-services': {
+      id: '/landing/bold-services'
+      path: '/landing/bold-services'
+      fullPath: '/landing/bold-services'
+      preLoaderRoute: typeof LandingBoldServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-grid': {
+      id: '/landing/business-grid'
+      path: '/landing/business-grid'
+      fullPath: '/landing/business-grid'
+      preLoaderRoute: typeof LandingBusinessGridRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-minimal': {
+      id: '/landing/business-minimal'
+      path: '/landing/business-minimal'
+      fullPath: '/landing/business-minimal'
+      preLoaderRoute: typeof LandingBusinessMinimalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-orange-dark': {
+      id: '/landing/business-orange-dark'
+      path: '/landing/business-orange-dark'
+      fullPath: '/landing/business-orange-dark'
+      preLoaderRoute: typeof LandingBusinessOrangeDarkRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-orange-impact': {
+      id: '/landing/business-orange-impact'
+      path: '/landing/business-orange-impact'
+      fullPath: '/landing/business-orange-impact'
+      preLoaderRoute: typeof LandingBusinessOrangeImpactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-orange-split': {
+      id: '/landing/business-orange-split'
+      path: '/landing/business-orange-split'
+      fullPath: '/landing/business-orange-split'
+      preLoaderRoute: typeof LandingBusinessOrangeSplitRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-scroll': {
+      id: '/landing/business-scroll'
+      path: '/landing/business-scroll'
+      fullPath: '/landing/business-scroll'
+      preLoaderRoute: typeof LandingBusinessScrollRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-theme-bento': {
+      id: '/landing/business-theme-bento'
+      path: '/landing/business-theme-bento'
+      fullPath: '/landing/business-theme-bento'
+      preLoaderRoute: typeof LandingBusinessThemeBentoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-theme-editorial': {
+      id: '/landing/business-theme-editorial'
+      path: '/landing/business-theme-editorial'
+      fullPath: '/landing/business-theme-editorial'
+      preLoaderRoute: typeof LandingBusinessThemeEditorialRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/business-theme-stacked': {
+      id: '/landing/business-theme-stacked'
+      path: '/landing/business-theme-stacked'
+      fullPath: '/landing/business-theme-stacked'
+      preLoaderRoute: typeof LandingBusinessThemeStackedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/creative': {
+      id: '/landing/creative'
+      path: '/landing/creative'
+      fullPath: '/landing/creative'
+      preLoaderRoute: typeof LandingCreativeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/services': {
+      id: '/landing/services'
+      path: '/landing/services'
+      fullPath: '/landing/services'
+      preLoaderRoute: typeof LandingServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/landing/web-design': {
+      id: '/landing/web-design'
+      path: '/landing/web-design'
+      fullPath: '/landing/web-design'
+      preLoaderRoute: typeof LandingWebDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/posts/': {
@@ -158,6 +464,21 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  LandingBoldDigitalRoute: LandingBoldDigitalRoute,
+  LandingBoldMobileRoute: LandingBoldMobileRoute,
+  LandingBoldServicesRoute: LandingBoldServicesRoute,
+  LandingBusinessGridRoute: LandingBusinessGridRoute,
+  LandingBusinessMinimalRoute: LandingBusinessMinimalRoute,
+  LandingBusinessOrangeDarkRoute: LandingBusinessOrangeDarkRoute,
+  LandingBusinessOrangeImpactRoute: LandingBusinessOrangeImpactRoute,
+  LandingBusinessOrangeSplitRoute: LandingBusinessOrangeSplitRoute,
+  LandingBusinessScrollRoute: LandingBusinessScrollRoute,
+  LandingBusinessThemeBentoRoute: LandingBusinessThemeBentoRoute,
+  LandingBusinessThemeEditorialRoute: LandingBusinessThemeEditorialRoute,
+  LandingBusinessThemeStackedRoute: LandingBusinessThemeStackedRoute,
+  LandingCreativeRoute: LandingCreativeRoute,
+  LandingServicesRoute: LandingServicesRoute,
+  LandingWebDesignRoute: LandingWebDesignRoute,
   PostsSlugRoute: PostsSlugRoute,
   ProjectsSlugRoute: ProjectsSlugRoute,
   PostsIndexRoute: PostsIndexRoute,
