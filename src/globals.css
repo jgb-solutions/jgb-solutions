@@ -155,14 +155,6 @@
     --sidebar-accent-foreground: 240 5.9% 10%;
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-
-    /* Creative Gradient Background - Light Mode (Purple/Indigo Image Drived) */
-    --bg-gradient: linear-gradient(
-      to bottom right,
-      hsl(270 100% 94%),
-      hsl(0 0% 100%),
-      hsl(250 80% 94%)
-    );
   }
 
   /* Updated dark mode colors to use orange primary */
@@ -201,14 +193,6 @@
     --sidebar-accent-foreground: 240 4.8% 95.9%;
     --sidebar-border: 240 3.7% 15.9%;
     --sidebar-ring: 217.2 91.2% 59.8%;
-
-    /* Creative Gradient Background - Dark Mode (Deep Purple/Indigo Image Derived) */
-    --bg-gradient: linear-gradient(
-      to bottom right,
-      hsl(270 50% 15%),
-      hsl(0 0% 10%),
-      hsl(250 50% 18%)
-    );
   }
 }
 
@@ -218,8 +202,6 @@
   }
   body {
     @apply text-foreground;
-    background-image: var(--bg-gradient);
-    background-attachment: fixed;
   }
   button {
     cursor: pointer;
