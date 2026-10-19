@@ -8,7 +8,7 @@ import { publishedProjects } from '@/lib/projects'
 export const PRODUCT_SLUGS = ['jgb-tools', 'street-brawl', 'mp3pam', 'techtalk']
 
 /** This site's own write-up: neither a product nor client work on the home page. */
-const SITE_SLUG = 'jgb-solutions'
+export const SITE_SLUG = 'jgb-solutions'
 
 const byOrder = (a: { order: number }, b: { order: number }) => a.order - b.order
 

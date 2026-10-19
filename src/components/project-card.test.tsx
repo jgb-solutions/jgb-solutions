@@ -31,30 +31,21 @@ const mockProject: (typeof allProjects)[number] = {
 }
 
 describe('ProjectCard', () => {
-  it('renders project details correctly', () => {
-    render(<ProjectCard project={mockProject} />)
+  it('shows the title, category and year', () => {
+    render(<ProjectCard project={{ ...mockProject, year: '2024' }} />)
 
-    // Check title
     expect(screen.getByText('Test Project')).toBeInTheDocument()
-    // Check category
-    expect(screen.getByText('Web Development')).toBeInTheDocument()
-    // Check summary
-    expect(screen.getByText('This is a test summary')).toBeInTheDocument()
+    expect(screen.getByText('Web Development · 2024')).toBeInTheDocument()
+    expect(screen.getByRole('img', { name: 'Test Project screenshot' })).toHaveAttribute(
+      'src',
+      '/test.png'
+    )
+    expect(screen.queryByText('Our product')).not.toBeInTheDocument()
   })
 
-  it('renders featured variant with correct styling classes', () => {
-    render(<ProjectCard project={mockProject} variant='featured' />)
+  it('tags our own products', () => {
+    render(<ProjectCard project={mockProject} isProduct />)
 
-    const title = screen.getByText('Test Project')
-    // Featured variant uses text-2xl
-    expect(title).toHaveClass('text-2xl')
-  })
-
-  it('renders grid variant with correct styling classes', () => {
-    render(<ProjectCard project={mockProject} variant='grid' />)
-
-    const title = screen.getByText('Test Project')
-    // Grid variant uses text-xl
-    expect(title).toHaveClass('text-xl')
+    expect(screen.getByText('Our product')).toBeInTheDocument()
   })
 })

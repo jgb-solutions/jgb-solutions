@@ -1,19 +1,29 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
-import { ArrowLeft, Calendar, ExternalLink, Layers, User } from 'lucide-react'
 import { createServerFn } from '@tanstack/react-start'
-import { publishedProjects } from '@/lib/projects'
-import { SiteHeader } from '@/components/site/site-header'
-import { SiteFooter } from '@/components/site/site-footer'
+import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { MdxRenderer } from '@/components/mdx-provider'
+import { Container, SectionLabel, buttonStyles } from '@/components/site/section'
+import { SiteFooter } from '@/components/site/site-footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { PRODUCT_SLUGS } from '@/lib/products'
+import { publishedProjects } from '@/lib/projects'
 import { createPageSEO } from '@/lib/seo'
-import { Button } from '@/components/ui/button'
 
 const getProject = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
   .handler(({ data: slug }) => {
-    const project = publishedProjects.find(p => p.slug === slug)
-    if (!project) throw notFound()
-    return { project }
+    const ordered = [...publishedProjects].sort((a, b) => a.order - b.order)
+    const index = ordered.findIndex(p => p.slug === slug)
+    if (index === -1) throw notFound()
+    const next = ordered[(index + 1) % ordered.length]
+    return {
+      project: ordered[index],
+      isProduct: PRODUCT_SLUGS.includes(slug),
+      next:
+        next.slug === slug
+          ? null
+          : { slug: next.slug, title: next.title, category: next.category, image: next.image },
+    }
   })
 
 export const Route = createFileRoute('/projects/$slug')({
@@ -22,180 +32,156 @@ export const Route = createFileRoute('/projects/$slug')({
     if (!loaderData) return {}
     const { project } = loaderData
     return createPageSEO({
-      title: `${project.title} - Project | JGB Solutions`,
+      title: `${project.title} - Work | JGB Solutions`,
       description: project.description,
       image: project.image,
       type: 'article',
       path: `/projects/${project.slug}`,
     })
   },
-  notFoundComponent: () => {
-    return (
-      <main className='min-h-screen bg-background'>
-        <SiteHeader />
-        <section className='py-20 px-6 md:px-20'>
-          <div className='max-w-4xl mx-auto text-center'>
-            <h1 className='text-4xl md:text-6xl font-light mb-4'>Project Not Found</h1>
-            <Link to='/projects' className='text-primary hover:underline'>
-              ← Back to Projects
-            </Link>
-          </div>
-        </section>
-        <SiteFooter />
-      </main>
-    )
-  },
   component: ProjectDetailPage,
 })
 
+const proseClasses =
+  'prose prose-lg max-w-none prose-headings:font-display prose-headings:font-bold prose-headings:tracking-tight prose-h2:mt-12 prose-h2:text-3xl prose-p:text-muted-ink prose-li:text-muted-ink prose-strong:text-ink prose-a:text-brand-strong prose-img:border prose-img:border-ink/10'
+
 function ProjectDetailPage() {
-  const { project } = Route.useLoaderData()
+  const { project, isProduct, next } = Route.useLoaderData()
+  const label = isProduct ? `Our product · ${project.category}` : project.category
+
+  const details = [
+    { term: isProduct ? 'Made by' : 'Client', value: project.client },
+    { term: 'Year', value: project.year },
+  ].filter((detail): detail is { term: string; value: string } => Boolean(detail.value))
 
   return (
-    <main className='min-h-screen bg-background'>
+    <div className='flex min-h-screen flex-col'>
       <SiteHeader />
-
-      <section className='pt-24 pb-12 md:pt-32 md:pb-20 px-4 md:px-6 lg:px-20'>
-        <div className='max-w-7xl mx-auto'>
-          {/* Header Card */}
-          <div className='bg-card border border-border rounded-3xl p-6 md:p-12 mb-8 md:mb-12 shadow-sm'>
+      <main className='flex-1'>
+        <section className='bg-ink py-16 text-paper md:py-20'>
+          <Container className='flex flex-col items-start gap-6'>
             <Link
               to='/projects'
-              className='inline-flex items-center text-sm font-medium text-muted-foreground hover:text-primary transition-colors mb-6'
+              className='inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-muted-paper hover:text-brand'
             >
-              <ArrowLeft className='w-4 h-4 mr-2' /> Back to Projects
+              <ArrowLeft className='h-3.5 w-3.5' aria-hidden /> All work
             </Link>
-            <div className='grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center'>
-              <div className='order-2 lg:order-1'>
-                <span className='inline-block px-3 py-1 rounded-md bg-secondary text-secondary-foreground text-sm font-medium mb-4'>
-                  {project.category}
-                </span>
-                <h1 className='text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-4 md:mb-6 text-foreground'>
-                  {project.title}
-                </h1>
-                <p className='text-lg md:text-xl text-muted-foreground leading-relaxed mb-6 md:mb-8'>
-                  {project.description}
-                </p>
-                {project.url && (
-                  <a href={project.url} target='_blank' rel='noopener noreferrer'>
-                    <Button size='lg' className='rounded-xl text-base w-full sm:w-auto'>
-                      Visit Project <ExternalLink className='ml-2 w-4 h-4' />
-                    </Button>
-                  </a>
-                )}
-              </div>
-              <div className='order-1 lg:order-2 relative rounded-2xl overflow-hidden shadow-lg aspect-[4/3]'>
-                <img
-                  src={project.image || '/placeholder.svg'}
-                  alt={project.title}
-                  className='w-full h-full object-cover'
-                />
-              </div>
-            </div>
+            <SectionLabel className='text-brand opacity-100'>{label}</SectionLabel>
+            <h1 className='max-w-4xl font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl lg:text-7xl'>
+              {project.title}
+            </h1>
+            <p className='max-w-2xl text-lg leading-relaxed text-muted-paper md:text-xl'>
+              {project.description}
+            </p>
+            {project.url && (
+              <a
+                href={project.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className={buttonStyles('brand')}
+              >
+                Visit the site <ArrowUpRight className='h-4 w-4' aria-hidden />
+              </a>
+            )}
+          </Container>
+        </section>
+
+        <Container className='-mt-px pt-12 md:pt-16'>
+          <div className='aspect-[16/10] overflow-hidden border border-ink/10 bg-mist'>
+            <img
+              src={project.image || '/placeholder.svg'}
+              alt={`${project.title} home page`}
+              className='h-full w-full object-cover object-top'
+            />
           </div>
+        </Container>
 
-          <div className='grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12'>
-            {/* Sidebar / Details Section */}
-            <div className='lg:col-span-4 order-1 lg:order-1'>
-              <div className='lg:sticky lg:top-32 p-6 md:p-8 bg-secondary/30 rounded-2xl border border-border/50 backdrop-blur-sm'>
-                <h3 className='text-xl font-semibold mb-6'>Project Details</h3>
+        <Container className='grid grid-cols-1 gap-12 py-12 md:py-16 lg:grid-cols-[1fr_18rem] lg:gap-16'>
+          <article className={proseClasses}>
+            <MdxRenderer code={project.mdx} />
+          </article>
 
-                <div className='grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 gap-6'>
-                  {project.client && (
-                    <div className='flex items-start gap-4'>
-                      <div className='bg-background p-2 rounded-lg border border-border shrink-0'>
-                        <User className='w-5 h-5 text-primary' />
-                      </div>
-                      <div>
-                        <p className='text-sm text-muted-foreground font-medium uppercase tracking-wider mb-1'>
-                          Client
-                        </p>
-                        <p className='font-medium'>{project.client}</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.year && (
-                    <div className='flex items-start gap-4'>
-                      <div className='bg-background p-2 rounded-lg border border-border shrink-0'>
-                        <Calendar className='w-5 h-5 text-primary' />
-                      </div>
-                      <div>
-                        <p className='text-sm text-muted-foreground font-medium uppercase tracking-wider mb-1'>
-                          Year
-                        </p>
-                        <p className='font-medium'>{project.year}</p>
-                      </div>
-                    </div>
-                  )}
-
-                  {project.services && project.services.length > 0 && (
-                    <div className='flex items-start gap-4'>
-                      <div className='bg-background p-2 rounded-lg border border-border shrink-0'>
-                        <Layers className='w-5 h-5 text-primary' />
-                      </div>
-                      <div>
-                        <p className='text-sm text-muted-foreground font-medium uppercase tracking-wider mb-1'>
-                          Services
-                        </p>
-                        <ul className='space-y-1'>
-                          {project.services.map((service, i) => (
-                            <li key={i} className='font-medium'>
-                              {service}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  )}
-                </div>
-
-                <div className='pt-6 border-t border-border mt-6'>
-                  <p className='text-sm text-muted-foreground italic'>
-                    Interested in a similar project? <br />
-                    <a
-                      href='#contact'
-                      className='text-primary hover:underline not-italic font-medium'
-                    >
-                      Get in touch →
-                    </a>
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Main Content */}
-            <div className='lg:col-span-8 order-2 lg:order-2'>
-              <div className='prose prose-lg dark:prose-invert max-w-none mb-12 md:mb-16 prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
-                <MdxRenderer code={project.mdx} />
-              </div>
-
-              {project.gallery && project.gallery.length > 0 && (
-                <div className='space-y-6 md:space-y-8'>
-                  <h3 className='text-2xl font-semibold'>Gallery</h3>
-                  <div className='grid grid-cols-1 gap-6'>
-                    {project.gallery.map((img, i) => (
-                      <div
-                        key={i}
-                        className='rounded-xl overflow-hidden border border-border shadow-md'
-                      >
-                        <img
-                          src={img}
-                          alt={`${project.title} gallery ${i + 1}`}
-                          className='w-full h-auto'
-                          loading='lazy'
-                        />
-                      </div>
-                    ))}
+          <aside className='flex flex-col gap-8 lg:sticky lg:top-28 lg:self-start'>
+            {details.length > 0 && (
+              <dl className='flex flex-col gap-5 border-t-4 border-brand pt-6'>
+                {details.map(detail => (
+                  <div key={detail.term} className='flex flex-col gap-1'>
+                    <dt className='font-mono text-xs uppercase tracking-[0.2em] text-muted-ink'>
+                      {detail.term}
+                    </dt>
+                    <dd className='font-display text-lg font-semibold'>{detail.value}</dd>
                   </div>
-                </div>
-              )}
+                ))}
+              </dl>
+            )}
+            {project.services && project.services.length > 0 && (
+              <div className='flex flex-col gap-3'>
+                <p className='font-mono text-xs uppercase tracking-[0.2em] text-muted-ink'>
+                  Services and tools
+                </p>
+                <ul className='flex flex-wrap gap-2'>
+                  {project.services.map(service => (
+                    <li key={service} className='border border-ink/15 px-2.5 py-1 text-sm'>
+                      {service}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            <div className='flex flex-col gap-3 bg-mist p-6'>
+              <p className='font-display text-lg font-bold'>Want something like this?</p>
+              <a href='#contact' className={buttonStyles('ink', 'self-start')}>
+                Start a project
+              </a>
             </div>
-          </div>
-        </div>
-      </section>
+          </aside>
+        </Container>
 
+        {project.gallery && project.gallery.length > 0 && (
+          <section className='bg-mist py-16 md:py-20'>
+            <Container className='flex flex-col gap-8'>
+              <h2 className='font-display text-3xl font-extrabold tracking-tight'>Screenshots</h2>
+              <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
+                {project.gallery.map((image, i) => (
+                  <div key={image} className='overflow-hidden border border-ink/10 bg-paper'>
+                    <img
+                      src={image}
+                      alt={`${project.title} screenshot ${i + 1}`}
+                      loading='lazy'
+                      className='h-auto w-full'
+                    />
+                  </div>
+                ))}
+              </div>
+            </Container>
+          </section>
+        )}
+
+        {next && (
+          <Link
+            to='/projects/$slug'
+            params={{ slug: next.slug }}
+            className='group block border-t border-ink/10 bg-paper'
+            aria-label={`Next project: ${next.title}`}
+          >
+            <Container className='flex items-center justify-between gap-6 py-12'>
+              <div className='flex flex-col gap-2'>
+                <span className='font-mono text-xs uppercase tracking-[0.2em] text-brand-strong'>
+                  Next project
+                </span>
+                <span className='font-display text-3xl font-extrabold tracking-tight group-hover:text-brand-strong md:text-5xl'>
+                  {next.title}
+                </span>
+              </div>
+              <ArrowRight
+                className='h-8 w-8 shrink-0 transition-transform group-hover:translate-x-2'
+                aria-hidden
+              />
+            </Container>
+          </Link>
+        )}
+      </main>
       <SiteFooter />
-    </main>
+    </div>
   )
 }
