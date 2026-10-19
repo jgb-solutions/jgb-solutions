@@ -1,36 +1,57 @@
 import { describe, expect, it, vi } from 'vitest'
-import { screen } from '@testing-library/react'
-import type { allProjects } from 'content-collections'
+import { screen, within } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 
-// Mock content-collections to populate the real loader
 vi.mock('content-collections', () => ({
   allProjects: [
-    { slug: 'p1', title: 'Project 1', category: 'Cat 1', order: 1 },
-    { slug: 'p2', title: 'Project 2', category: 'Cat 2', order: 2 },
+    { slug: 'eneph', title: 'ENEPH', category: 'WEBSITE', image: '/e.jpg', order: 50 },
+    { slug: 'jgb-tools', title: 'JGB Tools', category: 'WEB TOOLS', image: '/t.jpg', order: 10 },
+    {
+      slug: 'jgb-solutions',
+      title: 'JGB Solutions',
+      category: 'PORTFOLIO',
+      image: '/s.jpg',
+      order: 90,
+    },
+    {
+      slug: 'draft',
+      title: 'Draft Project',
+      category: 'WEBSITE',
+      image: '/d.jpg',
+      order: 1,
+      draft: true,
+    },
   ],
   allPosts: [],
 }))
 
-// Mock Components
-vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
-vi.mock('@/components/project-card', () => ({
-  ProjectCard: ({ project }: { project: (typeof allProjects)[number] }) => (
-    <div data-testid='project-card'>{project.title}</div>
-  ),
-}))
+const titles = () =>
+  screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent)
 
-describe('Projects Index Route', () => {
-  it('renders list of projects', async () => {
+describe('Work page', () => {
+  it('lists published work in order and tags our products', async () => {
     renderWithRouter({ initialEntries: ['/projects'] })
 
-    expect(await screen.findByText('All Projects')).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1 })).toHaveTextContent(/websites and apps/i)
+    expect(titles()).toEqual(['JGB Tools', 'ENEPH', 'JGB Solutions'])
+    const toolsCard = screen.getByRole('link', { name: /JGB Tools/ })
+    expect(within(toolsCard).getByText('Our product')).toBeInTheDocument()
+    expect(screen.queryByText('Draft Project')).not.toBeInTheDocument()
+  })
 
-    // Should render 2 project cards
-    const cards = screen.getAllByTestId('project-card')
-    expect(cards).toHaveLength(2)
-    expect(cards[0]).toHaveTextContent('Project 1')
-    expect(cards[1]).toHaveTextContent('Project 2')
+  it('filters client work and products', async () => {
+    renderWithRouter({ initialEntries: ['/projects?show=clients'] })
+    await screen.findByRole('heading', { level: 1 })
+    expect(titles()).toEqual(['ENEPH'])
+    expect(screen.getByRole('link', { name: 'Client work' })).toHaveAttribute(
+      'aria-current',
+      'page'
+    )
+  })
+
+  it('shows only our products', async () => {
+    renderWithRouter({ initialEntries: ['/projects?show=products'] })
+    await screen.findByRole('heading', { level: 1 })
+    expect(titles()).toEqual(['JGB Tools'])
   })
 })

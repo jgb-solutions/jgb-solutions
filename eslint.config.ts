@@ -95,6 +95,7 @@ export default [
 			".tanstack/**",
 			".vercel/**",
 			"src/routeTree.gen.ts",
+			"examples/**",
 			".content-collections/**",
 			"*.config.js",
 			"*.config.ts",

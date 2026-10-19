@@ -24,7 +24,7 @@
   },
   "include": [
     "src",
-    "hooks",
+    "scripts",
     ".content-collections/generated",
     "src/test/setup.ts",
     "content-collections.ts"

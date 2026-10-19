@@ -3,6 +3,9 @@ import { screen } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 
 // Mock content-collections
+// The blog is switched off on the site; these tests cover the pages for when it's back on
+vi.mock('@/lib/features', () => ({ FEATURES: { blog: true } }))
+
 vi.mock('content-collections', () => ({
   allPosts: [
     {
@@ -19,8 +22,8 @@ vi.mock('content-collections', () => ({
 }))
 
 // Mock Components
-vi.mock('@/components/navbar', () => ({ default: () => <div>Navbar</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div>Footer</div> }))
+vi.mock('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))
+vi.mock('@/components/site/site-footer', () => ({ SiteFooter: () => <div>Footer</div> }))
 vi.mock('@/components/mdx-provider', () => ({
   MdxRenderer: () => <div data-testid='mdx-content'>MDX Rendered</div>,
 }))

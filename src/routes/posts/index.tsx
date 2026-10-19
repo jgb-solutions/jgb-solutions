@@ -1,11 +1,12 @@
-import { Link, createFileRoute, useNavigate } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound, useNavigate } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
 import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { Button } from '@/components/ui/button'
 import { PostCard } from '@/components/post-card'
+import { FEATURES } from '@/lib/features'
 import { createPageSEO } from '@/lib/seo'
 
 const postsSearchSchema = z.object({
@@ -22,6 +23,10 @@ const getPosts = createServerFn({ method: 'GET' }).handler(() => {
 
 export const Route = createFileRoute('/posts/')({
   validateSearch: postsSearchSchema,
+  // The blog is switched off for now (src/lib/features.ts)
+  beforeLoad: () => {
+    if (!FEATURES.blog) throw notFound()
+  },
   loader: () => getPosts(),
   component: PostsPage,
   head: () =>
@@ -42,7 +47,7 @@ function PostsPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <section className='py-20 px-6 md:px-20'>
         <div className='max-w-7xl mx-auto'>
@@ -88,7 +93,7 @@ function PostsPage() {
         </div>
       </section>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

@@ -23,7 +23,7 @@ export function PostCard({
           <img
             src={post.image || '/placeholder.svg'}
             alt={post.title}
-            className='object-cover transition-transform duration-500 group-hover:scale-105 absolute inset-0 w-full h-full'
+            className='object-cover transition-transform duration-500 motion-safe:group-hover:scale-105 absolute inset-0 w-full h-full'
           />
           {post.summary && (
             <div className='absolute bottom-0 left-0 right-0 bg-black/60 text-white p-3 text-sm backdrop-blur-sm transform translate-y-full group-hover:translate-y-0 transition-transform duration-300'>

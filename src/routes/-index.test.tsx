@@ -1,40 +1,119 @@
 import { describe, expect, it, vi } from 'vitest'
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 
-// Mock components to keep the test focused and fast
-vi.mock('@/components/navbar', () => ({ default: () => <div data-testid='navbar'>Navbar</div> }))
-vi.mock('@/components/hero', () => ({ default: () => <div data-testid='hero'>Hero</div> }))
-vi.mock('@/components/marquee-bar', () => ({
-  default: () => <div data-testid='marquee'>Marquee</div>,
+vi.mock('content-collections', () => ({
+  allProjects: [
+    {
+      slug: 'jgb-tools',
+      title: 'JGB Tools',
+      category: 'WEB TOOLS',
+      description: 'Free tools.',
+      image: '/tools.jpg',
+      url: 'https://tools.jgb.solutions/',
+      order: 10,
+    },
+    {
+      slug: 'eneph',
+      title: 'ENEPH',
+      category: 'WEBSITE',
+      description: 'A non-profit.',
+      image: '/eneph.jpg',
+      year: '2022',
+      order: 50,
+    },
+    {
+      slug: 'jgb-solutions',
+      title: 'JGB Solutions',
+      category: 'PORTFOLIO',
+      description: 'This site.',
+      image: '/site.jpg',
+      order: 90,
+    },
+    {
+      slug: 'hidden',
+      title: 'Hidden Draft',
+      category: 'WEBSITE',
+      description: 'Not ready.',
+      image: '/x.jpg',
+      order: 1,
+      draft: true,
+    },
+  ],
+  allPosts: [
+    {
+      slug: 'talk-less',
+      title: 'Talk Less, Listen More',
+      category: 'Thoughts',
+      readTime: '3 min read',
+      excerpt: 'Hi, the name is Jean.',
+      date: '2022-09-02',
+    },
+  ],
 }))
-vi.mock('@/components/featured-projects', () => ({
-  default: () => <div data-testid='featured-projects'>FeaturedProjects</div>,
-}))
-vi.mock('@/components/about', () => ({ default: () => <div data-testid='about'>About</div> }))
-vi.mock('@/components/services', () => ({
-  default: () => <div data-testid='services'>Services</div>,
-}))
-vi.mock('@/components/recent-posts', () => ({
-  default: () => <div data-testid='recent-posts'>RecentPosts</div>,
-}))
-vi.mock('@/components/contact', () => ({ default: () => <div data-testid='contact'>Contact</div> }))
-vi.mock('@/components/footer', () => ({ default: () => <div data-testid='footer'>Footer</div> }))
 
 describe('Home Route', () => {
-  it('renders all sections', async () => {
+  it('speaks as the business and offers a way to start a project', async () => {
     renderWithRouter({ initialEntries: ['/'] })
 
-    // Wait for the router to render the route
-    // Using findBy because router rendering might be async
-    expect(await screen.findByTestId('navbar')).toBeInTheDocument()
-    expect(await screen.findByTestId('hero')).toBeInTheDocument()
-    expect(await screen.findByTestId('marquee')).toBeInTheDocument()
-    expect(await screen.findByTestId('featured-projects')).toBeInTheDocument()
-    expect(await screen.findByTestId('about')).toBeInTheDocument()
-    expect(await screen.findByTestId('services')).toBeInTheDocument()
-    expect(await screen.findByTestId('recent-posts')).toBeInTheDocument()
-    expect(await screen.findByTestId('contact')).toBeInTheDocument()
-    expect(await screen.findByTestId('footer')).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { level: 1, name: /websites, apps and social media/i })
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/jean/i)).not.toBeInTheDocument()
+    expect(screen.getAllByRole('link', { name: /start a project/i }).length).toBeGreaterThan(0)
+  })
+
+  it('shows only the services we offer', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
+
+    const services = await screen.findByRole('heading', { name: 'Three services, one team' })
+    const section = services.closest('section') as HTMLElement
+    expect(within(section).getByText('Mobile Apps')).toBeInTheDocument()
+    expect(screen.queryByText(/graphic design/i)).not.toBeInTheDocument()
+    expect(screen.queryByText(/photography/i)).not.toBeInTheDocument()
+  })
+
+  it('separates our products from client work', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
+
+    const products = (
+      await screen.findByRole('heading', { name: 'Apps and media we build and run' })
+    ).closest('section') as HTMLElement
+    expect(within(products).getByRole('link', { name: 'JGB Tools' })).toBeInTheDocument()
+    expect(within(products).queryByText('ENEPH')).not.toBeInTheDocument()
+
+    const work = screen
+      .getByRole('heading', { name: 'Recent projects' })
+      .closest('section') as HTMLElement
+    expect(within(work).getByText('ENEPH')).toBeInTheDocument()
+    expect(within(work).queryByText('JGB Tools')).not.toBeInTheDocument()
+    expect(within(work).queryByText('JGB Solutions')).not.toBeInTheDocument()
+    expect(screen.queryByText('Hidden Draft')).not.toBeInTheDocument()
+  })
+
+  it('leaves the blog and the client list off', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
+
+    await screen.findByRole('heading', { level: 1 })
+    expect(screen.queryByText('Talk Less, Listen More')).not.toBeInTheDocument()
+    expect(screen.queryByText(/clients we've worked with/i)).not.toBeInTheDocument()
+  })
+
+  it('offers email and WhatsApp to start a project', async () => {
+    renderWithRouter({ initialEntries: ['/'] })
+
+    const cta = (await screen.findByRole('heading', { name: 'Have a project in mind?' })).closest(
+      'section'
+    ) as HTMLElement
+    expect(within(cta).getByRole('link', { name: 'Email us' })).toHaveAttribute(
+      'href',
+      expect.stringContaining('mailto:services@jgb.solutions')
+    )
+    expect(within(cta).getByRole('link', { name: 'WhatsApp us' })).toHaveAttribute(
+      'href',
+      'https://wa.me/14383895465'
+    )
+    expect(within(cta).getByText('services@jgb.solutions')).toBeInTheDocument()
+    expect(within(cta).getByRole('button', { name: 'Copy' })).toBeInTheDocument()
   })
 })

@@ -1,12 +1,24 @@
-import { readFileSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
+import feed from '../../public/products.json'
+import { overviewOf } from '@/lib/products'
 
-/**
- * public/products.json lists JGB Solutions' own products (not client work). It's served at
- * https://jgb.solutions/products.json and read by every product's build for its
- * "More from JGB Solutions" links, so its shape must stay exactly this (version 1).
- */
+describe('overviewOf', () => {
+  it('returns the first paragraph of the project overview', () => {
+    const content =
+      '## Project Overview\n\nFirst **paragraph** here.\n\nSecond one.\n\n## The Challenge\n\nMore.'
+    expect(overviewOf({ content, description: 'Fallback.' })).toBe('First paragraph here.')
+  })
+
+  it('falls back to the description', () => {
+    expect(overviewOf({ content: '## Something else\n\nText.', description: 'Fallback.' })).toBe(
+      'Fallback.'
+    )
+    expect(overviewOf({ description: 'Fallback.' })).toBe('Fallback.')
+  })
+})
+
+/** The shape every product reads from https://jgb.solutions/products.json (version 1). */
 const productsFeed = z.object({
   version: z.literal(1),
   products: z.array(
@@ -20,14 +32,10 @@ const productsFeed = z.object({
   ),
 })
 
-const feed = productsFeed.parse(JSON.parse(readFileSync('public/products.json', 'utf8')))
-
 describe('public/products.json', () => {
-  it('matches the shape products read', () => {
-    expect(feed.products.length).toBeGreaterThan(0)
-  })
-
-  it('has unique ids', () => {
-    expect(new Set(feed.products.map(p => p.id)).size).toBe(feed.products.length)
+  it('matches the shape every product reads, with unique ids', () => {
+    const { products } = productsFeed.parse(feed)
+    expect(products.length).toBeGreaterThan(0)
+    expect(new Set(products.map(p => p.id)).size).toBe(products.length)
   })
 })

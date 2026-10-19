@@ -1,109 +1,41 @@
-import { HeadContent, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+import { HeadContent, Link, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
-import { ThemeProvider } from '@/components/theme-provider'
 import '@/globals.css'
-import '@fontsource/inter'
-import { OG_IMAGE, SEO, SITE, SOCIAL } from '@/lib/constants'
+import '@fontsource/inter/400.css'
+import '@fontsource/inter/500.css'
+import '@fontsource/inter/600.css'
+import '@fontsource/saira/600.css'
+import '@fontsource/saira/700.css'
+import '@fontsource/saira/800.css'
+import '@fontsource/jetbrains-mono/400.css'
+import { SEO, SITE } from '@/lib/constants'
+import { createOrganizationJsonLd, createSEOMeta } from '@/lib/seo'
+import { Container, buttonStyles } from '@/components/site/section'
+import { SiteFooter } from '@/components/site/site-footer'
+import { SiteHeader } from '@/components/site/site-header'
 
 export const Route = createRootRoute({
+  // Site-wide defaults; each page's own head() overrides the title, description, image and URL.
   head: () => ({
     meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: `${SITE.name} - Software Engineer & Mentor`,
-      },
-
-      // SEO Meta Tags
-      {
-        name: 'description',
-        content: SEO.description,
-      },
-      { name: 'author', content: SITE.author },
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'robots', content: 'index, follow' },
-      {
-        name: 'keywords',
-        content: SEO.keywords.join(', '),
-      },
-
-      // Open Graph Tags
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: SITE.url },
-      {
-        property: 'og:title',
-        content: `${SITE.name} - Software Engineer & Mentor`,
-      },
-      {
-        property: 'og:description',
-        content:
-          'Full-stack software engineer specializing in React, TypeScript, and scalable web solutions. View my portfolio of 20+ successful projects.',
-      },
-      {
-        property: 'og:image',
-        content: OG_IMAGE.url,
-      },
-      { property: 'og:image:width', content: OG_IMAGE.width.toString() },
-      { property: 'og:image:height', content: OG_IMAGE.height.toString() },
-      {
-        property: 'og:image:alt',
-        content: OG_IMAGE.alt,
-      },
+      { name: 'keywords', content: SEO.keywords.join(', ') },
+      { name: 'theme-color', content: '#050708' },
       { property: 'og:site_name', content: SITE.name },
       { property: 'og:locale', content: 'en_US' },
-
-      // Twitter Card Tags
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: SOCIAL.twitter },
-      { name: 'twitter:creator', content: SOCIAL.twitter },
-      {
-        name: 'twitter:title',
-        content: `${SITE.name} - Software Engineer & Mentor`,
-      },
-      {
-        name: 'twitter:description',
-        content:
-          'Full-stack software engineer specializing in React, TypeScript, and scalable web solutions.',
-      },
-      {
-        name: 'twitter:image',
-        content: OG_IMAGE.url,
-      },
-      {
-        name: 'twitter:image:alt',
-        content: OG_IMAGE.alt,
-      },
+      ...createSEOMeta({ title: `${SITE.name} - Websites, Mobile Apps & Social Media`, path: '/' }),
     ],
     links: [
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/assets/icons/apple-icon-180x180-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '96x96',
-        href: '/assets/icons/favicon-96x96-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/assets/icons/favicon-32x32-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/assets/icons/favicon-16x16-dunplab-008.png',
-      },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon-48.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
     ],
+    scripts: [createOrganizationJsonLd()],
   }),
   component: RootComponent,
   notFoundComponent: NotFoundPage,
@@ -111,77 +43,35 @@ export const Route = createRootRoute({
 
 function NotFoundPage() {
   return (
-    <div className='min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5 flex items-center justify-center px-6'>
-      <div className='max-w-2xl w-full text-center space-y-8'>
-        {/* 404 Animation */}
-        <div className='relative'>
-          <h1 className='text-[150px] md:text-[200px] font-bold text-primary/10 select-none'>
-            404
-          </h1>
-          <div className='absolute inset-0 flex items-center justify-center'>
-            <div className='bg-background/90 backdrop-blur-sm rounded-2xl p-8 shadow-2xl border border-border'>
-              <h2 className='text-3xl md:text-4xl font-bold mb-3'>Page Not Found</h2>
-              <p className='text-muted-foreground text-lg'>
-                Oops! The page you're looking for doesn't exist.
-              </p>
+    <div className='flex min-h-screen flex-col'>
+      <SiteHeader />
+      <main id='main' className='flex-1'>
+        <section className='bg-ink py-20 text-paper md:py-28'>
+          <Container className='flex flex-col items-start gap-6'>
+            <p className='font-display text-7xl font-extrabold leading-none text-brand md:text-9xl'>
+              404
+            </p>
+            <h1 className='font-display text-4xl font-extrabold tracking-tight md:text-6xl'>
+              Page Not Found
+            </h1>
+            <p className='max-w-xl text-lg leading-relaxed text-muted-paper'>
+              The page you're looking for doesn't exist or has moved. Try one of these instead.
+            </p>
+            <div className='flex flex-col gap-3 pt-2 sm:flex-row'>
+              <Link to='/' className={buttonStyles('brand')}>
+                Home
+              </Link>
+              <Link to='/services' className={buttonStyles('paper')}>
+                Services
+              </Link>
+              <Link to='/projects' className={buttonStyles('outline')}>
+                Our work
+              </Link>
             </div>
-          </div>
-        </div>
-
-        {/* Helpful Message */}
-        <div className='space-y-4 pt-8'>
-          <p className='text-muted-foreground'>
-            The page may have been moved, deleted, or the URL might be incorrect.
-          </p>
-
-          {/* Navigation Options */}
-          <div className='flex flex-col sm:flex-row gap-4 justify-center items-center pt-6'>
-            <a
-              href='/'
-              className='group inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-medium hover:bg-primary/90 transition-all duration-200 shadow-lg hover:shadow-xl'
-            >
-              <svg
-                xmlns='http://www.w3.org/2000/svg'
-                className='h-5 w-5 group-hover:-translate-x-1 transition-transform'
-                viewBox='0 0 20 20'
-                fill='currentColor'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z'
-                  clipRule='evenodd'
-                />
-              </svg>
-              Back to Home
-            </a>
-
-            <a
-              href='/projects'
-              className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
-            >
-              View Projects
-            </a>
-
-            <a
-              href='/posts'
-              className='inline-flex items-center gap-2 border border-border px-6 py-3 rounded-lg font-medium hover:bg-accent transition-all duration-200'
-            >
-              Read Blog
-            </a>
-          </div>
-        </div>
-
-        {/* Search Suggestion */}
-        <div className='pt-8 text-sm text-muted-foreground'>
-          <p>
-            Or{' '}
-            <a href='/#contact' className='text-primary hover:underline font-medium'>
-              get in touch
-            </a>{' '}
-            if you need help finding something.
-          </p>
-        </div>
-      </div>
+          </Container>
+        </section>
+      </main>
+      <SiteFooter />
     </div>
   )
 }
@@ -199,10 +89,8 @@ function RootDocument({ children }: { children: ReactNode }) {
       <head>
         <HeadContent />
       </head>
-      <body>
-        <ThemeProvider defaultTheme='light' storageKey='vite-ui-theme'>
-          <div className='max-w-7xl mx-auto bg-background shadow-xl min-h-screen'>{children}</div>
-        </ThemeProvider>
+      <body className='bg-paper font-sans text-ink antialiased'>
+        {children}
         <Scripts />
       </body>
     </html>

@@ -10,6 +10,8 @@ export default defineConfig({
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
     globals: false,
+    // examples/ holds archived designs that are not wired into the app
+    include: ['src/**/*.test.{ts,tsx}'],
     alias: {
       'content-collections': path.resolve(__dirname, './src/test/mocks/content-collections.ts'),
     },

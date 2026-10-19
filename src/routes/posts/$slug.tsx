@@ -3,11 +3,12 @@ import { allPosts } from 'content-collections'
 import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
 import { Facebook, Linkedin } from 'lucide-react'
 import { createServerFn } from '@tanstack/react-start'
-import Navbar from '@/components/navbar'
-import Footer from '@/components/footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { createPageSEO } from '@/lib/seo'
 import { SITE } from '@/lib/constants'
+import { FEATURES } from '@/lib/features'
 
 const getPost = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
@@ -19,6 +20,10 @@ const getPost = createServerFn({ method: 'GET' })
   })
 
 export const Route = createFileRoute('/posts/$slug')({
+  // The blog is switched off for now (src/lib/features.ts)
+  beforeLoad: () => {
+    if (!FEATURES.blog) throw notFound()
+  },
   loader: ({ params }) => getPost({ data: params.slug }),
   head: ({ loaderData }) => {
     if (!loaderData) return {}
@@ -37,7 +42,7 @@ export const Route = createFileRoute('/posts/$slug')({
   notFoundComponent: () => {
     return (
       <main className='min-h-screen bg-background'>
-        <Navbar />
+        <SiteHeader />
         <section className='py-20 px-6 md:px-20'>
           <div className='max-w-4xl mx-auto text-center'>
             <h1 className='text-4xl md:text-6xl font-light mb-4'>Article Not Found</h1>
@@ -46,7 +51,7 @@ export const Route = createFileRoute('/posts/$slug')({
             </Link>
           </div>
         </section>
-        <Footer />
+        <SiteFooter />
       </main>
     )
   },
@@ -59,7 +64,7 @@ function PostDetailPage() {
 
   return (
     <main className='min-h-screen bg-background'>
-      <Navbar />
+      <SiteHeader />
 
       <article className='py-20 px-6 md:px-20'>
         <div className='max-w-4xl mx-auto'>
@@ -112,7 +117,7 @@ function PostDetailPage() {
           </div>
 
           {/* Article Content */}
-          <div className='prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
+          <div className='prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
             <MdxRenderer code={post.mdx} />
           </div>
 
@@ -121,7 +126,7 @@ function PostDetailPage() {
             <p className='text-sm text-muted-foreground mb-4'>Share This Post</p>
             <div className='flex gap-4'>
               <TwitterShareButton url={postUrl} title={post.title}>
-                <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity dark:bg-white dark:text-black'>
+                <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity'>
                   <svg
                     viewBox='0 0 24 24'
                     fill='none'
@@ -158,7 +163,7 @@ function PostDetailPage() {
         </div>
       </article>
 
-      <Footer />
+      <SiteFooter />
     </main>
   )
 }

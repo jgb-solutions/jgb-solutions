@@ -1,21 +1,18 @@
-import { ClientOnly, createFileRoute } from '@tanstack/react-router'
-import Navbar from '@/components/navbar'
-import Hero from '@/components/hero'
-import MarqueeBar from '@/components/marquee-bar'
-import FeaturedProjects from '@/components/featured-projects'
-import About from '@/components/about'
-import Services from '@/components/services'
-import RecentPosts from '@/components/recent-posts'
-import Contact from '@/components/contact'
-import Footer from '@/components/footer'
+import { createFileRoute } from '@tanstack/react-router'
+import { HomeHero } from '@/components/home/home-hero'
+import { HomeInsights, HomeProducts, HomeServices, HomeWork } from '@/components/home/home-sections'
+import { ProcessSection } from '@/components/site/process-section'
+import { SiteFooter } from '@/components/site/site-footer'
+import { SiteHeader } from '@/components/site/site-header'
+import { FEATURES } from '@/lib/features'
 import { createPageSEO } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({
   head: () =>
     createPageSEO({
-      title: 'JGB Solutions - Web & Mobile Development',
+      title: 'JGB Solutions - Websites, Mobile Apps & Social Media',
       description:
-        'Portfolio showcasing 20+ web and mobile development projects. Expertise in React, TypeScript, Node.js, and scalable solutions. Available for freelance and consulting.',
+        'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own products like JGB Tools. Based in Laval, Québec. Contact us for a quote.',
       path: '/',
     }),
   component: Home,
@@ -23,24 +20,17 @@ export const Route = createFileRoute('/')({
 
 function Home() {
   return (
-    <main className='min-h-screen flex flex-col'>
-      <div className='relative bg-background'>
-        <Navbar />
-        <Hero />
-        <MarqueeBar />
-      </div>
-      <FeaturedProjects />
-      <About />
-      <Services />
-      <RecentPosts />
-      <ClientOnly
-        fallback={
-          <div className='py-20 text-center text-muted-foreground'>Loading contact form...</div>
-        }
-      >
-        <Contact />
-      </ClientOnly>
-      <Footer />
-    </main>
+    <div className='flex min-h-screen flex-col'>
+      <SiteHeader />
+      <main id='main' className='flex-1'>
+        <HomeHero tone='brand' />
+        <HomeServices tone='paper' />
+        <HomeProducts tone='ink' />
+        <HomeWork tone='paper' />
+        <ProcessSection tone='mist' />
+        {FEATURES.blog && <HomeInsights tone='paper' />}
+      </main>
+      <SiteFooter />
+    </div>
   )
 }
