@@ -111,7 +111,12 @@ export function SiteFooter() {
             <p>
               © {new Date().getFullYear()} {SITE.name}. All rights reserved.
             </p>
-            <p>Made in {SITE.location}.</p>
+            <p className='flex gap-4'>
+              <Link to='/privacy' className='hover:text-paper'>
+                Privacy
+              </Link>
+              <span>Made in {SITE.location}.</span>
+            </p>
           </Container>
         </div>
       </footer>
