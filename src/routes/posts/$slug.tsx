@@ -117,7 +117,7 @@ function PostDetailPage() {
           </div>
 
           {/* Article Content */}
-          <div className='prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
+          <div className='prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
             <MdxRenderer code={post.mdx} />
           </div>
 
@@ -126,7 +126,7 @@ function PostDetailPage() {
             <p className='text-sm text-muted-foreground mb-4'>Share This Post</p>
             <div className='flex gap-4'>
               <TwitterShareButton url={postUrl} title={post.title}>
-                <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity dark:bg-white dark:text-black'>
+                <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity'>
                   <svg
                     viewBox='0 0 24 24'
                     fill='none'

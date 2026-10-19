@@ -27,7 +27,7 @@ export function ProjectCard({ project, isProduct = false, className }: ProjectCa
           src={project.image || '/placeholder.svg'}
           alt={`${project.title} screenshot`}
           loading='lazy'
-          className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+          className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
         />
         {isProduct && (
           <span className='absolute left-3 top-3 bg-brand px-2.5 py-1 font-mono text-[11px] font-medium uppercase tracking-[0.15em] text-ink'>

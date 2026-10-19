@@ -64,7 +64,7 @@ function ProductsPage() {
                     src={product.image}
                     alt=''
                     loading={index === 0 ? 'eager' : 'lazy'}
-                    className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+                    className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
                   />
                 </a>
                 <div className='flex flex-col items-start gap-5'>

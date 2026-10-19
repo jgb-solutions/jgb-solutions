@@ -138,7 +138,7 @@ function ProductCard({
           src={product.image}
           alt=''
           loading='lazy'
-          className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+          className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
         />
       </Link>
       <div className={cn('flex flex-1 flex-col gap-3', featured ? 'p-8' : 'p-5')}>
@@ -208,7 +208,7 @@ export function HomeWork({ tone }: { tone: SectionTone }) {
                 src={project.image}
                 alt={`${project.title} website`}
                 loading='lazy'
-                className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+                className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
               />
             </div>
             <div className='flex items-baseline justify-between gap-4'>

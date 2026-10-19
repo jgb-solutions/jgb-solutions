@@ -2,6 +2,16 @@
 
 Performance‑minded full‑stack developer building fast, pragmatic systems.
 
+## About this repository
+
+This is the code for **[jgb.solutions](https://jgb.solutions)**, the website of JGB Solutions: a web and mobile studio in Laval, Québec that builds websites, mobile apps and social media for businesses, and runs its own products (JGB Tools, Street Brawl, MP3PAM, Tech Talk).
+
+- **Stack:** TanStack Start (React 19), Tailwind CSS v4, TypeScript, MDX content with content-collections, Bun, hosted on Vercel.
+- **Run it:** `bun install`, then `bun run dev`. Checks: `bun run lint:check`, `bun run type-check`, `bun run test:run`, `bun run build`.
+- **Content:** projects are MDX files in `content/projects/`; services are in `src/lib/services.ts`; our products are listed in `src/lib/products.ts`.
+- **Brand images:** `bun scripts/generate-brand-images.ts` rebuilds the share image, favicons and logo in `public/`.
+- **More:** [AGENTS.md](AGENTS.md) (conventions and project notes), [docs/PLAN-redesign.md](docs/PLAN-redesign.md) and [docs/TODO-redesign.md](docs/TODO-redesign.md).
+
 ## 👋 About me
 
 I'm a full‑stack developer focused on shipping real products, keeping systems fast, and avoiding unnecessary complexity.

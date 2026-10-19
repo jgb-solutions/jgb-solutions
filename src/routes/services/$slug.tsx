@@ -128,7 +128,7 @@ function ServicePage() {
                       src={project.image}
                       alt={`${project.title} screenshot`}
                       loading='lazy'
-                      className='h-full w-full object-cover object-top transition-transform duration-500 group-hover:scale-105'
+                      className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
                     />
                   </div>
                   <div className='flex items-baseline justify-between gap-4'>
