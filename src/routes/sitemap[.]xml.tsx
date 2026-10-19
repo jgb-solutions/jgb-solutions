@@ -15,6 +15,7 @@ function buildSitemap() {
     '',
     '/services',
     '/products',
+    '/about',
     '/privacy',
     '/projects',
     ...(FEATURES.blog ? ['/posts'] : []),

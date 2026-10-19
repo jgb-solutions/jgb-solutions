@@ -10,6 +10,7 @@ describe('Site header and footer', () => {
     expect(within(nav).getByRole('link', { name: 'Services' })).toHaveAttribute('href', '/services')
     expect(within(nav).getByRole('link', { name: 'Products' })).toHaveAttribute('href', '/products')
     expect(within(nav).getByRole('link', { name: 'Work' })).toHaveAttribute('href', '/projects')
+    expect(within(nav).getByRole('link', { name: 'About' })).toHaveAttribute('href', '/about')
     expect(within(nav).queryByRole('link', { name: 'Insights' })).not.toBeInTheDocument()
     expect(within(nav).getByRole('link', { name: 'Start a project' })).toHaveAttribute(
       'href',

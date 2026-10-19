@@ -11,6 +11,7 @@ export const NAV_LINKS = [
   { label: 'Services', to: '/services' },
   { label: 'Products', to: '/products' },
   { label: 'Work', to: '/projects' },
+  { label: 'About', to: '/about' },
   ...(FEATURES.blog ? [{ label: 'Insights', to: '/posts' }] : []),
 ] as const
 

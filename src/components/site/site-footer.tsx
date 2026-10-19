@@ -51,6 +51,11 @@ export function SiteFooter() {
             <h2 className={headingClass}>Company</h2>
             <ul className='flex flex-col gap-2 text-sm'>
               <li>
+                <Link to='/about' className={linkClass}>
+                  About
+                </Link>
+              </li>
+              <li>
                 <Link to='/products' className={linkClass}>
                   Products
                 </Link>
