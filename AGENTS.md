@@ -120,6 +120,11 @@ _Last updated: 2026-10-17._
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 
+### JGB products list
+
+- `public/products.json` is the single list of JGB Solutions' own products (not client work), served as-is at https://jgb.solutions/products.json. `src/lib/products.test.ts` checks its shape. Every product reads it when it builds to show "More from JGB Solutions" links (JGB Tools: `scripts/sync-products.ts` and `@jgb/core/jgb-products`). Keep the shape (`version: 1`); bump the version if it changes incompatibly.
+- Products as of 2026-10-19: JGB Tools, Street Brawl, MP3PAM, Tech Talk. Ti Kwen Pam is an old WordPress site the user is removing; leave it out.
+
 ### Work in progress: site revamp (landing pages)
 
 - **Next step agreed with the user:** plan the redesign of the site using this new design.
