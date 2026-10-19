@@ -116,7 +116,7 @@ _Last updated: 2026-10-17._
 
 - Projects are MDX files in `content/projects/` (frontmatter + "Project Overview / The Challenge / The Solution"). Write from facts (the project's code and live site), plain English, no filler superlatives; translate French names in brackets.
 - `draft: true` in a project's frontmatter hides it from listings, its page and the sitemap (`src/lib/projects.ts`). Use it for unfinished write-ups instead of publishing placeholders.
-- Card images: `public/assets/images/projects/<slug>/featured.jpg`, a 4:3 desktop capture (1280×960 at 1.25×, JPEG) of the live site, plus `screenshot-N` gallery images. Check every capture by eye: blur or hide user-uploaded content that's offensive, and crop out broken embeds.
+- Card images: `public/assets/images/projects/<slug>/featured.jpg`, a 4:3 desktop capture (1280×960 at 1.25×, JPEG) of the live site, plus `screenshot-N.jpg` gallery images (JPEG, about quality 82; PNG screenshots were 3× larger, converted 2026-10-19). Check every capture by eye: blur or hide user-uploaded content that's offensive, and crop out broken embeds.
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 

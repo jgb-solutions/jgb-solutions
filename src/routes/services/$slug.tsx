@@ -50,7 +50,7 @@ function ServicePage() {
   return (
     <div className='flex min-h-screen flex-col'>
       <SiteHeader />
-      <main className='flex-1'>
+      <main id='main' className='flex-1'>
         <section className='bg-ink py-16 text-paper md:py-24'>
           <Container className='flex flex-col items-start gap-7'>
             <Link

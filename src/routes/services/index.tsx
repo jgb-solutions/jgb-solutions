@@ -29,7 +29,7 @@ function ServicesPage() {
   return (
     <div className='flex min-h-screen flex-col'>
       <SiteHeader />
-      <main className='flex-1'>
+      <main id='main' className='flex-1'>
         <section className='bg-ink py-16 text-paper md:py-24'>
           <Container className='flex max-w-7xl flex-col gap-6'>
             <SectionLabel className='text-brand opacity-100'>Services</SectionLabel>

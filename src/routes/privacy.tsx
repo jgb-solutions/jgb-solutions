@@ -35,7 +35,7 @@ function PrivacyPage() {
   return (
     <div className='flex min-h-screen flex-col'>
       <SiteHeader />
-      <main className='flex-1'>
+      <main id='main' className='flex-1'>
         <section className='bg-ink py-16 text-paper md:py-20'>
           <Container className='flex flex-col gap-5'>
             <SectionLabel className='text-brand opacity-100'>Privacy</SectionLabel>

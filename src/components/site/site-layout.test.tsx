@@ -18,6 +18,14 @@ describe('Site header and footer', () => {
     )
   })
 
+  it('starts with a skip link to the main content', async () => {
+    renderWithRouter({ initialEntries: ['/services'] })
+
+    const skip = await screen.findByRole('link', { name: 'Skip to content' })
+    expect(skip).toHaveAttribute('href', '#main')
+    expect(document.getElementById('main')?.tagName).toBe('MAIN')
+  })
+
   it.each(['/projects', '/services', '/no-such-page'])(
     'ends %s with the contact band that #contact points to',
     async path => {
