@@ -6,17 +6,18 @@ import { Container, buttonStyles } from '@/components/site/section'
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { FEATURES } from '@/lib/features'
 
-// Pages join this list as the redesign builds them (Products, About; see docs/PLAN-redesign.md).
+// Pages join this list as the redesign builds them (see docs/PLAN-redesign.md).
 export const NAV_LINKS = [
   { label: 'Services', to: '/services' },
+  { label: 'Products', to: '/products' },
   { label: 'Work', to: '/projects' },
   ...(FEATURES.blog ? [{ label: 'Insights', to: '/posts' }] : []),
 ] as const
 
 const navLinkClass =
-  'font-display text-sm font-semibold uppercase tracking-wider text-paper/80 transition-colors hover:text-brand'
+  'font-display text-sm font-semibold uppercase tracking-wider text-paper/80 transition-colors hover:text-brand data-[status=active]:text-brand'
 const mobileLinkClass =
-  'py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand'
+  'py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand data-[status=active]:text-brand'
 
 /** "Start a project" jumps to the contact band that ends every page (email and WhatsApp). */
 function StartProjectLink({ className, onClick }: { className: string; onClick?: () => void }) {
@@ -39,12 +40,7 @@ export function SiteHeader() {
 
         <nav aria-label='Main' className='hidden items-center gap-8 md:flex'>
           {NAV_LINKS.map(link => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className={navLinkClass}
-              activeProps={{ className: 'text-brand' }}
-            >
+            <Link key={link.to} to={link.to} className={navLinkClass}>
               {link.label}
             </Link>
           ))}

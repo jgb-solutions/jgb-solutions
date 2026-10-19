@@ -11,7 +11,13 @@ function buildSitemap() {
   const baseUrl = SITE.url
 
   // Static routes
-  const staticRoutes = ['', '/services', '/projects', ...(FEATURES.blog ? ['/posts'] : [])]
+  const staticRoutes = [
+    '',
+    '/services',
+    '/products',
+    '/projects',
+    ...(FEATURES.blog ? ['/posts'] : []),
+  ]
 
   // Dynamic routes
   const projectRoutes = publishedProjects.map(project => `/projects/${project.slug}`)

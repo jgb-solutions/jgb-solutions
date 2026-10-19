@@ -80,7 +80,7 @@ export const SERVICES: Array<Service> = [
         text: 'We prepare the listings and screenshots and handle the review process for the App Store and Google Play.',
       },
     ],
-    relatedProjects: ['jgb-tools'],
+    // No examples yet: the JGB Tools app is still coming to the stores. Add it once it's live.
   },
   {
     slug: 'social-media',
@@ -164,14 +164,6 @@ export const SERVICES: Array<Service> = [
 
 /** The services we sell today, in display order. */
 export const OFFERED_SERVICES = SERVICES.filter(service => service.available)
-
-export const DIGITAL_SERVICES = SERVICES.filter(service =>
-  ['websites', 'mobile-apps', 'social-media'].includes(service.slug)
-)
-
-export const CREATIVE_SERVICES = SERVICES.filter(service =>
-  ['photography-videography', 'graphic-design', 'print'].includes(service.slug)
-)
 
 /** Finds an offered service; unavailable services are treated as not found. */
 export function getServiceBySlug(slug: string): Service | undefined {

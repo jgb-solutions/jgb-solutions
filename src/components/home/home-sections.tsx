@@ -70,12 +70,23 @@ export function HomeProducts({ tone }: { tone: SectionTone }) {
 
   return (
     <Section tone={tone} id='products' containerClassName='flex flex-col gap-12'>
-      <SectionHeading
-        tone={tone}
-        label='Our products'
-        title='Apps and media we build and run'
-        intro='Alongside client work, we make our own products. Building them keeps our skills sharp and gives clients proof that our work holds up in the real world.'
-      />
+      <div className='flex flex-col justify-between gap-6 md:flex-row md:items-end'>
+        <SectionHeading
+          tone={tone}
+          label='Our products'
+          title='Apps and media we build and run'
+          intro='Alongside client work, we make our own products. Building them keeps our skills sharp and gives clients proof that our work holds up in the real world.'
+        />
+        <Link
+          to='/products'
+          className={buttonStyles(
+            isDark(tone) ? 'paper' : 'outline',
+            'shrink-0 self-start md:self-auto'
+          )}
+        >
+          All products <ArrowRight className='h-4 w-4' />
+        </Link>
+      </div>
       <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
         <ProductCard product={featured} tone={tone} featured />
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>

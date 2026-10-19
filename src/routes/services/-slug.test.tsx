@@ -49,22 +49,14 @@ describe('Service page', () => {
     expect(screen.getByRole('heading', { name: 'Have a project in mind?' })).toBeInTheDocument()
   })
 
-  it('labels our own products among the examples', async () => {
-    renderWithRouter({ initialEntries: ['/services/mobile-apps'] })
+  it.each([
+    ['social-media', 'Social Media'],
+    // The JGB Tools app isn't in the stores yet, so Mobile Apps has no examples
+    ['mobile-apps', 'Mobile Apps'],
+  ])('hides the examples section on %s, which has none', async (slug, title) => {
+    renderWithRouter({ initialEntries: [`/services/${slug}`] })
 
-    const examples = (await screen.findByRole('heading', { name: 'Work we have done' })).closest(
-      'section'
-    ) as HTMLElement
-    expect(within(examples).getByText('JGB Tools')).toBeInTheDocument()
-    expect(within(examples).getByText('Our product')).toBeInTheDocument()
-  })
-
-  it('hides the examples section when a service has none', async () => {
-    renderWithRouter({ initialEntries: ['/services/social-media'] })
-
-    expect(
-      await screen.findByRole('heading', { level: 1, name: 'Social Media' })
-    ).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { level: 1, name: title })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Work we have done' })).not.toBeInTheDocument()
   })
 
