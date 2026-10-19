@@ -13,17 +13,19 @@ This document provides essential information for AI agents operating within this
 
 ## 2. Key Commands
 
-| Action             | Command                | Description                           |
-| ------------------ | ---------------------- | ------------------------------------- |
-| **Build**          | `bun run build`        | Builds the application for production |
-| **Dev Server**     | `bun run dev`          | Starts local development server       |
-| **Lint (Check)**   | `bun run lint:check`   | Checks for linting errors             |
-| **Lint (Fix)**     | `bun run lint`         | Auto-fixes linting errors             |
-| **Format (Check)** | `bun run format:check` | Checks code formatting                |
-| **Format (Fix)**   | `bun run format`       | Auto-formats code using Prettier      |
-| **Type Check**     | `bun run type-check`   | Runs TypeScript compiler check        |
-| **Test (Run)**     | `bun run test:run`     | Runs all tests once (CI mode)         |
-| **Test (Watch)**   | `bun run test`         | Runs tests in watch mode              |
+| Action             | Command                                | Description                                                                    |
+| ------------------ | -------------------------------------- | ------------------------------------------------------------------------------ |
+| **Build**          | `bun run build`                        | Builds the application for production                                          |
+| **Dev Server**     | `bun run dev`                          | Starts local development server                                                |
+| **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                      |
+| **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                      |
+| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                         |
+| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                               |
+| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                 |
+| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                  |
+| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                       |
+| **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check) |
+| **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`                 |
 
 ### Running Specific Tests
 
@@ -80,23 +82,33 @@ bun x vitest run src/components/ui/button.test.tsx
 
 ```
 src/
-├── components/        # UI components
-│   ├── ui/            # Reusable primitives (buttons, inputs)
-│   └── ...            # Feature-specific components
-├── hooks/             # Custom React hooks
-├── lib/               # Utility functions and constants
-├── routes/            # File-based routes (TanStack Router)
-├── test/              # Test configuration and utilities
-│   ├── mocks/         # Global mocks
-│   ├── router-utils.tsx # Router testing helpers
-│   └── setup.ts       # Vitest setup
-├── router.tsx         # Router configuration
+├── components/
+│   ├── site/          # Site-wide pieces: SiteHeader, SiteFooter (with the contact band),
+│   │                  # Section/SectionHeading/buttonStyles, Logo, ProcessSection, ContactSection
+│   ├── home/          # Home page sections
+│   ├── ui/            # Primitives (button, sheet)
+│   └── project-card.tsx, post-card.tsx, mdx-provider.tsx
+├── lib/
+│   ├── constants.ts   # SITE (email, phone, Laval), SEO, SOCIAL, OG_IMAGE
+│   ├── services.ts    # Services, with `available` (only offered ones appear anywhere)
+│   ├── products.ts    # Which projects are our products (PRODUCT_SLUGS) vs client work
+│   ├── projects.ts    # Published projects (drafts left out)
+│   ├── features.ts    # Switched-off parts of the site (blog)
+│   ├── brand.ts       # Logo vectors and brand colors
+│   └── seo.ts         # Page meta, canonical links, business structured data
+├── routes/            # index, services/, products, projects/, about, privacy, posts/ (off), sitemap
+├── test/              # router-utils (renderWithRouter), content-collections mock, setup
+├── globals.css        # Brand tokens (Tailwind @theme): brand, brand-strong, ink, paper, mist…
 └── routeTree.gen.ts   # Generated route definitions
+content/               # projects/ and posts/ (MDX)
+scripts/               # generate-brand-images.ts
+examples/              # Archived landing-page designs (not part of the app)
+docs/                  # PLAN-redesign.md, TODO-redesign.md
 ```
 
 ## 5. Deployment & Project Notes
 
-_Last updated: 2026-10-17._
+_Last updated: 2026-10-19._
 
 ### Deployment
 
@@ -120,13 +132,15 @@ _Last updated: 2026-10-17._
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 
-### Work in progress: site revamp (redesign)
+### Redesign (site-revamp branch)
 
-- **Work happens on the `site-revamp` branch** (local, not pushed yet). Never merge it into `main` until the whole redesign is done and its Vercel preview is approved.
-- **Chosen design: design 6, "Bold Digital"** (orange, black and white). It stays live at `src/routes/landing/bold-digital.tsx` (`/landing/bold-digital`) as the reference, with its components `src/components/landing/bold-{theme,layout,cta}.tsx`. Delete them once the new home page replaces them.
-- **The plan is `docs/PLAN-redesign.md`**: present JGB Solutions as a business with services and products, not a freelancer; design system, site map, home page sections, phases and the user's open questions. Follow it and keep it current.
+- **Work happens on the `site-revamp` branch** (pushed to GitHub, no PR yet). Never merge it into `main` until the user approves the whole redesign and its Vercel preview.
+- **Design: design 6, "Bold Digital"** (orange, black and white), now built into every page: home, `/services` and `/services/$slug`, `/products`, `/projects` and `/projects/$slug`, `/about`, `/privacy` and the 404 page. The original reference page is archived in `examples/landing-designs/routes/bold-digital.tsx`.
+- **The plan is `docs/PLAN-redesign.md`** and what's left is in **`docs/TODO-redesign.md`**: present JGB Solutions as a business with services and products, not a freelancer. Follow them and keep them current.
+- **Design system:** colors and fonts are Tailwind tokens in `src/globals.css` (`brand` = logo orange `#F7961D` with black text, never white; `brand-strong` for orange text on white; `ink`, `paper`, `mist`, `muted-ink`, `muted-paper`); Saira for headings, Inter for text, JetBrains Mono for labels; square corners. Build pages from `Section`, `SectionHeading`, `SectionLabel` and `buttonStyles` in `src/components/site/section.tsx`.
+- **About page copy is a draft** built from the founder's earlier texts; the user will rewrite it.
 - **Archived designs:** the other 14 landing pages, their components and the page switcher used to compare them are in `examples/landing-designs/` (see its README). Nothing imports them; TypeScript, ESLint (`examples/**` ignored) and Vitest (`include: src/**`) skip the folder. Reference them if we need an idea later. The user also liked design 5, "Bold Services", for listing every service.
-- **Services:** offered now are **Websites, Mobile Apps and Social Media** (short names chosen by the user; the descriptions say design and development). **Planned, not offered yet:** Photography / Videography (one service, sold together), Graphic Design and Print. Their data is in `src/lib/services.ts`; keep them off the site until the user is ready (no "coming soon" pages, see AdSense).
+- **Services:** offered now are **Websites, Mobile Apps and Social Media** (short names chosen by the user; the descriptions say design and development). **Planned, not offered yet:** Photography / Videography (one service, sold together), Graphic Design and Print. Their data is in `src/lib/services.ts`; keep them off the site until the user is ready (no "coming soon" pages, see AdSense). Each service page shows examples from `relatedProjects`; Mobile Apps has none until the JGB Tools app is in the stores, Social Media has none until the user names a client.
 - **Products vs client work:** JGB Tools, Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam are the user's own products (listed in `src/lib/products.ts`). **Ti Kwen Pam is hidden** (`draft: true`): the user doesn't find it nice enough to show; keep the file. The user usually builds apps and media sites as products, while clients mostly want static sites or landing pages, but **always ask the user** whether a new project is a product or client work.
 - **Business facts for copy:** based in Laval, Québec; "10+ years" (building since 2009), "dozens of clients", "dozens of projects" (no more precise client or project counts); no prices ("contact us for a quote"); no contact form (spam): use services@jgb.solutions and WhatsApp/phone +1 438 389 5465 (`SITE.phone`). The founder's name, photo and story belong on the About page, not the home page; the home page speaks as the business ("we").
 - **Switched off until the user asks** (`src/lib/features.ts`): the **blog** (`FEATURES.blog`). `/posts` pages return not found, and the header, footer, home page, 404 page and sitemap hide it. The two old posts came from the founder's personal blog. To turn it back on, set the flag and write business posts.
