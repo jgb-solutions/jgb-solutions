@@ -47,7 +47,7 @@ export function SiteHeader() {
             <Logo className='h-6 md:h-7' />
           </Link>
 
-          <nav aria-label='Main' className='hidden items-center gap-8 md:flex'>
+          <nav aria-label='Main' className='hidden items-center gap-8 lg:flex'>
             {NAV_LINKS.map(link => (
               <Link key={link.to} to={link.to} className={navLinkClass}>
                 {link.label}
@@ -58,7 +58,7 @@ export function SiteHeader() {
 
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild>
-              <button type='button' className='-mr-2 p-2 md:hidden' aria-label='Open menu'>
+              <button type='button' className='-mr-2 p-2 lg:hidden' aria-label='Open menu'>
                 <Menu className='h-6 w-6' />
               </button>
             </SheetTrigger>
