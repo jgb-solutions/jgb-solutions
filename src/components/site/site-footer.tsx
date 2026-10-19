@@ -3,13 +3,13 @@ import { Instagram, Linkedin } from 'lucide-react'
 import { ContactSection } from '@/components/site/contact-section'
 import { Logo } from '@/components/site/logo'
 import { Container } from '@/components/site/section'
-import { SITE } from '@/lib/constants'
+import { SITE, SOCIAL } from '@/lib/constants'
 import { FEATURES } from '@/lib/features'
 import { OFFERED_SERVICES } from '@/lib/services'
 
 const SOCIAL_LINKS = [
-  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/jgb-dev/', icon: Linkedin },
-  { label: 'Instagram', href: 'https://www.instagram.com/jgbgram/', icon: Instagram },
+  { label: 'LinkedIn', href: SOCIAL.linkedin, icon: Linkedin },
+  { label: 'Instagram', href: SOCIAL.instagram, icon: Instagram },
 ]
 
 const headingClass = 'font-mono text-xs uppercase tracking-[0.2em] text-brand'

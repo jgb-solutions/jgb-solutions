@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createPageSEO } from './seo'
+import { createOrganizationJsonLd, createPageSEO } from './seo'
 
 describe('seo', () => {
   describe('createPageSEO', () => {
@@ -20,6 +20,13 @@ describe('seo', () => {
 
       // Check Open Graph
       expect(seo.meta).toContainEqual({ property: 'og:title', content: 'Test Title' })
+
+      expect(seo.meta).toContainEqual({ property: 'og:url', content: 'https://jgb.solutions/test' })
+      expect(seo.meta).toContainEqual({
+        property: 'og:image',
+        content: 'https://jgb.solutions/og-image.png',
+      })
+      expect(seo.meta).not.toContainEqual(expect.objectContaining({ name: 'twitter:site' }))
 
       // Check Links (Canonical)
       expect(seo.links).toContainEqual({ rel: 'canonical', href: 'https://jgb.solutions/test' })
@@ -52,6 +59,28 @@ describe('seo', () => {
       })
 
       expect(seo.meta).toContainEqual({ property: 'og:type', content: 'article' })
+    })
+  })
+
+  describe('createOrganizationJsonLd', () => {
+    it('describes the business with its contact details and services', () => {
+      const script = createOrganizationJsonLd()
+      expect(script.type).toBe('application/ld+json')
+
+      const data = JSON.parse(script.children) as Record<string, unknown>
+      expect(data).toMatchObject({
+        '@type': 'ProfessionalService',
+        name: 'JGB Solutions',
+        email: 'services@jgb.solutions',
+        telephone: '+14383895465',
+        address: { addressLocality: 'Laval', addressCountry: 'CA' },
+      })
+      const offers = data.makesOffer as Array<{ itemOffered: { name: string } }>
+      expect(offers.map(offer => offer.itemOffered.name)).toEqual([
+        'Websites',
+        'Mobile Apps',
+        'Social Media',
+      ])
     })
   })
 })

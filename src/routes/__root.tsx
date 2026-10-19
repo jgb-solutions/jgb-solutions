@@ -8,110 +8,34 @@ import '@fontsource/saira/600.css'
 import '@fontsource/saira/700.css'
 import '@fontsource/saira/800.css'
 import '@fontsource/jetbrains-mono/400.css'
-import { OG_IMAGE, SEO, SITE, SOCIAL } from '@/lib/constants'
+import { SEO, SITE } from '@/lib/constants'
+import { createOrganizationJsonLd, createSEOMeta } from '@/lib/seo'
 import { Container, buttonStyles } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
 
 export const Route = createRootRoute({
+  // Site-wide defaults; each page's own head() overrides the title, description, image and URL.
   head: () => ({
     meta: [
-      {
-        charSet: 'utf-8',
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1',
-      },
-      {
-        title: `${SITE.name} - Web, Mobile & Social Media`,
-      },
-
-      // SEO Meta Tags
-      {
-        name: 'description',
-        content: SEO.description,
-      },
-      { name: 'author', content: SITE.author },
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'robots', content: 'index, follow' },
-      {
-        name: 'keywords',
-        content: SEO.keywords.join(', '),
-      },
-
-      // Open Graph Tags
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: SITE.url },
-      {
-        property: 'og:title',
-        content: `${SITE.name} - Software Engineer & Mentor`,
-      },
-      {
-        property: 'og:description',
-        content:
-          'Full-stack software engineer specializing in React, TypeScript, and scalable web solutions. View my portfolio of 20+ successful projects.',
-      },
-      {
-        property: 'og:image',
-        content: OG_IMAGE.url,
-      },
-      { property: 'og:image:width', content: OG_IMAGE.width.toString() },
-      { property: 'og:image:height', content: OG_IMAGE.height.toString() },
-      {
-        property: 'og:image:alt',
-        content: OG_IMAGE.alt,
-      },
+      { name: 'keywords', content: SEO.keywords.join(', ') },
+      { name: 'theme-color', content: '#050708' },
       { property: 'og:site_name', content: SITE.name },
       { property: 'og:locale', content: 'en_US' },
-
-      // Twitter Card Tags
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:site', content: SOCIAL.twitter },
-      { name: 'twitter:creator', content: SOCIAL.twitter },
-      {
-        name: 'twitter:title',
-        content: `${SITE.name} - Software Engineer & Mentor`,
-      },
-      {
-        name: 'twitter:description',
-        content:
-          'Full-stack software engineer specializing in React, TypeScript, and scalable web solutions.',
-      },
-      {
-        name: 'twitter:image',
-        content: OG_IMAGE.url,
-      },
-      {
-        name: 'twitter:image:alt',
-        content: OG_IMAGE.alt,
-      },
+      ...createSEOMeta({ title: `${SITE.name} - Websites, Mobile Apps & Social Media`, path: '/' }),
     ],
     links: [
-      {
-        rel: 'apple-touch-icon',
-        sizes: '180x180',
-        href: '/assets/icons/apple-icon-180x180-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '96x96',
-        href: '/assets/icons/favicon-96x96-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '32x32',
-        href: '/assets/icons/favicon-32x32-dunplab-008.png',
-      },
-      {
-        rel: 'icon',
-        type: 'image/png',
-        sizes: '16x16',
-        href: '/assets/icons/favicon-16x16-dunplab-008.png',
-      },
+      { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+      { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon-48.png' },
+      { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' },
+      { rel: 'icon', type: 'image/png', sizes: '16x16', href: '/favicon-16.png' },
+      { rel: 'apple-touch-icon', sizes: '180x180', href: '/apple-touch-icon.png' },
       { rel: 'manifest', href: '/site.webmanifest' },
     ],
+    scripts: [createOrganizationJsonLd()],
   }),
   component: RootComponent,
   notFoundComponent: NotFoundPage,
