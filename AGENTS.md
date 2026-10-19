@@ -134,9 +134,14 @@ _Last updated: 2026-10-19._
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** On Air, Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 
+### JGB products list
+
+- `public/products.json` is the single list of JGB Solutions' own products (not client work), served as-is at https://jgb.solutions/products.json. This site's Products page reads its ids from it (`src/lib/products.ts`), and every product reads it when it builds to show "More from JGB Solutions" links (JGB Tools: `scripts/sync-products.ts` and `@jgb/core/jgb-products`). `src/lib/products.test.ts` checks its shape. Keep the shape (`version: 1`); bump the version if it changes incompatibly. The user decides what is a product: ask before adding one.
+- Products as of 2026-10-19: JGB Tools, Street Brawl, MP3PAM, Tech Talk. Ti Kwen Pam is ours but hidden (old WordPress site); leave it out.
+
 ### Redesign (site-revamp branch)
 
-- **Work happens on the `site-revamp` branch** (pushed to GitHub, no PR yet). Never merge it into `main` until the user approves the whole redesign and its Vercel preview.
+- **Merged into `main` on 2026-10-19** at the user's request, with the open questions in `docs/TODO-redesign.md` (section 1) still to be answered. Further redesign work: new branch off `main`, PR, merge.
 - **Design: design 6, "Bold Digital"** (orange, black and white), now built into every page: home, `/services` and `/services/$slug`, `/products`, `/projects` and `/projects/$slug`, `/about`, `/privacy` and the 404 page. The original reference page is archived in `examples/landing-designs/routes/bold-digital.tsx`.
 - **The plan is `docs/PLAN-redesign.md`** and what's left is in **`docs/TODO-redesign.md`**: present JGB Solutions as a business with services and products, not a freelancer. Follow them and keep them current.
 - **Design system:** colors and fonts are Tailwind tokens in `src/globals.css` (`brand` = logo orange `#F7961D` with black text, never white; `brand-strong` for orange text on white; `ink`, `paper`, `mist`, `muted-ink`, `muted-paper`); Saira for headings, Inter for text, JetBrains Mono for labels; square corners. Build pages from `Section`, `SectionHeading`, `SectionLabel` and `buttonStyles` in `src/components/site/section.tsx`.

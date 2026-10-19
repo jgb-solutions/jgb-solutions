@@ -1,0 +1,33 @@
+{
+  "version": 1,
+  "products": [
+    {
+      "id": "jgb-tools",
+      "name": "JGB Tools",
+      "tagline": "Free online tools for everyday tasks",
+      "url": "https://tools.jgb.solutions/",
+      "kind": "web-app"
+    },
+    {
+      "id": "street-brawl",
+      "name": "Street Brawl",
+      "tagline": "A free fighting game in your browser",
+      "url": "https://streetbrawl.jgb.solutions/",
+      "kind": "game"
+    },
+    {
+      "id": "mp3pam",
+      "name": "MP3PAM",
+      "tagline": "Music, podcasts and audio",
+      "url": "https://mp3pam.top/",
+      "kind": "web-app"
+    },
+    {
+      "id": "techtalk",
+      "name": "Tech Talk",
+      "tagline": "A tech podcast in Haitian Creole",
+      "url": "https://techtalk.jgb.solutions/",
+      "kind": "media"
+    }
+  ]
+}

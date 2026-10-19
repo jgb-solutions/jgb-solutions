@@ -1,4 +1,6 @@
 import { describe, expect, it } from 'vitest'
+import { z } from 'zod'
+import feed from '../../public/products.json'
 import { overviewOf } from '@/lib/products'
 
 describe('overviewOf', () => {
@@ -13,5 +15,27 @@ describe('overviewOf', () => {
       'Fallback.'
     )
     expect(overviewOf({ description: 'Fallback.' })).toBe('Fallback.')
+  })
+})
+
+/** The shape every product reads from https://jgb.solutions/products.json (version 1). */
+const productsFeed = z.object({
+  version: z.literal(1),
+  products: z.array(
+    z.strictObject({
+      id: z.string().min(1),
+      name: z.string().min(1),
+      tagline: z.string().min(1),
+      url: z.url({ protocol: /^https$/ }),
+      kind: z.enum(['web-app', 'game', 'media']),
+    })
+  ),
+})
+
+describe('public/products.json', () => {
+  it('matches the shape every product reads, with unique ids', () => {
+    const { products } = productsFeed.parse(feed)
+    expect(products.length).toBeGreaterThan(0)
+    expect(new Set(products.map(p => p.id)).size).toBe(products.length)
   })
 })

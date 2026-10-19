@@ -1,11 +1,17 @@
+import feed from '../../public/products.json'
 import { publishedProjects } from '@/lib/projects'
 
 /**
- * Projects that are JGB Solutions' own products (apps and media sites we build and run), in display
- * order. Everything else is client work. The user decides which is which: ask before adding one.
+ * public/products.json is the one list of JGB Solutions' own products (apps and media sites we
+ * build and run). It's served at https://jgb.solutions/products.json, where every product reads it
+ * for its "More from JGB Solutions" links, and this site uses it for the Products page. Everything
+ * else is client work. The user decides which is which: ask before adding one.
+ * Ti Kwen Pam is also ours but hidden (draft) at the user's request, so it isn't in the list.
+ * Its shape is checked by src/lib/products.test.ts (kept out of here so zod stays out of the
+ * page bundle). PRODUCT_SLUGS: product ids in display order; each is also the slug of the
+ * product's project page.
  */
-// Ti Kwen Pam is also ours but hidden (draft) at the user's request: the user doesn't find it nice enough to show.
-export const PRODUCT_SLUGS = ['jgb-tools', 'street-brawl', 'mp3pam', 'techtalk']
+export const PRODUCT_SLUGS: ReadonlyArray<string> = feed.products.map(p => p.id)
 
 /** This site's own write-up: neither a product nor client work on the home page. */
 export const SITE_SLUG = 'jgb-solutions'
