@@ -5,7 +5,8 @@
  *   bun scripts/generate-brand-images.ts
  *
  * Outputs: og-image.png (1200×630 share image), favicon.svg, favicon-16/32/48.png,
- * apple-touch-icon.png (180), icon-192.png, icon-512.png and logo.png (for structured data).
+ * apple-touch-icon.png (180), icon-192.png, icon-512.png, logo.png (for structured data) and
+ * logo-light.svg / logo-dark.svg (transparent, for the GitHub READMEs).
  */
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -159,6 +160,10 @@ async function main() {
 
   // Logo on white with some margin, for structured data (search engines want a raster logo)
   writeFileSync(out('logo.png'), png(logoOnWhite(), 1200))
+
+  // Transparent logos for the GitHub READMEs: black letters for light themes, white for dark
+  writeFileSync(out('logo-light.svg'), logoSvg(ink, orange))
+  writeFileSync(out('logo-dark.svg'), logoSvg(paper, orange))
 
   // eslint-disable-next-line no-console -- command-line script output
   console.info('Brand images written to public/')
