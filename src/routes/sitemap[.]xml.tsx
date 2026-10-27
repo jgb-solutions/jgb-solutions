@@ -1,50 +1,8 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { allPosts } from 'content-collections'
-import { publishedProjects } from '@/lib/projects'
-import { SITE } from '@/lib/constants'
-import { FEATURES } from '@/lib/features'
-import { OFFERED_SERVICES } from '@/lib/services'
+import { buildSitemap } from '@/lib/sitemap'
 
-// A plain function: the GET handler below already runs on the server. (Wrapping it in
-// createServerFn and calling that from a server route fails since TanStack Start 1.168.)
-function buildSitemap() {
-  const baseUrl = SITE.url
-
-  // Static routes
-  const staticRoutes = [
-    '',
-    '/services',
-    '/products',
-    '/about',
-    '/privacy',
-    '/projects',
-    ...(FEATURES.blog ? ['/posts'] : []),
-  ]
-
-  // Dynamic routes
-  const projectRoutes = publishedProjects.map(project => `/projects/${project.slug}`)
-  const postRoutes = FEATURES.blog ? allPosts.map(post => `/posts/${post.slug}`) : []
-
-  const serviceRoutes = OFFERED_SERVICES.map(service => `/services/${service.slug}`)
-
-  const allRoutes = [...staticRoutes, ...serviceRoutes, ...projectRoutes, ...postRoutes]
-
-  const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  ${allRoutes
-    .map(route => {
-      return `  <url>
-    <loc>${baseUrl}${route}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>${route === '' ? '1.0' : route.split('/').length > 2 ? '0.6' : '0.8'}</priority>
-  </url>`
-    })
-    .join('\n')}
-</urlset>`
-
-  return sitemap
-}
-
+// buildSitemap is a plain function: this GET handler already runs on the server. (Calling a
+// createServerFn from a server route fails since TanStack Start 1.168.)
 export const Route = createFileRoute('/sitemap.xml')({
   // Define server-side GET handler for sitemap XML
   server: {

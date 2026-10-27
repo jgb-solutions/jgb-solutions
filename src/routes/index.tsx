@@ -5,7 +5,7 @@ import { ProcessSection } from '@/components/site/process-section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
 import { FEATURES } from '@/lib/features'
-import { createPageSEO } from '@/lib/seo'
+import { createPageSEO, websiteJsonLd } from '@/lib/seo'
 
 export const Route = createFileRoute('/')({
   head: () =>
@@ -14,6 +14,7 @@ export const Route = createFileRoute('/')({
       description:
         'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own products like JGB Tools. Based in Laval, Québec. Contact us for a quote.',
       path: '/',
+      jsonLd: [websiteJsonLd()],
     }),
   component: Home,
 })

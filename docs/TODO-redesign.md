@@ -16,7 +16,7 @@ Items marked **(you)** need a decision or content from you.
 - [ ] **(you)** A social media client to show on the Social Media page (no examples yet).
 - [ ] **(you)** When the JGB Tools app is in the stores, say so: it goes back on the Mobile Apps page as an example.
 - [ ] **(you)** Something to replace the removed client list on the home page, or leave it out.
-- [ ] **(you)** Is there a JGB Solutions account on X (the old code said `@jgb_solutions`)? I removed the handle from the page metadata because I couldn't confirm it.
+- [x] X account: **@jgb_solutions** is the business's account (confirmed 2026-10-27); it's back in the page metadata and the structured data.
 - [ ] **(you)** Business LinkedIn / Instagram pages when they're back (the footer uses your personal ones).
 - [ ] **(you)** A separate `/contact` page: my recommendation is no, since every page ends with the contact band. Confirm.
 
@@ -27,6 +27,12 @@ Items marked **(you)** need a decision or content from you.
 - [ ] After launch: `https://jgb.solutions/ads.txt` still serves; the sitemap lists the new pages; a shared link shows the new share image (test in a WhatsApp or LinkedIn message).
 - [ ] Remove `RESEND_API_KEY` from the Vercel project (the contact form that used it is gone).
 - [ ] Optional: delete the old `/posts` URLs from Google Search Console if they were indexed (they now return 404 while the blog is off).
+
+## Done after launch
+
+- [x] README rewritten as a showcase for JGB Solutions (it's also what github.com/jgb-solutions shows, since that's a personal account whose same-named repo is this one).
+- [x] Repo About box: website https://jgb.solutions and a description.
+- [x] SEO: sitemap `lastmod`, structured data per page, X account, and `bun run seo:check` in CI.
 
 ## Later (not part of the redesign)
 

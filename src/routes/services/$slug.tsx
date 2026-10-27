@@ -13,7 +13,7 @@ import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
 import { PRODUCT_SLUGS } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
-import { createPageSEO } from '@/lib/seo'
+import { createPageSEO, serviceJsonLd } from '@/lib/seo'
 import { OFFERED_SERVICES, getServiceBySlug } from '@/lib/services'
 
 // Services are plain data in src/lib/services.ts (their icons are components), so the loader
@@ -30,6 +30,11 @@ export const Route = createFileRoute('/services/$slug')({
       title: `${service.title} | JGB Solutions`,
       description: `${service.description} Contact us for a quote.`,
       path: `/services/${service.slug}`,
+      breadcrumbs: [
+        { name: 'Services', path: '/services' },
+        { name: service.title, path: `/services/${service.slug}` },
+      ],
+      jsonLd: [serviceJsonLd(service)],
     })
   },
   component: ServicePage,

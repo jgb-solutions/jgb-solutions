@@ -45,6 +45,7 @@ export const Route = createFileRoute('/projects/')({
       description:
         'Websites and apps JGB Solutions has built for clients, and the products we build and run ourselves.',
       path: '/projects',
+      breadcrumbs: [{ name: 'Work', path: '/projects' }],
     }),
   component: ProjectsPage,
 })

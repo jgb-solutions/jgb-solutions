@@ -1,4 +1,5 @@
 import feed from '../../public/products.json'
+import type { ProductKind } from '@/lib/seo'
 import { publishedProjects } from '@/lib/projects'
 
 /**
@@ -12,6 +13,11 @@ import { publishedProjects } from '@/lib/projects'
  * product's project page.
  */
 export const PRODUCT_SLUGS: ReadonlyArray<string> = feed.products.map(p => p.id)
+
+/** What kind of product a slug is (web app, game or media site), or undefined for client work. */
+export function productKind(slug: string): ProductKind | undefined {
+  return feed.products.find(p => p.id === slug)?.kind as ProductKind | undefined
+}
 
 /** This site's own write-up: neither a product nor client work on the home page. */
 export const SITE_SLUG = 'jgb-solutions'

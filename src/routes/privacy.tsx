@@ -16,6 +16,7 @@ export const Route = createFileRoute('/privacy')({
       description:
         'How JGB Solutions handles your information: no cookies, no analytics and no forms on jgb.solutions. What we keep when you email or message us, and your rights.',
       path: '/privacy',
+      breadcrumbs: [{ name: 'Privacy', path: '/privacy' }],
     }),
   component: PrivacyPage,
 })

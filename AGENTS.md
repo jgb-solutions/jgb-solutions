@@ -13,19 +13,20 @@ This document provides essential information for AI agents operating within this
 
 ## 2. Key Commands
 
-| Action             | Command                                | Description                                                                    |
-| ------------------ | -------------------------------------- | ------------------------------------------------------------------------------ |
-| **Build**          | `bun run build`                        | Builds the application for production                                          |
-| **Dev Server**     | `bun run dev`                          | Starts local development server                                                |
-| **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                      |
-| **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                      |
-| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                         |
-| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                               |
-| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                 |
-| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                  |
-| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                       |
-| **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check) |
-| **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`                 |
+| Action             | Command                                | Description                                                                            |
+| ------------------ | -------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Build**          | `bun run build`                        | Builds the application for production                                                  |
+| **Dev Server**     | `bun run dev`                          | Starts local development server                                                        |
+| **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                              |
+| **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                              |
+| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                                 |
+| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                                       |
+| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                         |
+| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                          |
+| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                               |
+| **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check)         |
+| **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`                         |
+| **SEO check**      | `bun run seo:check [base-url]`         | Checks every sitemap page's HTML (default: the live site; CI runs it on a local build) |
 
 ### Running Specific Tests
 
@@ -129,6 +130,7 @@ _Last updated: 2026-10-19._
 ### Projects page
 
 - Projects are MDX files in `content/projects/` (frontmatter + "Project Overview / The Challenge / The Solution"). Write from facts (the project's code and live site), plain English, no filler superlatives; translate French names in brackets.
+- **`updated: 'YYYY-MM-DD'` is required** in every project's frontmatter: it's the sitemap's `lastmod`. Bump it when the write-up or its images change. Other pages' dates are in `src/lib/page-dates.ts`; bump those when a page's content changes.
 - `draft: true` in a project's frontmatter hides it from listings, its page and the sitemap (`src/lib/projects.ts`). Use it for unfinished write-ups instead of publishing placeholders.
 - Card images: `public/assets/images/projects/<slug>/featured.jpg`, a 4:3 desktop capture (1280×960 at 1.25×, JPEG) of the live site, plus `screenshot-N.jpg` gallery images (JPEG, about quality 82; PNG screenshots were 3× larger, converted 2026-10-19). Check every capture by eye: blur or hide user-uploaded content that's offensive, and crop out broken embeds.
 - 13 projects as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
@@ -149,6 +151,7 @@ _Last updated: 2026-10-19._
 - **Archived designs:** the other 14 landing pages, their components and the page switcher used to compare them are in `examples/landing-designs/` (see its README). Nothing imports them; TypeScript, ESLint (`examples/**` ignored) and Vitest (`include: src/**`) skip the folder. Reference them if we need an idea later. The user also liked design 5, "Bold Services", for listing every service.
 - **Services:** offered now are **Websites, Mobile Apps and Social Media** (short names chosen by the user; the descriptions say design and development). **Planned, not offered yet:** Photography / Videography (one service, sold together), Graphic Design and Print. Their data is in `src/lib/services.ts`; keep them off the site until the user is ready (no "coming soon" pages, see AdSense). Each service page shows examples from `relatedProjects`; Mobile Apps has none until the JGB Tools app is in the stores, Social Media has none until the user names a client.
 - **Products vs client work:** JGB Tools, Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam are the user's own products (listed in `src/lib/products.ts`). **Ti Kwen Pam is hidden** (`draft: true`): the user doesn't find it nice enough to show; keep the file. The user usually builds apps and media sites as products, while clients mostly want static sites or landing pages, but **always ask the user** whether a new project is a product or client work.
+- **SEO (the user's "SEO by default" rule):** every page gets its title, description, canonical, Open Graph and X tags (`twitter:site` = `@jgb_solutions`, the business's X account) from `createPageSEO` in `src/lib/seo.ts`, plus structured data: the business (`ProfessionalService`, root route) on every page, breadcrumbs on inner pages, `WebSite` on home, `Service` per service, `WebApplication` / `VideoGame` / `WebSite` per product (by `kind` in `products.json`), `CreativeWork` per client project, `AboutPage` on About. The sitemap (`src/lib/sitemap.ts`) has a `lastmod` per URL. `bun run seo:check` checks it all on every PR (CI) and should be run against the live site after a merge.
 - **Business facts for copy:** based in Laval, Québec; "10+ years" (building since 2009), "dozens of clients", "dozens of projects" (no more precise client or project counts); no prices ("contact us for a quote"); no contact form (spam): use services@jgb.solutions and WhatsApp/phone +1 438 389 5465 (`SITE.phone`). The founder's name, photo and story belong on the About page, not the home page; the home page speaks as the business ("we").
 - **Switched off until the user asks** (`src/lib/features.ts`): the **blog** (`FEATURES.blog`). `/posts` pages return not found, and the header, footer, home page, 404 page and sitemap hide it. The two old posts came from the founder's personal blog. To turn it back on, set the flag and write business posts.
 - **Home page:** bold look only. A light look was built and dropped (in git history, commit 451cded) — the user may ask for it again. No client list for now. **Every page ends with the contact band** (`ContactSection`, `id="contact"`), rendered by `SiteFooter`, so "Start a project" and other contact links are plain `#contact` anchors that work on any page. The band has "Email us" (mailto, with the address and a Copy button beside it, since mailto does nothing without a mail app) and "WhatsApp us". Footer contact: email and phone only; socials are the founder's personal LinkedIn and Instagram for now (business pages may come later), no GitHub.
