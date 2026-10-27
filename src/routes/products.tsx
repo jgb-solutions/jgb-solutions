@@ -18,8 +18,9 @@ export const Route = createFileRoute('/products')({
   head: () =>
     createPageSEO({
       title: 'Products | JGB Solutions',
-      description:
-        'Apps, games and media sites built and run by JGB Solutions: JGB Tools, Street Brawl, MP3PAM and Tech Talk.',
+      description: `Apps, games and media sites built and run by JGB Solutions: ${products
+        .map(product => product.title)
+        .join(', ')}.`,
       path: '/products',
       breadcrumbs: [{ name: 'Products', path: '/products' }],
       jsonLd: [

@@ -1,21 +1,22 @@
 ---
-title: MP3PAM
+title: MP3Pam
 category: WEB APP
-description: MP3PAM is a free entertainment platform for sharing music, podcasts, and audio. Listen, download, and share unlimited sounds.
+description: MP3Pam helps people find any song, artist or album, play the official preview, watch the video, and see where to listen, buy or get tickets.
 image: /assets/images/projects/mp3pam/featured.jpg
 order: 30
-client: MP3PAM
-updated: '2026-10-19'
-year: '2022'
+client: JGB SOLUTIONS
+updated: '2026-10-27'
+year: '2026'
 services:
-  - Svelte
-  - SvelteKit
-  - PocketBase
-  - Tailwind CSS
-  - Daisy UI
+  - TanStack Start
+  - React
   - TypeScript
-  - Cloudflare R2
-summary: MP3PAM is a free entertainment platform for sharing music, podcasts, and audio. Listen, download, and share unlimited sounds.
+  - Tailwind CSS
+  - Cloudflare Workers
+  - D1
+  - Drizzle
+  - oRPC
+summary: Find any song, artist or album, play the official preview, watch the video, and see where to listen, buy or get tickets.
 url: 'https://mp3pam.top/'
 gallery:
   - /assets/images/projects/mp3pam/screenshot-1.jpg
@@ -25,16 +26,20 @@ gallery:
 
 ## Project Overview
 
-MP3PAM is a Haitian entertainment platform for sharing all kinds of audio content. From the latest music tracks to engaging podcasts and even advertisements, MP3PAM serves as a central hub for audio distribution.
+MP3Pam is a music discovery site: search any song, artist or album, from any country or genre, play the official preview, watch the music video, and go straight to where you can listen to the full track, buy it, or get tickets to a show. The home page shows the top songs worldwide and by country, from the United States and the United Kingdom to Brazil, Nigeria, Japan and South Korea.
+
+MP3Pam first launched in 2022 as a site for sharing audio. In 2026 we rebuilt it from scratch around a simple rule: no audio is hosted on MP3Pam. Every preview comes from the platform that provides it, and every link goes to a licensed service.
 
 ## The Challenge
 
-Content creators and artists needed a reliable, free platform to distribute their audio content to a wide audience without restrictive barriers. Users wanted a unified place to discover, listen to, and download unlimited sounds seamlessly across devices.
+People want one place to find a song and every legal way to hear it, but music data is spread across many services, each with its own catalog, links and limits. The site had to pull it together quickly, match the same song across platforms, stay fast on phones, and never host or offer music it doesn't have the rights to.
 
 ## The Solution
 
-We built the web application with SvelteKit and PocketBase. The platform features:
+We built MP3Pam with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
 
-- **Unlimited Sharing:** Users can upload and share music and podcasts without limits.
-- **High Performance:** Powered by SvelteKit and Cloudflare R2 for fast content delivery.
-- **Modern UI:** A responsive interface built with DaisyUI and Tailwind CSS that works on phones and desktops.
+- **Charts by country:** the top songs worldwide and in 10 countries, from Deezer's charts, with a play button on every track.
+- **Artist and release pages:** top songs, albums, music videos and where to listen, for each artist and each album or single.
+- **Official previews and videos:** about 30 seconds of each song, streamed from the platform that provides it, and official music videos from YouTube.
+- **Where to listen, buy or get tickets:** links to streaming services, music stores and ticket sellers. Some are affiliate links, and the site says so.
+- **Fast and searchable:** pages are rendered on the server and cached at the edge, so they load quickly and search engines can read them.

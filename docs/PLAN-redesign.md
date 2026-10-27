@@ -71,7 +71,7 @@ These three must not appear on the site until you offer them. AdSense rejects "c
 | Home     | `/`               | See below                                                                    |
 | Services | `/services`       | The three services, how we work, call to action                              |
 | Service  | `/services/$slug` | What's included, process, related work, questions, call to action            |
-| Products | `/products`       | Our own products: JGB Tools, Street Brawl, MP3PAM, Tech Talk, Ti Kwen Pam    |
+| Products | `/products`       | Our own products: JGB Tools, Street Brawl, MP3Pam, Tech Talk, Ti Kwen Pam    |
 | Work     | `/projects`       | Client work. Keep the URL (it's indexed); the menu can call it "Work"        |
 | Project  | `/projects/$slug` | Restyled case study: challenge, solution, gallery, link                      |
 | About    | `/about`          | The company, the founder, where we are, how we work                          |
@@ -87,7 +87,7 @@ Footer (black): services, products, company links, email, social links, location
 1. **Hero (orange).** Business headline, one sentence on who it's for, "Start a project" and "See our work". On the right, the three services as black tiles (straight from design 6).
 2. ~~**Trusted by.**~~ Removed at the user's request (2026-10-17); something else may take its place later.
 3. **Services (white).** Three cards linking to the service pages.
-4. **Products (black).** JGB Tools (8 free tools, web and iOS/Android app), Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam, with links to their sites. This is what makes JGB Solutions look like a company and not a freelancer.
+4. **Products (black).** JGB Tools (8 free tools, web and iOS/Android app), Street Brawl, MP3Pam, Tech Talk and Ti Kwen Pam, with links to their sites. This is what makes JGB Solutions look like a company and not a freelancer.
 5. **Selected work (white).** Three or four projects with their screenshots.
 6. **How we work.** The real sequence, for example Discovery → Design → Build → Launch & support. Numbered, because it is an order.
 7. **Insights.** Built, but hidden while the blog is switched off (`FEATURES.blog`).
@@ -118,7 +118,7 @@ Each phase is a commit (or a few) on `site-revamp`. Once phase 1 is in, push the
 ## Decisions (2026-10-17)
 
 1. **Location:** Laval, Québec. Use it in the footer, About, SEO and JSON-LD. (Old blog posts that mention Port-au-Prince stay as written.)
-2. **Products:** JGB Tools, Street Brawl, MP3PAM, Tech Talk and Ti Kwen Pam are JGB Solutions products. The user usually builds apps and media sites as products; clients mostly want static sites or landing pages. **Always ask the user whether a new project is a product or client work.**
+2. **Products:** JGB Tools, Street Brawl, MP3Pam, Tech Talk and Ti Kwen Pam are JGB Solutions products. The user usually builds apps and media sites as products; clients mostly want static sites or landing pages. **Always ask the user whether a new project is a product or client work.**
 3. **Numbers:** "10+ years" (since 2009), "dozens of clients", "dozens of projects".
 4. **Theme:** no dark-mode toggle. Show a light variant of the home page next to the bold one in phase 2.
 5. **Contact:** **no contact form** (spam). Business email services@jgb.solutions and the business WhatsApp/phone **+1 438 389 5465**, shown on the site (`SITE.phone` in `src/lib/constants.ts`). Remove the current form (`src/components/contact.tsx`, `src/lib/functions/contact.ts` and the Resend dependency) when the home page is replaced.

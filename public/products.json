@@ -9,6 +9,20 @@
       "kind": "web-app"
     },
     {
+      "id": "allflix",
+      "name": "AllFlix",
+      "tagline": "Every movie and show, and where to watch it",
+      "url": "https://allflix.jgb.solutions/",
+      "kind": "web-app"
+    },
+    {
+      "id": "mp3pam",
+      "name": "MP3Pam",
+      "tagline": "Find any song, artist or album",
+      "url": "https://mp3pam.top/",
+      "kind": "web-app"
+    },
+    {
       "id": "street-brawl",
       "name": "Street Brawl",
       "tagline": "A free fighting game in your browser",
@@ -16,10 +30,17 @@
       "kind": "game"
     },
     {
-      "id": "mp3pam",
-      "name": "MP3PAM",
-      "tagline": "Music, podcasts and audio",
-      "url": "https://mp3pam.top/",
+      "id": "domino-club",
+      "name": "Domino Club",
+      "tagline": "Live dominoes with friends, free in your browser",
+      "url": "https://domino.jgb.solutions/",
+      "kind": "game"
+    },
+    {
+      "id": "api-playground",
+      "name": "API Playground",
+      "tagline": "Explore sample APIs and design your own",
+      "url": "https://playground.jgb.solutions/",
       "kind": "web-app"
     },
     {

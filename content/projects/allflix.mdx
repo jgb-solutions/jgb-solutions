@@ -1,0 +1,45 @@
+---
+title: AllFlix
+category: WEB APP
+description: AllFlix helps people find any movie or TV show, watch the official trailer, see who's in it, and find where to watch it.
+image: /assets/images/projects/allflix/featured.jpg
+order: 11
+client: JGB SOLUTIONS
+updated: '2026-10-27'
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Cloudflare Workers
+  - D1
+  - Drizzle
+  - oRPC
+summary: Every movie and show, and where to watch it.
+url: 'https://allflix.jgb.solutions/'
+gallery:
+  - /assets/images/projects/allflix/screenshot-1.jpg
+  - /assets/images/projects/allflix/screenshot-2.jpg
+  - /assets/images/projects/allflix/screenshot-3.jpg
+---
+
+## Project Overview
+
+AllFlix is a guide to every movie and TV show: search any title or person, watch the official trailer, see the cast and crew, and find where to watch it. The home page highlights what's trending, what's new and what's coming soon, and lists the most watched titles in Spanish, Portuguese, French, German, Italian, Japanese, Korean, Chinese, Hindi, Arabic and Turkish.
+
+It's the movies and TV version of MP3Pam: one place to find something to watch and the legal ways to watch it.
+
+## The Challenge
+
+Information about movies and shows is spread across many open sources, each with different coverage, and titles are easy to confuse: a search for "Dune" can return two films, a book and a video game. The site had to bring the sources together, show the right title every time, find the official trailer, and stay fast on phones.
+
+## The Solution
+
+We built AllFlix with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+
+- **Open data, combined:** titles, people and filmographies come from Wikidata and Wikipedia, shows with their seasons and episodes from TVmaze, and posters from Wikidata, TVmaze or TMDB. Every source is credited on the About page.
+- **Pages for everything:** a page for each movie, show, season, episode and person, with the story, cast, crew, details and where to watch.
+- **Official trailers:** matched from the official channels of studios, distributors and streaming services on YouTube.
+- **Lists that stay current:** trending, new, coming soon, and popular titles by language.
+- **Fast and searchable:** pages are rendered on the server, so they load quickly and search engines can read them.
