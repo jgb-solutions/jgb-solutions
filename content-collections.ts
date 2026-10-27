@@ -45,6 +45,8 @@ const projects = defineCollection({
     summary: z.string().optional(),
     /** Hidden from the site and sitemap until the write-up is finished. */
     draft: z.boolean().optional(),
+    /** Last time the write-up or its images changed (YYYY-MM-DD), for the sitemap's lastmod. */
+    updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     content: z.string(),
   }),
   transform: async (document, context) => {

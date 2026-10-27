@@ -10,8 +10,8 @@ import {
 } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
-import { overviewOf, products } from '@/lib/products'
-import { createPageSEO } from '@/lib/seo'
+import { overviewOf, productKind, products } from '@/lib/products'
+import { createPageSEO, productJsonLd } from '@/lib/seo'
 import { cn } from '@/lib/utils'
 
 export const Route = createFileRoute('/products')({
@@ -21,6 +21,18 @@ export const Route = createFileRoute('/products')({
       description:
         'Apps, games and media sites built and run by JGB Solutions: JGB Tools, Street Brawl, MP3PAM and Tech Talk.',
       path: '/products',
+      breadcrumbs: [{ name: 'Products', path: '/products' }],
+      jsonLd: [
+        {
+          '@type': 'ItemList',
+          name: 'Products by JGB Solutions',
+          itemListElement: products.map((product, index) => ({
+            '@type': 'ListItem',
+            position: index + 1,
+            item: productJsonLd(product, productKind(product.slug) ?? 'web-app'),
+          })),
+        },
+      ],
     }),
   component: ProductsPage,
 })

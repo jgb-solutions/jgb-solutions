@@ -12,7 +12,7 @@ import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
 import { SITE } from '@/lib/constants'
 import { products } from '@/lib/products'
-import { createPageSEO } from '@/lib/seo'
+import { ORGANIZATION_REF, createPageSEO } from '@/lib/seo'
 
 // Draft copy built from the founder's earlier About text, README and project write-ups. The user
 // will rewrite it in their own words (docs/TODO-redesign.md). This is the only page that names
@@ -24,6 +24,21 @@ export const Route = createFileRoute('/about')({
       description:
         'JGB Solutions is a web and mobile studio in Laval, Québec, founded by Jean Gérard Bousiquot. Building for the web since 2009.',
       path: '/about',
+      breadcrumbs: [{ name: 'About', path: '/about' }],
+      jsonLd: [
+        {
+          '@type': 'AboutPage',
+          url: `${SITE.url}/about`,
+          about: ORGANIZATION_REF,
+          mainEntity: {
+            '@type': 'Person',
+            name: SITE.author,
+            jobTitle: 'Founder',
+            worksFor: ORGANIZATION_REF,
+            image: 'https://public.jgb.solutions/jgb-2022-800.jpg',
+          },
+        },
+      ],
     }),
   component: AboutPage,
 })

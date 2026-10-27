@@ -18,6 +18,7 @@ const mockProject: (typeof allProjects)[number] = {
   image: '/test.png',
   slug: 'test-project',
   order: 10,
+  updated: '2026-10-19',
   summary: 'This is a test summary',
   content: 'Test content',
   _meta: {

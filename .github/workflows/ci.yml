@@ -40,3 +40,12 @@ jobs:
 
       - name: Build
         run: bun run build
+
+      # SEO check: serve a production build and check every page in the sitemap
+      # (one h1, titles, descriptions, canonical, Open Graph/X tags, structured data, alt text)
+      - name: SEO check
+        run: |
+          BUILD_TARGET=bun bun run build
+          PORT=4173 bun .output/server/index.mjs > /tmp/server.log 2>&1 &
+          for i in $(seq 1 30); do curl -sf http://localhost:4173/robots.txt > /dev/null && break; sleep 1; done
+          bun run seo:check http://localhost:4173

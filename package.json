@@ -14,7 +14,8 @@
     "type-check": "tsc --noEmit",
     "test": "vitest",
     "test:run": "vitest run",
-    "generate:collections": "content-collections build"
+    "generate:collections": "content-collections build",
+    "seo:check": "bun scripts/check-seo.ts"
   },
   "dependencies": {
     "@content-collections/core": "^0.13.1",

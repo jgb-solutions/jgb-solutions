@@ -1,5 +1,13 @@
 import { describe, expect, it } from 'vitest'
-import { createOrganizationJsonLd, createPageSEO } from './seo'
+import {
+  breadcrumbJsonLd,
+  clientProjectJsonLd,
+  createOrganizationJsonLd,
+  createPageSEO,
+  productJsonLd,
+  serviceJsonLd,
+} from './seo'
+import { getServiceBySlug } from './services'
 
 describe('seo', () => {
   describe('createPageSEO', () => {
@@ -26,7 +34,7 @@ describe('seo', () => {
         property: 'og:image',
         content: 'https://jgb.solutions/og-image.png',
       })
-      expect(seo.meta).not.toContainEqual(expect.objectContaining({ name: 'twitter:site' }))
+      expect(seo.meta).toContainEqual({ name: 'twitter:site', content: '@jgb_solutions' })
 
       // Check Links (Canonical)
       expect(seo.links).toContainEqual({ rel: 'canonical', href: 'https://jgb.solutions/test' })
@@ -81,6 +89,75 @@ describe('seo', () => {
         'Mobile Apps',
         'Social Media',
       ])
+    })
+  })
+
+  describe('page structured data', () => {
+    const parse = (script: { children: string }) =>
+      JSON.parse(script.children) as Record<string, unknown>
+
+    it('adds breadcrumbs and page entries as script tags', () => {
+      const service = getServiceBySlug('websites')
+      if (!service) throw new Error('websites service missing')
+      const seo = createPageSEO({
+        title: 'Websites',
+        path: '/services/websites',
+        breadcrumbs: [
+          { name: 'Services', path: '/services' },
+          { name: 'Websites', path: '/services/websites' },
+        ],
+        jsonLd: [serviceJsonLd(service)],
+      })
+
+      const [breadcrumbs, serviceData] = (seo.scripts ?? []).map(parse)
+      expect(breadcrumbs['@type']).toBe('BreadcrumbList')
+      expect(serviceData).toMatchObject({
+        '@context': 'https://schema.org',
+        '@type': 'Service',
+        name: 'Websites',
+        provider: { '@id': 'https://jgb.solutions/#organization' },
+      })
+    })
+
+    it('has no scripts when a page has no structured data', () => {
+      expect(createPageSEO({ title: 'T', path: '/x' })).not.toHaveProperty('scripts')
+    })
+
+    it('builds a breadcrumb trail from Home', () => {
+      const trail = breadcrumbJsonLd([{ name: 'Work', path: '/projects' }])
+      expect(trail.itemListElement).toEqual([
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://jgb.solutions' },
+        { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://jgb.solutions/projects' },
+      ])
+    })
+
+    const project = {
+      slug: 'street-brawl',
+      title: 'Street Brawl',
+      description: 'A game.',
+      image: '/assets/images/projects/street-brawl/featured.jpg',
+      url: 'https://streetbrawl.jgb.solutions/',
+      year: '2026',
+    }
+
+    it('describes products by kind', () => {
+      expect(productJsonLd(project, 'game')).toMatchObject({
+        '@type': 'VideoGame',
+        url: 'https://streetbrawl.jgb.solutions/',
+        image: 'https://jgb.solutions/assets/images/projects/street-brawl/featured.jpg',
+        isAccessibleForFree: true,
+      })
+      expect(productJsonLd(project, 'web-app')['@type']).toBe('WebApplication')
+      expect(productJsonLd(project, 'media')['@type']).toBe('WebSite')
+    })
+
+    it('credits client work to the business', () => {
+      expect(clientProjectJsonLd({ ...project, client: 'ENEPH' })).toMatchObject({
+        '@type': 'CreativeWork',
+        url: 'https://jgb.solutions/projects/street-brawl',
+        creator: { '@id': 'https://jgb.solutions/#organization' },
+        sourceOrganization: { '@type': 'Organization', name: 'ENEPH' },
+      })
     })
   })
 })

@@ -3,8 +3,9 @@
  * Based on: https://tanstack.com/start/latest/docs/framework/react/guide/seo
  */
 
-import { OG_IMAGE, SEO, SITE } from './constants'
+import { OG_IMAGE, SEO, SITE, X_ACCOUNT } from './constants'
 import { OFFERED_SERVICES } from './services'
+import type { Service } from './services'
 
 export interface SEOConfig {
   title?: string
@@ -83,6 +84,7 @@ export function createSEOMeta(config: SEOConfig = {}) {
   // Twitter Card
   meta.push(
     { name: 'twitter:card', content: 'summary_large_image' },
+    { name: 'twitter:site', content: X_ACCOUNT.handle },
     { name: 'twitter:title', content: title },
     { name: 'twitter:description', content: description },
     { name: 'twitter:image', content: image }
@@ -98,13 +100,137 @@ export function createCanonicalLink(path: string) {
   return [{ rel: 'canonical', href: `${SITE.url}${path}` }]
 }
 
-/**
- * Complete SEO configuration for a route
- */
-export function createPageSEO(config: SEOConfig & { path: string }) {
+/** schema.org data as a script tag for a route's head(). */
+type JsonLd = Record<string, unknown>
+
+export function jsonLdScript(data: JsonLd) {
   return {
-    meta: createSEOMeta(config),
-    links: createCanonicalLink(config.path),
+    type: 'application/ld+json',
+    children: JSON.stringify({ '@context': 'https://schema.org', ...data }),
+  }
+}
+
+export interface Breadcrumb {
+  name: string
+  path: string
+}
+
+/** BreadcrumbList, starting at Home; the last crumb is the current page. */
+export function breadcrumbJsonLd(crumbs: Array<Breadcrumb>): JsonLd {
+  const trail = [{ name: 'Home', path: '/' }, ...crumbs]
+  return {
+    '@type': 'BreadcrumbList',
+    itemListElement: trail.map((crumb, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: crumb.name,
+      item: `${SITE.url}${crumb.path === '/' ? '' : crumb.path}`,
+    })),
+  }
+}
+
+/** A reference to the business described by the root route's structured data. */
+export const ORGANIZATION_REF = { '@id': `${SITE.url}/#organization` } as const
+
+/**
+ * Complete SEO configuration for a route: meta tags, canonical link and structured data
+ * (breadcrumbs for inner pages, plus any page-specific schema.org entries).
+ */
+export function createPageSEO(
+  config: SEOConfig & { path: string; breadcrumbs?: Array<Breadcrumb>; jsonLd?: Array<JsonLd> }
+) {
+  const { breadcrumbs, jsonLd = [], ...seo } = config
+  const data = breadcrumbs ? [breadcrumbJsonLd(breadcrumbs), ...jsonLd] : jsonLd
+  return {
+    meta: createSEOMeta(seo),
+    links: createCanonicalLink(seo.path),
+    ...(data.length > 0 ? { scripts: data.map(jsonLdScript) } : {}),
+  }
+}
+
+/** The home page as a WebSite published by the business. */
+export function websiteJsonLd(): JsonLd {
+  return {
+    '@type': 'WebSite',
+    '@id': `${SITE.url}/#website`,
+    name: SITE.name,
+    url: SITE.url,
+    inLanguage: 'en',
+    publisher: ORGANIZATION_REF,
+  }
+}
+
+/** One of the services we sell. */
+export function serviceJsonLd(service: Service): JsonLd {
+  return {
+    '@type': 'Service',
+    name: service.title,
+    serviceType: service.title,
+    description: service.description,
+    url: `${SITE.url}/services/${service.slug}`,
+    provider: ORGANIZATION_REF,
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${service.title}: what's included`,
+      itemListElement: service.offerings.map(offering => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: offering },
+      })),
+    },
+  }
+}
+
+/** schema.org type for each kind of product in public/products.json. */
+const PRODUCT_TYPES = {
+  'web-app': 'WebApplication',
+  game: 'VideoGame',
+  media: 'WebSite',
+} as const
+
+export type ProductKind = keyof typeof PRODUCT_TYPES
+
+interface ProjectForJsonLd {
+  slug: string
+  title: string
+  description: string
+  image: string
+  url?: string
+  year?: string
+}
+
+/** One of our own products: a web app, a game or a media site. */
+export function productJsonLd(project: ProjectForJsonLd, kind: ProductKind): JsonLd {
+  const type = PRODUCT_TYPES[kind]
+  return {
+    '@type': type,
+    name: project.title,
+    description: project.description,
+    image: `${SITE.url}${project.image}`,
+    url: project.url ?? `${SITE.url}/projects/${project.slug}`,
+    // Free web apps and games that run in any browser
+    ...(type === 'WebApplication' ? { browserRequirements: 'A modern web browser' } : {}),
+    ...(type === 'VideoGame'
+      ? { gamePlatform: 'Web browser', applicationCategory: 'GameApplication' }
+      : {}),
+    isAccessibleForFree: true,
+    publisher: ORGANIZATION_REF,
+  }
+}
+
+/** Client work: the site we made, credited to the business. */
+export function clientProjectJsonLd(project: ProjectForJsonLd & { client?: string }): JsonLd {
+  return {
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.description,
+    image: `${SITE.url}${project.image}`,
+    url: `${SITE.url}/projects/${project.slug}`,
+    ...(project.url ? { sameAs: project.url } : {}),
+    ...(project.year ? { dateCreated: project.year } : {}),
+    creator: ORGANIZATION_REF,
+    ...(project.client
+      ? { sourceOrganization: { '@type': 'Organization', name: project.client } }
+      : {}),
   }
 }
 
@@ -126,6 +252,7 @@ export function createOrganizationJsonLd() {
       description: SEO.description,
       email: SITE.email,
       telephone: SITE.phone.replace(/\s/g, ''),
+      sameAs: [X_ACCOUNT.url],
       address: {
         '@type': 'PostalAddress',
         addressLocality: 'Laval',

@@ -5,9 +5,9 @@ import { MdxRenderer } from '@/components/mdx-provider'
 import { Container, SectionLabel, buttonStyles } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
-import { PRODUCT_SLUGS } from '@/lib/products'
+import { PRODUCT_SLUGS, productKind } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
-import { createPageSEO } from '@/lib/seo'
+import { clientProjectJsonLd, createPageSEO, productJsonLd } from '@/lib/seo'
 
 const getProject = createServerFn({ method: 'GET' })
   .inputValidator((slug: string) => slug)
@@ -31,12 +31,18 @@ export const Route = createFileRoute('/projects/$slug')({
   head: ({ loaderData }) => {
     if (!loaderData) return {}
     const { project } = loaderData
+    const kind = productKind(project.slug)
     return createPageSEO({
       title: `${project.title} - Work | JGB Solutions`,
       description: project.description,
       image: project.image,
       type: 'article',
       path: `/projects/${project.slug}`,
+      breadcrumbs: [
+        { name: 'Work', path: '/projects' },
+        { name: project.title, path: `/projects/${project.slug}` },
+      ],
+      jsonLd: [kind ? productJsonLd(project, kind) : clientProjectJsonLd(project)],
     })
   },
   component: ProjectDetailPage,
