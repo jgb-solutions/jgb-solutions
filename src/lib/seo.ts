@@ -106,7 +106,11 @@ type JsonLd = Record<string, unknown>
 export function jsonLdScript(data: JsonLd) {
   return {
     type: 'application/ld+json',
-    children: JSON.stringify({ '@context': 'https://schema.org', ...data }),
+    // "<" escaped so a value can never close the script tag
+    children: JSON.stringify({ '@context': 'https://schema.org', ...data }).replace(
+      /</g,
+      '\\u003c'
+    ),
   }
 }
 
@@ -239,35 +243,31 @@ export function clientProjectJsonLd(project: ProjectForJsonLd & { client?: strin
  * the root route so search engines know jgb.solutions is a company, not a person.
  */
 export function createOrganizationJsonLd() {
-  return {
-    type: 'application/ld+json',
-    children: JSON.stringify({
-      '@context': 'https://schema.org',
-      '@type': 'ProfessionalService',
-      '@id': `${SITE.url}/#organization`,
-      name: SITE.name,
-      url: SITE.url,
-      logo: `${SITE.url}/logo.png`,
-      image: OG_IMAGE.url,
-      description: SEO.description,
-      email: SITE.email,
-      telephone: SITE.phone.replace(/\s/g, ''),
-      sameAs: [X_ACCOUNT.url],
-      address: {
-        '@type': 'PostalAddress',
-        addressLocality: 'Laval',
-        addressRegion: 'QC',
-        addressCountry: 'CA',
+  return jsonLdScript({
+    '@type': 'ProfessionalService',
+    '@id': `${SITE.url}/#organization`,
+    name: SITE.name,
+    url: SITE.url,
+    logo: `${SITE.url}/logo.png`,
+    image: OG_IMAGE.url,
+    description: SEO.description,
+    email: SITE.email,
+    telephone: SITE.phone.replace(/\s/g, ''),
+    sameAs: [X_ACCOUNT.url],
+    address: {
+      '@type': 'PostalAddress',
+      addressLocality: 'Laval',
+      addressRegion: 'QC',
+      addressCountry: 'CA',
+    },
+    makesOffer: OFFERED_SERVICES.map(service => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.shortDescription,
+        url: `${SITE.url}/services/${service.slug}`,
       },
-      makesOffer: OFFERED_SERVICES.map(service => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service.title,
-          description: service.shortDescription,
-          url: `${SITE.url}/services/${service.slug}`,
-        },
-      })),
-    }),
-  }
+    })),
+  })
 }
