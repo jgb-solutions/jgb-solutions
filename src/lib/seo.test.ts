@@ -160,4 +160,10 @@ describe('seo', () => {
       })
     })
   })
+
+  it('escapes < so structured data can never close its script tag', () => {
+    const seo = createPageSEO({ title: 'T', path: '/x', jsonLd: [{ name: '</script><b>' }] })
+    expect(seo.scripts?.[0].children).not.toContain('</script>')
+    expect(JSON.parse(seo.scripts?.[0].children ?? '{}')).toMatchObject({ name: '</script><b>' })
+  })
 })
