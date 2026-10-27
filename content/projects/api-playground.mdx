@@ -1,0 +1,42 @@
+---
+title: API Playground
+category: WEB APP
+description: API Playground is a workbench for JSON APIs. Explore 50 live sample APIs, try pagination and field selection, and draft your own API in the browser.
+image: /assets/images/projects/api-playground/featured.jpg
+order: 14
+client: JGB SOLUTIONS
+updated: '2026-10-27'
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Cloudflare Workers
+  - D1
+  - Drizzle
+  - oRPC
+summary: Explore live sample APIs and design your own JSON API in the browser.
+url: 'https://playground.jgb.solutions/'
+gallery:
+  - /assets/images/projects/api-playground/screenshot-1.jpg
+---
+
+## Project Overview
+
+API Playground is a workbench for JSON APIs. Developers can explore a catalog of 50 live sample APIs across ten categories (space, games, films, books, animals, food, music, nature, cities and science), call them with pagination and field selection, and shape a draft of their own API in the browser with a live preview of the response.
+
+Each sample API serves 120 original records from a public endpoint, so it's ready to use for prototypes, tutorials and front-end practice. Accounts and publishing your own APIs are the next step.
+
+## The Challenge
+
+Developers often need realistic data to build against before their own back end exists, and public sample APIs are often slow, limited or gone overnight. The playground had to serve fast, predictable responses from many sample APIs at low cost, and make designing an API approachable for people who don't want to set up a server.
+
+## The Solution
+
+We built API Playground with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+
+- **50 sample APIs:** original, generated datasets with 120 records each, served from `GET /v1/{api}/{resource}` with `page`, `limit` and `fields` parameters.
+- **Served from the edge:** public responses are cached close to the people calling them, so they come back fast.
+- **A visual builder:** pick a sample, change the response, and preview the JSON before anything is saved.
+- **Documentation:** a docs page explains every endpoint and parameter, with examples to copy.

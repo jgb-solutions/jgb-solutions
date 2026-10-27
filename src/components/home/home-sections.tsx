@@ -87,17 +87,12 @@ export function HomeProducts({ tone }: { tone: SectionTone }) {
           All products <ArrowRight className='h-4 w-4' />
         </Link>
       </div>
-      <div className='grid grid-cols-1 gap-6 lg:grid-cols-2'>
+      <div className='flex flex-col gap-6'>
+        {/* The first product gets a full-width card, the others a grid of three */}
         <ProductCard product={featured} tone={tone} featured />
-        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2'>
-          {rest.map((product, i) => (
-            <ProductCard
-              key={product.slug}
-              product={product}
-              tone={tone}
-              // An odd last card spans both columns so the grid has no hole
-              wide={rest.length % 2 === 1 && i === rest.length - 1}
-            />
+        <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
+          {rest.map(product => (
+            <ProductCard key={product.slug} product={product} tone={tone} />
           ))}
         </div>
       </div>
@@ -109,28 +104,23 @@ function ProductCard({
   product,
   tone,
   featured = false,
-  wide = false,
 }: {
   product: (typeof products)[number]
   tone: SectionTone
   featured?: boolean
-  wide?: boolean
 }) {
   return (
     <article
       className={cn(
         'group flex flex-col border',
-        wide && 'sm:col-span-2',
+        featured && 'lg:grid lg:grid-cols-2',
         isDark(tone) ? 'border-ink-line bg-ink-soft' : 'border-ink/10 bg-paper'
       )}
     >
       <Link
         to='/projects/$slug'
         params={{ slug: product.slug }}
-        className={cn(
-          'block overflow-hidden',
-          wide ? 'aspect-[4/3] sm:aspect-[2/1]' : 'aspect-[4/3]'
-        )}
+        className='block aspect-[4/3] overflow-hidden'
         tabIndex={-1}
         aria-hidden
       >
@@ -141,7 +131,12 @@ function ProductCard({
           className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
         />
       </Link>
-      <div className={cn('flex flex-1 flex-col gap-3', featured ? 'p-8' : 'p-5')}>
+      <div
+        className={cn(
+          'flex flex-1 flex-col gap-3',
+          featured ? 'p-8 lg:justify-center lg:p-12' : 'p-5'
+        )}
+      >
         <p className={cn('font-mono text-[11px] uppercase tracking-[0.2em]', mutedText[tone])}>
           {product.category}
         </p>
@@ -163,7 +158,8 @@ function ProductCard({
             target='_blank'
             rel='noopener noreferrer'
             className={cn(
-              'mt-auto inline-flex items-center gap-1.5 pt-2 text-sm font-semibold',
+              'inline-flex items-center gap-1.5 pt-2 text-sm font-semibold',
+              !featured && 'mt-auto',
               isDark(tone) ? 'text-brand' : 'text-brand-strong'
             )}
           >

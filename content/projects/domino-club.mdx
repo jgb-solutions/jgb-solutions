@@ -1,0 +1,41 @@
+---
+title: Domino Club
+category: GAME
+description: Domino Club is a free live dominoes game in the browser. Play double-six with friends in a private room, or practice against friendly bots.
+image: /assets/images/projects/domino-club/featured.jpg
+order: 13
+client: JGB SOLUTIONS
+updated: '2026-10-27'
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - Cloudflare Workers
+  - Durable Objects
+  - WebSockets
+summary: Play free live double-six dominoes with friends in a private room or practice against friendly bots.
+url: 'https://domino.jgb.solutions/'
+gallery:
+  - /assets/images/projects/domino-club/screenshot-1.jpg
+---
+
+## Project Overview
+
+Domino Club is a colorful, cartoon-style dominoes game that runs in the browser. Open a practice table and play right away against three friendly bots, or create a private room and send the invite link to friends to play together live, from any device.
+
+It plays classic double-six draw dominoes: seven tiles each, match either end of the chain, draw from the boneyard when you can't play, and empty your hand first to score the pips left in the other players' hands. The game is available in English, French, Spanish and Haitian Creole.
+
+## The Challenge
+
+A live game has to keep every player's table in sync in real time, survive players dropping and reconnecting, and feel smooth on a phone screen as the chain of tiles grows in every direction, without running a game server around the clock.
+
+## The Solution
+
+We built Domino Club with **TanStack Start** on **Cloudflare Workers**.
+
+- **One table, one Durable Object:** each table runs in its own Cloudflare Durable Object with its own storage. Players connect over WebSockets, and the table sleeps when nobody is playing, so it costs nothing while idle.
+- **Private rooms and practice:** invite friends with a link, or practice against three bots run by the server.
+- **A table that grows:** the board is an open canvas where existing tiles never move. Drag or pinch to pan and zoom, and the view follows new moves until you take over.
+- **Made to feel good:** played tiles arc from the player's hand to the board, drawn tiles travel from the boneyard, and animations respect reduced-motion settings.
+- **Four languages:** English, French, Spanish and Haitian Creole, chosen from the header and remembered on the device.

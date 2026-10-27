@@ -68,6 +68,18 @@ We don't just build for clients. We build and run our own apps, games and media 
       Free online tools for everyday tasks, with no sign-up and no personal tracking.
     </td>
     <td width="50%" valign="top">
+      <a href="https://allflix.jgb.solutions"><img src="public/assets/images/projects/allflix/featured.jpg" alt="AllFlix" /></a>
+      <h3><a href="https://allflix.jgb.solutions">AllFlix</a></h3>
+      Every movie and show: the trailer, the cast, and where to watch it.
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://mp3pam.top"><img src="public/assets/images/projects/mp3pam/featured.jpg" alt="MP3Pam" /></a>
+      <h3><a href="https://mp3pam.top">MP3Pam</a></h3>
+      Find any song, artist or album, play the preview, and see where to listen.
+    </td>
+    <td width="50%" valign="top">
       <a href="https://streetbrawl.jgb.solutions"><img src="public/assets/images/projects/street-brawl/featured.jpg" alt="Street Brawl" /></a>
       <h3><a href="https://streetbrawl.jgb.solutions">Street Brawl</a></h3>
       A free 2D fighting game in your browser, with story, training and online modes.
@@ -75,14 +87,24 @@ We don't just build for clients. We build and run our own apps, games and media 
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://mp3pam.top"><img src="public/assets/images/projects/mp3pam/featured.jpg" alt="MP3PAM" /></a>
-      <h3><a href="https://mp3pam.top">MP3PAM</a></h3>
-      A free platform for sharing music, podcasts and audio.
+      <a href="https://domino.jgb.solutions"><img src="public/assets/images/projects/domino-club/featured.jpg" alt="Domino Club" /></a>
+      <h3><a href="https://domino.jgb.solutions">Domino Club</a></h3>
+      Live dominoes with friends in a private room, or practice against bots.
     </td>
+    <td width="50%" valign="top">
+      <a href="https://playground.jgb.solutions"><img src="public/assets/images/projects/api-playground/featured.jpg" alt="API Playground" /></a>
+      <h3><a href="https://playground.jgb.solutions">API Playground</a></h3>
+      Explore 50 live sample APIs and draft your own JSON API in the browser.
+    </td>
+  </tr>
+  <tr>
     <td width="50%" valign="top">
       <a href="https://techtalk.jgb.solutions"><img src="public/assets/images/projects/techtalk/featured.jpg" alt="Tech Talk" /></a>
       <h3><a href="https://techtalk.jgb.solutions">Tech Talk</a></h3>
-      A tech podcast in Haitian Creole, with episodes, articles and discussions.
+      A tech podcast in Haitian Creole, with every episode and the panelists.
+    </td>
+    <td width="50%" valign="middle" align="center">
+      <h3><a href="https://jgb.solutions/products">See all our products →</a></h3>
     </td>
   </tr>
 </table>
