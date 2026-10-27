@@ -117,6 +117,12 @@ We don't just build for clients. We build and run our own apps, games and media 
 | --------------------------------------------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------------- | --------------------------------------------------------- |
 | A call about your business, your customers and what you need. Then a clear quote. | We design the pages or screens and refine them with you first. | Fast, mobile-first and easy for your team to update. | We put it live, show you how it works and stay available. |
 
+## Need an extra engineer?
+
+Besides full projects, we also work inside your team on contract. Add a senior engineer with **10+ years** of experience to your product, for a few weeks or a few months: TypeScript and React front to back, web and mobile apps, performance and architecture, code reviews and mentoring.
+
+<p><a href="https://jgb.solutions/services#contract-work">More about contract work →</a></p>
+
 ---
 
 <h3 align="center">Have a project in mind?</h3>

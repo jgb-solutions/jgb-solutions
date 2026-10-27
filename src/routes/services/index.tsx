@@ -14,6 +14,13 @@ import { createPageSEO } from '@/lib/seo'
 import { OFFERED_SERVICES } from '@/lib/services'
 import { cn } from '@/lib/utils'
 
+const CONTRACT_SKILLS = [
+  'TypeScript and React, front to back',
+  'Web and mobile apps',
+  'Performance and architecture',
+  'Code reviews and mentoring',
+]
+
 export const Route = createFileRoute('/services/')({
   head: () =>
     createPageSEO({
@@ -84,6 +91,37 @@ function ServicesPage() {
             </Section>
           )
         })}
+
+        {/* Freelance / contract work, offered by the studio (the user wants to stay available for it) */}
+        <Section tone='mist' id='contract-work'>
+          <div className='grid grid-cols-1 gap-10 lg:grid-cols-2 lg:gap-16'>
+            <div className='flex flex-col items-start gap-6'>
+              <SectionLabel className='text-brand-strong opacity-100'>Contract work</SectionLabel>
+              <h2 className='font-display text-4xl font-extrabold tracking-tight md:text-5xl'>
+                Need an extra engineer?
+              </h2>
+              <p className={cn('max-w-xl text-lg leading-relaxed', mutedText.mist)}>
+                Besides full projects, we also work inside your team on contract. Add a senior
+                engineer with 10+ years of experience to your product, for a few weeks or a few
+                months.
+              </p>
+              <a href='#contact' className={buttonStyles('ink')}>
+                Let's talk <ArrowRight className='h-4 w-4' />
+              </a>
+            </div>
+            <ul className='flex flex-col self-center border-t border-ink/10'>
+              {CONTRACT_SKILLS.map(skill => (
+                <li
+                  key={skill}
+                  className='flex items-center gap-4 border-b border-ink/10 py-4 text-lg'
+                >
+                  <Check className='h-5 w-5 shrink-0 text-brand-strong' aria-hidden />
+                  {skill}
+                </li>
+              ))}
+            </ul>
+          </div>
+        </Section>
 
         <ProcessSection tone='ink' />
       </main>

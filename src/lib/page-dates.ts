@@ -5,7 +5,7 @@
  */
 export const PAGE_UPDATED = {
   '/': '2026-10-19',
-  '/services': '2026-10-19',
+  '/services': '2026-10-27',
   '/products': '2026-10-19',
   '/projects': '2026-10-19',
   '/about': '2026-10-19',
