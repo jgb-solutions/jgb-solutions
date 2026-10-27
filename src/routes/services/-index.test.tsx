@@ -30,4 +30,12 @@ describe('Services page', () => {
     expect(screen.queryByText(/photography/i)).not.toBeInTheDocument()
     expect(screen.queryByText(/^print$/i)).not.toBeInTheDocument()
   })
+
+  it('offers contract work', async () => {
+    renderWithRouter({ initialEntries: ['/services'] })
+
+    const heading = await screen.findByRole('heading', { name: 'Need an extra engineer?' })
+    expect(heading.closest('section')).toHaveAttribute('id', 'contract-work')
+    expect(screen.getByRole('link', { name: /let's talk/i })).toHaveAttribute('href', '#contact')
+  })
 })
