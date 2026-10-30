@@ -6,49 +6,63 @@
       "name": "JGB Tools",
       "tagline": "Free online tools for everyday tasks",
       "url": "https://tools.jgb.solutions/",
-      "kind": "web-app"
+      "kind": "web-app",
+      "category": "Tools",
+      "icon": "https://jgb.solutions/assets/images/products/jgb-tools.svg"
     },
     {
       "id": "allflix",
       "name": "AllFlix",
       "tagline": "Every movie and show, and where to watch it",
       "url": "https://allflix.jgb.solutions/",
-      "kind": "web-app"
+      "kind": "web-app",
+      "category": "Entertainment",
+      "icon": "https://jgb.solutions/assets/images/products/allflix.svg"
     },
     {
       "id": "mp3pam",
       "name": "MP3Pam",
       "tagline": "Find any song, artist or album",
       "url": "https://mp3pam.top/",
-      "kind": "web-app"
+      "kind": "web-app",
+      "category": "Entertainment",
+      "icon": "https://jgb.solutions/assets/images/products/mp3pam.svg"
     },
     {
       "id": "street-brawl",
       "name": "Street Brawl",
       "tagline": "A free fighting game in your browser",
       "url": "https://streetbrawl.jgb.solutions/",
-      "kind": "game"
+      "kind": "game",
+      "category": "Games",
+      "icon": "https://jgb.solutions/assets/images/products/street-brawl.svg"
     },
     {
       "id": "domino-club",
       "name": "Domino Club",
       "tagline": "Live dominoes with friends, free in your browser",
       "url": "https://domino.jgb.solutions/",
-      "kind": "game"
+      "kind": "game",
+      "category": "Games",
+      "icon": "https://jgb.solutions/assets/images/products/domino-club.svg"
     },
     {
       "id": "api-playground",
       "name": "API Playground",
       "tagline": "Explore sample APIs and design your own",
       "url": "https://playground.jgb.solutions/",
-      "kind": "web-app"
+      "kind": "web-app",
+      "category": "Tools",
+      "icon": "https://jgb.solutions/assets/images/products/api-playground.svg"
     },
     {
       "id": "techtalk",
       "name": "Tech Talk",
       "tagline": "A tech podcast in Haitian Creole",
       "url": "https://techtalk.jgb.solutions/",
-      "kind": "media"
+      "kind": "media",
+      "category": "Podcasts",
+      "icon": "https://jgb.solutions/assets/images/products/techtalk.png"
     }
   ]
 }

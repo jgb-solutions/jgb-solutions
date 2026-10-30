@@ -1,3 +1,4 @@
+import { existsSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import feed from '../../public/products.json'
@@ -28,6 +29,12 @@ const productsFeed = z.object({
       tagline: z.string().min(1),
       url: z.url({ protocol: /^https$/ }),
       kind: z.enum(['web-app', 'game', 'media']),
+      /** The footer column it's listed under ("Entertainment", "Games", "Tools", "Podcasts"). */
+      category: z.string().min(1),
+      /** Square icon, hosted here (public/assets/images/products/). */
+      icon: z
+        .url({ protocol: /^https$/ })
+        .startsWith('https://jgb.solutions/assets/images/products/'),
     })
   ),
 })
@@ -37,5 +44,12 @@ describe('public/products.json', () => {
     const { products } = productsFeed.parse(feed)
     expect(products.length).toBeGreaterThan(0)
     expect(new Set(products.map(p => p.id)).size).toBe(products.length)
+  })
+
+  it('has an icon file for every product', () => {
+    for (const { icon } of productsFeed.parse(feed).products) {
+      const path = `public${new URL(icon).pathname}`
+      expect(existsSync(path), path).toBe(true)
+    }
   })
 })
