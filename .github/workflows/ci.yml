@@ -6,10 +6,14 @@ on:
   pull_request:
     branches: [main]
 
+# Where jobs run: the repo variable CI_RUNNER (Settings → Secrets and variables → Actions →
+# Variables). "beelink" sends them to the self-hosted runner on the Beelink server (owner's choice,
+# 2026-10-31, while GitHub-hosted minutes were blocked; setup in /srv/ci-runners there). Delete the
+# variable to go back to GitHub's runners.
 jobs:
   test:
     name: Test & Build
-    runs-on: ubuntu-latest
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
 
     steps:
       - name: Checkout code
