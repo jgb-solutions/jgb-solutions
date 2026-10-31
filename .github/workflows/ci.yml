@@ -6,6 +6,11 @@ on:
   pull_request:
     branches: [main]
 
+# A newer push to the same pull request cancels the run still going; runs on main always finish.
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 # Where jobs run: the repo variable CI_RUNNER (Settings → Secrets and variables → Actions →
 # Variables). "beelink" sends them to the self-hosted runner on the Beelink server (owner's choice,
 # 2026-10-31, while GitHub-hosted minutes were blocked; setup in /srv/ci-runners there). Delete the
