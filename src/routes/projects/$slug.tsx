@@ -27,7 +27,7 @@ const getProject = createServerFn({ method: 'GET' })
   })
 
 /** Projects that were renamed: their old slug moves to the new page for good. */
-const RENAMED: Record<string, string> = { mp3pam: 'musivo' }
+const RENAMED: Record<string, string> = { mp3pam: 'musivo', allflix: 'cinetta' }
 
 export const Route = createFileRoute('/projects/$slug')({
   beforeLoad: ({ params }) => {

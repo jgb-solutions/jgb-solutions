@@ -11,13 +11,13 @@
       "icon": "https://jgb.solutions/assets/images/products/jgb-tools.svg"
     },
     {
-      "id": "allflix",
-      "name": "AllFlix",
+      "id": "cinetta",
+      "name": "Cinetta",
       "tagline": "Every movie and show, and where to watch it",
-      "url": "https://allflix.jgb.solutions/",
+      "url": "https://cinetta.app/",
       "kind": "web-app",
       "category": "Entertainment",
-      "icon": "https://jgb.solutions/assets/images/products/allflix.svg"
+      "icon": "https://jgb.solutions/assets/images/products/cinetta.svg"
     },
     {
       "id": "musivo",
