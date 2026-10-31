@@ -1,4 +1,4 @@
-import { Link, createFileRoute, notFound } from '@tanstack/react-router'
+import { Link, createFileRoute, notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { MdxRenderer } from '@/components/mdx-provider'
@@ -26,7 +26,14 @@ const getProject = createServerFn({ method: 'GET' })
     }
   })
 
+/** Projects that were renamed: their old slug moves to the new page for good. */
+const RENAMED: Record<string, string> = { mp3pam: 'musivo' }
+
 export const Route = createFileRoute('/projects/$slug')({
+  beforeLoad: ({ params }) => {
+    const slug = RENAMED[params.slug]
+    if (slug) throw redirect({ to: '/projects/$slug', params: { slug }, statusCode: 301 })
+  },
   loader: ({ params }) => getProject({ data: params.slug }),
   head: ({ loaderData }) => {
     if (!loaderData) return {}

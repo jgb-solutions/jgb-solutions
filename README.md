@@ -75,8 +75,8 @@ We don't just build for clients. We build and run our own apps, games and media 
   </tr>
   <tr>
     <td width="50%" valign="top">
-      <a href="https://mp3pam.top"><img src="public/assets/images/projects/mp3pam/featured.jpg" alt="MP3Pam" /></a>
-      <h3><a href="https://mp3pam.top">MP3Pam</a></h3>
+      <a href="https://musivo.app"><img src="public/assets/images/projects/musivo/featured.jpg" alt="Musivo" /></a>
+      <h3><a href="https://musivo.app">Musivo</a></h3>
       Find any song, artist or album, play the preview, and see where to listen.
     </td>
     <td width="50%" valign="top">
