@@ -20,13 +20,13 @@
       "icon": "https://jgb.solutions/assets/images/products/allflix.svg"
     },
     {
-      "id": "mp3pam",
-      "name": "MP3Pam",
+      "id": "musivo",
+      "name": "Musivo",
       "tagline": "Find any song, artist or album",
-      "url": "https://mp3pam.top/",
+      "url": "https://musivo.app/",
       "kind": "web-app",
       "category": "Entertainment",
-      "icon": "https://jgb.solutions/assets/images/products/mp3pam.svg"
+      "icon": "https://jgb.solutions/assets/images/products/musivo.svg"
     },
     {
       "id": "street-brawl",
