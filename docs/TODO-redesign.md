@@ -11,7 +11,7 @@ Items marked **(you)** need a decision, content or an action from you.
 - [ ] **(you)** Confirm the selling points on each service page are things you do (for example the monthly social media report, App Store and Google Play submissions), and the contract-work wording ("Need an extra engineer?") on the Services page and in the README.
 - [ ] **(you)** About page: rewrite the draft in your own words and pick the photo (it uses `jgb-2022-800.jpg` from the old home page). The draft mentions legal tech, AI-powered systems, enterprise software and mentoring, from your old About text.
 - [ ] **(you)** Review the Privacy page (it promises an answer within 30 days and says email is stored by "our email provider").
-- [ ] **(you)** Review the write-ups of the new and rewritten products: AllFlix, Domino Club, API Playground, MP3Pam and Tech Talk (built from their code, docs and live sites on 2026-10-27).
+- [ ] **(you)** Review the write-ups of the new and rewritten products: Cinetta (formerly AllFlix), Domino Club, API Playground, MP3Pam and Tech Talk (built from their code, docs and live sites on 2026-10-27).
 - [ ] **(you)** A social media client to show on the Social Media page (no examples yet).
 - [ ] **(you)** Something to replace the removed client list on the home page, or leave it out.
 - [ ] **(you)** A separate `/contact` page: my recommendation is no, since every page ends with the contact band. Confirm.

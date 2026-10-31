@@ -68,8 +68,8 @@ We don't just build for clients. We build and run our own apps, games and media 
       Free online tools for everyday tasks, with no sign-up and no personal tracking.
     </td>
     <td width="50%" valign="top">
-      <a href="https://allflix.jgb.solutions"><img src="public/assets/images/projects/allflix/featured.jpg" alt="AllFlix" /></a>
-      <h3><a href="https://allflix.jgb.solutions">AllFlix</a></h3>
+      <a href="https://cinetta.app"><img src="public/assets/images/projects/cinetta/featured.jpg" alt="Cinetta" /></a>
+      <h3><a href="https://cinetta.app">Cinetta</a></h3>
       Every movie and show: the trailer, the cast, and where to watch it.
     </td>
   </tr>
