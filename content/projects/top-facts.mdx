@@ -1,0 +1,44 @@
+---
+title: Top Facts
+category: WEBSITE
+description: Top Facts is a record book of top 10 lists, from the tallest mountains to the most-played games, ranked from real public data and refreshed around the clock.
+image: /assets/images/projects/top-facts/featured.jpg
+order: 16
+client: JGB SOLUTIONS
+updated: '2026-11-01'
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Cloudflare Workers
+  - D1
+  - Drizzle
+  - oRPC
+summary: Top 10 lists of everything, ranked from real public data, with a source for every entry.
+url: 'https://top-facts.jgb.solutions/'
+gallery:
+  - /assets/images/projects/top-facts/screenshot-1.jpg
+  - /assets/images/projects/top-facts/screenshot-2.jpg
+---
+
+## Project Overview
+
+Top Facts is the record book of everything: top 10 lists of the tallest, biggest, most-played and most-loved, from the largest economies and the longest rivers to the books trending this week and the most-played games on Steam. Lists are grouped in categories such as People & Society, Earth & Nature, Tech, Books & Knowledge, Built World, Games and Space, and a search box finds any list.
+
+Every list is tied to one public data source, such as the World Bank, Wikipedia pageviews, Wikidata, Apple's charts, GitHub, Steam and Open Library, or facts checked by hand. Each page shows its source, how it's ranked and when it was last updated.
+
+## The Challenge
+
+Most "top 10" pages online are written once and never updated, or are opinions dressed up as facts. Top Facts had to rank things only from data anyone can check, keep the rankings fresh on their own, and stay fast and cheap to run as the number of lists grows.
+
+## The Solution
+
+We built Top Facts with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+
+- **Real data only:** one adapter per data source, and every response is validated before it can change a ranking. No AI-written lists: if public data can't rank it, it isn't on the site.
+- **Always fresh:** scheduled jobs refresh the lists around the clock, and each page shows how recently it changed.
+- **What's new:** a page and RSS feeds list the moves and new entries as they happen, and visitors can follow lists to get a notification when the top changes.
+- **Shareable:** every list has its own share card showing its top 3, ready for WhatsApp and social media.
+- **Private by design:** page views are counted without cookies or personal data.
