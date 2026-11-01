@@ -6,24 +6,18 @@ Items marked **(you)** need a decision, content or an action from you.
 
 ## 1. Content and decisions from you
 
-- [ ] **(you)** Headline: keep "Websites, apps and social media for your business." (also on the share image) or pick another.
-- [ ] **(you)** Confirm the "How we work" steps (Discovery, Design, Build, Launch & support) match how you work.
-- [ ] **(you)** Confirm the selling points on each service page are things you do (for example the monthly social media report, App Store and Google Play submissions), and the contract-work wording ("Need an extra engineer?") on the Services page and in the README.
-- [ ] **(you)** About page: rewrite the draft in your own words and pick the photo (it uses `jgb-2022-800.jpg` from the old home page). The draft mentions legal tech, AI-powered systems, enterprise software and mentoring, from your old About text.
-- [ ] **(you)** Review the Privacy page (it promises an answer within 30 days and says email is stored by "our email provider").
-- [ ] **(you)** Review the write-ups of the new and rewritten products: Cinetta (formerly AllFlix), Domino Club, API Playground, Musivo (formerly MP3Pam) and Tech Talk (built from their code, docs and live sites on 2026-10-27).
-- [ ] **(you)** A social media client to show on the Social Media page (no examples yet).
-- [ ] **(you)** Something to replace the removed client list on the home page, or leave it out.
-- [ ] **(you)** A separate `/contact` page: my recommendation is no, since every page ends with the contact band. Confirm.
+- [ ] **(you)** About page: review the suggested About copy and resume changes (sent in chat 2026-11-01: the resume doesn't mention JGB Solutions, says 8+ years and lists the old MP3Pam), then pick the photo (it uses `jgb-2022-800.jpg`).
+- [ ] **(you)** Privacy page: the site has no analytics today (the page says so). Add cookieless Vercel Web Analytics like JGB Tools, and update the page, or keep it without? The 30-day answer is confirmed.
+- [ ] **(you)** Review the write-ups of Cinetta, Domino Club, API Playground, Musivo and Tech Talk (you said you will).
+- [ ] **(you)** Home hero: choose a 3D or canvas animation (options sent in chat 2026-11-01). It also fills the space the removed client list left.
+- [ ] **(you)** A social media client to show on the Social Media page, when there is one. Until then the page simply has no examples section (it only appears when a service has examples).
 
 ## 2. Accounts and settings (you)
 
-- [ ] **(you)** Remove `RESEND_API_KEY` from the Vercel project (the contact form that used it is gone).
-- [ ] **(you)** Submit `https://jgb.solutions/sitemap.xml` in Google Search Console and Bing Webmaster Tools. Optional: remove the old `/posts` URLs there (they return 404 while the blog is off).
-- [ ] **(you)** Share a jgb.solutions link in WhatsApp or LinkedIn to check the new share image.
-- [ ] **(you)** GitHub profile settings (github.com/settings/profile): bio "Founder of JGB Solutions: websites, mobile apps and social media. Also available for freelance and contract work.", company JGB Solutions, location Laval, Québec, Canada, website https://jgb.solutions.
-- [ ] **(you)** Old public GitHub repos: which to pin (suggested: `jgb-solutions`, `pick-object`) and which to archive or make private.
-- [ ] **(you)** Business LinkedIn / Instagram pages when they're back (the footer uses your personal ones).
+- [ ] **(you)** Share a jgb.solutions link in WhatsApp or LinkedIn to check the share image.
+- [ ] **(you)** GitHub profile settings (github.com/settings/profile), with my help: bio "Founder of JGB Solutions: websites, mobile apps and social media. Also available for freelance and contract work.", company JGB Solutions, location Laval, Québec, Canada, website https://jgb.solutions. Then which old public repos to pin or archive.
+- [ ] **(you)** LinkedIn page (https://www.linkedin.com/company/jgb-solutions): upload `branding/social/profile-400.png` as the logo and `branding/social/linkedin-cover.png` as the cover.
+- [ ] **(you)** Business Instagram: recover access (the account is tied to your old Haitian number), then use `branding/social/profile-1080.png`. The footer keeps your personal Instagram until then.
 
 ## 3. Follow-ups
 
@@ -39,7 +33,11 @@ Items marked **(you)** need a decision, content or an action from you.
 - [x] SEO: sitemap `lastmod`, structured data per page, X account `@jgb_solutions`, `<` escaped in structured data, and `bun run seo:check` in CI (24 pages pass on the live site).
 - [x] Contract work offered: "Need an extra engineer?" on the Services page and in the README.
 - [x] Projects refreshed from the live sites (2026-10-27): new screenshots, MP3Pam (now Musivo) and Tech Talk rewritten, AllFlix (now Cinetta), Domino Club and API Playground added; seven products.
-- [x] Renames live (2026-10-31): MP3Pam is Musivo (musivo.app), AllFlix is Cinetta (cinetta.app), with old project URLs redirecting; products feed has a category and an icon per product.
+- [x] Renames live (2026-10-31): MP3Pam is Musivo (musivo.app), AllFlix is Cinetta (cinetta.app); products feed has a category and an icon per product.
+- [x] Decisions of 2026-11-01: headline, "How we work" steps, service selling points and contract-work wording confirmed; no `/contact` page; `RESEND_API_KEY` removed from Vercel; sitemap submitted to Google and Bing.
+- [x] Brand kit in `branding/` (logos, icons, LinkedIn and X covers, profile pictures), generated by `scripts/generate-brand-images.ts` (2026-11-01).
+- [x] Footer and structured data use the business LinkedIn page (2026-11-01).
+- [x] `Dockerfile` removed (the site deploys on Vercel) (2026-11-01).
 - [x] jgb-starter: sitemap dates, optional X handle, `seo:live` check and lessons brought back (jgb-starter PR #2).
 
 ## Later
@@ -49,4 +47,3 @@ Items marked **(you)** need a decision, content or an action from you.
 - [ ] Add On Air, Fake Jobs, Top Everything and Okap Lakay when they're live (product or client work: you decide).
 - [ ] Bring Ti Kwen Pam back if it gets a redesign.
 - [ ] Shared JGB brand kit to replace the logo copied from JGB Tools.
-- [ ] Is the `Dockerfile` still needed? The site deploys on Vercel.
