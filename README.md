@@ -99,11 +99,18 @@ We don't just build for clients. We build and run our own apps, games and media 
   </tr>
   <tr>
     <td width="50%" valign="top">
+      <a href="https://top-facts.jgb.solutions"><img src="public/assets/images/projects/top-facts/featured.jpg" alt="Top Facts" /></a>
+      <h3><a href="https://top-facts.jgb.solutions">Top Facts</a></h3>
+      Top 10 lists of everything, ranked from real public data and refreshed around the clock.
+    </td>
+    <td width="50%" valign="top">
       <a href="https://techtalk.jgb.solutions"><img src="public/assets/images/projects/techtalk/featured.jpg" alt="Tech Talk" /></a>
       <h3><a href="https://techtalk.jgb.solutions">Tech Talk</a></h3>
       A tech podcast in Haitian Creole, with every episode and the panelists.
     </td>
-    <td width="50%" valign="middle" align="center">
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
       <h3><a href="https://jgb.solutions/products">See all our products →</a></h3>
     </td>
   </tr>

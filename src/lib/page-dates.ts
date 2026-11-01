@@ -4,10 +4,10 @@
  * Project pages use the `updated` field in their write-up instead.
  */
 export const PAGE_UPDATED = {
-  '/': '2026-10-27',
+  '/': '2026-11-01',
   '/services': '2026-10-27',
-  '/products': '2026-10-27',
-  '/projects': '2026-10-27',
+  '/products': '2026-11-01',
+  '/projects': '2026-11-01',
   '/about': '2026-11-01',
   '/privacy': '2026-10-19',
   '/posts': '2026-10-19',

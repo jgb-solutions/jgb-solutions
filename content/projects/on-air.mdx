@@ -1,0 +1,44 @@
+---
+title: OnAir
+category: WEB APP
+description: OnAir is a free directory of live TV channels, radio stations and podcasts from around the world, playing right in the browser with no sign-up.
+image: /assets/images/projects/on-air/featured.jpg
+order: 17
+client: JGB SOLUTIONS
+updated: '2026-11-01'
+year: '2026'
+services:
+  - TanStack Start
+  - React
+  - TypeScript
+  - Tailwind CSS
+  - Cloudflare Workers
+  - D1
+  - Drizzle
+  - HLS
+summary: Watch free live TV and listen to radio and podcasts from around the world, in one place.
+url: 'https://on-air.jgb.solutions/'
+# Hidden until the live site's catalog is loaded (it showed 0 channels and 0 stations on
+# 2026-11-01). Then: capture featured.jpg and screenshots, remove this line, add OnAir to
+# public/products.json with its icon.
+draft: true
+---
+
+## Project Overview
+
+OnAir brings free live TV channels, radio stations and podcasts from around the world into one place. Visitors can browse what's on air now, search by name, genre or country, and press play right in the browser, with no account and no app to install.
+
+OnAir doesn't host or rebroadcast any stream: it's a directory, and playback comes straight from each broadcaster. Its catalogs come from the open iptv-org and Radio-Browser projects and from Apple Podcasts.
+
+## The Challenge
+
+Public stream lists are huge and many of their links are dead, so most free TV and radio directories are full of channels that never play. OnAir had to show only streams that actually work, keep up as broadcasters change their links, and stay fast on phones anywhere in the world.
+
+## The Solution
+
+We built OnAir with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+
+- **Checked streams:** TV channels and radio stations are tested every hour, so the site lists streams that play in the browser first.
+- **One player:** live TV plays through HLS in the browser, next to radio and podcast episodes.
+- **On Air Now:** the most popular live channels and stations, plus trending podcasts from Apple Podcasts in countries around the world.
+- **Search and filters:** by name, network, genre and country.

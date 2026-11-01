@@ -56,6 +56,15 @@
       "icon": "https://jgb.solutions/assets/images/products/api-playground.svg"
     },
     {
+      "id": "top-facts",
+      "name": "Top Facts",
+      "tagline": "Top 10 lists of everything, from real data",
+      "url": "https://top-facts.jgb.solutions/",
+      "kind": "media",
+      "category": "Reference",
+      "icon": "https://jgb.solutions/assets/images/products/top-facts.svg"
+    },
+    {
       "id": "techtalk",
       "name": "Tech Talk",
       "tagline": "A tech podcast in Haitian Creole",
