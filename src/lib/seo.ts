@@ -3,7 +3,7 @@
  * Based on: https://tanstack.com/start/latest/docs/framework/react/guide/seo
  */
 
-import { OG_IMAGE, SEO, SITE, X_ACCOUNT } from './constants'
+import { OG_IMAGE, SEO, SITE, SOCIAL, X_ACCOUNT } from './constants'
 import { OFFERED_SERVICES } from './services'
 import type { Service } from './services'
 
@@ -253,7 +253,7 @@ export function createOrganizationJsonLd() {
     description: SEO.description,
     email: SITE.email,
     telephone: SITE.phone.replace(/\s/g, ''),
-    sameAs: [X_ACCOUNT.url],
+    sameAs: [SOCIAL.linkedin, X_ACCOUNT.url],
     address: {
       '@type': 'PostalAddress',
       addressLocality: 'Laval',

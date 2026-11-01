@@ -8,7 +8,7 @@ export const PAGE_UPDATED = {
   '/services': '2026-10-27',
   '/products': '2026-10-27',
   '/projects': '2026-10-27',
-  '/about': '2026-10-19',
+  '/about': '2026-11-01',
   '/privacy': '2026-10-19',
   '/posts': '2026-10-19',
 } as const satisfies Record<string, string>

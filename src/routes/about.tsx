@@ -10,7 +10,7 @@ import {
 } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
-import { SITE } from '@/lib/constants'
+import { FOUNDER_SOCIAL, SITE } from '@/lib/constants'
 import { products } from '@/lib/products'
 import { ORGANIZATION_REF, createPageSEO } from '@/lib/seo'
 
@@ -36,6 +36,7 @@ export const Route = createFileRoute('/about')({
             jobTitle: 'Founder',
             worksFor: ORGANIZATION_REF,
             image: 'https://public.jgb.solutions/jgb-2022-800.jpg',
+            sameAs: [FOUNDER_SOCIAL.linkedin],
           },
         },
       ],

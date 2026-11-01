@@ -32,10 +32,18 @@ export const SEO = {
   ],
 } as const
 
-/** Social profiles (the founder's personal ones for now; business pages may replace them). */
+/**
+ * Social profiles in the footer: the business's LinkedIn page (2026-11-01) and the founder's
+ * Instagram (the business account can't be signed into for now).
+ */
 export const SOCIAL = {
-  linkedin: 'https://www.linkedin.com/in/jgb-dev/',
+  linkedin: 'https://www.linkedin.com/company/jgb-solutions',
   instagram: 'https://www.instagram.com/jgbgram/',
+} as const
+
+/** The founder's own profiles, linked from the About page's structured data. */
+export const FOUNDER_SOCIAL = {
+  linkedin: 'https://www.linkedin.com/in/jgb-dev/',
 } as const
 
 /** The business's own X account (confirmed by the user 2026-10-27). */

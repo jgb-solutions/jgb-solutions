@@ -13,20 +13,20 @@ This document provides essential information for AI agents operating within this
 
 ## 2. Key Commands
 
-| Action             | Command                                | Description                                                                            |
-| ------------------ | -------------------------------------- | -------------------------------------------------------------------------------------- |
-| **Build**          | `bun run build`                        | Builds the application for production                                                  |
-| **Dev Server**     | `bun run dev`                          | Starts local development server                                                        |
-| **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                              |
-| **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                              |
-| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                                 |
-| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                                       |
-| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                         |
-| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                          |
-| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                               |
-| **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check)         |
-| **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`                         |
-| **SEO check**      | `bun run seo:check [base-url]`         | Checks every sitemap page's HTML (default: the live site; CI runs it on a local build) |
+| Action             | Command                                | Description                                                                             |
+| ------------------ | -------------------------------------- | --------------------------------------------------------------------------------------- |
+| **Build**          | `bun run build`                        | Builds the application for production                                                   |
+| **Dev Server**     | `bun run dev`                          | Starts local development server                                                         |
+| **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                               |
+| **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                               |
+| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                                  |
+| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                                        |
+| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                          |
+| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                           |
+| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                                |
+| **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check)          |
+| **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`, and the `branding/` kit |
+| **SEO check**      | `bun run seo:check [base-url]`         | Checks every sitemap page's HTML (default: the live site; CI runs it on a local build)  |
 
 ### Running Specific Tests
 
@@ -102,14 +102,15 @@ src/
 ├── globals.css        # Brand tokens (Tailwind @theme): brand, brand-strong, ink, paper, mist…
 └── routeTree.gen.ts   # Generated route definitions
 content/               # projects/ and posts/ (MDX)
-scripts/               # generate-brand-images.ts
+scripts/               # generate-brand-images.ts, check-seo.ts
+branding/              # Brand kit (generated; see its README)
 examples/              # Archived landing-page designs (not part of the app)
 docs/                  # PLAN-redesign.md, TODO-redesign.md
 ```
 
 ## 5. Deployment & Project Notes
 
-_Last updated: 2026-10-27._
+_Last updated: 2026-11-01._
 
 ### Deployment
 
@@ -155,7 +156,9 @@ _Last updated: 2026-10-27._
 - **Contract work (decided 2026-10-27):** the founder stays available for freelance work, offered by the studio in its own voice ("we"): the "Need an extra engineer?" band on `/services` (`#contract-work`) and the same section in the README. The README is also the founder's GitHub profile page (github.com/jgb-solutions is a personal account whose same-named repo is this one).
 - **Business facts for copy:** based in Laval, Québec; "10+ years" (building since 2009), "dozens of clients", "dozens of projects" (no more precise client or project counts); no prices ("contact us for a quote"); no contact form (spam): use services@jgb.solutions and WhatsApp/phone +1 438 389 5465 (`SITE.phone`). The founder's name, photo and story belong on the About page, not the home page; the home page speaks as the business ("we").
 - **Switched off until the user asks** (`src/lib/features.ts`): the **blog** (`FEATURES.blog`). `/posts` pages return not found, and the header, footer, home page, 404 page and sitemap hide it. The two old posts came from the founder's personal blog. To turn it back on, set the flag and write business posts.
-- **Home page:** bold look only. A light look was built and dropped (in git history, commit 451cded) — the user may ask for it again. No client list for now. **Every page ends with the contact band** (`ContactSection`, `id="contact"`), rendered by `SiteFooter`, so "Start a project" and other contact links are plain `#contact` anchors that work on any page. The band has "Email us" (mailto, with the address and a Copy button beside it, since mailto does nothing without a mail app) and "WhatsApp us". Footer contact: email and phone only; socials are the founder's personal LinkedIn and Instagram for now (business pages may come later), no GitHub.
+- **Home page:** bold look only. A light look was built and dropped (in git history, commit 451cded) — the user may ask for it again. No client list for now. **Every page ends with the contact band** (`ContactSection`, `id="contact"`), rendered by `SiteFooter`, so "Start a project" and other contact links are plain `#contact` anchors that work on any page. The band has "Email us" (mailto, with the address and a Copy button beside it, since mailto does nothing without a mail app) and "WhatsApp us". Footer contact: email and phone only; socials are the business LinkedIn page (since 2026-11-01) and the founder's personal Instagram (the business Instagram is locked: it's tied to the founder's old Haitian number), no GitHub.
+- **Brand kit: `branding/`** (logos, icons, social profile pictures, LinkedIn and X covers; its README says where each goes). Generated with the site's favicons and share image by `bun scripts/generate-brand-images.ts`; never edit the images by hand. The user's rule (2026-11-01): every project has its brand assets in a `branding/` folder at its root.
+- **Hosting (the user's rule, 2026-11-01):** static sites stay on Vercel; sites with server functions doing real work, or a database, go on Cloudflare. jgb.solutions is static content, so it stays on Vercel. There's no Docker setup (the Dockerfile was removed 2026-11-01).
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.
 
 ### Related
