@@ -1,6 +1,6 @@
 # To-do list
 
-_Last updated 2026-10-27. The redesign is live on https://jgb.solutions (merged 2026-10-19). The plan and the reasons behind each choice are in [PLAN-redesign.md](PLAN-redesign.md)._
+_Last updated 2026-11-01. The redesign is live on https://jgb.solutions (merged 2026-10-19). The plan and the reasons behind each choice are in [PLAN-redesign.md](PLAN-redesign.md)._
 
 Items marked **(you)** need a decision, content or an action from you.
 
@@ -11,7 +11,7 @@ Items marked **(you)** need a decision, content or an action from you.
 - [ ] **(you)** Confirm the selling points on each service page are things you do (for example the monthly social media report, App Store and Google Play submissions), and the contract-work wording ("Need an extra engineer?") on the Services page and in the README.
 - [ ] **(you)** About page: rewrite the draft in your own words and pick the photo (it uses `jgb-2022-800.jpg` from the old home page). The draft mentions legal tech, AI-powered systems, enterprise software and mentoring, from your old About text.
 - [ ] **(you)** Review the Privacy page (it promises an answer within 30 days and says email is stored by "our email provider").
-- [ ] **(you)** Review the write-ups of the new and rewritten products: Cinetta (formerly AllFlix), Domino Club, API Playground, MP3Pam and Tech Talk (built from their code, docs and live sites on 2026-10-27).
+- [ ] **(you)** Review the write-ups of the new and rewritten products: Cinetta (formerly AllFlix), Domino Club, API Playground, Musivo (formerly MP3Pam) and Tech Talk (built from their code, docs and live sites on 2026-10-27).
 - [ ] **(you)** A social media client to show on the Social Media page (no examples yet).
 - [ ] **(you)** Something to replace the removed client list on the home page, or leave it out.
 - [ ] **(you)** A separate `/contact` page: my recommendation is no, since every page ends with the contact band. Confirm.
@@ -27,7 +27,7 @@ Items marked **(you)** need a decision, content or an action from you.
 
 ## 3. Follow-ups
 
-- [ ] Redeploy the other product sites so their "More from JGB Solutions" footers pick up the new products list (`products.json`: AllFlix, Domino Club, API Playground, and "MP3Pam" with its new tagline).
+- [ ] Redeploy the other product sites so their "More from JGB Solutions" footers pick up the new products list (`products.json`: Cinetta and Musivo under their new names, Domino Club, API Playground, and the categories and icons).
 - [ ] Simone Fievre: new card image once the empty Amazon banners are removed or her new site is live (her new site is planned in `~/Code/Web/simone-fievre-site`).
 - [ ] When the JGB Tools app is in the stores: add it back as an example on the Mobile Apps page.
 
@@ -38,7 +38,8 @@ Items marked **(you)** need a decision, content or an action from you.
 - [x] README rewritten as a showcase for JGB Solutions (also the github.com/jgb-solutions profile page); repo About box updated.
 - [x] SEO: sitemap `lastmod`, structured data per page, X account `@jgb_solutions`, `<` escaped in structured data, and `bun run seo:check` in CI (24 pages pass on the live site).
 - [x] Contract work offered: "Need an extra engineer?" on the Services page and in the README.
-- [x] Projects refreshed from the live sites (2026-10-27): new screenshots, MP3Pam and Tech Talk rewritten, AllFlix, Domino Club and API Playground added; seven products.
+- [x] Projects refreshed from the live sites (2026-10-27): new screenshots, MP3Pam (now Musivo) and Tech Talk rewritten, AllFlix (now Cinetta), Domino Club and API Playground added; seven products.
+- [x] Renames live (2026-10-31): MP3Pam is Musivo (musivo.app), AllFlix is Cinetta (cinetta.app), with old project URLs redirecting; products feed has a category and an icon per product.
 - [x] jgb-starter: sitemap dates, optional X handle, `seo:live` check and lessons brought back (jgb-starter PR #2).
 
 ## Later
