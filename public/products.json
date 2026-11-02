@@ -29,6 +29,15 @@
       "icon": "https://jgb.solutions/assets/images/products/musivo.svg"
     },
     {
+      "id": "on-air",
+      "name": "OnAir",
+      "tagline": "Free live TV, radio and podcasts from around the world",
+      "url": "https://on-air.jgb.solutions/",
+      "kind": "web-app",
+      "category": "Entertainment",
+      "icon": "https://jgb.solutions/assets/images/products/on-air.svg"
+    },
+    {
       "id": "street-brawl",
       "name": "Street Brawl",
       "tagline": "A free fighting game in your browser",
