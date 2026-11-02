@@ -104,16 +104,20 @@ const FONTS = [
 ]
 
 /**
- * A profile cover (LinkedIn page, X header): ink background, the headline on the right, since the
- * profile picture covers the lower left corner. Laid out at `width`×`height`, rendered at `scale`.
+ * A profile cover (LinkedIn page, X header, Facebook cover): ink background, the headline on the
+ * right, since the profile picture covers the lower left corner. `center` puts it in the middle
+ * instead (YouTube, whose safe area is a centered 1546×423 box). Laid out at `width`×`height`,
+ * rendered at `scale`.
  */
 async function coverImage(
   width: number,
   height: number,
   scale: number,
   headlineSize: number,
-  headlineWidth = 0.6
+  headlineWidth = 0.6,
+  align: 'right' | 'center' = 'right'
 ) {
+  const end = align === 'right' ? 'flex-end' : 'center'
   const side = Math.round(width * 0.05)
   const svg = await satori(
     h(
@@ -125,7 +129,7 @@ async function coverImage(
           flex: 1,
           flexDirection: 'column',
           justifyContent: 'center',
-          alignItems: 'flex-end',
+          alignItems: end,
           gap: Math.round(headlineSize * 0.45),
           paddingLeft: side,
           paddingRight: side,
@@ -135,8 +139,8 @@ async function coverImage(
           'div',
           {
             width: Math.round(width * headlineWidth),
-            justifyContent: 'flex-end',
-            textAlign: 'right',
+            justifyContent: end,
+            textAlign: align,
             fontFamily: 'Saira',
             fontWeight: 800,
             fontSize: headlineSize,
@@ -275,9 +279,16 @@ async function brandKit() {
   writeFileSync(kit('social/profile-400.png'), png(profile, 400))
   writeFileSync(kit('social/profile-1080.png'), png(profile, 1080))
 
-  // LinkedIn page cover: 1128×191 (uploaded at 2×). X header: 1500×500.
+  // LinkedIn page cover: 1128×191 (uploaded at 2×). X header: 1500×500. Facebook cover: 1640×624,
+  // centered since phones show only its middle (about 1100 px wide).
+  // YouTube banner: 2560×1440, text inside the 1546×423 box every device shows.
   writeFileSync(kit('social/linkedin-cover.png'), await coverImage(1128, 191, 2, 34, 0.7))
   writeFileSync(kit('social/x-header.png'), await coverImage(1500, 500, 1, 62))
+  writeFileSync(kit('social/facebook-cover.png'), await coverImage(1640, 624, 1, 64, 0.6, 'center'))
+  writeFileSync(
+    kit('social/youtube-banner.png'),
+    await coverImage(2560, 1440, 1, 84, 0.58, 'center')
+  )
   writeFileSync(kit('social/share-image.png'), await shareImage())
 }
 
