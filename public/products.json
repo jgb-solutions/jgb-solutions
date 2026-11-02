@@ -8,7 +8,14 @@
       "url": "https://tools.jgb.solutions/",
       "kind": "web-app",
       "category": "Tools",
-      "icon": "https://jgb.solutions/assets/images/products/jgb-tools.svg"
+      "icon": "https://jgb.solutions/assets/images/products/jgb-tools.svg",
+      "app": {
+        "scheme": "jgbtools",
+        "ios": "solutions.jgb.tools",
+        "android": "solutions.jgb.tools",
+        "appStore": null,
+        "googlePlay": null
+      }
     },
     {
       "id": "cinetta",
@@ -17,7 +24,14 @@
       "url": "https://cinetta.app/",
       "kind": "web-app",
       "category": "Entertainment",
-      "icon": "https://jgb.solutions/assets/images/products/cinetta.svg"
+      "icon": "https://jgb.solutions/assets/images/products/cinetta.svg",
+      "app": {
+        "scheme": "cinetta",
+        "ios": "solutions.jgb.cinetta",
+        "android": "solutions.jgb.cinetta",
+        "appStore": null,
+        "googlePlay": null
+      }
     },
     {
       "id": "musivo",
@@ -26,7 +40,14 @@
       "url": "https://musivo.app/",
       "kind": "web-app",
       "category": "Entertainment",
-      "icon": "https://jgb.solutions/assets/images/products/musivo.svg"
+      "icon": "https://jgb.solutions/assets/images/products/musivo.svg",
+      "app": {
+        "scheme": "musivo",
+        "ios": "solutions.jgb.musivo",
+        "android": "solutions.jgb.musivo",
+        "appStore": null,
+        "googlePlay": null
+      }
     },
     {
       "id": "on-air",
@@ -35,7 +56,14 @@
       "url": "https://on-air.jgb.solutions/",
       "kind": "web-app",
       "category": "Entertainment",
-      "icon": "https://jgb.solutions/assets/images/products/on-air.svg"
+      "icon": "https://jgb.solutions/assets/images/products/on-air.svg",
+      "app": {
+        "scheme": "onair",
+        "ios": "solutions.jgb.onair",
+        "android": "solutions.jgb.onair",
+        "appStore": null,
+        "googlePlay": null
+      }
     },
     {
       "id": "street-brawl",

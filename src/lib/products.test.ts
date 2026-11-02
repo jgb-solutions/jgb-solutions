@@ -35,6 +35,26 @@ const productsFeed = z.object({
       icon: z
         .url({ protocol: /^https$/ })
         .startsWith('https://jgb.solutions/assets/images/products/'),
+      /**
+       * Its mobile app, when it has one: the link scheme that opens it (`musivo://`), its iOS bundle
+       * id and Android package, and its store pages once published (null until then). Optional:
+       * readers that don't know it ignore it.
+       */
+      app: z
+        .strictObject({
+          scheme: z.string().regex(/^[a-z][a-z0-9+.-]*$/),
+          ios: z.string().regex(/^[a-z0-9]+(\.[a-z0-9-]+)+$/i),
+          android: z.string().regex(/^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)+$/),
+          appStore: z
+            .url({ protocol: /^https$/ })
+            .startsWith('https://apps.apple.com/')
+            .nullable(),
+          googlePlay: z
+            .url({ protocol: /^https$/ })
+            .startsWith('https://play.google.com/store/apps/details?id=')
+            .nullable(),
+        })
+        .optional(),
     })
   ),
 })
