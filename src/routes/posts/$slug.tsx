@@ -1,8 +1,8 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
-import { FacebookShareButton, LinkedinShareButton, TwitterShareButton } from 'react-share'
-import { Facebook, Linkedin } from 'lucide-react'
+import { FacebookShareButton, LinkedinShareButton, XShareButton } from 'react-share'
 import { createServerFn } from '@tanstack/react-start'
+import { Facebook, Linkedin } from '@/components/site/brand-icons'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
@@ -11,7 +11,7 @@ import { SITE } from '@/lib/constants'
 import { FEATURES } from '@/lib/features'
 
 const getPost = createServerFn({ method: 'GET' })
-  .inputValidator((slug: string) => slug)
+  .validator((slug: string) => slug)
 
   .handler(({ data: slug }) => {
     const post = allPosts.find(p => p.slug === slug)
@@ -125,7 +125,7 @@ function PostDetailPage() {
           <div className='mt-12 pt-8 border-t border-border'>
             <p className='text-sm text-muted-foreground mb-4'>Share This Post</p>
             <div className='flex gap-4'>
-              <TwitterShareButton url={postUrl} title={post.title}>
+              <XShareButton url={postUrl} text={post.title}>
                 <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity'>
                   <svg
                     viewBox='0 0 24 24'
@@ -140,14 +140,9 @@ function PostDetailPage() {
                     <path d='M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772' />
                   </svg>
                 </div>
-              </TwitterShareButton>
+              </XShareButton>
 
-              <LinkedinShareButton
-                url={postUrl}
-                title={post.title}
-                summary={post.excerpt}
-                source='JGB Solutions'
-              >
+              <LinkedinShareButton url={postUrl}>
                 <div className='h-10 w-10 flex items-center justify-center bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-opacity'>
                   <Linkedin className='h-5 w-5' />
                 </div>

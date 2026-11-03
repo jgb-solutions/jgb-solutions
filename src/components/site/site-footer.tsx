@@ -1,5 +1,5 @@
 import { Link } from '@tanstack/react-router'
-import { Instagram, Linkedin } from 'lucide-react'
+import { Instagram, Linkedin } from '@/components/site/brand-icons'
 import { ContactSection } from '@/components/site/contact-section'
 import { Logo } from '@/components/site/logo'
 import { Container } from '@/components/site/section'
