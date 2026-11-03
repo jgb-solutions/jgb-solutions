@@ -32,7 +32,7 @@ vi.mock('content-collections', () => ({
 vi.mock('@tanstack/react-start', () => ({
   createServerFn: () => {
     const builder = {
-      inputValidator: () => builder,
+      validator: () => builder,
       handler: (fn: unknown) => fn,
     }
     return builder

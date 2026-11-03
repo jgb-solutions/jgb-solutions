@@ -10,7 +10,7 @@ import { publishedProjects } from '@/lib/projects'
 import { clientProjectJsonLd, createPageSEO, productJsonLd } from '@/lib/seo'
 
 const getProject = createServerFn({ method: 'GET' })
-  .inputValidator((slug: string) => slug)
+  .validator((slug: string) => slug)
   .handler(({ data: slug }) => {
     const ordered = [...publishedProjects].sort((a, b) => a.order - b.order)
     const index = ordered.findIndex(p => p.slug === slug)
