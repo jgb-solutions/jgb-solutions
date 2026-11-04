@@ -7,7 +7,7 @@ Items marked **(you)** need a decision, content or an action from you.
 ## 1. Content and decisions from you
 
 - [ ] **(you)** About page: review the suggested About copy and resume changes (sent in chat 2026-11-01: the resume doesn't mention JGB Solutions, says 8+ years and lists the old MP3Pam), then pick the photo (it uses `jgb-2022-800.jpg`).
-- [ ] **(you)** Privacy page: the site has no analytics today (the page says so). Add cookieless Vercel Web Analytics like JGB Tools, and update the page, or keep it without? The 30-day answer is confirmed.
+- [ ] **(you)** Analytics: create a Cloudflare Web Analytics site for jgb.solutions (dashboard → Web Analytics → Add a site, choose the manual JS snippet), then set its token as `VITE_CF_ANALYTICS_TOKEN` in the Vercel project (Production) and redeploy. The beacon and the Privacy page's analytics wording turn on by themselves. The 30-day answer is confirmed.
 - [ ] **(you)** Review the write-ups of Cinetta, Domino Club, API Playground, Musivo and Tech Talk (you said you will).
 - [ ] **(you)** Home hero: choose a 3D or canvas animation (options sent in chat 2026-11-01). It also fills the space the removed client list left.
 - [ ] **(you)** A social media client to show on the Social Media page, when there is one. Until then the page simply has no examples section (it only appears when a service has examples).

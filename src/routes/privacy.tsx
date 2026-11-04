@@ -3,18 +3,20 @@ import type { ReactNode } from 'react'
 import { Container, SectionLabel } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
+import { ANALYTICS_ENABLED } from '@/lib/analytics'
 import { SITE } from '@/lib/constants'
 import { createPageSEO } from '@/lib/seo'
 
 // Update this date whenever the policy text changes.
-const LAST_UPDATED = 'October 19, 2026'
+const LAST_UPDATED = 'November 4, 2026'
 
 export const Route = createFileRoute('/privacy')({
   head: () =>
     createPageSEO({
       title: 'Privacy Policy | JGB Solutions',
-      description:
-        'How JGB Solutions handles your information: no cookies, no analytics and no forms on jgb.solutions. What we keep when you email or message us, and your rights.',
+      description: ANALYTICS_ENABLED
+        ? 'How JGB Solutions handles your information: no cookies, no forms and only anonymous visit counts on jgb.solutions. What we keep when you email or message us, and your rights.'
+        : 'How JGB Solutions handles your information: no cookies, no analytics and no forms on jgb.solutions. What we keep when you email or message us, and your rights.',
       path: '/privacy',
       breadcrumbs: [{ name: 'Privacy', path: '/privacy' }],
     }),
@@ -52,8 +54,9 @@ function PrivacyPage() {
         <Container className='py-16 md:py-20'>
           <div className='flex max-w-3xl flex-col gap-12 text-lg'>
             <p className='text-xl leading-relaxed'>
-              The short version: jgb.solutions doesn't use cookies, analytics or any tracking, and
-              it has no forms. We only receive information about you when you contact us yourself.
+              {ANALYTICS_ENABLED
+                ? "The short version: jgb.solutions doesn't use cookies or advertising trackers, and it has no forms. We count visits anonymously, and we only receive information about you when you contact us yourself."
+                : "The short version: jgb.solutions doesn't use cookies, analytics or any tracking, and it has no forms. We only receive information about you when you contact us yourself."}
             </p>
 
             <PolicySection title='Who we are'>
@@ -67,9 +70,11 @@ function PrivacyPage() {
             <PolicySection title='What we collect'>
               <p>
                 <strong className='text-ink'>When you browse the site:</strong> nothing that
-                identifies you. We don't set cookies, we don't use analytics or advertising tools,
-                and we don't load trackers from other companies. Our fonts and images are served
-                from our own domains.
+                identifies you. We don't set cookies and we don't use advertising tools.{' '}
+                {ANALYTICS_ENABLED
+                  ? 'We count page views and measure how fast pages load with Cloudflare Web Analytics, which works without cookies and without building a profile of you (see below).'
+                  : "We don't use analytics and we don't load trackers from other companies."}{' '}
+                Our fonts and images are served from our own domains.
               </p>
               <p>
                 <strong className='text-ink'>When you contact us</strong> by email or WhatsApp, we
@@ -95,6 +100,31 @@ function PrivacyPage() {
                 </a>
                 .
               </p>
+              {ANALYTICS_ENABLED && (
+                <p>
+                  <strong className='text-ink'>Analytics:</strong> Cloudflare Web Analytics counts
+                  page views and page speed. It doesn't use cookies, local storage or
+                  fingerprinting, and it doesn't track you across sites. See{' '}
+                  <a
+                    href='https://www.cloudflare.com/web-analytics/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={linkClass}
+                  >
+                    how Cloudflare Web Analytics works
+                  </a>{' '}
+                  and{' '}
+                  <a
+                    href='https://www.cloudflare.com/privacypolicy/'
+                    target='_blank'
+                    rel='noopener noreferrer'
+                    className={linkClass}
+                  >
+                    Cloudflare's privacy policy
+                  </a>
+                  .
+                </p>
+              )}
               <p>
                 <strong className='text-ink'>WhatsApp:</strong> if you message us on WhatsApp, your
                 conversation goes through WhatsApp (Meta), and{' '}
