@@ -8,7 +8,7 @@ This document provides essential information for AI agents operating within this
 - **Routing:** TanStack Router (File-based routing)
 - **Styling:** Tailwind CSS v4
 - **Language:** TypeScript
-- **Package Manager:** Bun
+- **Package Manager:** Bun only (`packageManager` in `package.json`; no npm, pnpm or yarn lockfiles)
 - **Content:** @content-collections/mdx
 
 ## 2. Key Commands
@@ -110,7 +110,7 @@ docs/                  # PLAN-redesign.md, TODO-redesign.md
 
 ## 5. Deployment & Project Notes
 
-_Last updated: 2026-11-01._
+_Last updated: 2026-11-04._
 
 ### Deployment
 
@@ -159,6 +159,8 @@ _Last updated: 2026-11-01._
 - **Home page:** bold look only. A light look was built and dropped (in git history, commit 451cded) — the user may ask for it again. No client list for now. **Every page ends with the contact band** (`ContactSection`, `id="contact"`), rendered by `SiteFooter`, so "Start a project" and other contact links are plain `#contact` anchors that work on any page. The band has "Email us" (mailto, with the address and a Copy button beside it, since mailto does nothing without a mail app) and "WhatsApp us". Footer contact: email and phone only; socials are the business LinkedIn page (since 2026-11-01) and the founder's personal Instagram (the business Instagram is locked: it's tied to the founder's old Haitian number), no GitHub.
 - **Brand kit: `branding/`** (logos, icons, social profile pictures, LinkedIn, X and Facebook covers, YouTube banner; its README says where each goes). Generated with the site's favicons and share image by `bun scripts/generate-brand-images.ts`; never edit the images by hand. The user's rule (2026-11-01): every project has its brand assets in a `branding/` folder at its root.
 - **Hosting (the user's rule, 2026-11-01):** static sites stay on Vercel; sites with server functions doing real work, or a database, go on Cloudflare. jgb.solutions is static content, so it stays on Vercel. There's no Docker setup (the Dockerfile was removed 2026-11-01).
+- **Held back (2026-11-04):** TypeScript stays on 6 (typescript-eslint doesn't support TS 7 yet) and jsdom on 28 (jsdom 30 breaks Vitest's test workers). Retry when typescript-eslint and Vitest support them.
+- **Design skill:** `.claude/skills/frontend-design` (copied unchanged from jgb-starter); load it for design work.
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.
 
 ### Related

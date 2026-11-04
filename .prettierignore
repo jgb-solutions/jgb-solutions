@@ -1,6 +1,5 @@
 # Dependencies
 node_modules
-.pnpm-store
 
 # Build outputs
 .tanstack
@@ -18,3 +17,5 @@ src/routeTree.gen.ts
 
 # Logs
 *.log
+# Skills are copied unchanged from jgb-starter
+.claude/skills/
