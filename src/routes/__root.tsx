@@ -13,6 +13,7 @@ import { createOrganizationJsonLd, createSEOMeta } from '@/lib/seo'
 import { Container, buttonStyles } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
+import { VisitorMetrics } from '@/components/site/visitor-metrics'
 
 export const Route = createRootRoute({
   // Site-wide defaults; each page's own head() overrides the title, description, image and URL.
@@ -92,6 +93,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body className='bg-paper font-sans text-ink antialiased'>
         {children}
         <Scripts />
+        <VisitorMetrics />
       </body>
     </html>
   )
