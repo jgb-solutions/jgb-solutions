@@ -99,7 +99,14 @@
       "url": "https://top-facts.jgb.solutions/",
       "kind": "media",
       "category": "Reference",
-      "icon": "https://jgb.solutions/assets/images/products/top-facts.svg"
+      "icon": "https://jgb.solutions/assets/images/products/top-facts.svg",
+      "app": {
+        "scheme": "topfacts",
+        "ios": "solutions.jgb.topfacts",
+        "android": "solutions.jgb.topfacts",
+        "appStore": null,
+        "googlePlay": null
+      }
     },
     {
       "id": "techtalk",
