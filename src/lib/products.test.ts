@@ -2,7 +2,7 @@ import { existsSync } from 'node:fs'
 import { describe, expect, it } from 'vitest'
 import { z } from 'zod'
 import feed from '../../public/products.json'
-import { overviewOf } from '@/lib/products'
+import { FEATURED_PRODUCT, overviewOf } from '@/lib/products'
 
 describe('overviewOf', () => {
   it('returns the first paragraph of the project overview', () => {
@@ -71,5 +71,11 @@ describe('public/products.json', () => {
       const path = `public${new URL(icon).pathname}`
       expect(existsSync(path), path).toBe(true)
     }
+  })
+})
+
+describe('FEATURED_PRODUCT', () => {
+  it('is one of our products', () => {
+    expect(feed.products.map(p => p.id)).toContain(FEATURED_PRODUCT)
   })
 })

@@ -88,7 +88,7 @@ export function HomeProducts({ tone }: { tone: SectionTone }) {
         </Link>
       </div>
       <div className='flex flex-col gap-6'>
-        {/* The first product gets a full-width card, the others a grid of three */}
+        {/* The featured product (FEATURED_PRODUCT) comes first, in a full-width card; the others in a grid of three */}
         <ProductCard product={featured} tone={tone} featured />
         <div className='grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3'>
           {rest.map(product => (
