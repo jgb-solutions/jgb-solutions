@@ -115,7 +115,14 @@ We don't just build for clients. We build and run our own apps, games and media 
       <h3><a href="https://on-air.jgb.solutions">OnAir</a></h3>
       Free live TV, radio and podcasts from around the world, right in your browser.
     </td>
-    <td width="50%" valign="middle" align="center">
+    <td width="50%" valign="top">
+      <a href="https://emojiverse.jgb.solutions"><img src="public/assets/images/projects/emojiverse/featured.jpg" alt="Emojiverse" /></a>
+      <h3><a href="https://emojiverse.jgb.solutions">Emojiverse</a></h3>
+      Find any emoji and copy it in one click, with every emoji's meaning.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center">
       <h3><a href="https://jgb.solutions/products">See all our products →</a></h3>
     </td>
   </tr>

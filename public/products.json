@@ -93,6 +93,15 @@
       "icon": "https://jgb.solutions/assets/images/products/api-playground.svg"
     },
     {
+      "id": "emojiverse",
+      "name": "Emojiverse",
+      "tagline": "Emoji copy and paste, with every meaning",
+      "url": "https://emojiverse.jgb.solutions/",
+      "kind": "web-app",
+      "category": "Tools",
+      "icon": "https://jgb.solutions/assets/images/products/emojiverse.svg"
+    },
+    {
       "id": "top-facts",
       "name": "Top Facts",
       "tagline": "Top 10 lists of everything, from real data",
