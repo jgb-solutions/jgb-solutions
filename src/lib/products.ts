@@ -24,7 +24,17 @@ export const SITE_SLUG = 'jgb-solutions'
 
 const byOrder = (a: { order: number }, b: { order: number }) => a.order - b.order
 
-export const products = PRODUCT_SLUGS.flatMap(slug => {
+/**
+ * The product this site features: the home page's full-width card and the top of the Products page
+ * (the owner's choice, 2026-11-10). The others follow in products.json's order, which every
+ * product's footer also uses, so the feature is set here instead of by reordering the feed.
+ */
+export const FEATURED_PRODUCT = 'musivo'
+
+export const products = [
+  FEATURED_PRODUCT,
+  ...PRODUCT_SLUGS.filter(slug => slug !== FEATURED_PRODUCT),
+].flatMap(slug => {
   const project = publishedProjects.find(p => p.slug === slug)
   return project ? [project] : []
 })
