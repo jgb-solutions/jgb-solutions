@@ -1,0 +1,53 @@
+name: Earning sites
+
+# Daily check of the sites that earn AdSense money (owner, 2026-11-11: "pay attention to those
+# 2 sites"). A failed run makes GitHub email the owner. Add a site to SITES when it starts earning.
+on:
+  schedule:
+    - cron: '17 11 * * *' # every day, 11:17 UTC (morning in the Americas)
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}
+
+jobs:
+  check:
+    name: Pages, ads and ads.txt
+    runs-on: ${{ vars.CI_RUNNER || 'ubuntu-latest' }}
+    timeout-minutes: 5
+    env:
+      PUB: pub-1452812638164042
+      SITES: >-
+        on-air.jgb.solutions
+        emojiverse.jgb.solutions
+    steps:
+      - name: Check each site
+        shell: bash
+        run: |
+          fail=0
+          bad() { echo "::error title=$1::$2"; fail=1; }
+          for site in $SITES; do
+            echo "== $site"
+            # Home page: up, fast enough, and still loading AdSense with our publisher ID.
+            code=$(curl -sL -o home.html -w '%{http_code} %{time_total}' --max-time 20 "https://$site/") || code="000 0"
+            read -r status secs <<<"$code"
+            echo "home: $status in ${secs}s"
+            [ "$status" = 200 ] || bad "$site" "home page returned $status"
+            awk -v s="$secs" 'BEGIN { exit !(s > 5) }' && bad "$site" "home page took ${secs}s"
+            grep -q "ca-$PUB" home.html || bad "$site" "home page no longer has the AdSense ID ca-$PUB"
+
+            # ads.txt: without it AdSense marks earnings at risk and limits ads.
+            status=$(curl -sL -o ads.txt -w '%{http_code}' --max-time 20 "https://$site/ads.txt") || status=000
+            echo "ads.txt: $status"
+            if [ "$status" != 200 ] || ! grep -q "google.com, $PUB, DIRECT" ads.txt; then
+              bad "$site" "ads.txt is missing or wrong (HTTP $status)"
+            fi
+
+            # Search engines bring the traffic.
+            for path in sitemap.xml robots.txt; do
+              status=$(curl -sL -o /dev/null -w '%{http_code}' --max-time 20 "https://$site/$path") || status=000
+              echo "$path: $status"
+              [ "$status" = 200 ] || bad "$site" "/$path returned $status"
+            done
+          done
+          exit $fail
