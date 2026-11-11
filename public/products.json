@@ -67,12 +67,12 @@
     },
     {
       "id": "street-brawl",
-      "name": "Street Brawl",
+      "name": "Dojo Rivals",
       "tagline": "A free fighting game in your browser",
-      "url": "https://streetbrawl.jgb.solutions/",
+      "url": "https://dojorivals.jgb.solutions/",
       "kind": "game",
       "category": "Games",
-      "icon": "https://jgb.solutions/assets/images/products/street-brawl.svg"
+      "icon": "https://jgb.solutions/assets/images/products/dojo-rivals.svg"
     },
     {
       "id": "domino-club",

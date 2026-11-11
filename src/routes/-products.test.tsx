@@ -16,11 +16,11 @@ mock.module('content-collections', () => ({
     },
     {
       slug: 'street-brawl',
-      title: 'Street Brawl',
+      title: 'Dojo Rivals',
       category: 'GAME',
       description: 'A fighting game.',
       image: '/brawl.jpg',
-      url: 'https://streetbrawl.jgb.solutions/',
+      url: 'https://dojorivals.jgb.solutions/',
       order: 12,
     },
     {

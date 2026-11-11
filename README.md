@@ -80,8 +80,8 @@ We don't just build for clients. We build and run our own apps, games and media 
       Find any song, artist or album, play the preview, and see where to listen.
     </td>
     <td width="50%" valign="top">
-      <a href="https://streetbrawl.jgb.solutions"><img src="public/assets/images/projects/street-brawl/featured.jpg" alt="Street Brawl" /></a>
-      <h3><a href="https://streetbrawl.jgb.solutions">Street Brawl</a></h3>
+      <a href="https://dojorivals.jgb.solutions"><img src="public/assets/images/projects/street-brawl/featured.jpg" alt="Dojo Rivals" /></a>
+      <h3><a href="https://dojorivals.jgb.solutions">Dojo Rivals</a></h3>
       A free 2D fighting game in your browser, with story, training and online modes.
     </td>
   </tr>
