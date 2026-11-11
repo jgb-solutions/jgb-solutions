@@ -128,6 +128,7 @@ _Last updated: 2026-11-04._
 - **Decision (2026-10-19): no ads on jgb.solutions itself.** It's the business site that sells services; ads would look unprofessional and could show competitors. Its Privacy page says so; if that ever changes, update the page and add a Google-certified consent banner first. Keep `ads.txt` anyway.
 - **Plan:** ads go on the user's `*.jgb.solutions` products, starting with JGB Tools (its `LAUNCH.md` item 3 has the steps). A serious violation on one site can disable ads on the whole account, so keep ads off sites hosting content we don't own (Musivo, formerly MP3Pam, was rebuilt in 2026 to host no audio: previews come from the platforms and links go to licensed services; the old download site was the problem) and be careful with IPTV streams (On Air) and look-alike characters (Dojo Rivals, formerly Street Brawl).
 - **To keep approval:** no placeholder or "coming soon" pages; every project page needs real English text.
+- **Earning sites watch (2026-11-11):** OnAir and Emojiverse made the first AdSense money. `.github/workflows/earning-sites.yml` checks them every day (home page up and loading `ca-pub-1452812638164042`, `ads.txt`, `sitemap.xml`, `robots.txt`). A failed run makes GitHub email the owner. Add a site to its `SITES` list when it starts earning.
 
 ### Projects page
 
