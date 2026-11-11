@@ -1,0 +1,776 @@
+{
+  "/assets/images/projects/api-playground/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/featured-38e7fe39a3",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-1-6f5c6c806b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-2-c8446351e9",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-3-c6a013477a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-4-265fc43de2",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-5-69bf905f3d",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/api-playground/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/api-playground/screenshot-6-d5a6211642",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/featured-c40fe859da",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-1-4a837878c1",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-2-0913c50303",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-3-e99da2348a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-4-c255124ca1",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-5-53bbbc7534",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/cinetta/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/cinetta/screenshot-6-7cc925974c",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/featured-7a373199b7",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-1-092d062751",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-2-a170644c36",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-3-a10bd0fd38",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-4-8b5fadf473",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-5-a53447de39",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/domino-club/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/domino-club/screenshot-6-3a69d67516",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/featured-534f5157e1",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-1-fcb2d968d7",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-2-3a315af6b4",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-3-2b7c69d63a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-4-a451a05902",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-5-da4132830f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/emojiverse/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/emojiverse/screenshot-6-8f6176c307",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/featured-110651afe2",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-1-a6fbd8986f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-2-fab8c7c66a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-3-404cc21187",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-4-84a8f6102a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-5-baec04fe92",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/en-avant/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/en-avant/screenshot-6-d141e9aedf",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/featured-a799fd0db0",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-1-b548392134",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-2-79024d5670",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-3-61ffc5db36",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-4-546f2363a4",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-5-07cbaf37e8",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/eneph/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/eneph/screenshot-6-e6d684ad58",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/featured-5120e97222",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-1-50bbde6adb",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-2-5e210451dd",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-3-7d6a9d7083",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-4-9d4ff8e2f3",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-5-7a44e39844",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/experience-exquise/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/experience-exquise/screenshot-6-2714c3acd2",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/featured-5990e48647",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-1-8e291e121f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-2-6d9815ee0a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-3-7d1e95ed83",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-4-728bdebf0b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-5-8117a5a312",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/forum-telecom-haiti/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/forum-telecom-haiti/screenshot-6-006052d597",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/featured-65d3aa7512",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-1-672451efd5",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-2-ddb9b240c0",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-3-f160220831",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-4-bdcec3e61d",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-5-83c1d0f603",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/haiti-numerique-2030/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/haiti-numerique-2030/screenshot-6-c9408997e4",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/featured-e5d2fa79ed",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-1-3ddb37ea6b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-2-55c104f272",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-3-166979ff5a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-4-56738eaf6a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-5-a0b4eabd87",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jc-cantave/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jc-cantave/screenshot-6-d4c5eaf2d4",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/featured-a6110aa23c",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-1-26f2b712c1",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-2-c09b95a91d",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-3-4c6a13fc12",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-4-74e4a1bfe0",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-5-683b894d3b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-solutions/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-solutions/screenshot-6-427cd1d795",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/featured-dc6e6e764b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-1-01eb04ff1e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-2-af029be188",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-3-644943fc61",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-4-b80ea05517",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-5-2b402c184c",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/jgb-tools/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/jgb-tools/screenshot-6-85d843e261",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/featured-53ff2e0dff",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-1-8281a91c89",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-2-2a478def2b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-3-2c5e680a28",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-4-ff6fe54c6b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-5-9c5821f17a",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/musivo/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/musivo/screenshot-6-b5323c2136",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/featured-5356259fca",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-1-07d479e9ea",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-2-2bdc86232f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-3-7991949860",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-4-dedc3273cc",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-5-71558ea424",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/on-air/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/on-air/screenshot-6-22d1117497",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/featured-73273ca964",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-1-1a5e484e79",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-2-daf396779e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-3-6f2fe639c2",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-4-4870d1c926",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-5-b415e1e836",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/simone-fievre/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/simone-fievre/screenshot-6-1fd8842357",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/featured-266d1b1544",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-1-fc33b889c0",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-2-cb643b0a7c",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-3-54a1f9a212",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-4-b7b8bbd97d",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-5-918d35a394",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/street-brawl/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/street-brawl/screenshot-6-ce66635e52",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/featured-04b71a1e7e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-1-420209cbb8",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-2-8a4bb90c07",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-3-4e0a7a5904",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-4-fcd02a1c7f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-5-51c55d9525",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/techtalk/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/techtalk/screenshot-6-df98b428aa",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/ti-kwen-pam/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/ti-kwen-pam/featured-966cb6475e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/ti-kwen-pam/screenshot-1.jpg": {
+    "width": 1275,
+    "height": 958,
+    "base": "/img/projects/ti-kwen-pam/screenshot-1-cf72f08b8c",
+    "widths": [640, 1024]
+  },
+  "/assets/images/projects/ti-kwen-pam/screenshot-2.jpg": {
+    "width": 1211,
+    "height": 957,
+    "base": "/img/projects/ti-kwen-pam/screenshot-2-e964d8bdef",
+    "widths": [640, 1024]
+  },
+  "/assets/images/projects/top-facts/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/featured-5cd582b7f8",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-1-73835b135e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-2-89a39cf80b",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-3-5b4e065b5e",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-4-4fdb4adad0",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-5-84a44c6a92",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/top-facts/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/top-facts/screenshot-6-8289f9cd86",
+    "widths": [640, 1024, 1600]
+  }
+}

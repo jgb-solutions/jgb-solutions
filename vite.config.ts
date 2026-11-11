@@ -36,7 +36,15 @@ export default defineConfig({
 			// }
 		}),
 		nitro({
-			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel"
+			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel",
+			routeRules: {
+				// Optimized images have content-hashed names (scripts/optimize-images.ts): cache forever
+				"/img/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
+				// The original JPEGs keep their names when a screenshot is replaced: cache for a day
+				"/assets/images/**": {
+					headers: { "cache-control": "public, max-age=86400, stale-while-revalidate=604800" }
+				}
+			}
 		})
 	]
 })

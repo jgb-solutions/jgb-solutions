@@ -103,7 +103,7 @@ src/
 ├── globals.css        # Brand tokens (Tailwind @theme): brand, brand-strong, ink, paper, mist…
 └── routeTree.gen.ts   # Generated route definitions
 content/               # projects/ and posts/ (MDX)
-scripts/               # generate-brand-images.ts, check-seo.ts
+scripts/               # generate-brand-images.ts, check-seo.ts, optimize-images.ts
 branding/              # Brand kit (generated; see its README)
 examples/              # Archived landing-page designs (not part of the app)
 docs/                  # PLAN-redesign.md, TODO-redesign.md
@@ -136,6 +136,7 @@ _Last updated: 2026-11-04._
 - **`updated: 'YYYY-MM-DD'` is required** in every project's frontmatter: it's the sitemap's `lastmod`. Bump it when the write-up or its images change. Other pages' dates are in `src/lib/page-dates.ts`; bump those when a page's content changes.
 - `draft: true` in a project's frontmatter hides it from listings, its page and the sitemap (`src/lib/projects.ts`). Use it for unfinished write-ups instead of publishing placeholders.
 - Card images: `public/assets/images/projects/<slug>/featured.jpg`, a 4:3 desktop capture (1280×960 at 1.25×, JPEG) of the live site, plus **six** `screenshot-1.jpg` … `screenshot-6.jpg` gallery images of six different pages or views (the user's rule, 2026-11-01; single-page sites get sections further down the page or interactive states instead), never showing the visitor's own IP or location, empty states or loading spinners (JPEG, about quality 82; PNG screenshots were 3× larger, converted 2026-10-19). Check every capture by eye: blur or hide user-uploaded content that's offensive, and crop out broken embeds.
+- **After adding or replacing any project image, run `bun scripts/optimize-images.ts`** (added 2026-11-11). It writes AVIF and WebP copies at 640, 1024 and 1600 px under content-hashed names in `public/img/projects/` and updates `src/lib/image-manifest.json`; `ResponsiveImage` (`src/components/responsive-image.tsx`) serves them as a `<picture>` with `srcset`/`sizes`, width and height, keeping the JPEG as the fallback. A test fails CI if an image is missing from the manifest. Hashed copies are cached forever (`routeRules` in `vite.config.ts`); the original JPEGs keep their names, so they're cached for a day only. The project page's hero image has `fetchPriority='high'`; everything else lazy-loads.
 - 19 projects as of 2026-11-10 (Emojiverse added). 18 as of 2026-11-01 (Top Facts and OnAir added; six screenshots each; Simone Fievre's page and screenshots redone after her 2026 rebuild). 16 as of 2026-10-27 (AllFlix, Domino Club and API Playground added; screenshots and write-ups refreshed from the live sites). 13 as of 2026-10-17. Added in PR #3: **Street Brawl** (game, https://streetbrawl.jgb.solutions; the game's folder `~/Code/Web/street-brawl` is not a git repo yet) and **L'Expérience Exquise** (https://www.experienceexquise.ca).
 - **Not listed yet (the user's call):** Fake Jobs and Top Everything (not deployed / no working domain), and Okap Lakay (not official yet). Add them when they're live.
 

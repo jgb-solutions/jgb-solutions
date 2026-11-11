@@ -1,6 +1,7 @@
 import { Link } from '@tanstack/react-router'
 import type { allProjects } from 'content-collections'
 import { cn } from '@/lib/utils'
+import { ResponsiveImage } from '@/components/responsive-image'
 
 /** Only what a card shows, so lists don't ship whole write-ups to the browser. */
 export type ProjectCardData = Pick<
@@ -23,8 +24,9 @@ export function ProjectCard({ project, isProduct = false, className }: ProjectCa
       className={cn('group flex flex-col gap-4', className)}
     >
       <div className='relative aspect-[4/3] overflow-hidden border border-ink/10 bg-mist'>
-        <img
+        <ResponsiveImage
           src={project.image || '/placeholder.svg'}
+          sizes='(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
           alt={`${project.title} screenshot`}
           loading='lazy'
           className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'

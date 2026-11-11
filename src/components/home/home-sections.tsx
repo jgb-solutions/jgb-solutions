@@ -6,6 +6,7 @@ import { Section, SectionHeading, buttonStyles, isDark, mutedText } from '@/comp
 import { clientProjects, products } from '@/lib/products'
 import { OFFERED_SERVICES } from '@/lib/services'
 import { cn } from '@/lib/utils'
+import { ResponsiveImage } from '@/components/responsive-image'
 
 export function HomeServices({ tone }: { tone: SectionTone }) {
   return (
@@ -124,8 +125,13 @@ function ProductCard({
         tabIndex={-1}
         aria-hidden
       >
-        <img
+        <ResponsiveImage
           src={product.image}
+          sizes={
+            featured
+              ? '(min-width: 1024px) 50vw, 100vw'
+              : '(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw'
+          }
           alt=''
           loading='lazy'
           className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
@@ -200,8 +206,9 @@ export function HomeWork({ tone }: { tone: SectionTone }) {
             className='group flex flex-col gap-4'
           >
             <div className='aspect-[4/3] overflow-hidden border border-ink/10'>
-              <img
+              <ResponsiveImage
                 src={project.image}
+                sizes='(min-width: 768px) 50vw, 100vw'
                 alt={`${project.title} website`}
                 loading='lazy'
                 className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
