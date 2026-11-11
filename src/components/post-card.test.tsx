@@ -19,7 +19,6 @@ const mockPost: (typeof allPosts)[number] = {
   readTime: '5 min read',
   slug: 'test-post',
   summary: 'Post summary text',
-  content: 'Content',
   _meta: {
     filePath: 'test.mdx',
     fileName: 'test.mdx',
@@ -27,7 +26,6 @@ const mockPost: (typeof allPosts)[number] = {
     path: 'posts/test',
     extension: 'mdx',
   },
-  mdx: 'compiled-mdx',
 }
 
 // Imported after the mocks above, so they read the mocked modules

@@ -1,24 +1,27 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
 // Mock content-collections
 // The blog is switched off on the site; these tests cover the pages for when it's back on
 mock.module('@/lib/features', () => ({ FEATURES: { blog: true } }))
 
-mock.module('content-collections', () => ({
-  allPosts: [
-    {
-      slug: 'test-post',
-      title: 'Test Post',
-      category: 'Tech',
-      date: '2024-01-01',
-      readTime: '5 min',
-      image: '/test.png',
-      mdx: 'MDX Content',
-    },
-  ],
-  allProjects: [],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allPosts: [
+      {
+        slug: 'test-post',
+        title: 'Test Post',
+        category: 'Tech',
+        date: '2024-01-01',
+        readTime: '5 min',
+        image: '/test.png',
+        mdx: 'MDX Content',
+      },
+    ],
+    allProjects: [],
+  })
+)
 
 // Mock Components
 mock.module('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))

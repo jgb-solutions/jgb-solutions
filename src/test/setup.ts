@@ -51,7 +51,5 @@ mock.module('@tanstack/react-start', () => ({ ...reactStart, createServerFn }))
 
 // Empty content by default; a test file that needs projects or posts mocks the module itself, then
 // imports what reads it (see src/routes/-index.test.tsx).
-mock.module('content-collections', () => ({
-  allProjects: [],
-  allPosts: [],
-}))
+const { contentModule } = await import('@/test/content')
+mock.module('content-collections', () => contentModule({}))

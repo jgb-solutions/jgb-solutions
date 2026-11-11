@@ -57,7 +57,7 @@ bun test --isolate src/components/ui/button.test.tsx
 - **File-Based:** Routes are defined in `src/routes/`.
 - **Loaders:** Use `createServerFn` for data fetching. Remove `async` from loader functions if they don't await anything internally.
 - **Server routes** (`server: { handlers: { GET } }`, e.g. `sitemap[.]xml.tsx`) already run on the server: build the response with plain functions. Calling a `createServerFn` from inside a server route handler fails since TanStack Start 1.168 ("Server function info not found").
-- **Search Params:** Use Zod for validating search parameters.
+- **Search Params:** validate them with a plain function that returns every key (`undefined` when the value is unknown), not a Zod schema: `validateSearch` runs in the browser, and Zod would add about 25 KB gzipped to every page (2026-11-11).
 
 ### Testing (`bun test` + React Testing Library)
 
@@ -165,6 +165,7 @@ _Last updated: 2026-11-04._
 - **Bun's own dev tools (2026-11-11):** `bun test` (was Vitest, jsdom), `bun fmt` (was Prettier, and ESLint no longer runs Prettier as a rule), `bun check` (was `tsc --noEmit`), `bun ci` in CI, `minimumReleaseAge = 259200` (3 days; Vercel's Bun only reads seconds) in `bunfig.toml`. Vite stays for TanStack Start. `bun audit` reports `toml` (via `@content-collections/mdx` → `mdx-bundler`), which only parses this repo's own MDX frontmatter at build time; it isn't in CI until the upstream fix lands.
 - **Held back (2026-11-04):** TypeScript stays on 6 (typescript-eslint doesn't support TS 7 yet). `bun check` reports the same errors.
 - **Analytics (2026-11-04):** Cloudflare Web Analytics, the owner's choice for every live site (2026-10-21; nothing paid). jgb.solutions' DNS is on Cloudflare but not proxied (Vercel serves it), so the beacon is in code: `VisitorMetrics` (`src/components/site/visitor-metrics.tsx`) loads it in production builds only when `VITE_CF_ANALYTICS_TOKEN` is set in Vercel (the owner creates the site token in the Cloudflare dashboard; wrangler can't). The Privacy page switches its wording on the same `ANALYTICS_ENABLED` flag (`src/lib/analytics.ts`), so it never claims analytics that aren't running. Changing the token needs a redeploy (Vite bakes it in at build time).
+- **Light content in the browser (2026-11-11):** `content-collections.ts` has list collections (`allProjects`, `allPosts`: frontmatter plus the project's overview paragraph, no body) and page collections (`allProjectPages`, `allPostPages`: compiled MDX). Only server functions read the page collections, so the browser never downloads every write-up. Test mocks build both with `contentModule()` (`src/test/content.ts`). The phone menu (Radix dialog) loads on first use (`mobile-menu.tsx`).
 - **Fonts (2026-11-11):** Fontsource CSS (all `font-display: swap`); the root route preloads the two faces the first screen needs, Saira 800 (headings) and Inter 400 (body), imported with `?url` so the preload is the same hashed file the CSS uses. Preload any new above-the-fold face the same way, no more.
 - **Design skill:** `.claude/skills/frontend-design` (copied unchanged from jgb-starter); load it for design work.
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.

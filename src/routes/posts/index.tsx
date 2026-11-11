@@ -1,6 +1,5 @@
 import { Link, createFileRoute, notFound, useNavigate } from '@tanstack/react-router'
 import { allPosts } from 'content-collections'
-import { z } from 'zod'
 import { createServerFn } from '@tanstack/react-start'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
@@ -9,9 +8,10 @@ import { PostCard } from '@/components/post-card'
 import { FEATURES } from '@/lib/features'
 import { createPageSEO } from '@/lib/seo'
 
-const postsSearchSchema = z.object({
-  category: z.string().optional(),
-})
+/** ?category= filter. A plain function, not a Zod schema, so Zod stays out of the browser bundle. */
+function validatePostsSearch(search: Record<string, unknown>): { category?: string } {
+  return { category: typeof search.category === 'string' ? search.category : undefined }
+}
 
 const getPosts = createServerFn({ method: 'GET' }).handler(() => {
   const sortedPosts = allPosts.sort(
@@ -22,7 +22,7 @@ const getPosts = createServerFn({ method: 'GET' }).handler(() => {
 })
 
 export const Route = createFileRoute('/posts/')({
-  validateSearch: postsSearchSchema,
+  validateSearch: validatePostsSearch,
   // The blog is switched off for now (src/lib/features.ts)
   beforeLoad: () => {
     if (!FEATURES.blog) throw notFound()

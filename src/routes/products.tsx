@@ -10,7 +10,7 @@ import {
 } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
-import { overviewOf, productKind, products } from '@/lib/products'
+import { productKind, products } from '@/lib/products'
 import { createPageSEO, productJsonLd } from '@/lib/seo'
 import { cn } from '@/lib/utils'
 import { ResponsiveImage } from '@/components/responsive-image'
@@ -90,7 +90,7 @@ function ProductsPage() {
                     {product.title}
                   </h2>
                   <p className={cn('max-w-xl text-lg leading-relaxed', mutedText[tone])}>
-                    {overviewOf(product)}
+                    {product.overview}
                   </p>
                   {product.services && product.services.length > 0 && (
                     <div className='flex flex-col gap-2'>

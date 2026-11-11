@@ -1,5 +1,6 @@
 import { Link, createFileRoute, notFound, redirect } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
+import { allProjectPages } from 'content-collections'
 import { ArrowLeft, ArrowRight, ArrowUpRight } from 'lucide-react'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { Container, SectionLabel, buttonStyles } from '@/components/site/section'
@@ -15,10 +16,12 @@ const getProject = createServerFn({ method: 'GET' })
   .handler(({ data: slug }) => {
     const ordered = [...publishedProjects].sort((a, b) => a.order - b.order)
     const index = ordered.findIndex(p => p.slug === slug)
-    if (index === -1) throw notFound()
+    // The page's write-up (compiled MDX) is read here, on the server only
+    const project = allProjectPages.find(p => p.slug === slug)
+    if (index === -1 || !project) throw notFound()
     const next = ordered[(index + 1) % ordered.length]
     return {
-      project: ordered[index],
+      project,
       isProduct: PRODUCT_SLUGS.includes(slug),
       next:
         next.slug === slug

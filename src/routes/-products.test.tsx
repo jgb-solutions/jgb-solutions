@@ -1,39 +1,44 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
-mock.module('content-collections', () => ({
-  allProjects: [
-    {
-      slug: 'jgb-tools',
-      title: 'JGB Tools',
-      category: 'WEB TOOLS',
-      description: 'Free tools.',
-      content: '## Project Overview\n\nTools that open instantly.\n\n## The Challenge\n\nMore.',
-      image: '/tools.jpg',
-      url: 'https://tools.jgb.solutions/',
-      services: ['TanStack Start', 'Expo (React Native)'],
-      order: 10,
-    },
-    {
-      slug: 'street-brawl',
-      title: 'Dojo Rivals',
-      category: 'GAME',
-      description: 'A fighting game.',
-      image: '/brawl.jpg',
-      url: 'https://dojorivals.jgb.solutions/',
-      order: 12,
-    },
-    {
-      slug: 'eneph',
-      title: 'ENEPH',
-      category: 'WEBSITE',
-      description: 'A non-profit.',
-      image: '/eneph.jpg',
-      order: 50,
-    },
-  ],
-  allPosts: [],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allProjects: [
+      {
+        slug: 'jgb-tools',
+        title: 'JGB Tools',
+        category: 'WEB TOOLS',
+        description: 'Free tools.',
+        overview: 'Tools that open instantly.',
+        image: '/tools.jpg',
+        url: 'https://tools.jgb.solutions/',
+        services: ['TanStack Start', 'Expo (React Native)'],
+        order: 10,
+      },
+      {
+        slug: 'street-brawl',
+        title: 'Dojo Rivals',
+        category: 'GAME',
+        description: 'A fighting game.',
+        // The build falls back to the description when there's no overview (see lib/overview)
+        overview: 'A fighting game.',
+        image: '/brawl.jpg',
+        url: 'https://dojorivals.jgb.solutions/',
+        order: 12,
+      },
+      {
+        slug: 'eneph',
+        title: 'ENEPH',
+        category: 'WEBSITE',
+        description: 'A non-profit.',
+        image: '/eneph.jpg',
+        order: 50,
+      },
+    ],
+    allPosts: [],
+  })
+)
 
 // Imported after the mocks above, so they read the mocked modules
 const { renderWithRouter } = await import('@/test/router-utils')
@@ -56,7 +61,7 @@ describe('Products page', () => {
       'href',
       '/projects/jgb-tools'
     )
-    // Falls back to the description when there's no overview
+    // A product without an overview paragraph shows its description
     expect(screen.getByText('A fighting game.')).toBeInTheDocument()
   })
 

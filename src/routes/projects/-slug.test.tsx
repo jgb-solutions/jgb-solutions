@@ -1,35 +1,38 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
-mock.module('content-collections', () => ({
-  allProjects: [
-    {
-      slug: 'test-project',
-      title: 'Test Project',
-      category: 'WEBSITE',
-      description: 'Desc',
-      client: 'Test Client',
-      year: '2024',
-      url: 'https://example.com/',
-      image: '/featured.jpg',
-      services: ['React', 'Node'],
-      gallery: ['/img1.png', '/img2.png'],
-      mdx: 'MDX Content',
-      order: 1,
-    },
-    {
-      slug: 'jgb-tools',
-      title: 'JGB Tools',
-      category: 'WEB TOOLS',
-      description: 'Free tools.',
-      client: 'JGB SOLUTIONS',
-      image: '/tools.jpg',
-      mdx: 'MDX Content',
-      order: 2,
-    },
-  ],
-  allPosts: [],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allProjects: [
+      {
+        slug: 'test-project',
+        title: 'Test Project',
+        category: 'WEBSITE',
+        description: 'Desc',
+        client: 'Test Client',
+        year: '2024',
+        url: 'https://example.com/',
+        image: '/featured.jpg',
+        services: ['React', 'Node'],
+        gallery: ['/img1.png', '/img2.png'],
+        mdx: 'MDX Content',
+        order: 1,
+      },
+      {
+        slug: 'jgb-tools',
+        title: 'JGB Tools',
+        category: 'WEB TOOLS',
+        description: 'Free tools.',
+        client: 'JGB SOLUTIONS',
+        image: '/tools.jpg',
+        mdx: 'MDX Content',
+        order: 2,
+      },
+    ],
+    allPosts: [],
+  })
+)
 
 mock.module('@/components/mdx-provider', () => ({
   MdxRenderer: () => <div data-testid='mdx-content'>MDX Rendered</div>,

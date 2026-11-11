@@ -19,7 +19,7 @@ const mockProject: (typeof allProjects)[number] = {
   order: 10,
   updated: '2026-10-19',
   summary: 'This is a test summary',
-  content: 'Test content',
+  overview: 'Test overview',
   _meta: {
     filePath: 'test.mdx',
     fileName: 'test.mdx',
@@ -27,7 +27,6 @@ const mockProject: (typeof allProjects)[number] = {
     path: 'projects/test',
     extension: 'mdx',
   },
-  mdx: 'compiled-mdx-code',
 }
 
 // Imported after the mocks above, so they read the mocked modules
