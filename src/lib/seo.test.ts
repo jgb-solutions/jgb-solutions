@@ -133,17 +133,17 @@ describe('seo', () => {
 
     const project = {
       slug: 'street-brawl',
-      title: 'Street Brawl',
+      title: 'Dojo Rivals',
       description: 'A game.',
       image: '/assets/images/projects/street-brawl/featured.jpg',
-      url: 'https://streetbrawl.jgb.solutions/',
+      url: 'https://dojorivals.jgb.solutions/',
       year: '2026',
     }
 
     it('describes products by kind', () => {
       expect(productJsonLd(project, 'game')).toMatchObject({
         '@type': 'VideoGame',
-        url: 'https://streetbrawl.jgb.solutions/',
+        url: 'https://dojorivals.jgb.solutions/',
         image: 'https://jgb.solutions/assets/images/projects/street-brawl/featured.jpg',
         isAccessibleForFree: true,
       })
