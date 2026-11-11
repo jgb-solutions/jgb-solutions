@@ -7,4 +7,4 @@ pathIgnorePatterns = ["examples/**", "node_modules/**", ".output/**", ".tanstack
 [install]
 # New package versions wait three days before Bun installs them, so hijacked releases are usually
 # caught first. Exempt one urgent fix with minimumReleaseAgeExcludes = ["pkg@1.2.3"].
-minimumReleaseAge = "3d"
+minimumReleaseAge = 259200 # 3 days, in seconds (Vercel's Bun rejects "3d")
