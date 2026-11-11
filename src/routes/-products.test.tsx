@@ -1,8 +1,7 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
-import { renderWithRouter } from '@/test/router-utils'
 
-vi.mock('content-collections', () => ({
+mock.module('content-collections', () => ({
   allProjects: [
     {
       slug: 'jgb-tools',
@@ -35,6 +34,9 @@ vi.mock('content-collections', () => ({
   ],
   allPosts: [],
 }))
+
+// Imported after the mocks above, so they read the mocked modules
+const { renderWithRouter } = await import('@/test/router-utils')
 
 describe('Products page', () => {
   it('lists our products with their overview, stack and links', async () => {

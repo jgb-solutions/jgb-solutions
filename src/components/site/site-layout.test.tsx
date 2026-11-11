@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'bun:test'
 import { screen, within } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 

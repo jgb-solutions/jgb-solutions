@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'bun:test'
 import { OFFERED_SERVICES, SERVICES, getServiceBySlug } from '@/lib/services'
 
 describe('services', () => {

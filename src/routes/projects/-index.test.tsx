@@ -1,8 +1,7 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { screen, within } from '@testing-library/react'
-import { renderWithRouter } from '@/test/router-utils'
 
-vi.mock('content-collections', () => ({
+mock.module('content-collections', () => ({
   allProjects: [
     { slug: 'eneph', title: 'ENEPH', category: 'WEBSITE', image: '/e.jpg', order: 50 },
     { slug: 'jgb-tools', title: 'JGB Tools', category: 'WEB TOOLS', image: '/t.jpg', order: 10 },
@@ -27,6 +26,9 @@ vi.mock('content-collections', () => ({
 
 const titles = () =>
   screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent)
+
+// Imported after the mocks above, so they read the mocked modules
+const { renderWithRouter } = await import('@/test/router-utils')
 
 describe('Work page', () => {
   it('lists published work in order and tags our products', async () => {

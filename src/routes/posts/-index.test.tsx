@@ -1,13 +1,12 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
 import type { allPosts } from 'content-collections'
-import { renderWithRouter } from '@/test/router-utils'
 
 // Mock content-collections
 // The blog is switched off on the site; these tests cover the pages for when it's back on
-vi.mock('@/lib/features', () => ({ FEATURES: { blog: true } }))
+mock.module('@/lib/features', () => ({ FEATURES: { blog: true } }))
 
-vi.mock('content-collections', () => ({
+mock.module('content-collections', () => ({
   allPosts: [
     { slug: 'p1', title: 'Post 1', category: 'Tech', date: '2024-01-01' },
     { slug: 'p2', title: 'Post 2', category: 'Life', date: '2024-01-02' },
@@ -16,13 +15,16 @@ vi.mock('content-collections', () => ({
 }))
 
 // Mock Components
-vi.mock('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))
-vi.mock('@/components/site/site-footer', () => ({ SiteFooter: () => <div>Footer</div> }))
-vi.mock('@/components/post-card', () => ({
+mock.module('@/components/site/site-header', () => ({ SiteHeader: () => <div>Navbar</div> }))
+mock.module('@/components/site/site-footer', () => ({ SiteFooter: () => <div>Footer</div> }))
+mock.module('@/components/post-card', () => ({
   PostCard: ({ post }: { post: (typeof allPosts)[number] }) => (
     <div data-testid='post-card'>{post.title}</div>
   ),
 }))
+
+// Imported after the mocks above, so they read the mocked modules
+const { renderWithRouter } = await import('@/test/router-utils')
 
 describe('Posts Index Route', () => {
   it('renders list of posts and categories', async () => {

@@ -3,7 +3,6 @@ import pluginRouter from "@tanstack/eslint-plugin-router"
 import pluginQuery from "@tanstack/eslint-plugin-query"
 import pluginReact from "eslint-plugin-react"
 import pluginReactHooks from "eslint-plugin-react-hooks"
-import pluginPrettier from "eslint-plugin-prettier"
 import tseslint from "@typescript-eslint/eslint-plugin"
 import tsparser from "@typescript-eslint/parser"
 import js from "@eslint/js"
@@ -44,14 +43,12 @@ export default [
 			"react-hooks": pluginReactHooks,
 			"@tanstack/router": pluginRouter,
 			"@tanstack/query": pluginQuery,
-			prettier: pluginPrettier,
 		},
 		rules: {
 			...tseslint.configs.recommended.rules,
 			...pluginReact.configs.recommended.rules,
 			...pluginReactHooks.configs.recommended.rules,
 			...pluginQuery.configs.recommended.rules,
-			"prettier/prettier": "error",
 
 			// TanStack Router rules
 			"@tanstack/router/create-route-property-order": "error",

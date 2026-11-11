@@ -24,27 +24,28 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      # Bun's version comes from packageManager in package.json (1.4.4 or later has `bun fmt`)
       - name: Setup Bun
-        uses: oven-sh/setup-bun@v1
+        uses: oven-sh/setup-bun@v2
         with:
-          bun-version: latest
+          bun-version-file: package.json
 
       - name: Install dependencies
-        run: bun install
+        run: bun ci
 
       - name: Generate Content Collections
         run: bun run generate:collections
 
-      - name: Check Formatting
+      - name: Check Formatting (bun fmt)
         run: bun run format:check
 
       - name: Lint
         run: bun run lint:check
 
-      - name: Type Check
+      - name: Type Check (bun check)
         run: bun run type-check
 
-      - name: Run Tests
+      - name: Run Tests (bun test)
         run: bun run test:run
 
       - name: Build

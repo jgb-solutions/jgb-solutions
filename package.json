@@ -10,11 +10,11 @@
     "start": "vite preview",
     "lint": "eslint . --fix",
     "lint:check": "eslint .",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
-    "type-check": "tsc --noEmit",
-    "test": "vitest",
-    "test:run": "vitest run",
+    "format": "bun fmt .",
+    "format:check": "bun fmt --check .",
+    "type-check": "bun check",
+    "test": "bun test --isolate --watch",
+    "test:run": "bun test --parallel=4",
     "generate:collections": "content-collections build",
     "seo:check": "bun scripts/check-seo.ts"
   },
@@ -44,6 +44,7 @@
   },
   "devDependencies": {
     "@content-collections/cli": "^0.1.9",
+    "@happy-dom/global-registrator": "^21.0.4",
     "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/postcss": "^4.3.4",
     "@tailwindcss/typography": "^0.5.20",
@@ -62,19 +63,16 @@
     "@typescript-eslint/parser": "^8.72.1",
     "@vitejs/plugin-react": "^6.2.1",
     "babel-plugin-react-compiler": "^1.0.0",
-    "eslint-plugin-prettier": "^5.5.7",
+    "bun-types": "^1.4.4",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^7.1.1",
     "globals": "^17.14.0",
-    "jsdom": "^28.1.0",
     "nitro": "^3.0.261102-rc",
     "postcss": "^8.5.32",
-    "prettier": "^3.9.10",
     "satori": "^0.63.2",
     "tailwindcss": "^4.3.4",
     "typescript": "^6.0.3",
     "vite": "^8.3.5",
-    "vite-tsconfig-paths": "^6.1.1",
-    "vitest": "^5.1.0"
+    "vite-tsconfig-paths": "^6.1.1"
   }
 }
