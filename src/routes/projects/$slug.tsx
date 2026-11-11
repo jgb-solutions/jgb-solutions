@@ -8,6 +8,7 @@ import { SiteHeader } from '@/components/site/site-header'
 import { PRODUCT_SLUGS, productKind } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
 import { clientProjectJsonLd, createPageSEO, productJsonLd } from '@/lib/seo'
+import { ResponsiveImage } from '@/components/responsive-image'
 
 const getProject = createServerFn({ method: 'GET' })
   .validator((slug: string) => slug)
@@ -101,8 +102,10 @@ function ProjectDetailPage() {
 
         <Container className='-mt-px pt-12 md:pt-16'>
           <div className='aspect-[16/10] overflow-hidden border border-ink/10 bg-mist'>
-            <img
+            <ResponsiveImage
               src={project.image || '/placeholder.svg'}
+              sizes='(min-width: 1280px) 1280px, 100vw'
+              fetchPriority='high'
               alt={`${project.title} home page`}
               className='h-full w-full object-cover object-top'
             />
@@ -157,8 +160,9 @@ function ProjectDetailPage() {
               <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
                 {project.gallery.map((image, i) => (
                   <div key={image} className='overflow-hidden border border-ink/10 bg-paper'>
-                    <img
+                    <ResponsiveImage
                       src={image}
+                      sizes='(min-width: 1280px) 640px, (min-width: 768px) 50vw, 100vw'
                       alt={`${project.title} screenshot ${i + 1}`}
                       loading='lazy'
                       className='h-auto w-full'

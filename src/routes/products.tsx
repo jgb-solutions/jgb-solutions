@@ -13,6 +13,7 @@ import { SiteHeader } from '@/components/site/site-header'
 import { overviewOf, productKind, products } from '@/lib/products'
 import { createPageSEO, productJsonLd } from '@/lib/seo'
 import { cn } from '@/lib/utils'
+import { ResponsiveImage } from '@/components/responsive-image'
 
 export const Route = createFileRoute('/products')({
   head: () =>
@@ -73,8 +74,9 @@ function ProductsPage() {
                   tabIndex={-1}
                   aria-hidden
                 >
-                  <img
+                  <ResponsiveImage
                     src={product.image}
+                    sizes='(min-width: 1024px) 50vw, 100vw'
                     alt=''
                     loading={index === 0 ? 'eager' : 'lazy'}
                     className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'

@@ -15,6 +15,7 @@ import { PRODUCT_SLUGS } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
 import { createPageSEO, serviceJsonLd } from '@/lib/seo'
 import { OFFERED_SERVICES, getServiceBySlug } from '@/lib/services'
+import { ResponsiveImage } from '@/components/responsive-image'
 
 // Services are plain data in src/lib/services.ts (their icons are components), so the loader
 // only checks the slug; the component looks the service up.
@@ -129,8 +130,9 @@ function ServicePage() {
                   className='group flex flex-col gap-4'
                 >
                   <div className='aspect-[4/3] overflow-hidden border border-ink/10'>
-                    <img
+                    <ResponsiveImage
                       src={project.image}
+                      sizes='(min-width: 768px) 50vw, 100vw'
                       alt={`${project.title} screenshot`}
                       loading='lazy'
                       className='h-full w-full object-cover object-top transition-transform duration-500 motion-safe:group-hover:scale-105'
