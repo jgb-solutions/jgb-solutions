@@ -1,4 +1,7 @@
 import { HeadContent, Link, Outlet, Scripts, createRootRoute } from '@tanstack/react-router'
+// The fonts the first screen needs (headings, body text): preloaded so text doesn't reflow
+import interRegular from '@fontsource/inter/files/inter-latin-400-normal.woff2?url'
+import sairaExtraBold from '@fontsource/saira/files/saira-latin-800-normal.woff2?url'
 import type { ReactNode } from 'react'
 import '@/globals.css'
 import '@fontsource/inter/400.css'
@@ -29,6 +32,13 @@ export const Route = createRootRoute({
       ...createSEOMeta({ title: `${SITE.name} - Websites, Mobile Apps & Social Media`, path: '/' }),
     ],
     links: [
+      ...[sairaExtraBold, interRegular].map(href => ({
+        rel: 'preload',
+        as: 'font',
+        type: 'font/woff2',
+        href,
+        crossOrigin: 'anonymous' as const,
+      })),
       { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
       { rel: 'icon', type: 'image/png', sizes: '48x48', href: '/favicon-48.png' },
       { rel: 'icon', type: 'image/png', sizes: '32x32', href: '/favicon-32.png' },
