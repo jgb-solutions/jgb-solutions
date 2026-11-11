@@ -16,19 +16,19 @@ export default defineConfig({
 		contentCollections(),
 		tsconfigPaths(),
 		tanstackStart({
-			// TODO: Enable prerendering when ready for production
-			// prerender: {
-			// 	// Enable static prerendering
-			// 	enabled: true,
-			// 	// Automatically discover and prerender all static routes
-			// 	autoStaticPathsDiscovery: true,
-			// 	// Crawl links from prerendered pages to discover more pages
-			// 	crawlLinks: true,
-			// 	// Run multiple prerender jobs in parallel
-			// 	concurrency: 14,
-			// 	// Output pages as /page/index.html for cleaner URLs
-			// 	autoSubfolderIndex: true
-			// }
+			// Every page is prerendered to static HTML at build time and served from Vercel's CDN
+			// (the owner's choice, 2026-11-11). Pages are found by crawling links from the home
+			// page; the switched-off blog and ?query variants are skipped. Server functions stay on
+			// Vercel for client-side navigation, and unknown URLs still get the 404 page from it.
+			prerender: {
+				enabled: true,
+				crawlLinks: true,
+				autoStaticPathsDiscovery: true,
+				failOnError: true,
+				filter: page =>
+					!page.path.startsWith("/posts") && !page.path.includes("?") && !/\.(pdf|png|jpe?g|svg)$/.test(page.path)
+			},
+			pages: [{ path: "/sitemap.xml", prerender: { enabled: true, outputPath: "/sitemap.xml" } }]
 		}),
 		viteReact({
 			// babel: {
