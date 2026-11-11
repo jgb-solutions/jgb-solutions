@@ -1,28 +1,31 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen, within } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
-mock.module('content-collections', () => ({
-  allProjects: [
-    { slug: 'eneph', title: 'ENEPH', category: 'WEBSITE', image: '/e.jpg', order: 50 },
-    { slug: 'jgb-tools', title: 'JGB Tools', category: 'WEB TOOLS', image: '/t.jpg', order: 10 },
-    {
-      slug: 'jgb-solutions',
-      title: 'JGB Solutions',
-      category: 'PORTFOLIO',
-      image: '/s.jpg',
-      order: 90,
-    },
-    {
-      slug: 'draft',
-      title: 'Draft Project',
-      category: 'WEBSITE',
-      image: '/d.jpg',
-      order: 1,
-      draft: true,
-    },
-  ],
-  allPosts: [],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allProjects: [
+      { slug: 'eneph', title: 'ENEPH', category: 'WEBSITE', image: '/e.jpg', order: 50 },
+      { slug: 'jgb-tools', title: 'JGB Tools', category: 'WEB TOOLS', image: '/t.jpg', order: 10 },
+      {
+        slug: 'jgb-solutions',
+        title: 'JGB Solutions',
+        category: 'PORTFOLIO',
+        image: '/s.jpg',
+        order: 90,
+      },
+      {
+        slug: 'draft',
+        title: 'Draft Project',
+        category: 'WEBSITE',
+        image: '/d.jpg',
+        order: 1,
+        draft: true,
+      },
+    ],
+    allPosts: [],
+  })
+)
 
 const titles = () =>
   screen.getAllByRole('heading', { level: 3 }).map(heading => heading.textContent)

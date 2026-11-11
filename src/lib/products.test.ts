@@ -2,7 +2,8 @@ import { existsSync } from 'node:fs'
 import { describe, expect, it } from 'bun:test'
 import { z } from 'zod'
 import feed from '../../public/products.json'
-import { FEATURED_PRODUCT, overviewOf } from '@/lib/products'
+import { overviewOf } from '@/lib/overview'
+import { FEATURED_PRODUCT } from '@/lib/products'
 
 describe('overviewOf', () => {
   it('returns the first paragraph of the project overview', () => {

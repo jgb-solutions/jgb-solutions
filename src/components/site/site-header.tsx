@@ -1,10 +1,13 @@
 import { Link } from '@tanstack/react-router'
 import { Menu } from 'lucide-react'
-import { useState } from 'react'
+import { Suspense, lazy, useState } from 'react'
 import { Logo } from '@/components/site/logo'
 import { Container, buttonStyles } from '@/components/site/section'
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet'
 import { FEATURES } from '@/lib/features'
+
+// The menu's dialog code loads the first time it's opened (or when the button is pressed or hovered)
+const loadMobileMenu = () => import('@/components/site/mobile-menu')
+const MobileMenu = lazy(() => loadMobileMenu().then(m => ({ default: m.MobileMenu })))
 
 // Pages join this list as the redesign builds them (see docs/PLAN-redesign.md).
 export const NAV_LINKS = [
@@ -17,11 +20,15 @@ export const NAV_LINKS = [
 
 const navLinkClass =
   'font-display text-sm font-semibold uppercase tracking-wider text-paper/80 transition-colors hover:text-brand data-[status=active]:text-brand'
-const mobileLinkClass =
-  'py-2 font-display text-lg font-semibold uppercase tracking-wider hover:text-brand data-[status=active]:text-brand'
 
 /** "Start a project" jumps to the contact band that ends every page (email and WhatsApp). */
-function StartProjectLink({ className, onClick }: { className: string; onClick?: () => void }) {
+export function StartProjectLink({
+  className,
+  onClick,
+}: {
+  className: string
+  onClick?: () => void
+}) {
   return (
     <a href='#contact' className={className} onClick={onClick}>
       Start a project
@@ -31,6 +38,8 @@ function StartProjectLink({ className, onClick }: { className: string; onClick?:
 
 export function SiteHeader() {
   const [isOpen, setIsOpen] = useState(false)
+  // Mounted once opened, so closing keeps the dialog's closing animation
+  const [menuLoaded, setMenuLoaded] = useState(false)
 
   return (
     <>
@@ -56,37 +65,26 @@ export function SiteHeader() {
             <StartProjectLink className={buttonStyles('brand', 'py-3')} />
           </nav>
 
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
-            <SheetTrigger asChild>
-              <button type='button' className='-mr-2 p-2 lg:hidden' aria-label='Open menu'>
-                <Menu className='h-6 w-6' />
-              </button>
-            </SheetTrigger>
-            <SheetContent side='right' className='border-ink-line bg-ink text-paper'>
-              <SheetHeader>
-                <SheetTitle className='text-paper'>Menu</SheetTitle>
-              </SheetHeader>
-              <nav aria-label='Mobile' className='mt-8 flex flex-col gap-2 px-4'>
-                <Link to='/' className={mobileLinkClass} onClick={() => setIsOpen(false)}>
-                  Home
-                </Link>
-                {NAV_LINKS.map(link => (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    className={mobileLinkClass}
-                    onClick={() => setIsOpen(false)}
-                  >
-                    {link.label}
-                  </Link>
-                ))}
-                <StartProjectLink
-                  className={buttonStyles('brand', 'mt-6')}
-                  onClick={() => setIsOpen(false)}
-                />
-              </nav>
-            </SheetContent>
-          </Sheet>
+          <button
+            type='button'
+            className='-mr-2 p-2 lg:hidden'
+            aria-label='Open menu'
+            aria-haspopup='dialog'
+            aria-expanded={isOpen}
+            onPointerEnter={loadMobileMenu}
+            onPointerDown={loadMobileMenu}
+            onClick={() => {
+              setMenuLoaded(true)
+              setIsOpen(true)
+            }}
+          >
+            <Menu className='h-6 w-6' />
+          </button>
+          {menuLoaded && (
+            <Suspense fallback={null}>
+              <MobileMenu open={isOpen} onOpenChange={setIsOpen} />
+            </Suspense>
+          )}
         </Container>
       </header>
     </>

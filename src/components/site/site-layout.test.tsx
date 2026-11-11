@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'bun:test'
-import { screen, within } from '@testing-library/react'
+import { fireEvent, screen, within } from '@testing-library/react'
 import { renderWithRouter } from '@/test/router-utils'
 
 describe('Site header and footer', () => {
@@ -54,5 +54,24 @@ describe('Site header and footer', () => {
     )
     expect(within(footer).queryByRole('link', { name: 'GitHub' })).not.toBeInTheDocument()
     expect(within(footer).queryByText('Insights')).not.toBeInTheDocument()
+  })
+})
+
+describe('Phone menu', () => {
+  it('opens the menu, loaded on first use, with every page and the contact link', async () => {
+    renderWithRouter({ initialEntries: ['/projects'] })
+
+    fireEvent.click(await screen.findByRole('button', { name: 'Open menu' }))
+
+    const menu = await screen.findByRole('navigation', { name: 'Mobile' })
+    expect(within(menu).getByRole('link', { name: 'Home' })).toHaveAttribute('href', '/')
+    expect(within(menu).getByRole('link', { name: 'Services' })).toHaveAttribute(
+      'href',
+      '/services'
+    )
+    expect(within(menu).getByRole('link', { name: 'Start a project' })).toHaveAttribute(
+      'href',
+      '#contact'
+    )
   })
 })

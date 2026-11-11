@@ -1,55 +1,58 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen, within } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
-mock.module('content-collections', () => ({
-  allProjects: [
-    {
-      slug: 'jgb-tools',
-      title: 'JGB Tools',
-      category: 'WEB TOOLS',
-      description: 'Free tools.',
-      image: '/tools.jpg',
-      url: 'https://tools.jgb.solutions/',
-      order: 10,
-    },
-    {
-      slug: 'eneph',
-      title: 'ENEPH',
-      category: 'WEBSITE',
-      description: 'A non-profit.',
-      image: '/eneph.jpg',
-      year: '2022',
-      order: 50,
-    },
-    {
-      slug: 'jgb-solutions',
-      title: 'JGB Solutions',
-      category: 'PORTFOLIO',
-      description: 'This site.',
-      image: '/site.jpg',
-      order: 90,
-    },
-    {
-      slug: 'hidden',
-      title: 'Hidden Draft',
-      category: 'WEBSITE',
-      description: 'Not ready.',
-      image: '/x.jpg',
-      order: 1,
-      draft: true,
-    },
-  ],
-  allPosts: [
-    {
-      slug: 'talk-less',
-      title: 'Talk Less, Listen More',
-      category: 'Thoughts',
-      readTime: '3 min read',
-      excerpt: 'Hi, the name is Jean.',
-      date: '2022-09-02',
-    },
-  ],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allProjects: [
+      {
+        slug: 'jgb-tools',
+        title: 'JGB Tools',
+        category: 'WEB TOOLS',
+        description: 'Free tools.',
+        image: '/tools.jpg',
+        url: 'https://tools.jgb.solutions/',
+        order: 10,
+      },
+      {
+        slug: 'eneph',
+        title: 'ENEPH',
+        category: 'WEBSITE',
+        description: 'A non-profit.',
+        image: '/eneph.jpg',
+        year: '2022',
+        order: 50,
+      },
+      {
+        slug: 'jgb-solutions',
+        title: 'JGB Solutions',
+        category: 'PORTFOLIO',
+        description: 'This site.',
+        image: '/site.jpg',
+        order: 90,
+      },
+      {
+        slug: 'hidden',
+        title: 'Hidden Draft',
+        category: 'WEBSITE',
+        description: 'Not ready.',
+        image: '/x.jpg',
+        order: 1,
+        draft: true,
+      },
+    ],
+    allPosts: [
+      {
+        slug: 'talk-less',
+        title: 'Talk Less, Listen More',
+        category: 'Thoughts',
+        readTime: '3 min read',
+        excerpt: 'Hi, the name is Jean.',
+        date: '2022-09-02',
+      },
+    ],
+  })
+)
 
 // Imported after the mocks above, so they read the mocked modules
 const { renderWithRouter } = await import('@/test/router-utils')

@@ -1,9 +1,9 @@
 import { defineCollection, defineConfig } from '@content-collections/core'
 import { compileMDX } from '@content-collections/mdx'
 import { z } from 'zod'
+import { overviewOf } from './src/lib/overview'
 
-const posts = defineCollection({
-  name: 'posts',
+const postSchema = {
   directory: 'content/posts',
   include: '*.mdx',
   schema: z.object({
@@ -17,18 +17,28 @@ const posts = defineCollection({
     summary: z.string().optional(),
     content: z.string(),
   }),
+}
+
+/**
+ * Posts for lists (cards, the sitemap): no body. Their pages read `allPostPages`, which has the
+ * compiled MDX, only on the server, so the browser never downloads every post.
+ */
+const posts = defineCollection({
+  name: 'posts',
+  ...postSchema,
+  transform: ({ content: _content, ...document }) => ({ ...document, slug: document._meta.path }),
+})
+
+const postPages = defineCollection({
+  name: 'postPages',
+  ...postSchema,
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document)
-    return {
-      ...document,
-      slug: document._meta.path,
-      mdx,
-    }
+    return { ...document, slug: document._meta.path, mdx }
   },
 })
 
-const projects = defineCollection({
-  name: 'projects',
+const projectSchema = {
   directory: 'content/projects',
   include: '*.mdx',
   schema: z.object({
@@ -49,16 +59,32 @@ const projects = defineCollection({
     updated: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
     content: z.string(),
   }),
+}
+
+/**
+ * Projects for lists and cards (home, products, services, work, sitemap): the frontmatter plus the
+ * overview paragraph, no body. Project pages read `allProjectPages`, which has the compiled MDX,
+ * only in their server function, so the browser never downloads every write-up.
+ */
+const projects = defineCollection({
+  name: 'projects',
+  ...projectSchema,
+  transform: ({ content, ...document }) => ({
+    ...document,
+    slug: document._meta.path,
+    overview: overviewOf({ content, description: document.description }),
+  }),
+})
+
+const projectPages = defineCollection({
+  name: 'projectPages',
+  ...projectSchema,
   transform: async (document, context) => {
     const mdx = await compileMDX(context, document)
-    return {
-      ...document,
-      slug: document._meta.path,
-      mdx,
-    }
+    return { ...document, slug: document._meta.path, mdx }
   },
 })
 
 export default defineConfig({
-  collections: [posts, projects],
+  collections: [posts, postPages, projects, projectPages],
 })

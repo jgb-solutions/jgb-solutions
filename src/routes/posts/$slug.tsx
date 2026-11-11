@@ -1,5 +1,5 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
-import { allPosts } from 'content-collections'
+import { allPostPages } from 'content-collections'
 import { FacebookShareButton, LinkedinShareButton, XShareButton } from 'react-share'
 import { createServerFn } from '@tanstack/react-start'
 import { Facebook, Linkedin } from '@/components/site/brand-icons'
@@ -14,7 +14,7 @@ const getPost = createServerFn({ method: 'GET' })
   .validator((slug: string) => slug)
 
   .handler(({ data: slug }) => {
-    const post = allPosts.find(p => p.slug === slug)
+    const post = allPostPages.find(p => p.slug === slug)
     if (!post) throw notFound()
     return { post }
   })

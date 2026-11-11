@@ -1,27 +1,30 @@
 import { describe, expect, it, mock } from 'bun:test'
 import { screen, within } from '@testing-library/react'
+import { contentModule } from '@/test/content'
 
-mock.module('content-collections', () => ({
-  allProjects: [
-    {
-      slug: 'eneph',
-      title: 'ENEPH',
-      category: 'WEBSITE',
-      description: 'A non-profit.',
-      image: '/eneph.jpg',
-      order: 50,
-    },
-    {
-      slug: 'jgb-tools',
-      title: 'JGB Tools',
-      category: 'WEB TOOLS',
-      description: 'Free tools.',
-      image: '/tools.jpg',
-      order: 10,
-    },
-  ],
-  allPosts: [],
-}))
+mock.module('content-collections', () =>
+  contentModule({
+    allProjects: [
+      {
+        slug: 'eneph',
+        title: 'ENEPH',
+        category: 'WEBSITE',
+        description: 'A non-profit.',
+        image: '/eneph.jpg',
+        order: 50,
+      },
+      {
+        slug: 'jgb-tools',
+        title: 'JGB Tools',
+        category: 'WEB TOOLS',
+        description: 'Free tools.',
+        image: '/tools.jpg',
+        order: 10,
+      },
+    ],
+    allPosts: [],
+  })
+)
 
 // Imported after the mocks above, so they read the mocked modules
 const { renderWithRouter } = await import('@/test/router-utils')

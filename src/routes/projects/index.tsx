@@ -1,6 +1,5 @@
 import { Link, createFileRoute } from '@tanstack/react-router'
 import { createServerFn } from '@tanstack/react-start'
-import { z } from 'zod'
 import { ProjectCard } from '@/components/project-card'
 import { Container, SectionLabel } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
@@ -16,9 +15,14 @@ const FILTERS = [
   { value: 'products', label: 'Our products' },
 ] as const
 
-const projectsSearchSchema = z.object({
-  show: z.enum(['all', 'clients', 'products']).optional(),
-})
+const SHOW = ['all', 'clients', 'products'] as const
+type Show = (typeof SHOW)[number]
+
+/** ?show= filter. A plain function, not a Zod schema, so Zod stays out of the browser bundle. */
+function validateProjectsSearch(search: Record<string, unknown>): { show?: Show } {
+  const show = SHOW.find(value => value === search.show)
+  return { show }
+}
 
 const getProjects = createServerFn({ method: 'GET' }).handler(() => {
   const projects = [...publishedProjects]
@@ -37,7 +41,7 @@ const getProjects = createServerFn({ method: 'GET' }).handler(() => {
 })
 
 export const Route = createFileRoute('/projects/')({
-  validateSearch: projectsSearchSchema,
+  validateSearch: validateProjectsSearch,
   loader: () => getProjects(),
   head: () =>
     createPageSEO({
