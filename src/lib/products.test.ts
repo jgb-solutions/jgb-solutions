@@ -1,5 +1,5 @@
 import { existsSync } from 'node:fs'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it } from 'bun:test'
 import { z } from 'zod'
 import feed from '../../public/products.json'
 import { FEATURED_PRODUCT, overviewOf } from '@/lib/products'

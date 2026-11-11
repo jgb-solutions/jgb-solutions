@@ -1,10 +1,9 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { render, screen } from '@testing-library/react'
-import { PostCard } from './post-card'
 import type { allPosts } from 'content-collections'
 
 // Mock Link
-vi.mock('@tanstack/react-router', () => ({
+mock.module('@tanstack/react-router', () => ({
   Link: ({ children, ...props }: { children: React.ReactNode } & Record<string, unknown>) => (
     <a {...props}>{children}</a>
   ),
@@ -30,6 +29,9 @@ const mockPost: (typeof allPosts)[number] = {
   },
   mdx: 'compiled-mdx',
 }
+
+// Imported after the mocks above, so they read the mocked modules
+const { PostCard } = await import('./post-card')
 
 describe('PostCard', () => {
   it('renders post details correctly', () => {

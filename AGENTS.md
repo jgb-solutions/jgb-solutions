@@ -19,11 +19,11 @@ This document provides essential information for AI agents operating within this
 | **Dev Server**     | `bun run dev`                          | Starts local development server                                                         |
 | **Lint (Check)**   | `bun run lint:check`                   | Checks for linting errors                                                               |
 | **Lint (Fix)**     | `bun run lint`                         | Auto-fixes linting errors                                                               |
-| **Format (Check)** | `bun run format:check`                 | Checks code formatting                                                                  |
-| **Format (Fix)**   | `bun run format`                       | Auto-formats code using Prettier                                                        |
-| **Type Check**     | `bun run type-check`                   | Runs TypeScript compiler check                                                          |
-| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (CI mode)                                                           |
-| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode                                                                |
+| **Format (Check)** | `bun run format:check`                 | Checks code formatting (`bun fmt --check`, reads `.prettierrc` and `.prettierignore`)   |
+| **Format (Fix)**   | `bun run format`                       | Auto-formats code (`bun fmt`)                                                           |
+| **Type Check**     | `bun run type-check`                   | Type checks the project (`bun check`, same errors as `tsc`)                             |
+| **Test (Run)**     | `bun run test:run`                     | Runs all tests once (`bun test --parallel=4`, CI mode)                                  |
+| **Test (Watch)**   | `bun run test`                         | Runs tests in watch mode (`bun test --isolate --watch`)                                 |
 | **Content**        | `bun run generate:collections`         | Regenerates content-collections from `content/` (CI runs it before type-check)          |
 | **Brand images**   | `bun scripts/generate-brand-images.ts` | Rebuilds the share image, favicons and `logo.png` in `public/`, and the `branding/` kit |
 | **SEO check**      | `bun run seo:check [base-url]`         | Checks every sitemap page's HTML (default: the live site; CI runs it on a local build)  |
@@ -33,7 +33,7 @@ This document provides essential information for AI agents operating within this
 To run a specific test file:
 
 ```bash
-bun x vitest run src/components/ui/button.test.tsx
+bun test --isolate src/components/ui/button.test.tsx
 ```
 
 ## 3. Code Style & Conventions
@@ -59,16 +59,17 @@ bun x vitest run src/components/ui/button.test.tsx
 - **Server routes** (`server: { handlers: { GET } }`, e.g. `sitemap[.]xml.tsx`) already run on the server: build the response with plain functions. Calling a `createServerFn` from inside a server route handler fails since TanStack Start 1.168 ("Server function info not found").
 - **Search Params:** Use Zod for validating search parameters.
 
-### Testing (Vitest + React Testing Library)
+### Testing (`bun test` + React Testing Library)
 
-- **Environment:** Tests run in `jsdom`.
+- **Environment:** `bun test` with happy-dom (registered in `src/test/setup.ts`, preloaded by `bunfig.toml`). Each file runs with its own module registry (`--isolate`, or `--parallel`, which implies it), since files mock `content-collections` with their own data.
+- **Mocks:** `mock.module()` isn't hoisted like `vi.mock`, so a test file registers its mocks first, then loads what reads them with `await import(...)` (see `src/routes/-index.test.tsx`). `vi.fn` is `mock`, `vi.spyOn` is `spyOn`. Server functions run their handler in-process through a small `createServerFn` stand-in in `src/test/setup.ts` (TanStack Start's compiler and request context only exist in the real build).
 - **Router Testing:**
   - DO NOT extract `Route.component` to test in isolation.
   - USE `renderWithRouter` from `@/test/router-utils` to test components within a real router context.
-  - Mock data sources (like `content-collections`) using `vi.mock` to simulate empty/filled states.
+  - Mock data sources (like `content-collections`) using `mock.module` to simulate empty/filled states.
 - **Mocks:**
   - Mock strict types: use `Record<string, unknown>` instead of `any`.
-  - Use `vi.mocked()` for type-safe mocking.
+  - Import test helpers from `bun:test`; types are in `src/test/bun-test.d.ts`.
 
 ### Styling
 
@@ -159,7 +160,8 @@ _Last updated: 2026-11-04._
 - **Home page:** bold look only. A light look was built and dropped (in git history, commit 451cded) — the user may ask for it again. No client list for now. **Every page ends with the contact band** (`ContactSection`, `id="contact"`), rendered by `SiteFooter`, so "Start a project" and other contact links are plain `#contact` anchors that work on any page. The band has "Email us" (mailto, with the address and a Copy button beside it, since mailto does nothing without a mail app) and "WhatsApp us". Footer contact: email and phone only; socials are the business LinkedIn page (since 2026-11-01) and the founder's personal Instagram (the business Instagram is locked: it's tied to the founder's old Haitian number), no GitHub.
 - **Brand kit: `branding/`** (logos, icons, social profile pictures, LinkedIn, X and Facebook covers, YouTube banner; its README says where each goes). Generated with the site's favicons and share image by `bun scripts/generate-brand-images.ts`; never edit the images by hand. The user's rule (2026-11-01): every project has its brand assets in a `branding/` folder at its root.
 - **Hosting (the user's rule, 2026-11-01):** static sites stay on Vercel; sites with server functions doing real work, or a database, go on Cloudflare. jgb.solutions is static content, so it stays on Vercel. There's no Docker setup (the Dockerfile was removed 2026-11-01).
-- **Held back (2026-11-04):** TypeScript stays on 6 (typescript-eslint doesn't support TS 7 yet) and jsdom on 28 (jsdom 30 breaks Vitest's test workers). Retry when typescript-eslint and Vitest support them.
+- **Bun's own dev tools (2026-11-11):** `bun test` (was Vitest, jsdom), `bun fmt` (was Prettier, and ESLint no longer runs Prettier as a rule), `bun check` (was `tsc --noEmit`), `bun ci` in CI, `minimumReleaseAge = 259200` (3 days; Vercel's Bun only reads seconds) in `bunfig.toml`. Vite stays for TanStack Start. `bun audit` reports `toml` (via `@content-collections/mdx` → `mdx-bundler`), which only parses this repo's own MDX frontmatter at build time; it isn't in CI until the upstream fix lands.
+- **Held back (2026-11-04):** TypeScript stays on 6 (typescript-eslint doesn't support TS 7 yet). `bun check` reports the same errors.
 - **Analytics (2026-11-04):** Cloudflare Web Analytics, the owner's choice for every live site (2026-10-21; nothing paid). jgb.solutions' DNS is on Cloudflare but not proxied (Vercel serves it), so the beacon is in code: `VisitorMetrics` (`src/components/site/visitor-metrics.tsx`) loads it in production builds only when `VITE_CF_ANALYTICS_TOKEN` is set in Vercel (the owner creates the site token in the Cloudflare dashboard; wrangler can't). The Privacy page switches its wording on the same `ANALYTICS_ENABLED` flag (`src/lib/analytics.ts`), so it never claims analytics that aren't running. Changing the token needs a redeploy (Vite bakes it in at build time).
 - **Design skill:** `.claude/skills/frontend-design` (copied unchanged from jgb-starter); load it for design work.
 - `src/routeTree.gen.ts` is generated: after pulling or switching branches, let `bun run dev` or `bun run build` regenerate it instead of resolving conflicts by hand.

@@ -1,12 +1,13 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { render } from '@testing-library/react'
-import { VisitorMetrics } from './visitor-metrics'
 
-const analytics = vi.hoisted(() => ({
+mock.module('@/lib/analytics', () => ({
   ANALYTICS_ENABLED: false,
-  CF_ANALYTICS_TOKEN: undefined as string | undefined,
+  CF_ANALYTICS_TOKEN: undefined,
 }))
-vi.mock('@/lib/analytics', () => analytics)
+
+// Imported after the mock above, so it reads the mocked module
+const { VisitorMetrics } = await import('./visitor-metrics')
 
 describe('VisitorMetrics', () => {
   it('loads nothing without a token or outside production', () => {
@@ -15,8 +16,11 @@ describe('VisitorMetrics', () => {
   })
 
   it('loads the Cloudflare beacon with the site token when enabled', () => {
-    analytics.ANALYTICS_ENABLED = true
-    analytics.CF_ANALYTICS_TOKEN = 'test-token'
+    // Registering the mock again updates the bindings the component already imported
+    mock.module('@/lib/analytics', () => ({
+      ANALYTICS_ENABLED: true,
+      CF_ANALYTICS_TOKEN: 'test-token',
+    }))
     const { container } = render(<VisitorMetrics />)
     const script = container.querySelector('script')
     expect(script?.getAttribute('src')).toBe('https://static.cloudflareinsights.com/beacon.min.js')

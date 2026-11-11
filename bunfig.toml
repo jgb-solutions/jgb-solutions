@@ -1,0 +1,10 @@
+[test]
+# Unit and component tests only; each file gets a fresh module registry (--isolate in package.json),
+# since files mock `content-collections` with their own data.
+preload = ["./src/test/setup.ts"]
+pathIgnorePatterns = ["examples/**", "node_modules/**", ".output/**", ".tanstack/**"]
+
+[install]
+# New package versions wait three days before Bun installs them, so hijacked releases are usually
+# caught first. Exempt one urgent fix with minimumReleaseAgeExcludes = ["pkg@1.2.3"].
+minimumReleaseAge = 259200 # 3 days, in seconds (Vercel's Bun rejects "3d")

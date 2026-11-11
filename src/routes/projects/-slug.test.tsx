@@ -1,8 +1,7 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it, mock } from 'bun:test'
 import { screen } from '@testing-library/react'
-import { renderWithRouter } from '@/test/router-utils'
 
-vi.mock('content-collections', () => ({
+mock.module('content-collections', () => ({
   allProjects: [
     {
       slug: 'test-project',
@@ -32,9 +31,12 @@ vi.mock('content-collections', () => ({
   allPosts: [],
 }))
 
-vi.mock('@/components/mdx-provider', () => ({
+mock.module('@/components/mdx-provider', () => ({
   MdxRenderer: () => <div data-testid='mdx-content'>MDX Rendered</div>,
 }))
+
+// Imported after the mocks above, so they read the mocked modules
+const { renderWithRouter } = await import('@/test/router-utils')
 
 describe('Project page', () => {
   it('shows the write-up, details, gallery and a link to the site', async () => {

@@ -1,13 +1,15 @@
-import { describe, expect, it, vi } from 'vitest'
-import { buildSitemap, sitemapEntries } from '@/lib/sitemap'
+import { describe, expect, it, mock } from 'bun:test'
 
-vi.mock('content-collections', () => ({
+mock.module('content-collections', () => ({
   allProjects: [
     { slug: 'eneph', title: 'ENEPH', order: 50, updated: '2026-10-17' },
     { slug: 'secret', title: 'Draft', order: 1, updated: '2026-10-18', draft: true },
   ],
   allPosts: [{ slug: 'old-post', date: '2022-09-02' }],
 }))
+
+// Imported after the mocks above, so they read the mocked modules
+const { buildSitemap, sitemapEntries } = await import('@/lib/sitemap')
 
 describe('sitemap', () => {
   it('lists every public page with a lastmod date', () => {
