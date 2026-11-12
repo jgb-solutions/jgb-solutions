@@ -82,7 +82,7 @@ function NotFoundPage() {
           </Container>
         </section>
       </main>
-      <SiteFooter />
+      <SiteFooter share={false} />
     </div>
   )
 }

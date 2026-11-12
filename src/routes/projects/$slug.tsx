@@ -46,7 +46,6 @@ export const Route = createFileRoute('/projects/$slug')({
     return createPageSEO({
       title: `${project.title} - Work | JGB Solutions`,
       description: project.description,
-      image: project.image,
       type: 'article',
       path: `/projects/${project.slug}`,
       breadcrumbs: [

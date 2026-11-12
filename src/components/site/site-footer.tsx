@@ -1,11 +1,13 @@
-import { Link } from '@tanstack/react-router'
+import { Link, useRouterState } from '@tanstack/react-router'
 import { Instagram, Linkedin } from '@/components/site/brand-icons'
 import { ContactSection } from '@/components/site/contact-section'
 import { Logo } from '@/components/site/logo'
-import { Container } from '@/components/site/section'
+import { Container, SectionLabel } from '@/components/site/section'
+import { ShareButtons } from '@/components/site/share-buttons'
 import { SITE, SOCIAL } from '@/lib/constants'
 import { FEATURES } from '@/lib/features'
 import { OFFERED_SERVICES } from '@/lib/services'
+import { isShareable } from '@/lib/share'
 
 const SOCIAL_LINKS = [
   { label: 'LinkedIn', href: SOCIAL.linkedin, icon: Linkedin },
@@ -16,12 +18,13 @@ const headingClass = 'font-mono text-xs uppercase tracking-[0.2em] text-brand'
 const linkClass = 'text-muted-paper transition-colors hover:text-paper'
 
 /**
- * The bottom of every page: the contact band (`#contact`, which every "Start a project" link
- * targets) and the footer itself.
+ * The bottom of every page: the share band (every shareable page; `share={false}` turns it off),
+ * the contact band (`#contact`, which every "Start a project" link targets) and the footer itself.
  */
-export function SiteFooter() {
+export function SiteFooter({ share = true }: { share?: boolean }) {
   return (
     <>
+      {share && <ShareBand />}
       <ContactSection tone='brand' />
       <footer className='bg-ink text-paper'>
         <Container className='grid grid-cols-1 gap-12 py-16 sm:grid-cols-2 lg:grid-cols-4'>
@@ -126,5 +129,29 @@ export function SiteFooter() {
         </div>
       </footer>
     </>
+  )
+}
+
+/** "Share this page", with the page's own title (from its head) as the text that goes with the link. */
+function ShareBand() {
+  const { path, title } = useRouterState({
+    select: state => {
+      const match = state.matches.at(-1)
+      const meta = (match?.meta ?? []) as Array<{ title?: string } | undefined>
+      return {
+        path: state.location.pathname,
+        title: meta.find(tag => tag?.title)?.title ?? SITE.name,
+      }
+    },
+  })
+  if (!isShareable(path)) return null
+
+  return (
+    <section className='border-t border-ink/10 bg-paper py-8 text-ink' aria-label='Share'>
+      <Container className='flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between'>
+        <SectionLabel className='text-brand-strong opacity-100'>Share this page</SectionLabel>
+        <ShareButtons path={path} title={title} />
+      </Container>
+    </section>
   )
 }

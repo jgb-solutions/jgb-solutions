@@ -1,13 +1,10 @@
 import { Link, createFileRoute, notFound } from '@tanstack/react-router'
 import { allPostPages } from 'content-collections'
-import { FacebookShareButton, LinkedinShareButton, XShareButton } from 'react-share'
 import { createServerFn } from '@tanstack/react-start'
-import { Facebook, Linkedin } from '@/components/site/brand-icons'
 import { SiteHeader } from '@/components/site/site-header'
 import { SiteFooter } from '@/components/site/site-footer'
 import { MdxRenderer } from '@/components/mdx-provider'
 import { createPageSEO } from '@/lib/seo'
-import { SITE } from '@/lib/constants'
 import { FEATURES } from '@/lib/features'
 
 const getPost = createServerFn({ method: 'GET' })
@@ -60,7 +57,6 @@ export const Route = createFileRoute('/posts/$slug')({
 
 function PostDetailPage() {
   const { post } = Route.useLoaderData()
-  const postUrl = `${SITE.url}/posts/${post.slug}`
 
   return (
     <main className='min-h-screen bg-background'>
@@ -119,41 +115,6 @@ function PostDetailPage() {
           {/* Article Content */}
           <div className='prose prose-lg max-w-none prose-headings:font-bold prose-headings:tracking-tight prose-headings:mb-2 prose-p:text-muted-foreground prose-li:text-muted-foreground prose-strong:text-foreground prose-img:rounded-2xl prose-img:shadow-lg'>
             <MdxRenderer code={post.mdx} />
-          </div>
-
-          {/* Share Section */}
-          <div className='mt-12 pt-8 border-t border-border'>
-            <p className='text-sm text-muted-foreground mb-4'>Share This Post</p>
-            <div className='flex gap-4'>
-              <XShareButton url={postUrl} text={post.title}>
-                <div className='h-10 w-10 flex items-center justify-center bg-black text-white rounded-xl hover:opacity-90 transition-opacity'>
-                  <svg
-                    viewBox='0 0 24 24'
-                    fill='none'
-                    stroke='currentColor'
-                    strokeWidth='2'
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    className='h-5 w-5'
-                  >
-                    <path d='M4 4l11.733 16h4.267l-11.733 -16z' />
-                    <path d='M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772' />
-                  </svg>
-                </div>
-              </XShareButton>
-
-              <LinkedinShareButton url={postUrl}>
-                <div className='h-10 w-10 flex items-center justify-center bg-[#0077b5] text-white rounded-xl hover:opacity-90 transition-opacity'>
-                  <Linkedin className='h-5 w-5' />
-                </div>
-              </LinkedinShareButton>
-
-              <FacebookShareButton url={postUrl} hashtag='#WebDev'>
-                <div className='h-10 w-10 flex items-center justify-center bg-[#1877f2] text-white rounded-xl hover:opacity-90 transition-opacity'>
-                  <Facebook className='h-5 w-5' />
-                </div>
-              </FacebookShareButton>
-            </div>
           </div>
         </div>
       </article>
