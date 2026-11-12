@@ -5,12 +5,15 @@ import tsconfigPaths from "vite-tsconfig-paths"
 import contentCollections from "@content-collections/vite"
 import { nitro } from "nitro/vite"
 import tailwindcss from "@tailwindcss/vite"
+import { redact } from "@tanstack/redact/vite"
 
 const ReactCompilerConfig = {
 	/* ... */
 }
 
 export default defineConfig({
+	// TanStack Redact (smaller React): bundle server dependencies so their React imports are redirected too
+	ssr: { noExternal: true },
 	plugins: [
 		tailwindcss(),
 		contentCollections(),
@@ -35,6 +38,8 @@ export default defineConfig({
 			// 	plugins: [["babel-plugin-react-compiler", ReactCompilerConfig]]
 			// }
 		}),
+		// TanStack Redact replaces React; it must come after the Start and React plugins
+		redact(),
 		nitro({
 			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel",
 			routeRules: {
