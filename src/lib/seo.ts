@@ -5,6 +5,7 @@
 
 import { OG_IMAGE, SEO, SITE, SOCIAL, X_ACCOUNT } from './constants'
 import { OFFERED_SERVICES } from './services'
+import { shareImagePath } from './share'
 import type { Service } from './services'
 
 export interface SEOConfig {
@@ -36,11 +37,12 @@ export function createSEOMeta(config: SEOConfig = {}) {
     path,
   } = config
 
-  // Smart image handling: use provided image, or fallback to default OG image
-  // If image starts with /, prepend site URL; otherwise use as-is
+  // The share image: the one given, else the page's own 1200×630 card (scripts/generate-share-images.ts,
+  // picked by path), else the brand image. A path starting with / gets the site URL in front.
+  const imagePath = rawImage ?? (path !== undefined ? shareImagePath(path) : undefined)
   let image: string = OG_IMAGE.url
-  if (rawImage) {
-    image = rawImage.startsWith('/') ? `${SITE.url}${rawImage}` : rawImage
+  if (imagePath) {
+    image = imagePath.startsWith('/') ? `${SITE.url}${imagePath}` : imagePath
   }
 
   // Smart author handling: use provided author, or fallback to site author
@@ -64,7 +66,10 @@ export function createSEOMeta(config: SEOConfig = {}) {
     { property: 'og:image', content: image },
     { property: 'og:image:width', content: OG_IMAGE.width.toString() },
     { property: 'og:image:height', content: OG_IMAGE.height.toString() },
-    { property: 'og:image:alt', content: rawImage ? title : OG_IMAGE.alt }
+    {
+      property: 'og:image:alt',
+      content: imagePath && imagePath !== '/og-image.png' ? title : OG_IMAGE.alt,
+    }
   )
   if (path !== undefined) {
     meta.push({ property: 'og:url', content: `${SITE.url}${path}` })

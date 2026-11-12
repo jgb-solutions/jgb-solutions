@@ -30,9 +30,10 @@ describe('seo', () => {
       expect(seo.meta).toContainEqual({ property: 'og:title', content: 'Test Title' })
 
       expect(seo.meta).toContainEqual({ property: 'og:url', content: 'https://jgb.solutions/test' })
+      // The page's own share card, picked by its path
       expect(seo.meta).toContainEqual({
         property: 'og:image',
-        content: 'https://jgb.solutions/og-image.png',
+        content: 'https://jgb.solutions/og/test.jpg',
       })
       expect(seo.meta).toContainEqual({ name: 'twitter:site', content: '@jgb_solutions' })
 
