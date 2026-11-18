@@ -7,6 +7,8 @@
   </a>
 </p>
 
+**How it all fits together:** [architecture/](architecture/README.md), a one-page picture of the whole setup.
+
 <h3 align="center">Websites, mobile apps and social media for your business.</h3>
 
 <p align="center">
