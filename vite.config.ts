@@ -43,6 +43,16 @@ export default defineConfig({
 		nitro({
 			preset: process.env.BUILD_TARGET === "bun" ? "bun" : "vercel",
 			routeRules: {
+				// Security headers on every response (pages, assets, server functions). No CSP yet: the
+				// site has inline scripts and a strict policy needs nonces, so it is a separate change.
+				"/**": {
+					headers: {
+						"x-content-type-options": "nosniff",
+						"x-frame-options": "DENY",
+						"referrer-policy": "strict-origin-when-cross-origin",
+						"permissions-policy": "camera=(), microphone=(), geolocation=(), interest-cohort=()"
+					}
+				},
 				// Optimized images have content-hashed names (scripts/optimize-images.ts): cache forever
 				"/img/**": { headers: { "cache-control": "public, max-age=31536000, immutable" } },
 				// The original JPEGs keep their names when a screenshot is replaced: cache for a day
