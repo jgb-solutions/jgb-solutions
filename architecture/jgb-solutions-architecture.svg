@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1240" width="1600" height="1240">
+  <defs>
+    <pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="7" cy="7" r="2.2" fill="#f2c94c" opacity="0.45"/></pattern>
+    <pattern id="dotsBlue" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2" fill="#4fc3f7" opacity="0.35"/></pattern>
+    <pattern id="dotsPink" width="12" height="12" patternUnits="userSpaceOnUse"><circle cx="6" cy="6" r="2" fill="#ff5c8a" opacity="0.28"/></pattern>
+    <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#1a1a1a"/></marker>
+    <style>
+      text { font-family: "Chalkboard SE", "Comic Sans MS", "Comic Neue", cursive; fill: #1a1a1a; }
+      .title { font-size: 64px; font-weight: 700; } .sub { font-size: 22px; } .ph { font-size: 30px; font-weight: 700; }
+      .h { font-size: 21px; font-weight: 700; } .t { font-size: 17px; } .s { font-size: 14.5px; } .tiny { font-size: 12.5px; }
+      .panel { stroke: #1a1a1a; stroke-width: 5; } .box { stroke: #1a1a1a; stroke-width: 3.5; }
+      .line { stroke: #1a1a1a; stroke-width: 4; fill: none; marker-end: url(#arrow); } .dash { stroke: #1a1a1a; stroke-width: 3; fill: none; stroke-dasharray: 9 7; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect width="1600" height="1240" fill="#fff8e7"/><rect width="1600" height="1240" fill="url(#dots)"/>
+  <g transform="rotate(-1.2 800 80)"><rect x="38" y="30" width="1524" height="104" fill="#1a1a1a"/><rect x="30" y="22" width="1524" height="104" fill="#F7961D" class="panel"/><text x="60" y="96" class="title">JGB SOLUTIONS</text><text x="600" y="72" class="sub" style="fill:#050708;font-weight:700">How the business site works!</text><text x="600" y="104" class="sub" style="fill:#050708">jgb.solutions · websites, apps and social media for business</text></g>
+  <!-- 1 -->
+  <g><rect x="38" y="168" width="340" height="340" fill="#1a1a1a"/><rect x="30" y="160" width="340" height="340" fill="#fff" class="panel"/><text x="50" y="198" class="ph">1. You!</text><text x="50" y="230" class="s">Business owners, on phone or computer</text>
+    <rect x="72" y="260" width="76" height="126" rx="14" fill="#4fc3f7" class="box"/><rect x="82" y="274" width="56" height="90" rx="4" fill="#fff" class="box" style="stroke-width:2"/><text x="110" y="325" text-anchor="middle" class="h" style="fill:#F7961D">JGB</text>
+    <rect x="182" y="270" width="134" height="88" rx="6" fill="#4fc3f7" class="box"/><rect x="192" y="280" width="114" height="64" fill="#fff" class="box" style="stroke-width:2"/><text x="249" y="320" text-anchor="middle" class="s">jgb.solutions</text><path d="M170 358 h158 l-12 18 h-134 z" fill="#ddd" class="box"/>
+    <path d="M60 402 h290 a10 10 0 0 1 10 10 v50 a10 10 0 0 1 -10 10 h-200 l-28 22 l6 -22 h-68 a10 10 0 0 1 -10 -10 v-50 a10 10 0 0 1 10 -10 z" fill="#fff" class="box"/><text x="76" y="430" class="t">“I need a website that helps</text><text x="76" y="453" class="t">my business look its best.”</text></g>
+  <path d="M372 330 L420 330" class="line"/>
+  <!-- 2 -->
+  <g><rect x="438" y="168" width="400" height="340" fill="#1a1a1a"/><rect x="430" y="160" width="400" height="340" fill="#fff" class="panel"/><rect x="430" y="160" width="400" height="340" fill="url(#dotsBlue)"/><text x="450" y="198" class="ph">2. The front door</text><text x="450" y="222" class="s">Production on Vercel · previews for pull requests</text>
+    <path d="M510 314 a32 32 0 0 1 30 -44 a44 44 0 0 1 82 -10 a36 36 0 0 1 62 22 a28 28 0 0 1 4 56 h-170 a26 26 0 0 1 -8 -24 z" fill="#F7961D" class="box"/><text x="598" y="318" text-anchor="middle" class="h">VERCEL</text>
+    <text x="452" y="370" class="t">⚡ CDN serves prebuilt pages</text><text x="452" y="400" class="t">🧭 Handles server requests too</text><text x="452" y="430" class="t">📦 Static assets and page files</text><text x="452" y="460" class="s">No Cloudflare proxy in front</text>
+    <g transform="translate(760 295) rotate(-10)"><polygon points="0,-48 12,-20 44,-30 26,-4 52,14 20,18 24,50 0,30 -24,50 -20,18 -52,14 -26,-4 -44,-30 -12,-20" fill="#ffd93d" class="box"/><text x="0" y="0" text-anchor="middle" class="s" style="font-weight:700">FAST</text><text x="0" y="17" text-anchor="middle" class="s" style="font-weight:700">PAGES!</text></g></g>
+  <path d="M832 330 L878 330" class="line"/>
+  <!-- 3 -->
+  <g><rect x="898" y="168" width="672" height="610" fill="#1a1a1a"/><rect x="890" y="160" width="672" height="610" fill="#fff" class="panel"/><text x="910" y="198" class="ph">3. Where it runs</text><text x="910" y="222" class="s">Vercel · TanStack Start · React 19 · Bun</text>
+    <rect x="910" y="240" width="632" height="220" rx="12" fill="#e8f7ee" class="box"/><text x="928" y="270" class="h">Build the site from code + content</text>
+    <rect x="930" y="292" width="274" height="62" rx="8" fill="#fff" class="box" style="stroke-width:2.5"/><text x="946" y="318" class="t" style="font-weight:700">Prebuilt pages</text><text x="946" y="340" class="s">HTML served from the CDN</text>
+    <rect x="1220" y="292" width="300" height="62" rx="8" fill="#fff" class="box" style="stroke-width:2.5"/><text x="1236" y="318" class="t" style="font-weight:700">Server functions</text><text x="1236" y="340" class="s">for interactive page data</text>
+    <path d="M1065 354 L1160 382" class="line" style="stroke-width:3"/><path d="M1370 354 L1280 382" class="line" style="stroke-width:3"/>
+    <rect x="1080" y="386" width="300" height="48" rx="8" fill="#ffd93d" class="box" style="stroke-width:2.5"/><text x="1230" y="416" text-anchor="middle" class="t" style="font-weight:700">Routes + React components</text><text x="930" y="450" class="s">TanStack Router · Tailwind CSS · Nitro (Vercel preset)</text>
+    <path d="M1230 464 L1230 498" class="line" style="stroke-width:3"/><rect x="940" y="504" width="580" height="102" rx="12" fill="#bfe8ff" class="box"/><text x="962" y="536" class="h">Content Collections</text><text x="962" y="564" class="t">Project write-ups in MDX become page data</text><text x="962" y="588" class="s">No app database is configured</text>
+    <path d="M1230 608 L1230 632" class="dash"/><rect x="940" y="640" width="580" height="84" rx="12" fill="#fff3c4" class="box"/><text x="962" y="674" class="h">Public files</text><text x="962" y="700" class="s">Images · sitemap.xml · products.json · ads.txt</text><text x="940" y="750" class="tiny">No separate worker, queue, or database configured here.</text>
+  </g>
+  <!-- 4 -->
+  <g><rect x="38" y="538" width="800" height="240" fill="#1a1a1a"/><rect x="30" y="530" width="800" height="240" fill="#fff" class="panel"/><rect x="30" y="530" width="800" height="240" fill="url(#dotsPink)"/><text x="50" y="568" class="ph">4. Where the content comes from</text>
+    <rect x="52" y="592" width="300" height="144" rx="12" fill="#ffb4b4" class="box"/><text x="202" y="624" text-anchor="middle" class="h">Written by JGB</text><text x="70" y="658" class="s">Project stories and service details</text><text x="70" y="682" class="s">live in the repo as MDX and TypeScript.</text><text x="70" y="712" class="s">Images are local public assets.</text>
+    <path d="M356 666 L402 666" class="line"/><rect x="412" y="592" width="390" height="64" rx="12" fill="#a0f0c0" class="box" style="stroke-width:2.5"/><text x="432" y="620" class="h">Content Collections</text><text x="432" y="644" class="s">turns MDX into data at build time</text><rect x="412" y="674" width="390" height="62" rx="12" fill="#d6c8ff" class="box" style="stroke-width:2.5"/><text x="432" y="702" class="h">No outside content API</text><text x="432" y="726" class="s">External links are for people to follow.</text>
+  </g><path d="M890 694 L838 694" class="line"/>
+  <!-- 5 -->
+  <g><rect x="38" y="808" width="520" height="400" fill="#1a1a1a"/><rect x="30" y="800" width="520" height="400" fill="#fff" class="panel"/><text x="50" y="838" class="ph">5. Shipping a change</text><text x="50" y="864" class="s">GitHub Actions checks pull requests and main</text>
+    <rect x="58" y="890" width="464" height="50" rx="10" fill="#bfe8ff" class="box"/><text x="78" y="922" class="t">1 · Checkout · install with Bun</text><path d="M290 942 L290 960" class="line" style="stroke-width:3"/>
+    <rect x="58" y="968" width="464" height="62" rx="10" fill="#a0f0c0" class="box"/><text x="78" y="994" class="t">2 · Generate content · format · lint,</text><text x="100" y="1016" class="s">types and tests</text><path d="M290 1032 L290 1050" class="line" style="stroke-width:3"/>
+    <rect x="58" y="1058" width="464" height="58" rx="10" fill="#ffd93d" class="box"/><text x="78" y="1083" class="t">3 · Build · then check SEO on built pages</text><text x="78" y="1105" class="s">Vercel deploys main and pull request previews</text><text x="58" y="1160" class="s">CI runs on Beelink when configured; otherwise GitHub-hosted.</text>
+  </g>
+  <!-- 6 special -->
+  <g><rect x="588" y="808" width="470" height="400" fill="#1a1a1a"/><rect x="580" y="800" width="470" height="400" fill="#fff" class="panel"/><rect x="580" y="800" width="470" height="400" fill="url(#dotsBlue)"/><text x="600" y="838" class="ph">6. The special bit</text><text x="600" y="864" class="s">Pages are prerendered before visitors arrive!</text>
+    <rect x="614" y="902" width="180" height="120" rx="10" fill="#fff" class="box"/><path d="M638 980 v-32 h32 v32 M682 980 v-52 h32 v52 M726 980 v-72 h32 v72" fill="#F7961D" class="box"/><text x="704" y="1006" text-anchor="middle" class="tiny">build time</text>
+    <path d="M808 962 L866 962" class="line"/><rect x="880" y="902" width="138" height="120" rx="10" fill="#e8f7ee" class="box"/><text x="949" y="944" text-anchor="middle" class="h">Ready</text><text x="949" y="971" text-anchor="middle" class="s">HTML pages</text><text x="949" y="994" text-anchor="middle" class="s">on the CDN</text>
+    <text x="612" y="1060" class="t">The build crawls links to find pages.</text><text x="612" y="1088" class="s">Posts are skipped while the blog is switched off.</text><path d="M612 1128 h400 a8 8 0 0 1 8 8 v36 a8 8 0 0 1 -8 8 h-400 a8 8 0 0 1 -8 -8 v-36 a8 8 0 0 1 8 -8 z" fill="#fff" class="box"/><text x="632" y="1153" class="s">“Build the page once; serve it quickly.”</text>
+  </g>
+  <!-- 7 -->
+  <g><rect x="1088" y="808" width="482" height="400" fill="#1a1a1a"/><rect x="1080" y="800" width="482" height="400" fill="#fff" class="panel"/><text x="1100" y="838" class="ph">7. By the numbers</text><text x="1100" y="866" class="s">Numbers and decisions in the repo</text>
+    <text x="1110" y="916" class="t">SEO check covers every sitemap page</text>
+    <text x="1110" y="990" class="t">10+ years building for the web · dozens of clients</text><text x="1110" y="1016" class="s">Main deploys to production; pull requests get previews</text><text x="1110" y="1040" class="s">19 project write-ups in content/projects/</text>
+    <rect x="1110" y="1064" width="410" height="90" rx="12" fill="#fff3c4" class="box"/><text x="1130" y="1096" class="h">Ads decision</text><text x="1130" y="1122" class="s">AdSense approved · ads off this business site</text><text x="1130" y="1144" class="tiny">The blog is switched off for now.</text>
+  </g>
+  <text x="800" y="1230" text-anchor="middle" class="tiny">Drawn by Control Center · 2026-11-17 · source: README.md, AGENTS.md, CLAUDE.md, package.json, vite.config.ts, content-collections.ts, docs/TODO-redesign.md, .github/workflows/ci.yml · main @ fe5fcf9</text>
+</svg>
