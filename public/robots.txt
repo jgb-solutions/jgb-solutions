@@ -1,3 +1,16 @@
+# SEO tools: they send no visitors (owner's decision, 2026-11-19).
+User-agent: AhrefsBot
+User-agent: AhrefsSiteAudit
+User-agent: SemrushBot
+User-agent: SiteAuditBot
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: BLEXBot
+User-agent: DataForSeoBot
+User-agent: Barkrowler
+User-agent: serpstatbot
+Disallow: /
+
 User-agent: *
 Allow: /
 
