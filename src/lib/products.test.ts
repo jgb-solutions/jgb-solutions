@@ -21,8 +21,18 @@ describe('overviewOf', () => {
 })
 
 /** The shape every product reads from https://jgb.solutions/products.json (version 1). */
+/** An official store badge, hosted here, for product footers to show next to a store link. */
+const storeBadge = z.strictObject({
+  image: z.url({ protocol: /^https$/ }).startsWith('https://jgb.solutions/assets/images/badges/'),
+  alt: z.string().min(1),
+  width: z.number().int().positive(),
+  height: z.number().int().positive(),
+})
+
 const productsFeed = z.object({
   version: z.literal(1),
+  /** Added 2026-11-22 (optional, so older readers ignore it): the official store badges. */
+  badges: z.strictObject({ googlePlay: storeBadge, appStore: storeBadge }).optional(),
   products: z.array(
     z.strictObject({
       id: z.string().min(1),
@@ -70,6 +80,17 @@ describe('public/products.json', () => {
   it('has an icon file for every product', () => {
     for (const { icon } of productsFeed.parse(feed).products) {
       const path = `public${new URL(icon).pathname}`
+      expect(existsSync(path), path).toBe(true)
+    }
+  })
+})
+
+describe('store badges in the feed', () => {
+  it('point at badge files served by this site', () => {
+    const { badges } = productsFeed.parse(feed)
+    expect(badges).toBeDefined()
+    for (const badge of Object.values(badges ?? {})) {
+      const path = `public${new URL(badge.image).pathname}`
       expect(existsSync(path), path).toBe(true)
     }
   })

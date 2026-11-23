@@ -6,6 +6,7 @@
 import { OG_IMAGE, SEO, SITE, SOCIAL, X_ACCOUNT } from './constants'
 import { OFFERED_SERVICES } from './services'
 import { shareImagePath } from './share'
+import type { StoreLinks } from './app-stores'
 import type { Service } from './services'
 
 export interface SEOConfig {
@@ -224,6 +225,33 @@ export function productJsonLd(project: ProjectForJsonLd, kind: ProductKind): Jso
     isAccessibleForFree: true,
     publisher: ORGANIZATION_REF,
   }
+}
+
+/**
+ * A product's mobile app, one entry per store it's live in (schema.org MobileApplication), with the
+ * store page as its URL. Empty until the feed has a store link.
+ */
+export function mobileAppJsonLd(
+  project: ProjectForJsonLd,
+  links: StoreLinks,
+  applicationCategory: string
+): Array<JsonLd> {
+  const stores = [
+    ...(links.googlePlay ? [{ operatingSystem: 'Android', url: links.googlePlay }] : []),
+    ...(links.appStore ? [{ operatingSystem: 'iOS', url: links.appStore }] : []),
+  ]
+  return stores.map(({ operatingSystem, url }) => ({
+    '@type': 'MobileApplication',
+    name: project.title,
+    description: project.description,
+    image: `${SITE.url}${project.image}`,
+    operatingSystem,
+    applicationCategory,
+    url,
+    installUrl: url,
+    offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+    publisher: ORGANIZATION_REF,
+  }))
 }
 
 /** Client work: the site we made, credited to the business. */

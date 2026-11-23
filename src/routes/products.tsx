@@ -10,10 +10,12 @@ import {
 } from '@/components/site/section'
 import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
+import { storeLinks } from '@/lib/app-stores'
 import { productKind, products } from '@/lib/products'
 import { createPageSEO, productJsonLd } from '@/lib/seo'
 import { cn } from '@/lib/utils'
 import { ResponsiveImage } from '@/components/responsive-image'
+import { PlatformChips } from '@/components/app-stores'
 
 export const Route = createFileRoute('/products')({
   head: () =>
@@ -89,6 +91,7 @@ function ProductsPage() {
                   <h2 className='font-display text-4xl font-extrabold tracking-tight md:text-5xl'>
                     {product.title}
                   </h2>
+                  <PlatformChips links={storeLinks(product.slug)} className={mutedText[tone]} />
                   <p className={cn('max-w-xl text-lg leading-relaxed', mutedText[tone])}>
                     {product.overview}
                   </p>

@@ -1,0 +1,7 @@
+{
+  "_comment": "Fake store links for previews and tests only (APP_STORES_PREVIEW=1 bun run build). Never copy these into public/products.json: store links go there only once an app is live.",
+  "musivo": {
+    "googlePlay": "https://play.google.com/store/apps/details?id=example.preview.app",
+    "appStore": "https://apps.apple.com/app/id000000000"
+  }
+}

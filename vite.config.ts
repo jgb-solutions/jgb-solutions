@@ -1,4 +1,6 @@
+import { readFileSync } from "node:fs"
 import { defineConfig } from "vite"
+import type { Plugin } from "vite"
 import viteReact from "@vitejs/plugin-react"
 import { tanstackStart } from "@tanstack/react-start/plugin/vite"
 import tsconfigPaths from "vite-tsconfig-paths"
@@ -11,10 +13,36 @@ const ReactCompilerConfig = {
 	/* ... */
 }
 
+/**
+ * Preview only (APP_STORES_PREVIEW=1): gives the bundled copy of public/products.json the fake store
+ * links in src/test/fixtures/app-stores-preview.json, so the platform chips and store badges can be
+ * seen before any app is live. The served /products.json file is never changed.
+ */
+function appStoresPreview(): Plugin | undefined {
+	if (process.env.APP_STORES_PREVIEW !== "1") return undefined
+	const fixture: Record<string, { googlePlay: string; appStore: string }> = JSON.parse(
+		readFileSync(new URL("./src/test/fixtures/app-stores-preview.json", import.meta.url), "utf8")
+	)
+	return {
+		name: "app-stores-preview",
+		enforce: "pre",
+		transform(code, id) {
+			if (!id.endsWith("/public/products.json")) return undefined
+			const feed = JSON.parse(code)
+			for (const product of feed.products) {
+				const links = fixture[product.id]
+				if (links && product.app) Object.assign(product.app, links)
+			}
+			return { code: JSON.stringify(feed), map: null }
+		}
+	}
+}
+
 export default defineConfig({
 	// TanStack Redact (smaller React): bundle server dependencies so their React imports are redirected too
 	ssr: { noExternal: true },
 	plugins: [
+		appStoresPreview(),
 		tailwindcss(),
 		contentCollections(),
 		tsconfigPaths(),
