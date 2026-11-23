@@ -1,7 +1,7 @@
 ---
 title: JGB Tools
 category: WEB TOOLS
-description: Free online tools for messaging, website checks, QR codes, passwords, IP lookup, image compression and link previews, with no sign-up.
+description: Free, privacy-friendly online tools for everyday tasks, supported by ads. No sign-up, and most tools run right on your device.
 image: /assets/images/projects/jgb-tools/featured.jpg
 order: 10
 client: JGB SOLUTIONS
@@ -12,9 +12,10 @@ services:
   - React
   - TypeScript
   - Tailwind CSS
+  - Cloudflare Workers
+  - D1
   - Drizzle
-  - Neon Postgres
-summary: Free tools for everyday tasks, with no sign-up and most processing in your browser.
+summary: Free, privacy-friendly online tools for everyday tasks, supported by ads. No sign-up, and most tools run on your device.
 url: 'https://tools.jgb.solutions/'
 gallery:
   - /assets/images/projects/jgb-tools/screenshot-1.jpg
@@ -27,23 +28,27 @@ gallery:
 
 ## Project Overview
 
-JGB Tools is a free collection of browser tools for messaging a number without saving it, checking whether a website is reachable, making QR codes, downloading YouTube thumbnails, generating passwords, checking a public IP address, compressing images and previewing link metadata. The site is supported by ads and does not require an account. Most tools process data in the browser; server-backed tools explain what they send.
+JGB Tools is a collection of free online tools for small, everyday tasks: messaging a phone number without saving it, checking whether a website is down, making QR codes, generating strong passwords, compressing photos and more. The idea is simple: tools that open instantly, do one job well and respect the people using them. The site is free to use and supported by ads. There is no account to create.
 
 ## The Challenge
 
-Small tasks often require visiting sites with unclear data handling or account requirements. JGB Tools makes each tool's purpose and data handling clear, and keeps processing on the user's device when the task allows it.
+Most "free tool" websites are slow, cluttered and built to collect data. Pages jump around while ads load, simple tasks hide behind sign-up walls, and it is often unclear what happens to the text, numbers or files you paste in.
+
+We wanted the opposite: pages that load fast on a cheap phone, plain-language explanations of what each tool does with your data, and a professional look and feel across every tool.
 
 ## The Solution
 
-JGB Tools is a web application built with **TanStack Start** and **React**, using **TypeScript**, **Tailwind CSS**, **Cloudflare Workers**, **Drizzle** and **Neon Postgres**.
+We built JGB Tools with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**, and a shared core library for the tools' logic and the brand.
 
-- **Text Anyone:** open WhatsApp, Telegram, Signal, SMS or Viber for a number without saving it to contacts.
-- **Is It Down?:** check a website's availability and response time.
-- **QR Code Generator:** make QR codes for links, Wi-Fi, messaging, email and contact details; download PNG or SVG files.
-- **YouTube Thumbnail Downloader:** get available thumbnail sizes from a YouTube link.
-- **Password Generator:** create passwords and passphrases in the browser.
-- **What's My IP:** view your public IP address and approximate location.
-- **Image Compressor:** compress and resize JPEG, PNG and WebP images in the browser.
-- **Link Preview Checker:** inspect link previews for WhatsApp, Facebook, X and Google.
+The tools available today:
 
-The service is free and ad-supported. There is no sign-up, and most tools run on the device; server-backed tools use the service needed for their task. The site includes guides, privacy information and terms.
+- **Text Anyone:** start a WhatsApp, Telegram, Signal, SMS or Viber chat with any number without adding it to your contacts.
+- **Is It Down?:** check whether a website is down for everyone or just for you, with its response time and your recent checks.
+- **QR Code Generator:** QR codes for links, text, Wi-Fi, WhatsApp, email, phone numbers and contact cards, with an optional logo, made on your device and downloadable as PNG or SVG.
+- **YouTube Thumbnail Downloader:** get any video's thumbnail in every size, up to HD.
+- **Password Generator:** strong passwords and memorable passphrases, created on your device.
+- **What's My IP:** see your public IP address and approximate location.
+- **Image Compressor:** shrink and resize JPEG, PNG and WebP images in your browser, without uploading them.
+- **Link Preview Checker:** see how a link will look when shared on WhatsApp, Facebook, X, LinkedIn and Google, with any problems to fix.
+
+Most tools run entirely in the browser, so what you enter never reaches our servers. The few that need a server (such as Is It Down? and Link Preview) keep only what is needed and say so in the privacy policy. Every tool has its own guide.

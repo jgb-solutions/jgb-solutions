@@ -44,43 +44,43 @@
   "/assets/images/projects/cinetta/featured.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/featured-c40fe859da",
+    "base": "/img/projects/cinetta/featured-1740e77b4f",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-1.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-1-4a837878c1",
+    "base": "/img/projects/cinetta/screenshot-1-c63b8fc536",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-2.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-2-0913c50303",
+    "base": "/img/projects/cinetta/screenshot-2-3eed2532b2",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-3.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-3-e99da2348a",
+    "base": "/img/projects/cinetta/screenshot-3-240018ce14",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-4.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-4-c255124ca1",
+    "base": "/img/projects/cinetta/screenshot-4-994951f3e5",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-5.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-5-53bbbc7534",
+    "base": "/img/projects/cinetta/screenshot-5-8d6ed0f95d",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/cinetta/screenshot-6.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/cinetta/screenshot-6-7cc925974c",
+    "base": "/img/projects/cinetta/screenshot-6-9adbc72180",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/domino-club/featured.jpg": {
@@ -464,127 +464,127 @@
   "/assets/images/projects/jgb-tools/featured.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/featured-dc6e6e764b",
+    "base": "/img/projects/jgb-tools/featured-4ee83f1830",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-1.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-1-01eb04ff1e",
+    "base": "/img/projects/jgb-tools/screenshot-1-b3e47c7c08",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-2.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-2-af029be188",
+    "base": "/img/projects/jgb-tools/screenshot-2-2fb87169b7",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-3.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-3-644943fc61",
+    "base": "/img/projects/jgb-tools/screenshot-3-9e65fc2504",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-4.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-4-b80ea05517",
+    "base": "/img/projects/jgb-tools/screenshot-4-765c6efb2d",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-5.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-5-2b402c184c",
+    "base": "/img/projects/jgb-tools/screenshot-5-b9360515ef",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/jgb-tools/screenshot-6.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/jgb-tools/screenshot-6-85d843e261",
+    "base": "/img/projects/jgb-tools/screenshot-6-7ae91f310f",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/featured.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/featured-53ff2e0dff",
+    "base": "/img/projects/musivo/featured-7d8ec45fc9",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-1.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-1-8281a91c89",
+    "base": "/img/projects/musivo/screenshot-1-b2daca1e4f",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-2.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-2-2a478def2b",
+    "base": "/img/projects/musivo/screenshot-2-d5a946c661",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-3.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-3-2c5e680a28",
+    "base": "/img/projects/musivo/screenshot-3-b1e8c9ecd6",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-4.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-4-ff6fe54c6b",
+    "base": "/img/projects/musivo/screenshot-4-960f703aac",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-5.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-5-9c5821f17a",
+    "base": "/img/projects/musivo/screenshot-5-c3995f8c29",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/musivo/screenshot-6.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/musivo/screenshot-6-b5323c2136",
+    "base": "/img/projects/musivo/screenshot-6-c2256262ae",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/featured.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/featured-5356259fca",
+    "base": "/img/projects/on-air/featured-03d2587048",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-1.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-1-07d479e9ea",
+    "base": "/img/projects/on-air/screenshot-1-3425d101f1",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-2.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-2-2bdc86232f",
+    "base": "/img/projects/on-air/screenshot-2-d567e3c708",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-3.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-3-7991949860",
+    "base": "/img/projects/on-air/screenshot-3-b0c49b8fbe",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-4.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-4-dedc3273cc",
+    "base": "/img/projects/on-air/screenshot-4-8f32e0926b",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-5.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-5-71558ea424",
+    "base": "/img/projects/on-air/screenshot-5-aa9071b68c",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/on-air/screenshot-6.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/on-air/screenshot-6-22d1117497",
+    "base": "/img/projects/on-air/screenshot-6-22bd1dc4b7",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/simone-fievre/featured.jpg": {
@@ -734,43 +734,43 @@
   "/assets/images/projects/top-facts/featured.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/featured-5cd582b7f8",
+    "base": "/img/projects/top-facts/featured-542d04ed19",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-1.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-1-73835b135e",
+    "base": "/img/projects/top-facts/screenshot-1-d3a055931d",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-2.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-2-89a39cf80b",
+    "base": "/img/projects/top-facts/screenshot-2-5e512de1d0",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-3.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-3-5b4e065b5e",
+    "base": "/img/projects/top-facts/screenshot-3-a0695d513e",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-4.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-4-4fdb4adad0",
+    "base": "/img/projects/top-facts/screenshot-4-4048e7872d",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-5.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-5-84a44c6a92",
+    "base": "/img/projects/top-facts/screenshot-5-b413416f83",
     "widths": [640, 1024, 1600]
   },
   "/assets/images/projects/top-facts/screenshot-6.jpg": {
     "width": 1600,
     "height": 1200,
-    "base": "/img/projects/top-facts/screenshot-6-8289f9cd86",
+    "base": "/img/projects/top-facts/screenshot-6-6ca1006308",
     "widths": [640, 1024, 1600]
   }
 }
