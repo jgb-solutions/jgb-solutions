@@ -1,11 +1,11 @@
 ---
 title: Cinetta
 category: WEB APP
-description: Cinetta helps people find any movie or TV show, watch the official trailer, see who's in it, and find where to watch it.
+description: Cinetta helps people find any movie or TV show, watch the official trailer, see who's in it, and find where to watch it, online or in a theater.
 image: /assets/images/projects/cinetta/featured.jpg
 order: 11
 client: JGB SOLUTIONS
-updated: '2026-11-01'
+updated: '2026-11-23'
 year: '2026'
 services:
   - TanStack Start
@@ -16,7 +16,7 @@ services:
   - D1
   - Drizzle
   - oRPC
-summary: Every movie and show, and where to watch it.
+summary: Every movie and show, its trailer, and where to watch it.
 url: 'https://cinetta.app/'
 gallery:
   - /assets/images/projects/cinetta/screenshot-1.jpg
@@ -29,20 +29,22 @@ gallery:
 
 ## Project Overview
 
-Cinetta is a guide to every movie and TV show: search any title or person, watch the official trailer, see the cast and crew, and find where to watch it. The home page highlights what's trending, what's new and what's coming soon, and lists the most watched titles in Spanish, Portuguese, French, German, Italian, Japanese, Korean, Chinese, Hindi, Arabic and Turkish.
+Cinetta is a guide to every movie and TV show: search any title or person, watch the official trailer, see the cast and crew, and find where to watch it, online or in a theater. The home page highlights what's trending, what's new and what's coming soon, with top 10 charts worldwide and in Spanish, Portuguese, French, German, Italian, Japanese, Korean, Chinese, Hindi, Arabic and Turkish.
 
-It's the movies and TV version of Musivo: one place to find something to watch and the legal ways to watch it.
+Cinetta hosts no video: trailers play in YouTube's own player, and every watch link goes to the licensed service that offers the title.
 
 ## The Challenge
 
-Information about movies and shows is spread across many open sources, each with different coverage, and titles are easy to confuse: a search for "Dune" can return two films, a book and a video game. The site had to bring the sources together, show the right title every time, find the official trailer, and stay fast on phones.
+Information about movies and shows is spread across many open sources, each with different coverage, and titles are easy to confuse: a search for "Dune" can return two films, a book and a video game. The site had to bring the sources together, show the right title every time, find the official trailer, tell people where each title is streaming in their country, and stay fast on phones.
 
 ## The Solution
 
-We built Cinetta with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+We built Cinetta with **TanStack Start** on **Cloudflare Workers**, with a **D1** database, **Drizzle** and **oRPC**.
 
-- **Open data, combined:** titles, people and filmographies come from Wikidata and Wikipedia, shows with their seasons and episodes from TVmaze, and posters from Wikidata, TVmaze or TMDB. Every source is credited on the About page.
+- **Open data, combined:** titles, people and filmographies come from Wikidata and Wikipedia, shows with their seasons and episodes from TVmaze, images from Wikimedia Commons, TVmaze and TMDB, and streaming availability from JustWatch through TMDB. Every source is credited on the About page.
 - **Pages for everything:** a page for each movie, show, season, episode and person, with the story, cast, crew, details and where to watch.
 - **Official trailers:** matched from the official channels of studios, distributors and streaming services on YouTube.
-- **Lists that stay current:** trending, new, coming soon, and popular titles by language.
+- **Lists that stay current:** trending titles, top charts, new releases, coming soon, a release calendar, and popular titles by language, genre, decade and country.
+- **Free to watch:** the most popular movies and shows you can watch free and legally on Tubi, Pluto TV, Plex and other services, by country.
+- **My list:** visitors can save titles to watch later.
 - **Fast and searchable:** pages are rendered on the server, so they load quickly and search engines can read them.
