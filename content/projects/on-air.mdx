@@ -1,11 +1,11 @@
 ---
 title: OnAir
 category: WEB APP
-description: OnAir is a free directory of live TV channels, radio stations and podcasts from around the world, playing right in the browser with no sign-up.
+description: Browse live TV, radio stations and podcasts from around the world, with playback from broadcasters and podcast providers.
 image: /assets/images/projects/on-air/featured.jpg
 order: 17
 client: JGB SOLUTIONS
-updated: '2026-11-01'
+updated: '2026-11-23'
 year: '2026'
 services:
   - TanStack Start
@@ -16,7 +16,7 @@ services:
   - D1
   - Drizzle
   - HLS
-summary: Watch free live TV and listen to radio and podcasts from around the world, in one place.
+summary: Find live TV, radio and podcasts from around the world in one directory.
 url: 'https://on-air.jgb.solutions/'
 gallery:
   - /assets/images/projects/on-air/screenshot-1.jpg
@@ -29,19 +29,19 @@ gallery:
 
 ## Project Overview
 
-OnAir brings free live TV channels, radio stations and podcasts from around the world into one place. Visitors can browse what's on air now, search by name, genre or country, and press play right in the browser, with no account and no app to install.
+OnAir is a directory of live TV channels, radio stations and podcasts from around the world. Visitors can browse live TV, radio and trending podcasts; explore channels by country, language or category; and search the catalog. Supported streams and podcast episodes play in the browser.
 
-OnAir doesn't host or rebroadcast any stream: it's a directory, and playback comes straight from each broadcaster. Its catalogs come from the open iptv-org and Radio-Browser projects and from Apple Podcasts.
+OnAir does not host or rebroadcast streams. Playback comes from the broadcasters and podcast providers. Its catalogs use data from iptv-org, Radio-Browser and Apple Podcasts.
 
 ## The Challenge
 
-Public stream lists are huge and many of their links are dead, so most free TV and radio directories are full of channels that never play. OnAir had to show only streams that actually work, keep up as broadcasters change their links, and stay fast on phones anywhere in the world.
+Public catalogs combine large numbers of channels and stations from different countries, and stream links can change or stop working. OnAir organizes this material into searchable TV and radio catalogs and provides browser playback where a stream is available.
 
 ## The Solution
 
-We built OnAir with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+We built OnAir with **TanStack Start** and **React**, using **TypeScript**, **Tailwind CSS**, **Cloudflare Workers**, **D1**, **Drizzle** and **HLS**.
 
-- **Checked streams:** TV channels and radio stations are tested every hour, so the site lists streams that play in the browser first.
-- **One player:** live TV plays through HLS in the browser, next to radio and podcast episodes.
-- **On Air Now:** the most popular live channels and stations, plus trending podcasts from Apple Podcasts in countries around the world.
-- **Search and filters:** by name, network, genre and country.
+- **Live TV and radio:** browse channel and station catalogs, with streams played from their providers in the browser.
+- **Podcasts:** discover trending shows from Apple Podcasts and play available episodes.
+- **Browse and search:** find media by name and browse TV and radio by country, language or category.
+- **Catalog sources:** listings draw on iptv-org, Radio-Browser and Apple Podcasts.

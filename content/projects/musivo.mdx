@@ -1,11 +1,11 @@
 ---
 title: Musivo
 category: WEB APP
-description: Musivo helps people find any song, artist or album, play the official preview, watch the video, and see where to listen, buy or get tickets.
+description: Discover songs, artists, albums and concerts with music charts, official previews and videos, and links to listening services and ticket sellers.
 image: /assets/images/projects/musivo/featured.jpg
 order: 30
 client: JGB SOLUTIONS
-updated: '2026-11-01'
+updated: '2026-11-23'
 year: '2026'
 services:
   - TanStack Start
@@ -16,7 +16,7 @@ services:
   - D1
   - Drizzle
   - oRPC
-summary: Find any song, artist or album, play the official preview, watch the video, and see where to listen, buy or get tickets.
+summary: Discover music, watch official videos, and find listening services and concerts.
 url: 'https://musivo.app/'
 gallery:
   - /assets/images/projects/musivo/screenshot-1.jpg
@@ -29,21 +29,20 @@ gallery:
 
 ## Project Overview
 
-Musivo is a music discovery site: search any song, artist or album, from any country or genre, play the official preview, watch the music video, and go straight to where you can listen to the full track, buy it, or get tickets to a show. The home page shows the top songs worldwide and by country, from the United States and the United Kingdom to Brazil, Nigeria, Japan and South Korea.
+Musivo helps people find songs, artists, albums and concerts. Its home page combines worldwide and country music charts with chart movements, popular artists and releases. Visitors can search the catalog, play platform-provided previews, watch official music videos, and follow links to streaming services, music stores and ticket sellers.
 
 Musivo first launched in 2022 as MP3Pam, a site for sharing audio. In 2026 we rebuilt it from scratch around a simple rule: no audio is hosted on the site. It took its new name, Musivo, and its new address, musivo.app, in October 2026. Every preview comes from the platform that provides it, and every link goes to a licensed service.
 
 ## The Challenge
 
-People want one place to find a song and every legal way to hear it, but music data is spread across many services, each with its own catalog, links and limits. The site had to pull it together quickly, match the same song across platforms, stay fast on phones, and never host or offer music it doesn't have the rights to.
+Music information and listening options are spread across services with separate catalogs and links. Musivo brings charts, artist and release pages, videos, concerts and listening options together while keeping audio on the platforms that provide it.
 
 ## The Solution
 
-We built Musivo with **TanStack Start** on **Cloudflare Workers**, with a **D1** database and **Drizzle**.
+We built Musivo with **TanStack Start** and **React**, using **TypeScript**, **Tailwind CSS**, **Cloudflare Workers**, **D1**, **Drizzle** and **oRPC**.
 
-- **Charts by country:** the top songs worldwide and in 10 countries, from Deezer's charts, with a play button on every track.
-- **Explore:** new releases from the artists on the charts, every genre with its top songs, trending artists by country, the newest music videos and upcoming concerts.
-- **Artist and release pages:** top songs, albums, music videos and where to listen, for each artist and each album or single.
-- **Official previews and videos:** about 30 seconds of each song, streamed from the platform that provides it, and official music videos from YouTube.
-- **Where to listen, buy or get tickets:** links to streaming services, music stores and ticket sellers. Some are affiliate links, and the site says so.
-- **Fast and searchable:** pages are rendered on the server and cached at the edge, so they load quickly and search engines can read them.
+- **Charts and discovery:** worldwide and country charts, chart changes, new releases, genres, trending artists and music videos.
+- **Music pages:** songs, artists and releases link related music, videos and available listening options.
+- **Concerts:** browse upcoming shows and ticket links.
+- **Platform playback:** previews and videos are supplied by music and video platforms; Musivo does not host audio.
+- **Server-rendered pages:** product pages are rendered for visitors and search engines, with data stored in D1.
