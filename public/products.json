@@ -1,5 +1,19 @@
 {
   "version": 1,
+  "badges": {
+    "googlePlay": {
+      "image": "https://jgb.solutions/assets/images/badges/google-play.png",
+      "alt": "Get it on Google Play",
+      "width": 564,
+      "height": 168
+    },
+    "appStore": {
+      "image": "https://jgb.solutions/assets/images/badges/app-store.svg",
+      "alt": "Download on the App Store",
+      "width": 120,
+      "height": 40
+    }
+  },
   "products": [
     {
       "id": "jgb-tools",

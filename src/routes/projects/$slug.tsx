@@ -8,8 +8,10 @@ import { SiteFooter } from '@/components/site/site-footer'
 import { SiteHeader } from '@/components/site/site-header'
 import { PRODUCT_SLUGS, productKind } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
-import { clientProjectJsonLd, createPageSEO, productJsonLd } from '@/lib/seo'
+import { appCategory, storeLinks } from '@/lib/app-stores'
+import { clientProjectJsonLd, createPageSEO, mobileAppJsonLd, productJsonLd } from '@/lib/seo'
 import { ResponsiveImage } from '@/components/responsive-image'
+import { PlatformChips, StoreBadges } from '@/components/app-stores'
 
 const getProject = createServerFn({ method: 'GET' })
   .validator((slug: string) => slug)
@@ -52,7 +54,10 @@ export const Route = createFileRoute('/projects/$slug')({
         { name: 'Work', path: '/projects' },
         { name: project.title, path: `/projects/${project.slug}` },
       ],
-      jsonLd: [kind ? productJsonLd(project, kind) : clientProjectJsonLd(project)],
+      jsonLd: [
+        kind ? productJsonLd(project, kind) : clientProjectJsonLd(project),
+        ...mobileAppJsonLd(project, storeLinks(project.slug), appCategory(project.slug)),
+      ],
     })
   },
   component: ProjectDetailPage,
@@ -64,6 +69,7 @@ const proseClasses =
 function ProjectDetailPage() {
   const { project, isProduct, next } = Route.useLoaderData()
   const label = isProduct ? `Our product · ${project.category}` : project.category
+  const stores = storeLinks(project.slug)
 
   const details = [
     { term: isProduct ? 'Made by' : 'Client', value: project.client },
@@ -86,6 +92,7 @@ function ProjectDetailPage() {
             <h1 className='max-w-4xl font-display text-5xl font-extrabold leading-[0.98] tracking-tight text-balance sm:text-6xl lg:text-7xl'>
               {project.title}
             </h1>
+            <PlatformChips links={stores} className='text-muted-paper' />
             <p className='max-w-2xl text-lg leading-relaxed text-muted-paper md:text-xl'>
               {project.description}
             </p>
@@ -99,6 +106,7 @@ function ProjectDetailPage() {
                 Visit the site <ArrowUpRight className='h-4 w-4' aria-hidden />
               </a>
             )}
+            <StoreBadges links={stores} />
           </Container>
         </section>
 
