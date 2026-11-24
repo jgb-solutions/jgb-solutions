@@ -13,6 +13,8 @@
 | `products[].app` | 2026-11    | Optional. The mobile app: `scheme` (`musivo` → `musivo://`), `ios` bundle id, `android` package, and the store pages `appStore` and `googlePlay`. **Both stay `null` until the app is live in that store** (the owner's rule: no store links before then). |
 | `badges`         | 2026-11-22 | Optional. The official store badges, hosted on jgb.solutions: `badges.googlePlay` and `badges.appStore`, each with `image` (URL), `alt`, `width` and `height` (the image's own size).                                                                      |
 
+**Taglines fit on one line on a phone** (the owner's rule, 2026-11-23). The mobile apps' "More from JGB Solutions" rows show the tagline at 14 px next to a 64 px icon, which leaves about 190 px on a 360-wide phone: keep each tagline under about 30 characters (≤ 190 px in the system font), with no final period. The full sentence belongs in the product's own SEO text, not here.
+
 ## Showing the store badges in a product's footer
 
 The owner's choice (2026-11-22): every product footer shows the store badges next to a product once its app is live, so our apps are promoted everywhere our products are used.

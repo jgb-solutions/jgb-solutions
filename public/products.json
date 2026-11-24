@@ -18,7 +18,7 @@
     {
       "id": "jgb-tools",
       "name": "JGB Tools",
-      "tagline": "Free online tools for everyday tasks",
+      "tagline": "Free tools for everyday tasks",
       "url": "https://tools.jgb.solutions/",
       "kind": "web-app",
       "category": "Tools",
@@ -34,7 +34,7 @@
     {
       "id": "cinetta",
       "name": "Cinetta",
-      "tagline": "Every movie and show, and where to watch it",
+      "tagline": "Where to watch any title",
       "url": "https://cinetta.app/",
       "kind": "web-app",
       "category": "Entertainment",
@@ -50,7 +50,7 @@
     {
       "id": "musivo",
       "name": "Musivo",
-      "tagline": "Find any song, artist or album",
+      "tagline": "Any song, artist or album",
       "url": "https://musivo.app/",
       "kind": "web-app",
       "category": "Entertainment",
@@ -66,7 +66,7 @@
     {
       "id": "on-air",
       "name": "OnAir",
-      "tagline": "Free live TV, radio and podcasts from around the world",
+      "tagline": "Live TV, radio and podcasts",
       "url": "https://on-air.jgb.solutions/",
       "kind": "web-app",
       "category": "Entertainment",
@@ -82,7 +82,7 @@
     {
       "id": "street-brawl",
       "name": "Dojo Rivals",
-      "tagline": "A free fighting game in your browser",
+      "tagline": "A free browser fighting game",
       "url": "https://dojorivals.jgb.solutions/",
       "kind": "game",
       "category": "Games",
@@ -91,7 +91,7 @@
     {
       "id": "domino-club",
       "name": "Domino Club",
-      "tagline": "Live dominoes with friends, free in your browser",
+      "tagline": "Live dominoes with friends",
       "url": "https://domino.jgb.solutions/",
       "kind": "game",
       "category": "Games",
@@ -100,7 +100,7 @@
     {
       "id": "api-playground",
       "name": "API Playground",
-      "tagline": "Explore sample APIs and design your own",
+      "tagline": "Explore and design APIs",
       "url": "https://playground.jgb.solutions/",
       "kind": "web-app",
       "category": "Tools",
@@ -109,7 +109,7 @@
     {
       "id": "emojiverse",
       "name": "Emojiverse",
-      "tagline": "Emoji copy and paste, with every meaning",
+      "tagline": "Every emoji, with its meaning",
       "url": "https://emojiverse.jgb.solutions/",
       "kind": "web-app",
       "category": "Tools",
@@ -118,7 +118,7 @@
     {
       "id": "top-facts",
       "name": "Top Facts",
-      "tagline": "Top 10 lists of everything, from real data",
+      "tagline": "Top 10 lists from real data",
       "url": "https://top-facts.jgb.solutions/",
       "kind": "media",
       "category": "Reference",
@@ -134,7 +134,7 @@
     {
       "id": "techtalk",
       "name": "Tech Talk",
-      "tagline": "A tech podcast in Haitian Creole",
+      "tagline": "Haitian Creole tech podcast",
       "url": "https://techtalk.jgb.solutions/",
       "kind": "media",
       "category": "Podcasts",
