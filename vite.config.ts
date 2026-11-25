@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs"
+import { fileURLToPath } from "node:url"
 import { defineConfig } from "vite"
 import type { Plugin } from "vite"
 import viteReact from "@vitejs/plugin-react"
@@ -40,7 +41,25 @@ function appStoresPreview(): Plugin | undefined {
 
 export default defineConfig({
 	// TanStack Redact (smaller React): bundle server dependencies so their React imports are redirected too
-	ssr: { noExternal: true },
+	ssr: {
+		noExternal: true,
+		// The dev server's SSR runner can't run CommonJS. @content-collections/mdx/react imports
+		// mdx-bundler/client, which ships only CommonJS, so dev pre-bundles the pair to ESM
+		// (listing mdx-bundler/client alone isn't enough: its importer kept the raw file).
+		// Production builds convert CommonJS themselves and don't use this.
+		optimizeDeps: { include: ["@content-collections/mdx/react"] }
+	},
+	resolve: {
+		alias: [
+			// lucide-react's exports list "node" (CommonJS) before "import", so the dev server's SSR
+			// runner loaded the CommonJS build and every page failed with "require is not defined".
+			// Point it at the ES module build, which the browser and production builds use anyway.
+			{
+				find: /^lucide-react$/,
+				replacement: fileURLToPath(new URL("./node_modules/lucide-react/dist/esm/lucide-react.mjs", import.meta.url))
+			}
+		]
+	},
 	plugins: [
 		appStoresPreview(),
 		tailwindcss(),
