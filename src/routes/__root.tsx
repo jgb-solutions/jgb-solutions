@@ -20,11 +20,12 @@ import { VisitorMetrics } from '@/components/site/visitor-metrics'
 
 export const Route = createRootRoute({
   // Site-wide defaults; each page's own head() overrides the title, description, image and URL.
-  head: () => ({
+  head: ({ matches }) => ({
     meta: [
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { name: 'robots', content: 'index, follow' },
+      // A missing page (the 404 below) is never indexed.
+      { name: 'robots', content: isNotFound(matches) ? 'noindex, follow' : 'index, follow' },
       { name: 'keywords', content: SEO.keywords.join(', ') },
       { name: 'theme-color', content: '#050708' },
       { property: 'og:site_name', content: SITE.name },
@@ -52,6 +53,11 @@ export const Route = createRootRoute({
   notFoundComponent: NotFoundPage,
 })
 
+/** Whether the page being rendered is the 404 (no route matched, or a route's loader said so). */
+function isNotFound(matches: ReadonlyArray<{ status: string; _notFound?: boolean }>) {
+  return matches.some(match => match.status === 'notFound' || match._notFound)
+}
+
 /** The site's sections, as the folders `ls` prints in the 404 page's terminal. */
 const SECTIONS = [
   { to: '/', name: 'home' },
@@ -68,8 +74,6 @@ const SECTIONS = [
 function NotFoundPage() {
   return (
     <div className='flex min-h-screen flex-col'>
-      {/* React hoists this into <head>: the page is never indexed. */}
-      <meta name='robots' content='noindex, follow' />
       <SiteHeader />
       <main id='main' className='flex-1'>
         <section className='bg-ink py-20 text-paper md:py-28'>
@@ -97,7 +101,7 @@ function NotFoundPage() {
                 </Link>
               </div>
             </div>
-            <div className='overflow-hidden rounded-xl border border-ink-line bg-ink-soft font-mono text-sm shadow-2xl shadow-brand/10'>
+            <div className='overflow-hidden border border-ink-line bg-ink-soft font-mono text-sm shadow-2xl shadow-brand/10'>
               <p
                 aria-hidden='true'
                 className='flex items-center gap-2 border-b border-ink-line px-4 py-3 text-xs text-muted-paper'
