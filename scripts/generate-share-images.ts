@@ -82,7 +82,7 @@ interface Card {
 const STATIC_CARDS: Record<string, Omit<Card, 'path'>> = {
   '/services': {
     label: 'Services',
-    title: 'Websites, apps and social media.',
+    title: 'Websites, e-commerce, apps and social media.',
     text: 'Designed, built and run for your business by one team.',
   },
   '/products': {
@@ -239,7 +239,7 @@ async function render(card: Card) {
           fontSize: 22,
           letterSpacing: '0.12em',
         },
-        h('div', {}, 'WEB · MOBILE · SOCIAL MEDIA'),
+        h('div', {}, 'WEB · E-COMMERCE · MOBILE · SOCIAL MEDIA'),
         h('div', {}, 'jgb.solutions')
       )
     ) as unknown as Parameters<typeof satori>[0],

@@ -10,9 +10,9 @@ import { createPageSEO, websiteJsonLd } from '@/lib/seo'
 export const Route = createFileRoute('/')({
   head: () =>
     createPageSEO({
-      title: 'JGB Solutions - Websites, Mobile Apps & Social Media',
+      title: 'JGB Solutions - Websites, E-commerce, Mobile Apps & Social Media',
       description:
-        'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own products like JGB Tools. Based in Laval, Québec. Contact us for a quote.',
+        'JGB Solutions designs and builds websites, Shopify online stores, mobile apps and social media for businesses, and makes its own products like JGB Tools. Based in Laval, Québec. Contact us for a quote.',
       path: '/',
       jsonLd: [websiteJsonLd()],
     }),
