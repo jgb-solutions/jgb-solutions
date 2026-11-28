@@ -73,7 +73,13 @@ function ServicePage() {
               <Icon className='h-8 w-8' aria-hidden />
             </span>
             <h1 className='font-display text-5xl font-extrabold leading-[0.98] tracking-tight sm:text-6xl lg:text-7xl'>
-              {service.title}
+              {/* Each word stays whole, so "E-commerce" doesn't break at its hyphen on phones */}
+              {service.title.split(' ').map((word, index) => (
+                <span key={word}>
+                  {index > 0 && ' '}
+                  <span className='whitespace-nowrap'>{word}</span>
+                </span>
+              ))}
             </h1>
             <p className='max-w-2xl text-lg leading-relaxed text-muted-paper md:text-xl'>
               {service.description}
