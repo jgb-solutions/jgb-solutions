@@ -1,4 +1,4 @@
-import { Camera, Globe, Palette, Printer, Share2, Smartphone } from 'lucide-react'
+import { Camera, Globe, Palette, Printer, Share2, ShoppingBag, Smartphone } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface Service {
@@ -17,6 +17,14 @@ export interface Service {
   highlights?: Array<{ title: string; text: string }>
   /** Project slugs (content/projects) to show as examples on the service page. */
   relatedProjects?: Array<string>
+  /** A short line under the hero buttons, e.g. a partner status. */
+  badge?: string
+  /** Who the service is for, shown as a row of short cards. */
+  audience?: Array<{ title: string; text: string }>
+  /** One project shown large as a case study, with what we did on it. */
+  caseStudy?: { slug: string; points: Array<string> }
+  /** Questions and answers, shown on the page and as FAQPage structured data. */
+  faq?: Array<{ question: string; answer: string }>
 }
 
 export const SERVICES: Array<Service> = [
@@ -109,6 +117,105 @@ export const SERVICES: Array<Service> = [
       {
         title: 'Clear reporting',
         text: 'A simple monthly report on what worked, so the next month does better.',
+      },
+    ],
+  },
+  {
+    slug: 'shopify',
+    available: true,
+    title: 'Shopify E-commerce Stores',
+    shortDescription: 'Online stores on Shopify, ready to sell from day one.',
+    description:
+      'We build online stores for small businesses on Shopify, our preferred e-commerce platform. We set up your products, payments, taxes and shipping, in French and English, and teach you to run the store yourself.',
+    offerings: [
+      'A new store on a free Shopify theme, customized to your brand',
+      'Products and collections, organized so customers find them',
+      'Payments, taxes and shipping set up for Canada',
+      'Your store in French and English',
+      'SEO basics, so search engines can find your products',
+      'An email signup with a welcome discount',
+      'The apps your store needs, installed and set up',
+      'Training, so you can add products and handle orders yourself',
+      '30 days of support after launch',
+      'Moving your shop from Wix, Square or WooCommerce',
+      'A monthly care plan, on request',
+    ],
+    icon: ShoppingBag,
+    badge: 'We are a Shopify Partner',
+    highlights: [
+      {
+        title: 'Ready to take orders',
+        text: 'Payments, taxes, shipping rates and policies are set up and tested before launch, so the first order goes through.',
+      },
+      {
+        title: 'Bilingual from the start',
+        text: 'Your store, products and emails in French and English, for customers across Quebec and the rest of Canada.',
+      },
+      {
+        title: 'Yours to run',
+        text: 'The store is in your name and your account. We show you how to add products and handle orders, and stay available after.',
+      },
+    ],
+    audience: [
+      {
+        title: 'Makers and small brands',
+        text: 'You make or source your products and want a store that shows them well.',
+      },
+      {
+        title: 'Shops starting online',
+        text: 'You sell in person or on social media and want orders and payments in one place.',
+      },
+      {
+        title: 'Stores on another platform',
+        text: 'Your shop runs on Wix, Square or WooCommerce and you want to move it to Shopify.',
+      },
+    ],
+    caseStudy: {
+      slug: 'anboudou-creations',
+      points: [
+        'Six collections: handbags, clutches, wallets, necklaces, bracelets and sandals',
+        'The store in French and English',
+        'Card, PayPal, Shop Pay, Apple Pay and Google Pay at checkout',
+        'Shipping across Canada and to the United States',
+        'A newsletter signup with 10% off the first order',
+      ],
+    },
+    relatedProjects: ['anboudou-creations'],
+    faq: [
+      {
+        question: 'How much does a store cost?',
+        answer:
+          'Every store is different, so we quote each project. Tell us what you sell and what you need, and we send you a clear quote after a short call.',
+      },
+      {
+        question: 'Do I pay Shopify separately?',
+        answer:
+          'Yes. Shopify charges its monthly plan and payment fees directly to you. Our work is billed separately, and we help you choose the right plan.',
+      },
+      {
+        question: 'Who owns the store?',
+        answer:
+          'You do. The store is created in your name, and you keep full access to it, your products and your customers.',
+      },
+      {
+        question: 'How long does it take?',
+        answer:
+          'It depends on the number of products and what needs to be set up. We give you a timeline with the quote, before any work starts.',
+      },
+      {
+        question: 'Can you move my store from Wix, Square or WooCommerce?',
+        answer:
+          'Yes. We move your products, collections and content to Shopify and set up redirects, so links to your old pages keep working.',
+      },
+      {
+        question: 'Will my store be in French and English?',
+        answer:
+          'Yes, if you want it. We set up both languages, so each customer can shop in theirs.',
+      },
+      {
+        question: 'What happens after launch?',
+        answer:
+          'You get 30 days of support for questions and fixes. After that, a monthly care plan can cover updates, new products and small changes.',
       },
     ],
   },

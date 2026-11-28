@@ -19,7 +19,7 @@ export const SEO = {
   defaultTitle: 'JGB Solutions',
   titleTemplate: '%s - JGB Solutions',
   description:
-    'JGB Solutions designs and builds websites, mobile apps and social media for businesses, and makes its own apps and media sites. Based in Laval, Québec.',
+    'JGB Solutions designs and builds websites, Shopify online stores, mobile apps and social media for businesses, and makes its own apps and media sites. Based in Laval, Québec.',
   keywords: [
     'web design',
     'web development',

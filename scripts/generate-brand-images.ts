@@ -92,7 +92,7 @@ const h = (
   props: { style: { display: 'flex', ...style }, children },
 })
 
-const HEADLINE = 'Websites, apps and social media for your business.'
+const HEADLINE = 'Websites, online stores, apps and social media for your business.'
 
 const FONTS = [
   { name: 'Saira', data: font('saira/files/saira-latin-800-normal.woff'), weight: 800 as const },
@@ -157,7 +157,7 @@ async function coverImage(
             letterSpacing: '0.12em',
             color: orange,
           },
-          'WEB · MOBILE · SOCIAL MEDIA — JGB.SOLUTIONS'
+          'WEB · E-COMMERCE · MOBILE · SOCIAL MEDIA — JGB.SOLUTIONS'
         )
       ),
       h('div', { height: Math.max(4, Math.round(height * 0.03)), backgroundColor: orange })
@@ -217,7 +217,7 @@ async function shareImage() {
           fontSize: 24,
           letterSpacing: '0.12em',
         },
-        h('div', {}, 'WEB · MOBILE · SOCIAL MEDIA'),
+        h('div', {}, 'WEB · E-COMMERCE · MOBILE · SOCIAL MEDIA'),
         h('div', { color: orange }, 'jgb.solutions')
       )
     ) as unknown as Parameters<typeof satori>[0],

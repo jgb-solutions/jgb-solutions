@@ -71,7 +71,7 @@ describe('Home Route', () => {
   it('shows only the services we offer', async () => {
     renderWithRouter({ initialEntries: ['/'] })
 
-    const services = await screen.findByRole('heading', { name: 'Three services, one team' })
+    const services = await screen.findByRole('heading', { name: 'Four services, one team' })
     const section = services.closest('section') as HTMLElement
     expect(within(section).getByText('Mobile Apps')).toBeInTheDocument()
     expect(screen.queryByText(/graphic design/i)).not.toBeInTheDocument()

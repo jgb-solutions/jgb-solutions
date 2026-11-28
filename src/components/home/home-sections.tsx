@@ -14,10 +14,10 @@ export function HomeServices({ tone }: { tone: SectionTone }) {
       <SectionHeading
         tone={tone}
         label='What we do'
-        title='Three services, one team'
+        title='Four services, one team'
         intro='Every project gets the same care, from the first call to the updates after launch. Contact us for a quote.'
       />
-      <div className='grid grid-cols-1 gap-6 lg:grid-cols-3'>
+      <div className='grid grid-cols-1 gap-6 md:grid-cols-2'>
         {OFFERED_SERVICES.map(service => {
           const Icon = service.icon
           return (
@@ -42,7 +42,7 @@ export function HomeServices({ tone }: { tone: SectionTone }) {
               </h3>
               <p className={cn('leading-relaxed', mutedText[tone])}>{service.description}</p>
               <ul className='mt-auto flex flex-col gap-2.5 border-t border-current/10 pt-5 text-sm'>
-                {service.offerings.map(offering => (
+                {service.offerings.slice(0, 5).map(offering => (
                   <li key={offering} className='flex items-start gap-2.5'>
                     <Check className='mt-0.5 h-4 w-4 shrink-0 text-brand-strong' aria-hidden />
                     {offering}

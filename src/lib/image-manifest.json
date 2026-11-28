@@ -1,4 +1,46 @@
 {
+  "/assets/images/projects/anboudou-creations/featured.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/featured-4087652bc2",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-1.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-1-2d7b75ca9f",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-2.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-2-e7d9a47e40",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-3.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-3-74a5503ba8",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-4.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-4-815000456c",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-5.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-5-13c6f75e95",
+    "widths": [640, 1024, 1600]
+  },
+  "/assets/images/projects/anboudou-creations/screenshot-6.jpg": {
+    "width": 1600,
+    "height": 1200,
+    "base": "/img/projects/anboudou-creations/screenshot-6-4cba63a507",
+    "widths": [640, 1024, 1600]
+  },
   "/assets/images/projects/api-playground/featured.jpg": {
     "width": 1600,
     "height": 1200,

@@ -24,7 +24,7 @@ const CONTRACT_SKILLS = [
 export const Route = createFileRoute('/services/')({
   head: () =>
     createPageSEO({
-      title: 'Services - Websites, Mobile Apps & Social Media | JGB Solutions',
+      title: 'Services - Websites, E-commerce, Mobile Apps & Social Media | JGB Solutions',
       description:
         'JGB Solutions designs and builds websites and mobile apps and manages social media for businesses. See what each service includes. Contact us for a quote.',
       path: '/services',

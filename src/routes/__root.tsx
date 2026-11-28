@@ -30,7 +30,10 @@ export const Route = createRootRoute({
       { name: 'theme-color', content: '#050708' },
       { property: 'og:site_name', content: SITE.name },
       { property: 'og:locale', content: 'en_US' },
-      ...createSEOMeta({ title: `${SITE.name} - Websites, Mobile Apps & Social Media`, path: '/' }),
+      ...createSEOMeta({
+        title: `${SITE.name} - Websites, E-commerce, Mobile Apps & Social Media`,
+        path: '/',
+      }),
     ],
     links: [
       ...[sairaExtraBold, interRegular].map(href => ({
