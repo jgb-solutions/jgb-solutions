@@ -190,6 +190,18 @@ export function serviceJsonLd(service: Service): JsonLd {
   }
 }
 
+/** FAQPage structured data for a list of questions and answers. */
+export function faqJsonLd(faq: Array<{ question: string; answer: string }>): JsonLd {
+  return {
+    '@type': 'FAQPage',
+    mainEntity: faq.map(item => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  }
+}
+
 /** schema.org type for each kind of product in public/products.json. */
 const PRODUCT_TYPES = {
   'web-app': 'WebApplication',

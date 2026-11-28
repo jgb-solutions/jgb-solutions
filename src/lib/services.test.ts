@@ -3,7 +3,12 @@ import { OFFERED_SERVICES, SERVICES, getServiceBySlug } from '@/lib/services'
 
 describe('services', () => {
   it('offers only the services we sell today', () => {
-    expect(OFFERED_SERVICES.map(s => s.slug)).toEqual(['websites', 'mobile-apps', 'social-media'])
+    expect(OFFERED_SERVICES.map(s => s.slug)).toEqual([
+      'websites',
+      'mobile-apps',
+      'social-media',
+      'shopify',
+    ])
   })
 
   it('keeps planned services out of lookups', () => {

@@ -21,6 +21,16 @@ mock.module('content-collections', () =>
         image: '/tools.jpg',
         order: 10,
       },
+      {
+        slug: 'anboudou-creations',
+        title: 'Anboudou Créations',
+        category: 'SHOPIFY STORE',
+        description: 'A Shopify store.',
+        summary: 'A Shopify store for handmade accessories.',
+        image: '/anboudou.jpg',
+        url: 'https://anboudoucreations.ca/en',
+        order: 15,
+      },
     ],
     allPosts: [],
   })
@@ -63,6 +73,32 @@ describe('Service page', () => {
 
     expect(await screen.findByRole('heading', { level: 1, name: title })).toBeInTheDocument()
     expect(screen.queryByRole('heading', { name: 'Work we have done' })).not.toBeInTheDocument()
+  })
+
+  it('shows who it is for, the case study and the FAQ on the Shopify page', async () => {
+    renderWithRouter({ initialEntries: ['/services/shopify'] })
+
+    expect(
+      await screen.findByRole('heading', { level: 1, name: 'Shopify E-commerce Stores' })
+    ).toBeInTheDocument()
+    expect(screen.getByText('We are a Shopify Partner')).toBeInTheDocument()
+    expect(screen.queryByText(/Shopify Expert/)).not.toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Makers and small brands' })).toBeInTheDocument()
+
+    const caseStudy = document.getElementById('case-study') as HTMLElement
+    expect(
+      within(caseStudy).getByRole('heading', { name: 'Anboudou Créations' })
+    ).toBeInTheDocument()
+    expect(within(caseStudy).getByRole('link', { name: /Read the case study/ })).toHaveAttribute(
+      'href',
+      '/projects/anboudou-creations'
+    )
+    // The case study isn't repeated in an examples grid
+    expect(screen.queryByRole('heading', { name: 'Work we have done' })).not.toBeInTheDocument()
+
+    expect(screen.getByText('Who owns the store?')).toBeInTheDocument()
+    // Quote only: no prices on the page
+    expect(document.body.textContent).not.toMatch(/\$\s?\d/)
   })
 
   it.each(['graphic-design', 'not-a-service'])('shows the not-found page for %s', async slug => {

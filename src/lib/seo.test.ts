@@ -89,6 +89,7 @@ describe('seo', () => {
         'Websites',
         'Mobile Apps',
         'Social Media',
+        'Shopify E-commerce Stores',
       ])
     })
   })
