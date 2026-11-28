@@ -15,6 +15,7 @@ import { PRODUCT_SLUGS } from '@/lib/products'
 import { publishedProjects } from '@/lib/projects'
 import { createPageSEO, faqJsonLd, serviceJsonLd } from '@/lib/seo'
 import { OFFERED_SERVICES, getServiceBySlug } from '@/lib/services'
+import { cn } from '@/lib/utils'
 import { ResponsiveImage } from '@/components/responsive-image'
 
 // Services are plain data in src/lib/services.ts (their icons are components), so the loader
@@ -106,7 +107,12 @@ function ServicePage() {
         {service.audience && (
           <Section tone='mist' className='py-14 md:py-16' containerClassName='flex flex-col gap-8'>
             <h2 className='font-display text-3xl font-bold md:text-4xl'>Who it's for</h2>
-            <ul className='grid grid-cols-1 gap-6 md:grid-cols-3'>
+            <ul
+              className={cn(
+                'grid grid-cols-1 gap-6',
+                service.audience.length === 4 ? 'md:grid-cols-2 lg:grid-cols-4' : 'md:grid-cols-3'
+              )}
+            >
               {service.audience.map(item => (
                 <li key={item.title} className='flex flex-col gap-2 bg-paper p-7'>
                   <h3 className='font-display text-xl font-bold'>{item.title}</h3>

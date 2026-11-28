@@ -126,9 +126,9 @@ export const SERVICES: Array<Service> = [
     title: 'Shopify E-commerce Stores',
     shortDescription: 'Online stores on Shopify, ready to sell from day one.',
     description:
-      'We build online stores for small businesses on Shopify, our preferred e-commerce platform. We set up your products, payments, taxes and shipping, in French and English, and teach you to run the store yourself.',
+      'We build online stores for small and medium-sized businesses on Shopify, our preferred e-commerce platform. We set up your products, payments, taxes and shipping, in French and English, and teach you to run the store yourself.',
     offerings: [
-      'A new store on a free Shopify theme, customized to your brand',
+      'A new store, designed and customized for your needs',
       'Products and collections, organized so customers find them',
       'Payments, taxes and shipping set up for Canada',
       'Your store in French and English',
@@ -160,6 +160,10 @@ export const SERVICES: Array<Service> = [
       {
         title: 'Makers and small brands',
         text: 'You make or source your products and want a store that shows them well.',
+      },
+      {
+        title: 'Growing and established brands',
+        text: 'Your business is growing and you need a store that keeps up with more products, orders and customers.',
       },
       {
         title: 'Shops starting online',
