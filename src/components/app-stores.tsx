@@ -25,7 +25,8 @@ export function PlatformChips({ links, className }: { links: StoreLinks; classNa
 
 /**
  * The official store badges (Google's and Apple's own artwork, in public/assets/images/badges/),
- * shown at the same height as the guidelines ask. Renders nothing until a store link is in.
+ * shown at the same height as the guidelines ask: 64 px, as wide and taller than the button above
+ * them (owner, 2026-11-28: "make it bigger everywhere"). Renders nothing until a store link is in.
  */
 export function StoreBadges({ links, className }: { links: StoreLinks; className?: string }) {
   if (!links.googlePlay && !links.appStore) return null
@@ -39,7 +40,7 @@ export function StoreBadges({ links, className }: { links: StoreLinks; className
               alt='Get it on Google Play'
               width={564}
               height={168}
-              className='h-12 w-auto'
+              className='h-16 w-auto'
             />
           </a>
         </li>
@@ -52,7 +53,7 @@ export function StoreBadges({ links, className }: { links: StoreLinks; className
               alt='Download on the App Store'
               width={120}
               height={40}
-              className='h-12 w-auto'
+              className='h-16 w-auto'
             />
           </a>
         </li>
