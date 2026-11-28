@@ -108,8 +108,9 @@ function ProjectDetailPage() {
             )}
             {(stores.googlePlay || stores.appStore) && (
               <div className='space-y-3'>
-                {/* Owner, 2026-11-28: "Add 'Get the App' text on top of the logo". */}
-                <SectionLabel className='text-brand opacity-100'>Get the app</SectionLabel>
+                {/* Owner, 2026-11-28: "Get the app" above the badge, in the section's own text colour
+                    (white on the dark hero, black on a light one) and big enough to read at a glance. */}
+                <p className='font-display text-lg font-semibold'>Get the app</p>
                 <StoreBadges links={stores} />
               </div>
             )}
