@@ -106,7 +106,13 @@ function ProjectDetailPage() {
                 Visit the site <ArrowUpRight className='h-4 w-4' aria-hidden />
               </a>
             )}
-            <StoreBadges links={stores} />
+            {(stores.googlePlay || stores.appStore) && (
+              <div className='space-y-3'>
+                {/* Owner, 2026-11-28: "Add 'Get the App' text on top of the logo". */}
+                <SectionLabel className='text-brand opacity-100'>Get the app</SectionLabel>
+                <StoreBadges links={stores} />
+              </div>
+            )}
           </Container>
         </section>
 
